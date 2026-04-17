@@ -2,9 +2,10 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title>Praktikum Algoritma Pencarian · Linear dan Binary Search (Tanpa Batas Data)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ALPRO | UNNES 2026</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
     * {
       margin: 0;
@@ -13,33 +14,368 @@
     }
 
     body {
-      background: #f0f4f8;
       font-family: 'Inter', sans-serif;
+      background: #f5f7fa;
       color: #1a2c3e;
-      line-height: 1.5;
-      padding: 2rem 1rem;
     }
 
-    .container {
-      max-width: 1400px;
+    /* ========== VARIABEL ========== */
+    :root {
+      --spacing-sm: 0.5rem;
+      --spacing-md: 1rem;
+      --spacing-lg: 1.5rem;
+      --spacing-xl: 2rem;
+      --border-radius: 1rem;
+    }
+
+    /* ========== NAVIGATION BAR ========== */
+    .navbar {
+      background: white;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      padding: var(--spacing-md) var(--spacing-xl);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav-container {
+      max-width: 1280px;
       margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: var(--spacing-md);
     }
 
-    .modul-header {
-      text-align: center;
-      margin-bottom: 2rem;
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
     }
 
-    .logo-container {
+    .logo-unnes-nav {
+      height: 45px;
+    }
+
+    .logo-text {
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: #1a4d5f;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: var(--spacing-lg);
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #4a627a;
+      font-weight: 500;
+      font-size: 0.9rem;
+      transition: 0.2s;
+    }
+
+    .btn-masuk-nav {
+      background: #1a4d5f;
+      color: white !important;
+      padding: 0.5rem 1.2rem;
+      border-radius: 2rem;
+    }
+
+    /* ========== HALAMAN LOGIN ========== */
+    .login-page {
       display: flex;
       justify-content: center;
+      align-items: center;
+      min-height: calc(100vh - 70px);
+      padding: 1rem;
+      background: linear-gradient(135deg, #f0f4f8 0%, #e8edf3 100%);
+    }
+
+    .login-card-modern {
+      background: white;
+      border-radius: 1.5rem;
+      width: 100%;
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 2rem;
+      box-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.1);
+    }
+
+    @media (min-width: 768px) {
+      .login-card-modern {
+        max-width: 520px;
+        padding: 2rem 2.2rem;
+      }
+    }
+
+    .login-header {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .login-header h1 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #1a4d5f;
+      margin-bottom: 0.3rem;
+    }
+
+    .login-header p {
+      color: #6c7e91;
+      font-size: 0.85rem;
+    }
+
+    .form-group {
       margin-bottom: 1.2rem;
     }
 
-    .logo-unnes {
-      max-width: 280px;
+    .form-group label {
+      font-weight: 600;
+      font-size: 0.8rem;
+      display: block;
+      margin-bottom: 0.4rem;
+      color: #2c4c6c;
+    }
+
+    .input-with-icon {
+      position: relative;
+    }
+
+    .input-with-icon i {
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #9aaebf;
+      font-size: 1rem;
+    }
+
+    .input-with-icon input {
       width: 100%;
-      height: auto;
+      padding: 0.8rem 1rem 0.8rem 2.8rem;
+      border: 1px solid #d4e0e8;
+      border-radius: 1rem;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      transition: 0.2s;
+    }
+
+    .input-with-icon input:focus {
+      outline: none;
+      border-color: #1a4d5f;
+    }
+
+    .forgot-password {
+      text-align: right;
+      margin-bottom: 1.2rem;
+    }
+
+    .forgot-password a {
+      font-size: 0.75rem;
+      color: #2a9d8f;
+      text-decoration: none;
+    }
+
+    .btn-login-modern {
+      background: #1e4663;
+      color: white;
+      border: none;
+      padding: 0.8rem;
+      border-radius: 2rem;
+      font-weight: 600;
+      cursor: pointer;
+      width: 100%;
+      font-size: 0.9rem;
+      transition: background 0.2s;
+    }
+
+    .btn-login-modern:hover {
+      background: #0f2c38;
+    }
+
+    .divider {
+      text-align: center;
+      margin: 1.2rem 0;
+      position: relative;
+    }
+
+    .divider::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      width: 100%;
+      height: 1px;
+      background: #e2edf2;
+    }
+
+    .divider span {
+      background: white;
+      padding: 0 1rem;
+      position: relative;
+      font-size: 0.75rem;
+      color: #8ba0b0;
+    }
+
+    .register-link {
+      text-align: center;
+      margin-top: 1.2rem;
+      font-size: 0.85rem;
+    }
+
+    .register-link a {
+      color: #2a9d8f;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .error-message {
+      background: #fee2e2;
+      color: #d9534f;
+      padding: 0.7rem;
+      border-radius: 1rem;
+      font-size: 0.75rem;
+      margin-bottom: 1rem;
+      text-align: center;
+      display: none;
+    }
+
+    /* ========== HALAMAN PILIH MATA KULIAH ========== */
+    .mata-kuliah-page {
+      display: none;
+      min-height: calc(100vh - 70px);
+      padding: 2rem 1rem;
+      background: linear-gradient(135deg, #f0f4f8 0%, #e8edf3 100%);
+    }
+
+    .mk-container {
+      max-width: 700px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 1.5rem;
+      padding: 2rem;
+      box-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.1);
+    }
+
+    .mk-container h2 {
+      text-align: center;
+      font-size: 1.8rem;
+      color: #1a4d5f;
+      margin-bottom: 0.5rem;
+    }
+
+    .mk-container > p {
+      text-align: center;
+      color: #6c7e91;
+      margin-bottom: 1.8rem;
+      font-size: 0.9rem;
+    }
+
+    .mk-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+
+    .mk-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 1.2rem;
+      background: #f9fbfe;
+      border-radius: 1rem;
+      border: 1px solid #e2edf2;
+      transition: 0.2s;
+    }
+
+    .mk-item:hover {
+      background: #f0f4fa;
+      border-color: #cbdde6;
+    }
+
+    .mk-name {
+      font-weight: 600;
+      font-size: 1rem;
+      color: #1a2c3e;
+    }
+
+    .btn-masuk-mk {
+      background: #1e4663;
+      color: white;
+      border: none;
+      padding: 0.5rem 1.5rem;
+      border-radius: 2rem;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 0.8rem;
+      transition: background 0.2s;
+    }
+
+    .btn-masuk-mk:hover {
+      background: #0f2c38;
+    }
+
+    /* ========== KONTEN UTAMA (ALGORITMA) ========== */
+    .main-content {
+      display: none;
+    }
+
+    .dashboard-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: var(--spacing-lg);
+    }
+
+    .welcome-banner {
+      background: linear-gradient(135deg, #1a4d5f, #0f2c38);
+      border-radius: var(--border-radius);
+      padding: var(--spacing-lg) var(--spacing-xl);
+      margin-bottom: var(--spacing-xl);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      color: white;
+    }
+
+    .user-name-large {
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin: var(--spacing-sm) 0;
+    }
+
+    .logout-btn {
+      background: rgba(255,255,255,0.2);
+      border: none;
+      padding: 0.5rem 1.2rem;
+      border-radius: 2rem;
+      color: white;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .back-to-mk {
+      background: rgba(255,255,255,0.15);
+      border: none;
+      padding: 0.5rem 1.2rem;
+      border-radius: 2rem;
+      color: white;
+      cursor: pointer;
+      font-weight: 600;
+      margin-right: 1rem;
+    }
+
+    .back-to-mk:hover {
+      background: rgba(255,255,255,0.25);
+    }
+
+    .modul-header {
+      margin-bottom: 1.5rem;
     }
 
     .badge-unnes {
@@ -51,58 +387,41 @@
       border-radius: 40px;
       display: inline-block;
       margin-bottom: 0.8rem;
-      letter-spacing: 1px;
     }
 
-    h1 {
-      font-size: 2.3rem;
-      font-weight: 700;
-      background: linear-gradient(135deg, #1a4d5f, #0f2c38);
-      background-clip: text;
-      -webkit-background-clip: text;
-      color: transparent;
+    .modul-header h1 {
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
     }
 
     .sub {
+      font-size: 0.85rem;
       color: #4a627a;
-      max-width: 700px;
-      margin: 0.5rem auto 0;
-      font-size: 0.9rem;
+      line-height: 1.4;
     }
 
+    /* Panel Algoritma */
     .algo-panel {
       display: flex;
       flex-wrap: wrap;
-      gap: 2rem;
-      margin: 2rem 0;
+      gap: var(--spacing-xl);
+      margin: var(--spacing-xl) 0;
     }
 
     .panel-card {
       flex: 1;
       min-width: 340px;
       background: white;
-      border-radius: 2rem;
+      border-radius: var(--border-radius);
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
       border: 1px solid #e2edf2;
       overflow: hidden;
-      transition: transform 0.2s;
-    }
-
-    .panel-card:hover {
-      transform: translateY(-4px);
     }
 
     .card-header {
-      padding: 1.2rem 1.5rem;
+      padding: var(--spacing-lg) var(--spacing-xl);
       background: #f9fbfe;
       border-bottom: 2px solid;
-    }
-
-    .linear-header {
-      border-bottom-color: #f4a261;
-    }
-    .binary-header {
-      border-bottom-color: #2a9d8f;
     }
 
     .card-header h2 {
@@ -110,8 +429,16 @@
       align-items: center;
       gap: 10px;
       font-weight: 700;
-      font-size: 1.5rem;
+      font-size: 1.4rem;
       flex-wrap: wrap;
+    }
+
+    .linear-header {
+      border-bottom-color: #f4a261;
+    }
+
+    .binary-header {
+      border-bottom-color: #2a9d8f;
     }
 
     .complexity-tag {
@@ -124,11 +451,11 @@
     }
 
     .card-body {
-      padding: 1.5rem;
+      padding: var(--spacing-xl);
     }
 
     .input-group {
-      margin-bottom: 1.2rem;
+      margin-bottom: 1rem;
     }
 
     .input-group label {
@@ -136,100 +463,137 @@
       font-size: 0.8rem;
       display: block;
       margin-bottom: 0.4rem;
-      color: #2c4c6c;
     }
 
-    .input-group input, .input-group textarea {
+    .input-group textarea,
+    .input-group input {
       width: 100%;
       padding: 0.7rem 1rem;
       border: 1px solid #cbdde6;
-      border-radius: 1rem;
+      border-radius: var(--border-radius);
       font-family: 'JetBrains Mono', monospace;
       font-size: 0.85rem;
       background: white;
-      transition: 0.2s;
-    }
-
-    .input-group input:focus, .input-group textarea:focus {
-      outline: none;
-      border-color: #2a9d8f;
-      box-shadow: 0 0 0 2px rgba(42,157,143,0.2);
     }
 
     .btn-cari {
       background: #1e4663;
       color: white;
       border: none;
-      padding: 0.7rem 1.2rem;
+      padding: 0.7rem;
       border-radius: 2rem;
       font-weight: 600;
       cursor: pointer;
       width: 100%;
       font-size: 0.9rem;
       transition: background 0.2s;
-      margin-top: 0.5rem;
+      margin-top: var(--spacing-sm);
     }
 
     .btn-cari:hover {
-      background: #0e3450;
+      background: #0f2c38;
     }
 
+    /* Hasil pencarian elegan */
     .result-box {
-      margin-top: 1.5rem;
+      margin-top: var(--spacing-lg);
       background: #f8fafd;
-      border-radius: 1.2rem;
-      padding: 1rem;
+      border-radius: var(--border-radius);
+      padding: var(--spacing-md);
       border-left: 4px solid;
-      font-size: 0.9rem;
-      max-height: 300px;
+      font-size: 0.85rem;
+      max-height: 380px;
       overflow-y: auto;
+      transition: all 0.2s ease;
     }
 
     .result-linear {
       border-left-color: #f4a261;
     }
+
     .result-binary {
       border-left-color: #2a9d8f;
     }
 
-    .highlight {
-      font-weight: 700;
-      color: #1e6f5c;
-    }
-
-    .info-syarat {
-      background: #fff7e5;
-      padding: 0.5rem 0.8rem;
-      border-radius: 1rem;
-      font-size: 0.75rem;
-      margin-top: 1rem;
+    .result-box h4 {
+      font-size: 1rem;
+      margin-bottom: 0.8rem;
       display: flex;
       align-items: center;
       gap: 8px;
     }
 
-    .demo-data {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.7rem;
-      background: #eef2fa;
-      padding: 0.3rem 0.8rem;
-      border-radius: 1rem;
-      cursor: pointer;
+    .result-badge {
       display: inline-block;
-      margin-top: 6px;
-    }
-
-    .demo-data:hover {
-      background: #e0e8f2;
-    }
-
-    .footer-note {
-      text-align: center;
-      margin-top: 2.5rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 20px;
       font-size: 0.7rem;
-      color: #6c7e91;
-      border-top: 1px solid #d4e2ec;
-      padding-top: 1.5rem;
+      font-weight: 600;
+    }
+
+    .result-badge.success {
+      background: #d4edda;
+      color: #155724;
+    }
+
+    .result-badge.failed {
+      background: #f8d7da;
+      color: #721c24;
+    }
+
+    .result-detail {
+      background: white;
+      border-radius: 0.8rem;
+      padding: 0.8rem;
+      margin: 0.5rem 0;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      border: 1px solid #e2edf2;
+    }
+
+    .result-detail p {
+      margin: 0.4rem 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .result-detail .label {
+      font-weight: 700;
+      color: #4a627a;
+      min-width: 140px;
+    }
+
+    .result-detail .value {
+      color: #1a2c3e;
+      word-break: break-all;
+    }
+
+    .result-explanation {
+      background: #eef2fa;
+      border-radius: 0.8rem;
+      padding: 0.7rem;
+      margin-top: 0.5rem;
+      font-size: 0.7rem;
+      color: #2c4c6c;
+      border-left: 3px solid #1a4d5f;
+    }
+
+    .exec-time {
+      font-family: 'JetBrains Mono', monospace;
+      color: #2a9d8f;
+      font-weight: 600;
+    }
+
+    .info-syarat {
+      background: #fff7e5;
+      padding: 0.5rem 0.8rem;
+      border-radius: var(--border-radius);
+      font-size: 0.7rem;
+      margin-top: var(--spacing-md);
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
 
     .warning-badge {
@@ -239,331 +603,442 @@
       font-size: 0.7rem;
     }
 
-    @media (max-width: 780px) {
-      .algo-panel {
-        flex-direction: column;
-      }
-      .panel-card {
-        min-width: 100%;
-      }
-      .logo-unnes {
-        max-width: 200px;
-      }
+    .footer-note {
+      text-align: center;
+      margin-top: var(--spacing-xl);
+      font-size: 0.7rem;
+      color: #6c7e91;
+      border-top: 1px solid #d4e2ec;
+      padding-top: var(--spacing-lg);
     }
   </style>
 </head>
 <body>
-<div class="container">
-  <div class="modul-header">
-    <!-- LOGO UNNES -->
-    <div class="logo-container">
-      <img src="https://res.cloudinary.com/dobtafzwo/image/upload/v1776436925/logo-unnes-horizontal_lnov39.png" 
-           alt="Logo Universitas Negeri Semarang" 
-           class="logo-unnes">
-    </div>
-    
-    <div class="badge-unnes">ALGORITMA PEMROGRAMAN </div>
-    <h1>🔎 Algoritma Pencarian : <br> Linear Search dan Binary Search</h1>
-    <div class="sub">
-      <strong>Kelompok 10</strong><br>
-      1. Nabila 'Aina Syarifa (2504030043)<br>
-      2. Muhammad Elian Nabil (2504030062)<br>
-      3. Achmad Muqorrobin (2504030064)<br>
-      <br>
-      <strong>Dosen Pengampu :</strong> <br> Bapak Amidi, S.Si., M.Pd.<br>
-      <br>
-      <strong>PRODI MATEMATIKA</strong> <br>
-      <strong>Fakultas Matematika dan Ilmu Pengetahuan Alam</strong><br>
-      <strong>UNIVERSITAS NEGERI SEMARANG 2026</strong><br>
-      <br> 
-      Masukkan data sebanyak apapun, website akan mencari dan menampilkan indeks dengan tepat.
-    </div>
-  </div>
 
-  <div class="algo-panel">
-    
-    <!-- ===================== LINEAR SEARCH PANEL ===================== -->
-    <div class="panel-card">
-      <div class="card-header linear-header">
-        <h2><span>🔍</span> Linear Search <span class="complexity-tag">O(n)</span></h2>
-        <p style="font-size:0.75rem; margin-top:6px;">Pencarian berurutan · Data TIDAK perlu terurut · Tanpa batas data</p>
+<!-- ==================== HALAMAN LOGIN ==================== -->
+<div id="loginPage">
+  <div class="navbar">
+    <div class="nav-container">
+      <div class="logo-area">
+        <img src="https://res.cloudinary.com/dobtafzwo/image/upload/v1776436925/logo-unnes-horizontal_lnov39.png" alt="UNNES" class="logo-unnes-nav">
+        <span class="logo-text"></span>
       </div>
-      <div class="card-body">
-        <div class="input-group">
-          <label>📊 Data Array (pisahkan dengan koma, spasi, atau enter) — <span class="warning-badge">bisa ribuan data</span></label>
-          <textarea id="linearData" rows="4" placeholder="Contoh: 17, 8, 21, 5, 12, 99, 3, 45, 67, 89, 100, 200, 55, 77, 88, 120, 500, 1000, 2500, 9999, ... (bebas berapa pun)">17, 8, 21, 5, 12, 99, 3, 45, 67, 89, 100, 200, 55, 77, 88, 120, 500, 1000, 2500</textarea>
-          <div class="demo-data" onclick="setLargeLinearExample()">📋 Contoh data besar (25+ angka)</div>
-          <div class="demo-data" onclick="setRandomLinear()">🎲 Generate data acak (100 angka)</div>
-        </div>
-        <div class="input-group">
-          <label>🎯 Angka yang dicari</label>
-          <input type="number" id="linearTarget" placeholder="Masukkan angka target" value="99">
-        </div>
-        <button class="btn-cari" id="btnLinearCari">🔎 Cari dengan Linear Search</button>
-        
-        <div class="result-box result-linear" id="linearResult">
-          💡 <strong>Hasil pencarian akan tampil di sini</strong><br>
-          Linear search akan menyisir setiap elemen dari indeks 0 hingga akhir.
-        </div>
-        <div class="info-syarat">
-          <span>📌</span> <strong>Prinsip:</strong> Membandingkan tiap elemen satu per satu → cocok → return indeks. <br>
-          ✔ Kelebihan: data boleh acak / tidak terurut, tanpa batasan jumlah. ✖ Kekurangan: O(n) untuk data besar.
-        </div>
-      </div>
-    </div>
-
-    <!-- ===================== BINARY SEARCH PANEL ===================== -->
-    <div class="panel-card">
-      <div class="card-header binary-header">
-        <h2><span>⚡</span> Binary Search <span class="complexity-tag">O(log n)</span></h2>
-        <p style="font-size:0.75rem; margin-top:6px;">Pencarian bagi dua · WAJIB data terurut (akan diurutkan otomatis)</p>
-      </div>
-      <div class="card-body">
-        <div class="input-group">
-          <label>📊 Data Array (pisahkan dengan koma) — <span class="warning-badge">bebas jumlah, nanti diurutkan</span></label>
-          <textarea id="binaryDataRaw" rows="4" placeholder="Contoh: 5, 12, 3, 21, 8, 17, 99, 44, 2, 100, 2000, 7, 19, 88, 500, 1200">5, 12, 3, 21, 8, 17, 99, 44, 2, 100, 2000, 7, 19, 88, 500, 1200</textarea>
-          <div class="demo-data" onclick="setLargeBinaryExample()">📋 Contoh data besar (acak)</div>
-          <div class="demo-data" onclick="setRandomBinary()">🎲 Generate data acak (100 angka)</div>
-        </div>
-        <div class="input-group">
-          <label>🎯 Angka yang dicari</label>
-          <input type="number" id="binaryTarget" placeholder="Masukkan angka target" value="99">
-        </div>
-        <button class="btn-cari" id="btnBinaryCari">⚡ Cari dengan Binary Search</button>
-        
-        <div class="result-box result-binary" id="binaryResult">
-          💡 <strong>Hasil pencarian + indeks setelah sorting</strong><br>
-          Binary search hanya bekerja pada data terurut. Array akan diurutkan ascending terlebih dahulu.
-        </div>
-        <div class="info-syarat">
-          <span>⚠️</span> <strong>Syarat mutlak:</strong> data harus TERURUT (ascending). Program akan mengurutkan otomatis, lalu mencari dengan O(log n).
-        </div>
+      <div class="nav-links">
+        <a href="#" class="btn-masuk-nav">Masuk</a>
       </div>
     </div>
   </div>
 
-  <div class="footer-note">
-    Implementasi algoritma berdasarkan kode C++(Codeblocks). <br>
-    Linear Search menggunakan loop & flag boolean. Binary Search menggunakan prinsip bagi dua (low, mid, high). 
-    <br>© 2026 | Praktikum Algoritma Pemrograman Materi Algoritma Pencarian - UNNES
+  <div class="login-page">
+    <div class="login-card-modern">
+      <div class="login-header">
+        <h1>Halo, Selamat Datang 👋</h1>
+        <p>Masukkan NIM dan Password Anda</p>
+      </div>
+      <div id="loginErrorMsg" class="error-message"></div>
+      <div class="form-group">
+        <label>NIM</label>
+        <div class="input-with-icon">
+          <i class="fas fa-envelope"></i>
+          <input type="text" id="loginUsername" placeholder="contoh: 2504030043">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <div class="input-with-icon">
+          <i class="fas fa-lock"></i>
+          <input type="password" id="loginPassword" placeholder="Masukkan password">
+        </div>
+      </div>
+      <div class="forgot-password">
+        <a href="#">Lupa password?</a>
+      </div>
+      <button class="btn-login-modern" id="btnLoginSubmit">Masuk</button>
+      <div class="divider"><span>ATAU</span></div>
+      <div class="register-link">Belum punya akun? <a href="#">Daftar sekarang</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== HALAMAN PILIH MATA KULIAH ==================== -->
+<div id="mataKuliahPage" class="mata-kuliah-page">
+  <div class="mk-container">
+    <h2>📚 Pilih Mata Kuliah</h2>
+    <p>Silakan pilih mata kuliah yang akan dipelajari</p>
+    <div class="mk-list">
+      <div class="mk-item"><span class="mk-name">1. Aljabar Vektor</span><button class="btn-masuk-mk" data-mk="aljabar-vektor">MASUK</button></div>
+      <div class="mk-item"><span class="mk-name">2. Algoritma Pemrograman</span><button class="btn-masuk-mk" data-mk="algoritma">MASUK</button></div>
+      <div class="mk-item"><span class="mk-name">3. Kalkulus Integral</span><button class="btn-masuk-mk" data-mk="kalkulus">MASUK</button></div>
+      <div class="mk-item"><span class="mk-name">4. Program Linear</span><button class="btn-masuk-mk" data-mk="program-linear">MASUK</button></div>
+      <div class="mk-item"><span class="mk-name">5. Pengantar Teori Bilangan</span><button class="btn-masuk-mk" data-mk="teori-bilangan">MASUK</button></div>
+      <div class="mk-item"><span class="mk-name">6. Pendidikan Kewarganegaraan</span><button class="btn-masuk-mk" data-mk="pkn">MASUK</button></div>
+      <div class="mk-item"><span class="mk-name">7. Pendidikan Pancasila</span><button class="btn-masuk-mk" data-mk="pancasila">MASUK</button></div>
+      <div class="mk-item"><span class="mk-name">8. Pendidikan Konservasi</span><button class="btn-masuk-mk" data-mk="konservasi">MASUK</button></div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== KONTEN ALGORITMA ==================== -->
+<div id="mainApp" class="main-content">
+  <div class="dashboard-container">
+    <div class="welcome-banner">
+      <div>
+        <span style="font-size: 0.8rem;">👋 SELAMAT DATANG,</span>
+        <div class="user-name-large" id="userFullName">Mahasiswa</div>
+        <div style="font-size: 0.8rem; opacity: 0.9;" id="userNim">NIM: -</div>
+      </div>
+      <div>
+        <button id="backToMkBtn" class="back-to-mk">← Kembali ke Pilih MK</button>
+        <button id="logoutBtn" class="logout-btn">LOGOUT</button>
+      </div>
+    </div>
+
+    <div class="modul-header">
+      <div class="badge-unnes">ALGORITMA PEMROGRAMAN</div>
+      <h1>🔎 Algoritma Pencarian : <br> Linear Search dan Binary Search</h1>
+      <div class="sub">
+        <strong>Kelompok 10</strong><br>
+        1. Nabila 'Aina Syarifa (2504030043)<br>
+        2. Muhammad Elian Nabil (2504030062)<br>
+        3. Achmad Muqorrobin (2504030064)<br>
+        <br>
+        <strong>Dosen Pengampu :</strong> <br> Bapak Amidi, S.Si., M.Pd.<br>
+        <br>
+        <strong>PRODI MATEMATIKA</strong> <br>
+        <strong>Fakultas Matematika dan Ilmu Pengetahuan Alam</strong><br>
+        <strong>UNIVERSITAS NEGERI SEMARANG 2026</strong><br>
+      </div>
+    </div>
+
+    <div class="algo-panel">
+      <!-- LINEAR SEARCH PANEL -->
+      <div class="panel-card">
+        <div class="card-header linear-header">
+          <h2><span>🔍</span> Linear Search <span class="complexity-tag">O(n)</span></h2>
+          <p style="font-size:0.75rem; margin-top:6px;">Pencarian berurutan · Data TIDAK perlu terurut · Tanpa batas data</p>
+        </div>
+        <div class="card-body">
+          <div class="input-group">
+            <label>📊 Data Array (pisahkan dengan koma, spasi, atau enter)</label>
+            <textarea id="linearData" rows="4">17, 8, 21, 5, 12, 99, 3, 45, 67, 89, 100, 200, 55, 77, 88, 120, 500, 1000, 2500</textarea>
+          </div>
+          <div class="input-group">
+            <label>🎯 Angka yang dicari</label>
+            <input type="number" id="linearTarget" placeholder="Masukkan angka target" value="99">
+          </div>
+          <button class="btn-cari" id="btnLinearCari">🔎 Cari dengan Linear Search</button>
+          <div class="result-box result-linear" id="linearResult">
+            💡 <strong>Hasil pencarian akan tampil di sini</strong><br>
+            Linear search akan menyisir setiap elemen dari indeks 0 hingga akhir.
+          </div>
+          <div class="info-syarat">
+            <span>📌</span> <strong>Prinsip:</strong> Membandingkan tiap elemen satu per satu → cocok → return indeks.
+          </div>
+        </div>
+      </div>
+
+      <!-- BINARY SEARCH PANEL -->
+      <div class="panel-card">
+        <div class="card-header binary-header">
+          <h2><span>⚡</span> Binary Search <span class="complexity-tag">O(log n)</span></h2>
+          <p style="font-size:0.75rem; margin-top:6px;">Pencarian bagi dua · WAJIB data terurut (akan diurutkan otomatis)</p>
+        </div>
+        <div class="card-body">
+          <div class="input-group">
+            <label>📊 Data Array (pisahkan dengan koma)</label>
+            <textarea id="binaryDataRaw" rows="4">5, 12, 3, 21, 8, 17, 99, 44, 2, 100, 2000, 7, 19, 88, 500, 1200</textarea>
+          </div>
+          <div class="input-group">
+            <label>🎯 Angka yang dicari</label>
+            <input type="number" id="binaryTarget" placeholder="Masukkan angka target" value="99">
+          </div>
+          <button class="btn-cari" id="btnBinaryCari">⚡ Cari dengan Binary Search</button>
+          <div class="result-box result-binary" id="binaryResult">
+            💡 <strong>Hasil pencarian akan tampil di sini</strong><br>
+            Binary search hanya bekerja pada data terurut. Array akan diurutkan ascending terlebih dahulu.
+          </div>
+          <div class="info-syarat">
+            <span>⚠️</span> <strong>Syarat mutlak:</strong> data harus TERURUT (ascending). Program akan mengurutkan otomatis.
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-note">
+      © 2026 | Praktikum Algoritma Pemrograman Materi Algoritma Pencarian - UNNES
+    </div>
   </div>
 </div>
 
 <script>
-  // ======================= FUNGSI LINEAR SEARCH (UNLIMITED DATA) =======================
-  function linearSearch(arr, target) {
-    for (let i = 0; i < arr.length; i++) {
-      if (arr[i] === target) {
-        return { found: true, index: i, value: arr[i], comparisons: i + 1 };
-      }
-    }
-    return { found: false, index: -1, comparisons: arr.length };
+  // ======================= DATABASE MAHASISWA =======================
+  const DATA_MAHASISWA = {
+    "2504030039": { nama: "MUHAMMAD IRSYADUL WAVI", nim: "2504030039" },
+    "2504030040": { nama: "DEMAS ALAN WIBOWO", nim: "2504030040" },
+    "2504030041": { nama: "SALSABILA AZZAHRA NUR RILA", nim: "2504030041" },
+    "2504030042": { nama: "NOOR AYYANAHAA AZZA", nim: "2504030042" },
+    "2504030043": { nama: "NABILA 'AINA SYARIFA", nim: "2504030043" },
+    "2504030044": { nama: "MARENO DWI FAISHAL AL FATTAH", nim: "2504030044" },
+    "2504030045": { nama: "HAICHAL WAIZ AL QODRI", nim: "2504030045" },
+    "2504030046": { nama: "Chafiyya Shofa", nim: "2504030046" },
+    "2504030047": { nama: "AZ ZAHRA NADIA HAUNA", nim: "2504030047" },
+    "2504030048": { nama: "Azka Qaani' Muhana", nim: "2504030048" },
+    "2504030049": { nama: "Wulan Hari Cahyani", nim: "2504030049" },
+    "2504030050": { nama: "klara faradina wahda", nim: "2504030050" },
+    "2504030051": { nama: "Nayla Syifa Khilyatul Aulia", nim: "2504030051" },
+    "2504030052": { nama: "NAILA DISTI AMANDA MEILANY", nim: "2504030052" },
+    "2504030053": { nama: "Cinta Na'ilah Fajrina", nim: "2504030053" },
+    "2504030054": { nama: "Ananda Muhammad Fikra Aditama", nim: "2504030054" },
+    "2504030055": { nama: "Elvis Salma", nim: "2504030055" },
+    "2504030056": { nama: "Naufal Saputra", nim: "2504030056" },
+    "2504030057": { nama: "Taufiqurrahman", nim: "2504030057" },
+    "2504030058": { nama: "Adhisty Dwi Purwanti", nim: "2504030058" },
+    "2504030059": { nama: "Muhammad Fairuz Zaki", nim: "2504030059" },
+    "2504030060": { nama: "Auzora Intan Aulia", nim: "2504030060" },
+    "2504030061": { nama: "Sukma Ruciasari", nim: "2504030061" },
+    "2504030062": { nama: "Muhamad Elian Nabil", nim: "2504030062" },
+    "2504030063": { nama: "Ismail Hasan", nim: "2504030063" },
+    "2504030064": { nama: "ACHMAD MUQORROBIN", nim: "2504030064" },
+    "2504030065": { nama: "Farella Gita Putri Ramadani", nim: "2504030065" },
+    "2504030066": { nama: "Yuniana Afni", nim: "2504030066" },
+    "2504030067": { nama: "Belda Ardella Ramadhani", nim: "2504030067" },
+    "2504030068": { nama: "Ega Patriya", nim: "2504030068" },
+    "2504030069": { nama: "Hasifa Sulistia Ramadhani", nim: "2504030069" },
+    "2504030070": { nama: "Gading Adi Raga", nim: "2504030070" },
+    "2504030071": { nama: "Farris Muhamad Indi Lutfhi", nim: "2504030071" },
+    "2504030072": { nama: "IMMANUEL HUTAPEA", nim: "2504030072" },
+    "2504030073": { nama: "Daniel Ignatius Iwan Lutan", nim: "2504030073" },
+    "2504030074": { nama: "NINDA RISMAWATI VIRGINIA", nim: "2504030074" },
+    "2504030075": { nama: "Agil Aliy Ashghar", nim: "2504030075" },
+    "2504030076": { nama: "Zahwa Cinta Nabila", nim: "2504030076" },
+    "4111419050": { nama: "AZIZ NURHIDAYAT ADRIYANTO", nim: "4111419050" }
+  };
+
+  function findUserByInput(input) {
+    input = input.trim();
+    if (DATA_MAHASISWA[input]) return DATA_MAHASISWA[input];
+    return null;
   }
 
-  // ======================= FUNGSI BINARY SEARCH (HARUS TERURUT ASC) =======================
-  function binarySearchOnSorted(sortedArr, target) {
-    let left = 0;
-    let right = sortedArr.length - 1;
-    let steps = 0;
-    while (left <= right) {
-      steps++;
-      const mid = Math.floor((left + right) / 2);
-      if (sortedArr[mid] === target) {
-        return { found: true, index: mid, value: sortedArr[mid], steps: steps };
-      } else if (sortedArr[mid] < target) {
-        left = mid + 1;
-      } else {
-        right = mid - 1;
-      }
-    }
-    return { found: false, index: -1, steps: steps };
+  // SESSION MANAGEMENT
+  let currentUser = null;
+  let sessionCheckInterval = null;
+  const SESSION_DURATION_HOURS = 1;
+
+  function saveLoginTime() { localStorage.setItem('loginTime', Date.now().toString()); }
+  function getLoginTime() { const t = localStorage.getItem('loginTime'); return t ? parseInt(t) : null; }
+  function isSessionExpired() { const t = getLoginTime(); if (!t) return true; return (Date.now() - t) / (1000 * 60 * 60) >= SESSION_DURATION_HOURS; }
+
+  function autoLogoutByTime() {
+    localStorage.removeItem('loginTime'); localStorage.removeItem('currentUserData');
+    if (sessionCheckInterval) clearInterval(sessionCheckInterval);
+    currentUser = null;
+    document.getElementById('mainApp').style.display = 'none';
+    document.getElementById('mataKuliahPage').style.display = 'none';
+    document.getElementById('loginPage').style.display = 'block';
+    document.getElementById('loginUsername').value = '';
+    document.getElementById('loginPassword').value = '';
+    const err = document.getElementById('loginErrorMsg');
+    if (err) { err.style.display = 'block'; err.innerHTML = '⏰ Sesi Anda telah berakhir (1 jam). Silakan login kembali.'; setTimeout(() => err.style.display = 'none', 5000); }
   }
 
-  // parsing string input angka (pisah koma, spasi, atau newline) -> support data sebanyak apapun
+  function startSessionChecker() { if (sessionCheckInterval) clearInterval(sessionCheckInterval); sessionCheckInterval = setInterval(() => { if (currentUser && isSessionExpired()) autoLogoutByTime(); }, 10000); }
+
+  // NAVIGASI
+  function showLoginPage() { document.getElementById('loginPage').style.display = 'block'; document.getElementById('mataKuliahPage').style.display = 'none'; document.getElementById('mainApp').style.display = 'none'; }
+  function showMataKuliahPage() { document.getElementById('loginPage').style.display = 'none'; document.getElementById('mataKuliahPage').style.display = 'block'; document.getElementById('mainApp').style.display = 'none'; }
+  function showAlgoritmaPage() { document.getElementById('loginPage').style.display = 'none'; document.getElementById('mataKuliahPage').style.display = 'none'; document.getElementById('mainApp').style.display = 'block'; }
+
+  // LOGIN LOGIC
+  const loginPage = document.getElementById('loginPage');
+  const mataKuliahPage = document.getElementById('mataKuliahPage');
+  const mainApp = document.getElementById('mainApp');
+  const loginBtn = document.getElementById('btnLoginSubmit');
+  const loginUsername = document.getElementById('loginUsername');
+  const loginPassword = document.getElementById('loginPassword');
+  const loginErrorMsg = document.getElementById('loginErrorMsg');
+  const logoutBtn = document.getElementById('logoutBtn');
+  const backToMkBtn = document.getElementById('backToMkBtn');
+
+  function attemptLogin() {
+    const input = loginUsername.value.trim();
+    const password = loginPassword.value.trim();
+    const user = findUserByInput(input);
+    if (user && password === "alpro2026") {
+      currentUser = user;
+      saveLoginTime();
+      localStorage.setItem('currentUserData', JSON.stringify({ nama: user.nama, nim: user.nim }));
+      document.getElementById('userFullName').textContent = user.nama;
+      document.getElementById('userNim').textContent = `NIM: ${user.nim}`;
+      loginErrorMsg.style.display = 'none';
+      showMataKuliahPage();
+      startSessionChecker();
+    } else {
+      loginErrorMsg.style.display = 'block';
+      loginErrorMsg.innerHTML = '❌ NIM atau password salah! Gunakan password: <strong>alpro2026</strong>';
+    }
+  }
+
+  function logout() {
+    localStorage.removeItem('loginTime'); localStorage.removeItem('currentUserData');
+    if (sessionCheckInterval) clearInterval(sessionCheckInterval);
+    currentUser = null;
+    showLoginPage();
+    loginUsername.value = ''; loginPassword.value = ''; loginErrorMsg.style.display = 'none';
+  }
+
+  function checkExistingSession() {
+    const saved = localStorage.getItem('currentUserData');
+    const loginTime = getLoginTime();
+    if (saved && loginTime && !isSessionExpired()) {
+      const user = JSON.parse(saved);
+      currentUser = user;
+      document.getElementById('userFullName').textContent = user.nama;
+      document.getElementById('userNim').textContent = `NIM: ${user.nim}`;
+      showMataKuliahPage();
+      startSessionChecker();
+    } else { showLoginPage(); }
+  }
+
+  loginBtn.addEventListener('click', attemptLogin);
+  logoutBtn.addEventListener('click', logout);
+  if (backToMkBtn) backToMkBtn.addEventListener('click', showMataKuliahPage);
+  loginUsername.addEventListener('keypress', (e) => { if (e.key === 'Enter') attemptLogin(); });
+  loginPassword.addEventListener('keypress', (e) => { if (e.key === 'Enter') attemptLogin(); });
+
+  document.querySelectorAll('.btn-masuk-mk').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const mkValue = btn.getAttribute('data-mk');
+      const mkName = btn.parentElement.querySelector('.mk-name').textContent;
+      if (mkValue === 'algoritma') showAlgoritmaPage();
+      else alert(`📖 Mata kuliah "${mkName}" sedang dalam pengembangan.`);
+    });
+  });
+
+  // ======================= ALGORITMA PENCARIAN =======================
   function parseArrayFromInput(str) {
-    // bersihkan: ganti newline, spasi, tab menjadi koma
     let cleaned = str.replace(/\n/g, ',').replace(/\t/g, ',').replace(/\s+/g, ',');
     let parts = cleaned.split(',');
     let arr = [];
     for (let part of parts) {
       let trimmed = part.trim();
-      if (trimmed !== "") {
-        let num = Number(trimmed);
-        if (!isNaN(num) && trimmed !== "") {
-          arr.push(num);
-        }
-      }
+      if (trimmed !== "") { let num = Number(trimmed); if (!isNaN(num)) arr.push(num); }
     }
     return arr;
   }
 
-  // ================ EVENT LINEAR SEARCH ==================
-  const btnLinear = document.getElementById('btnLinearCari');
-  const linearResultDiv = document.getElementById('linearResult');
+  function linearSearch(arr, target) {
+    for (let i = 0; i < arr.length; i++) { if (arr[i] === target) return { found: true, index: i, comparisons: i + 1 }; }
+    return { found: false, comparisons: arr.length };
+  }
 
-  btnLinear.addEventListener('click', () => {
-    const rawData = document.getElementById('linearData').value;
-    const targetRaw = document.getElementById('linearTarget').value;
-    let target = Number(targetRaw);
-    if (isNaN(target)) {
-      linearResultDiv.innerHTML = `❌ <strong>Error:</strong> Angka yang dicari harus berupa bilangan valid.`;
-      return;
+  function binarySearchOnSorted(sortedArr, target) {
+    let left = 0, right = sortedArr.length - 1, steps = 0;
+    while (left <= right) {
+      steps++;
+      const mid = Math.floor((left + right) / 2);
+      if (sortedArr[mid] === target) return { found: true, index: mid, steps };
+      if (sortedArr[mid] < target) left = mid + 1;
+      else right = mid - 1;
     }
-    let arr = parseArrayFromInput(rawData);
-    if (arr.length === 0) {
-      linearResultDiv.innerHTML = `❌ <strong>Error:</strong> Data array kosong. Masukkan angka (pisah koma, spasi, atau enter).`;
-      return;
-    }
+    return { found: false, steps };
+  }
 
+  // LINEAR SEARCH dengan tampilan elegan
+  document.getElementById('btnLinearCari').addEventListener('click', () => {
+    const raw = document.getElementById('linearData').value;
+    const target = Number(document.getElementById('linearTarget').value);
+    if (isNaN(target)) { document.getElementById('linearResult').innerHTML = '<div class="result-badge failed">❌ ERROR</div><p>Target harus berupa angka!</p>'; return; }
+    const arr = parseArrayFromInput(raw);
+    if (!arr.length) { document.getElementById('linearResult').innerHTML = '<div class="result-badge failed">❌ ERROR</div><p>Data array kosong!</p>'; return; }
+    
     const startTime = performance.now();
-    const result = linearSearch(arr, target);
+    const res = linearSearch(arr, target);
     const endTime = performance.now();
-    const timeMs = (endTime - startTime).toFixed(2);
-
-    if (result.found) {
-      linearResultDiv.innerHTML = `
-        ✅ <strong>LINEAR SEARCH - DITEMUKAN</strong><br><br>
-        📊 <strong>Total data:</strong> ${arr.length} elemen<br>
-        🔢 <strong>Data array:</strong> [${arr.join(', ')}]<br>
-        🎯 <strong>Angka dicari:</strong> <span class="highlight">${target}</span><br>
-        📍 <strong>Posisi (indeks):</strong> <span class="highlight">${result.index}</span> (urutan ke-${result.index + 1})<br>
-        🔄 <strong>Jumlah perbandingan:</strong> ${result.comparisons} elemen diperiksa<br>
-        ⏱️ <strong>Waktu eksekusi:</strong> ${timeMs} ms<br><br>
-        📖 <strong>Penjelasan:</strong> Linear search menyisir dari indeks 0 → ${result.index} dan menemukan nilai ${target} pada indeks ke-${result.index}.
-      `;
-    } else {
-      linearResultDiv.innerHTML = `
-        ❌ <strong>LINEAR SEARCH - TIDAK DITEMUKAN</strong><br><br>
-        📊 <strong>Total data:</strong> ${arr.length} elemen<br>
-        🔢 <strong>Data array:</strong> [${arr.slice(0, 50).join(', ')}${arr.length > 50 ? ' ...' : ''}]<br>
-        🎯 <strong>Angka dicari:</strong> ${target}<br>
-        🔄 <strong>Hasil:</strong> Angka ${target} tidak ada dalam data.<br>
-        🔍 <strong>Total perbandingan:</strong> Seluruh ${arr.length} elemen telah diperiksa (O(n)).<br>
-        ⏱️ <strong>Waktu eksekusi:</strong> ${timeMs} ms<br>
-        💡 Coba masukkan angka yang ada dalam data.
-      `;
-    }
-  });
-
-  // ================ EVENT BINARY SEARCH ==================
-  const btnBinary = document.getElementById('btnBinaryCari');
-  const binaryResultDiv = document.getElementById('binaryResult');
-
-  btnBinary.addEventListener('click', () => {
-    const rawData = document.getElementById('binaryDataRaw').value;
-    const targetRaw = document.getElementById('binaryTarget').value;
-    let target = Number(targetRaw);
-    if (isNaN(target)) {
-      binaryResultDiv.innerHTML = `❌ <strong>Error:</strong> Angka yang dicari harus bilangan valid.`;
-      return;
-    }
-    let originalArr = parseArrayFromInput(rawData);
-    if (originalArr.length === 0) {
-      binaryResultDiv.innerHTML = `❌ <strong>Error:</strong> Data array kosong. Masukkan data angka.`;
-      return;
-    }
-
-    const startTime = performance.now();
-    // Binary search WAJIB data terurut (ascending)
-    const sortedArr = [...originalArr].sort((a, b) => a - b);
-    const result = binarySearchOnSorted(sortedArr, target);
-    const endTime = performance.now();
-    const timeMs = (endTime - startTime).toFixed(3);
-
-    // Cek apakah data asli mengandung target (info tambahan)
-    const maxSteps = Math.ceil(Math.log2(sortedArr.length));
-
-    if (result.found) {
-      binaryResultDiv.innerHTML = `
-        ✅ <strong>BINARY SEARCH - DITEMUKAN</strong><br><br>
-        📊 <strong>Total data:</strong> ${originalArr.length} elemen<br>
-        🔢 <strong>Data asli:</strong> [${originalArr.slice(0, 50).join(', ')}${originalArr.length > 50 ? ' ...' : ''}]<br>
-        📈 <strong>Data setelah diurutkan (ascending):</strong> [${sortedArr.slice(0, 50).join(', ')}${sortedArr.length > 50 ? ' ...' : ''}]<br>
-        🎯 <strong>Angka dicari:</strong> <span class="highlight">${target}</span><br>
-        📍 <strong>Posisi (indeks) pada ARRAY TERURUT:</strong> <span class="highlight">${result.index}</span><br>
-        🔄 <strong>Jumlah langkah pembagian:</strong> ${result.steps} kali (maksimal teoritis ~${maxSteps} langkah untuk O(log n))<br>
-        ⏱️ <strong>Waktu eksekusi:</strong> ${timeMs} ms<br><br>
-        📖 <strong>Penjelasan:</strong> Binary search membagi array menjadi dua setiap iterasi. Ditemukan pada indeks ke-${result.index} dari data terurut.
-      `;
-    } else {
-      binaryResultDiv.innerHTML = `
-        ❌ <strong>BINARY SEARCH - TIDAK DITEMUKAN</strong><br><br>
-        📊 <strong>Total data:</strong> ${originalArr.length} elemen<br>
-        🔢 <strong>Data asli (sebagian):</strong> [${originalArr.slice(0, 50).join(', ')}${originalArr.length > 50 ? ' ...' : ''}]<br>
-        📈 <strong>Data terurut:</strong> [${sortedArr.slice(0, 50).join(', ')}${sortedArr.length > 50 ? ' ...' : ''}]<br>
-        🎯 <strong>Angka dicari:</strong> ${target}<br>
-        🔄 <strong>Hasil:</strong> Nilai ${target} tidak ada dalam data (setelah proses bagi dua tidak pernah cocok).<br>
-        🔍 <strong>Jumlah iterasi binary search:</strong> ${result.steps} kali.<br>
-        ⏱️ <strong>Waktu eksekusi:</strong> ${timeMs} ms<br>
-        ⚠️ Binary search valid karena data sudah diurutkan, namun target tidak tersedia.
-      `;
-    }
-  });
-
-  // ==================== FUNGSI DEMO DATA TANPA BATAS ====================
-  function setLargeLinearExample() {
-    // data 30+ angka
-    let largeData = [17, 8, 21, 5, 12, 99, 3, 45, 67, 89, 100, 200, 55, 77, 88, 120, 500, 1000, 2500, 5000, 7500, 10000, 20000, 350, 680, 920, 1500, 3000, 7000, 9000, 12345, 54321, 99999];
-    document.getElementById('linearData').value = largeData.join(', ');
-    document.getElementById('linearTarget').value = "99";
-  }
-
-  function setRandomLinear() {
-    let count = 100;
-    let arr = [];
-    for (let i = 0; i < count; i++) {
-      arr.push(Math.floor(Math.random() * 10000));
-    }
-    document.getElementById('linearData').value = arr.join(', ');
-    document.getElementById('linearTarget').value = arr[Math.floor(Math.random() * count)];
-  }
-
-  function setLargeBinaryExample() {
-    let largeData = [5, 12, 3, 21, 8, 17, 99, 44, 2, 100, 2000, 7, 19, 88, 500, 1200, 2500, 6800, 999, 150, 300, 450, 700, 1100, 1800, 3200, 5600, 8900, 12000, 25000, 50000, 75000];
-    document.getElementById('binaryDataRaw').value = largeData.join(', ');
-    document.getElementById('binaryTarget').value = "99";
-  }
-
-  function setRandomBinary() {
-    let count = 100;
-    let arr = [];
-    for (let i = 0; i < count; i++) {
-      arr.push(Math.floor(Math.random() * 10000));
-    }
-    document.getElementById('binaryDataRaw').value = arr.join(', ');
-    document.getElementById('binaryTarget').value = arr[Math.floor(Math.random() * count)];
-  }
-
-  // attach ke window
-  window.setLargeLinearExample = setLargeLinearExample;
-  window.setRandomLinear = setRandomLinear;
-  window.setLargeBinaryExample = setLargeBinaryExample;
-  window.setRandomBinary = setRandomBinary;
-
-  // Tampilkan hasil awal yang ramah
-  window.addEventListener('DOMContentLoaded', () => {
-    const defaultLinearArr = [17, 8, 21, 5, 12, 99, 3];
-    const resLinear = linearSearch(defaultLinearArr, 21);
-    if (resLinear.found) {
+    const execTime = (endTime - startTime).toFixed(3);
+    const arrayStr = JSON.stringify(arr);
+    
+    if (res.found) {
       document.getElementById('linearResult').innerHTML = `
-        ✅ <strong>LINEAR SEARCH - Contoh Awal</strong><br>
-        📊 Data: [17, 8, 21, 5, 12, 99, 3] (7 elemen)<br>
-        🎯 Mencari: 21 → <span class="highlight">ditemukan pada indeks ke-2</span><br>
-        💡 Silakan ubah data (tanpa batasan jumlah) dan tekan cari.
+        <h4><span>🔍</span> LINEAR SEARCH - <span class="result-badge success">✅ DITEMUKAN</span></h4>
+        <div class="result-detail">
+          <p><span class="label">📊 Total data:</span><span class="value">${arr.length} elemen</span></p>
+          <p><span class="label">📋 Data array:</span><span class="value">[${arrayStr}]</span></p>
+          <p><span class="label">🎯 Angka dicari:</span><span class="value">${target}</span></p>
+          <p><span class="label">📍 Posisi (indeks):</span><span class="value">${res.index} (urutan ke-${res.index + 1})</span></p>
+          <p><span class="label">🔢 Jumlah perbandingan:</span><span class="value">${res.comparisons} elemen diperiksa</span></p>
+          <p><span class="label">⏱️ Waktu eksekusi:</span><span class="value exec-time">${execTime} ms</span></p>
+        </div>
+        <div class="result-explanation">
+          💡 <strong>Penjelasan:</strong> Linear search menyisir dari indeks 0 → ${res.index} dan menemukan nilai ${target} pada indeks ke-${res.index}.
+        </div>
       `;
-    }
-    const defaultBinaryRaw = [5, 12, 3, 21, 8, 17, 99];
-    const sorted = [...defaultBinaryRaw].sort((a,b)=>a-b);
-    const binRes = binarySearchOnSorted(sorted, 17);
-    if (binRes.found) {
-      document.getElementById('binaryResult').innerHTML = `
-        ✅ <strong>BINARY SEARCH - Contoh Awal</strong><br>
-        📊 Data asli: [5, 12, 3, 21, 8, 17, 99] → terurut: [${sorted.join(', ')}]<br>
-        🎯 Mencari: 17 → <span class="highlight">ditemukan pada indeks ke-${binRes.index}</span> (data terurut)<br>
-        💡 Binary search O(log n) sangat efisien untuk data besar.
+    } else {
+      document.getElementById('linearResult').innerHTML = `
+        <h4><span>🔍</span> LINEAR SEARCH - <span class="result-badge failed">❌ TIDAK DITEMUKAN</span></h4>
+        <div class="result-detail">
+          <p><span class="label">📊 Total data:</span><span class="value">${arr.length} elemen</span></p>
+          <p><span class="label">📋 Data array:</span><span class="value">[${arrayStr}]</span></p>
+          <p><span class="label">🎯 Angka dicari:</span><span class="value">${target}</span></p>
+          <p><span class="label">🔢 Jumlah perbandingan:</span><span class="value">${res.comparisons} elemen diperiksa (semua data)</span></p>
+          <p><span class="label">⏱️ Waktu eksekusi:</span><span class="value exec-time">${execTime} ms</span></p>
+        </div>
+        <div class="result-explanation">
+          💡 <strong>Penjelasan:</strong> Linear search telah menyisir seluruh ${res.comparisons} elemen, namun nilai ${target} tidak ditemukan dalam array.
+        </div>
       `;
     }
   });
+
+  // BINARY SEARCH dengan tampilan elegan
+  document.getElementById('btnBinaryCari').addEventListener('click', () => {
+    const raw = document.getElementById('binaryDataRaw').value;
+    const target = Number(document.getElementById('binaryTarget').value);
+    if (isNaN(target)) { document.getElementById('binaryResult').innerHTML = '<div class="result-badge failed">❌ ERROR</div><p>Target harus berupa angka!</p>'; return; }
+    let original = parseArrayFromInput(raw);
+    if (!original.length) { document.getElementById('binaryResult').innerHTML = '<div class="result-badge failed">❌ ERROR</div><p>Data array kosong!</p>'; return; }
+    
+    const startTime = performance.now();
+    const sorted = [...original].sort((a,b)=>a-b);
+    const res = binarySearchOnSorted(sorted, target);
+    const endTime = performance.now();
+    const execTime = (endTime - startTime).toFixed(3);
+    const maxSteps = Math.ceil(Math.log2(original.length));
+    
+    if (res.found) {
+      document.getElementById('binaryResult').innerHTML = `
+        <h4><span>⚡</span> BINARY SEARCH - <span class="result-badge success">✅ DITEMUKAN</span></h4>
+        <div class="result-detail">
+          <p><span class="label">📊 Total data:</span><span class="value">${original.length} elemen</span></p>
+          <p><span class="label">📋 Data asli:</span><span class="value">[${JSON.stringify(original)}]</span></p>
+          <p><span class="label">📊 Data setelah diurutkan (ascending):</span><span class="value">[${JSON.stringify(sorted)}]</span></p>
+          <p><span class="label">🎯 Angka dicari:</span><span class="value">${target}</span></p>
+          <p><span class="label">📍 Posisi (indeks) pada array terurut:</span><span class="value">${res.index}</span></p>
+          <p><span class="label">🔢 Jumlah langkah pembagian:</span><span class="value">${res.steps} kali (maksimal teoritis ~${maxSteps} langkah untuk O(log n))</span></p>
+          <p><span class="label">⏱️ Waktu eksekusi:</span><span class="value exec-time">${execTime} ms</span></p>
+        </div>
+        <div class="result-explanation">
+          💡 <strong>Penjelasan:</strong> Binary search membagi array menjadi dua setiap iterasi. Ditemukan pada indeks ke-${res.index} dari data terurut setelah ${res.steps} kali pembagian.
+        </div>
+      `;
+    } else {
+      document.getElementById('binaryResult').innerHTML = `
+        <h4><span>⚡</span> BINARY SEARCH - <span class="result-badge failed">❌ TIDAK DITEMUKAN</span></h4>
+        <div class="result-detail">
+          <p><span class="label">📊 Total data:</span><span class="value">${original.length} elemen</span></p>
+          <p><span class="label">📋 Data asli:</span><span class="value">[${JSON.stringify(original)}]</span></p>
+          <p><span class="label">📊 Data setelah diurutkan (ascending):</span><span class="value">[${JSON.stringify(sorted)}]</span></p>
+          <p><span class="label">🎯 Angka dicari:</span><span class="value">${target}</span></p>
+          <p><span class="label">🔢 Jumlah langkah pembagian:</span><span class="value">${res.steps} kali</span></p>
+          <p><span class="label">⏱️ Waktu eksekusi:</span><span class="value exec-time">${execTime} ms</span></p>
+        </div>
+        <div class="result-explanation">
+          💡 <strong>Penjelasan:</strong> Binary search telah melakukan ${res.steps} kali pembagian, namun nilai ${target} tidak ditemukan dalam array yang sudah diurutkan.
+        </div>
+      `;
+    }
+  });
+
+  checkExistingSession();
 </script>
 </body>
 </html>
