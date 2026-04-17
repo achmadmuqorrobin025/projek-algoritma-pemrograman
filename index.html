@@ -30,6 +30,18 @@
       margin-bottom: 2rem;
     }
 
+    .logo-container {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 1.2rem;
+    }
+
+    .logo-unnes {
+      max-width: 280px;
+      width: 100%;
+      height: auto;
+    }
+
     .badge-unnes {
       background: #0b2b26;
       color: #d4f3ef;
@@ -234,14 +246,24 @@
       .panel-card {
         min-width: 100%;
       }
+      .logo-unnes {
+        max-width: 200px;
+      }
     }
   </style>
 </head>
 <body>
 <div class="container">
   <div class="modul-header">
-    <div class="badge-unnes">ALGORITMA PEMROGRAMAN (C++ / CODEBLOCKS)</div>
-    <h1>🔎 Algoritma Pencarian : Linear Search dan Binary Search</h1>
+    <!-- LOGO UNNES -->
+    <div class="logo-container">
+      <img src="https://res.cloudinary.com/dobtafzwo/image/upload/v1776436925/logo-unnes-horizontal_lnov39.png" 
+           alt="Logo Universitas Negeri Semarang" 
+           class="logo-unnes">
+    </div>
+    
+    <div class="badge-unnes">ALGORITMA PEMROGRAMAN </div>
+    <h1>🔎 Algoritma Pencarian : <br> Linear Search dan Binary Search</h1>
     <div class="sub">
       <strong>Kelompok 10</strong><br>
       1. Nabila 'Aina Syarifa (2504030043)<br>
@@ -250,14 +272,13 @@
       <br>
       <strong>Dosen Pengampu :</strong> <br> Bapak Amidi, S.Si., M.Pd.<br>
       <br>
-      PRODI MATEMATIKA <br>
-      Fakultas Matematika dan Ilmu Pengetahuan Alam<br>
-      UNIVERSITAS NEGERI SEMARANG 2026<br>
+      <strong>PRODI MATEMATIKA</strong> <br>
+      <strong>Fakultas Matematika dan Ilmu Pengetahuan Alam</strong><br>
+      <strong>UNIVERSITAS NEGERI SEMARANG 2026</strong><br>
       <br> 
       Masukkan data sebanyak apapun, website akan mencari dan menampilkan indeks dengan tepat.
     </div>
   </div>
-</div>
 
   <div class="algo-panel">
     
@@ -322,9 +343,9 @@
   </div>
 
   <div class="footer-note">
-    🖥️ Implementasi algoritma berdasarkan kode C++ pada modul (Codeblocks). <br>
+    Implementasi algoritma berdasarkan kode C++(Codeblocks). <br>
     Linear Search menggunakan loop & flag boolean. Binary Search menggunakan prinsip bagi dua (low, mid, high). 
-    <br>© 2026 | Praktikum Algoritma Pencarian - UNNES | <strong>Data tidak dibatasi — uji dengan ribuan angka!</strong>
+    <br>© 2026 | Praktikum Algoritma Pemrograman Materi Algoritma Pencarian - UNNES
   </div>
 </div>
 
@@ -450,7 +471,6 @@
     const timeMs = (endTime - startTime).toFixed(3);
 
     // Cek apakah data asli mengandung target (info tambahan)
-    const existsInOriginal = originalArr.includes(target);
     const maxSteps = Math.ceil(Math.log2(sortedArr.length));
 
     if (result.found) {
