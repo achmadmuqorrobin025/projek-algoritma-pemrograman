@@ -6,7 +6,6 @@
   <title>ALPRO | UNNES 2026</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script" async></script>
   <style>
     * {
       margin: 0;
@@ -58,17 +57,10 @@
       height: 45px;
     }
 
-    .logo-text {
-      font-weight: 700;
-      font-size: 1.2rem;
-      color: #1a4d5f;
-    }
-
     .nav-links {
       display: flex;
       gap: var(--spacing-lg);
       align-items: center;
-      flex-wrap: wrap;
     }
 
     .nav-links a {
@@ -281,17 +273,6 @@
       font-weight: 600;
     }
 
-    .back-to-mk {
-      background: rgba(255,255,255,0.15);
-      border: none;
-      padding: 0.5rem 1.2rem;
-      border-radius: 2rem;
-      color: white;
-      cursor: pointer;
-      font-weight: 600;
-      margin-right: 1rem;
-    }
-
     /* PILIH MATA KULIAH */
     .pilih-mk-section {
       background: white;
@@ -408,10 +389,6 @@
       margin-bottom: 1rem;
     }
 
-    .mk-content-body li {
-      margin-bottom: 0.3rem;
-    }
-
     .mk-content-body .rumus {
       background: #f0f4fa;
       padding: 0.5rem 1rem;
@@ -444,7 +421,7 @@
       background: #e2edf2;
     }
 
-    /* Algoritma Panel */
+    /* ALGORITMA PANEL */
     .algo-panel {
       display: flex;
       flex-wrap: wrap;
@@ -454,7 +431,7 @@
 
     .panel-card {
       flex: 1;
-      min-width: 300px;
+      min-width: 340px;
       background: white;
       border-radius: var(--border-radius);
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
@@ -537,6 +514,7 @@
       background: #0f2c38;
     }
 
+    /* HASIL PENCARIAN ELEGAN */
     .result-box {
       margin-top: var(--spacing-lg);
       background: #f8fafd;
@@ -544,7 +522,7 @@
       padding: var(--spacing-md);
       border-left: 4px solid;
       font-size: 0.85rem;
-      max-height: 380px;
+      max-height: 420px;
       overflow-y: auto;
     }
 
@@ -554,6 +532,14 @@
 
     .result-binary {
       border-left-color: #2a9d8f;
+    }
+
+    .result-box h4 {
+      font-size: 1rem;
+      margin-bottom: 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
 
     .result-badge {
@@ -585,7 +571,7 @@
     }
 
     .result-detail p {
-      margin: 0.3rem 0;
+      margin: 0.4rem 0;
       display: flex;
       flex-wrap: wrap;
       gap: 0.5rem;
@@ -595,6 +581,21 @@
       font-weight: 700;
       color: #4a627a;
       min-width: 140px;
+    }
+
+    .result-detail .value {
+      color: #1a2c3e;
+      word-break: break-all;
+    }
+
+    .result-explanation {
+      background: #eef2fa;
+      border-radius: 0.8rem;
+      padding: 0.7rem;
+      margin-top: 0.5rem;
+      font-size: 0.7rem;
+      color: #2c4c6c;
+      border-left: 3px solid #1a4d5f;
     }
 
     .exec-time {
@@ -612,6 +613,27 @@
       display: flex;
       align-items: center;
       gap: 8px;
+    }
+
+    .modul-header {
+      margin-bottom: 1.5rem;
+    }
+
+    .badge-unnes {
+      background: #0b2b26;
+      color: #d4f3ef;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      padding: 0.25rem 1rem;
+      border-radius: 40px;
+      display: inline-block;
+      margin-bottom: 0.8rem;
+    }
+
+    .sub {
+      font-size: 0.85rem;
+      color: #4a627a;
+      line-height: 1.4;
     }
 
     .footer-note {
@@ -632,7 +654,6 @@
     <div class="nav-container">
       <div class="logo-area">
         <img src="https://res.cloudinary.com/dobtafzwo/image/upload/v1776436925/logo-unnes-horizontal_lnov39.png" alt="UNNES" class="logo-unnes-nav">
-        <span class="logo-text"></span>
       </div>
       <div class="nav-links">
         <a href="#" class="btn-masuk-nav">Masuk</a>
@@ -670,7 +691,7 @@
   </div>
 </div>
 
-<!-- KONTEN UTAMA (SETELAH LOGIN) -->
+<!-- KONTEN UTAMA -->
 <div id="mainApp" class="main-content">
   <div class="dashboard-container">
     <!-- WELCOME BANNER -->
@@ -683,50 +704,18 @@
       <button id="logoutBtn" class="logout-btn">LOGOUT</button>
     </div>
 
-    <!-- PILIH MATA KULIAH (TAMPIL AWAL) -->
+    <!-- PILIH MATA KULIAH -->
     <div id="pilihMkSection" class="pilih-mk-section">
       <h3 class="pilih-mk-title">📚 Pilih Mata Kuliah</h3>
       <div class="mk-grid">
-        <div class="mk-card" data-mk="aljabar-vektor">
-          <div class="mk-icon">📐</div>
-          <div class="mk-card-name">Aljabar Vektor</div>
-          <button class="btn-masuk-mk">MASUK</button>
-        </div>
-        <div class="mk-card" data-mk="algoritma">
-          <div class="mk-icon">💻</div>
-          <div class="mk-card-name">Algoritma Pemrograman</div>
-          <button class="btn-masuk-mk">MASUK</button>
-        </div>
-        <div class="mk-card" data-mk="kalkulus">
-          <div class="mk-icon">∫</div>
-          <div class="mk-card-name">Kalkulus Integral</div>
-          <button class="btn-masuk-mk">MASUK</button>
-        </div>
-        <div class="mk-card" data-mk="program-linear">
-          <div class="mk-icon">📊</div>
-          <div class="mk-card-name">Program Linear</div>
-          <button class="btn-masuk-mk">MASUK</button>
-        </div>
-        <div class="mk-card" data-mk="teori-bilangan">
-          <div class="mk-icon">🔢</div>
-          <div class="mk-card-name">Pengantar Teori Bilangan</div>
-          <button class="btn-masuk-mk">MASUK</button>
-        </div>
-        <div class="mk-card" data-mk="pkn">
-          <div class="mk-icon">🇮🇩</div>
-          <div class="mk-card-name">Pendidikan Kewarganegaraan</div>
-          <button class="btn-masuk-mk">MASUK</button>
-        </div>
-        <div class="mk-card" data-mk="pancasila">
-          <div class="mk-icon">🦅</div>
-          <div class="mk-card-name">Pendidikan Pancasila</div>
-          <button class="btn-masuk-mk">MASUK</button>
-        </div>
-        <div class="mk-card" data-mk="konservasi">
-          <div class="mk-icon">🌿</div>
-          <div class="mk-card-name">Pendidikan Konservasi</div>
-          <button class="btn-masuk-mk">MASUK</button>
-        </div>
+        <div class="mk-card" data-mk="aljabar-vektor"><div class="mk-icon">📐</div><div class="mk-card-name">Aljabar Vektor</div><button class="btn-masuk-mk">MASUK</button></div>
+        <div class="mk-card" data-mk="algoritma"><div class="mk-icon">💻</div><div class="mk-card-name">Algoritma Pemrograman</div><button class="btn-masuk-mk">MASUK</button></div>
+        <div class="mk-card" data-mk="kalkulus"><div class="mk-icon">∫</div><div class="mk-card-name">Kalkulus Integral</div><button class="btn-masuk-mk">MASUK</button></div>
+        <div class="mk-card" data-mk="program-linear"><div class="mk-icon">📊</div><div class="mk-card-name">Program Linear</div><button class="btn-masuk-mk">MASUK</button></div>
+        <div class="mk-card" data-mk="teori-bilangan"><div class="mk-icon">🔢</div><div class="mk-card-name">Pengantar Teori Bilangan</div><button class="btn-masuk-mk">MASUK</button></div>
+        <div class="mk-card" data-mk="pkn"><div class="mk-icon">🇮🇩</div><div class="mk-card-name">Pendidikan Kewarganegaraan</div><button class="btn-masuk-mk">MASUK</button></div>
+        <div class="mk-card" data-mk="pancasila"><div class="mk-icon">🦅</div><div class="mk-card-name">Pendidikan Pancasila</div><button class="btn-masuk-mk">MASUK</button></div>
+        <div class="mk-card" data-mk="konservasi"><div class="mk-icon">🌿</div><div class="mk-card-name">Pendidikan Konservasi</div><button class="btn-masuk-mk">MASUK</button></div>
       </div>
     </div>
 
@@ -736,46 +725,66 @@
         <h2 id="mkContentTitle">Mata Kuliah</h2>
         <button id="backToMkListBtn" class="btn-back-mk">← Kembali ke Daftar MK</button>
       </div>
-      <div id="mkContentBody" class="mk-content-body">
-        <!-- Konten akan dimasukkan di sini -->
-      </div>
+      <div id="mkContentBody" class="mk-content-body"></div>
     </div>
 
-    <div class="footer-note">
-      © 2026 | Praktikum Algoritma Pemrograman - UNNES
-    </div>
+    <div class="footer-note">© 2026 | Praktikum Algoritma Pemrograman - UNNES</div>
   </div>
 </div>
 
 <script>
   // DATABASE MAHASISWA
-  const DATA_MAHASISWA = {
-    "2504030043": { nama: "NABILA 'AINA SYARIFA", nim: "2504030043" },
-    "2504030062": { nama: "MUHAMAD ELIAN NABIL", nim: "2504030062" },
-    "2504030064": { nama: "ACHMAD MUQORROBIN", nim: "2504030064" },
-    "2504030039": { nama: "MUHAMMAD IRSYADUL WAVI", nim: "2504030039" },
-    "2504030040": { nama: "DEMAS ALAN WIBOWO", nim: "2504030040" },
-    "2504030041": { nama: "SALSABILA AZZAHRA NUR RILA", nim: "2504030041" },
-    "2504030042": { nama: "NOOR AYYANAHAA AZZA", nim: "2504030042" },
-    "2504030044": { nama: "MARENO DWI FAISHAL AL FATTAH", nim: "2504030044" },
-    "2504030045": { nama: "HAICHAL WAIZ AL QODRI", nim: "2504030045" }
-  };
+    const DATA_MAHASISWA = {
+     "2504030039": { nama: "MUHAMMAD IRSYADUL WAVI", nim: "2504030039" },
+     "2504030040": { nama: "DEMAS ALAN WIBOWO", nim: "2504030040" },
+     "2504030041": { nama: "SALSABILA AZZAHRA NUR RILA", nim: "2504030041" },
+     "2504030042": { nama: "NOOR AYYANAH AZZA", nim: "2504030042" },
+     "2504030043": { nama: "NABILA 'AINA SYARIFA", nim: "2504030043" },
+     "2504030044": { nama: "MARENO DWI FAISHAL AL FATTAH", nim: "2504030044" },
+     "2504030045": { nama: "HAICHAL WAIZ AL QODRI", nim: "2504030045" },
+      "2504030046": { nama: "Chafiyya Shofa", nim: "2504030046" },
+      "2504030047": { nama: "AZ ZAHRA NADIA HAUNA", nim: "2504030047" },
+      "2504030048": { nama: "Azka Qaani' Muhana", nim: "2504030048" },
+      "2504030049": { nama: "Wulan Hari Cahyani", nim: "2504030049" },
+     "2504030050": { nama: "klara faradina wahda", nim: "2504030050" },
+     "2504030051": { nama: "Nayla Syifa Khilyatul Aulia", nim: "2504030051" },
+     "2504030052": { nama: "NAILA DISTI AMANDA MEILANY", nim: "2504030052" },
+      "2504030053": { nama: "Cinta Na'ilah Fajrina", nim: "2504030053" },
+      "2504030054": { nama: "Ananda Muhammad Fikra Aditama", nim: "2504030054" },
+      "2504030055": { nama: "Elvis Salma", nim: "2504030055" },
+      "2504030056": { nama: "Naufal Saputra", nim: "2504030056" },
+      "2504030057": { nama: "Taufiqurrahman", nim: "2504030057" },
+     "2504030058": { nama: "Adhisty Dwi Purwanti", nim: "2504030058" },
+     "2504030059": { nama: "Muhammad Fairuz Zaki", nim: "2504030059" },
+      "2504030060": { nama: "Auzora Intan Aulia", nim: "2504030060" },
+      "2504030061": { nama: "Sukma Rucitasari", nim: "2504030061" },
+      "2504030062": { nama: "Muhamad Elian Nabil", nim: "2504030062" },
+      "2504030063": { nama: "Ismail Hasan", nim: "2504030063" },
+      "2504030064": { nama: "ACHMAD MUQORROBIN", nim: "2504030064" },
+     "2504030065": { nama: "Farella Gita Putri Ramadani", nim: "2504030065" },
+     "2504030066": { nama: "Yuniana Afni", nim: "2504030066" },
+      "2504030067": { nama: "Belda Ardella Ramadhani", nim: "2504030067" },
+      "2504030068": { nama: "Ega Patriya", nim: "2504030068" },
+     "2504030069": { nama: "Hasifa Sulistia Ramadhani", nim: "2504030069" },
+     "2504030070": { nama: "Gading Adi Raga", nim: "2504030070" },
+      "2504030071": { nama: "Farris Muhamad Indi Lutfhi", nim: "2504030071" },
+      "2504030072": { nama: "IMMANUEL HUTAPEA", nim: "2504030072" },
+      "2504030073": { nama: "Daniel Ignasius Iwan Lutan", nim: "2504030073" },
+      "2504030074": { nama: "NINDA RISMAWATI VIRGINIA", nim: "2504030074" },
+      "2504030075": { nama: "Agil Aliy Ashghar", nim: "2504030075" },
+     "2504030076": { nama: "Zahwa Cinta Nabila", nim: "2504030076" },
+     "4111419050": { nama: "AZIZ NURHIDAYAT ADRIYANTO", nim: "4111419050" },
+     "2604": { nama: "Amidi, S.Si., M.Pd.", nim: "2604" },
+    };
 
-  function findUserByInput(input) {
-    input = input.trim();
-    if (DATA_MAHASISWA[input]) return DATA_MAHASISWA[input];
-    return null;
-  }
+  function findUserByInput(input) { input = input.trim(); return DATA_MAHASISWA[input] || null; }
 
   // SESSION MANAGEMENT
-  let currentUser = null;
-  let sessionCheckInterval = null;
+  let currentUser = null, sessionCheckInterval = null;
   const SESSION_DURATION_HOURS = 1;
-
-  function saveLoginTime() { localStorage.setItem('loginTime', Date.now().toString()); }
-  function getLoginTime() { const t = localStorage.getItem('loginTime'); return t ? parseInt(t) : null; }
-  function isSessionExpired() { const t = getLoginTime(); if (!t) return true; return (Date.now() - t) / (1000 * 60 * 60) >= SESSION_DURATION_HOURS; }
-
+  function saveLoginTime() { localStorage.setItem('loginTime', Date.now()); }
+  function getLoginTime() { return localStorage.getItem('loginTime'); }
+  function isSessionExpired() { let t = getLoginTime(); if (!t) return true; return (Date.now() - t) / (1000*60*60) >= SESSION_DURATION_HOURS; }
   function autoLogoutByTime() {
     localStorage.removeItem('loginTime'); localStorage.removeItem('currentUserData');
     if (sessionCheckInterval) clearInterval(sessionCheckInterval);
@@ -785,420 +794,174 @@
     document.getElementById('loginUsername').value = '';
     document.getElementById('loginPassword').value = '';
   }
-
   function startSessionChecker() { if (sessionCheckInterval) clearInterval(sessionCheckInterval); sessionCheckInterval = setInterval(() => { if (currentUser && isSessionExpired()) autoLogoutByTime(); }, 10000); }
 
   // KONTEN MATA KULIAH LENGKAP
   const kontenMk = {
-    "aljabar-vektor": {
-      title: "📐 Aljabar Vektor",
-      content: `
-        <p>Aljabar vektor adalah cabang matematika yang mempelajari operasi pada vektor. Vektor adalah besaran yang memiliki nilai dan arah.</p>
-        
-        <h3>1. Penjumlahan Vektor</h3>
-        <p>Jika vektor <strong>a</strong> = (a₁, a₂, a₃) dan <strong>b</strong> = (b₁, b₂, b₃), maka:</p>
-        <div class="rumus">a + b = (a₁ + b₁, a₂ + b₂, a₃ + b₃)</div>
-        
-        <h3>2. Pengurangan Vektor</h3>
-        <div class="rumus">a - b = (a₁ - b₁, a₂ - b₂, a₃ - b₃)</div>
-        
-        <h3>3. Perkalian Skalar dengan Vektor</h3>
-        <p>Jika k adalah skalar (bilangan real), maka:</p>
-        <div class="rumus">k · a = (k·a₁, k·a₂, k·a₃)</div>
-        
-        <h3>4. Perkalian Dua Vektor</h3>
-        <p><strong>Perkalian Titik (Dot Product):</strong></p>
-        <div class="rumus">a · b = a₁b₁ + a₂b₂ + a₃b₃</div>
-        <p>Hasilnya berupa <strong>skalar</strong> (bilangan).</p>
-        <p><strong>Perkalian Silang (Cross Product):</strong></p>
-        <div class="rumus">a × b = (a₂b₃ - a₃b₂, a₃b₁ - a₁b₃, a₁b₂ - a₂b₁)</div>
-        <p>Hasilnya berupa <strong>vektor</strong> yang tegak lurus terhadap a dan b.</p>
-        
-        <h3>5. Kesamaan Dua Vektor</h3>
-        <p>Dua vektor dikatakan sama jika komponen-komponen seletaknya bernilai sama.</p>
-        <div class="rumus">a = b ⇔ a₁ = b₁, a₂ = b₂, a₃ = b₃</div>
-        
-        <div class="example-box">
-          <strong>📌 Contoh Soal:</strong><br>
-          Diketahui a = (2, 3, 1) dan b = (4, 1, 2).<br>
-          a + b = (2+4, 3+1, 1+2) = (6, 4, 3)<br>
-          3a = (3×2, 3×3, 3×1) = (6, 9, 3)<br>
-          a · b = 2×4 + 3×1 + 1×2 = 8 + 3 + 2 = 13
-        </div>
-        
-        <p>Operasi vektor sangat penting dalam fisika (gaya, kecepatan), teknik, dan ilmu komputer (grafika 3D).</p>
-      `
-    },
-    "kalkulus": {
-      title: "∫ Kalkulus Integral",
-      content: `
-        <p>Kalkulus integral adalah cabang matematika yang mempelajari integral sebagai kebalikan dari turunan (anti-turunan) dan akumulasi jumlah.</p>
-        
-        <h3>1. Integral Tak Tentu</h3>
-        <div class="rumus">∫ f(x) dx = F(x) + C</div>
-        <p>di mana F'(x) = f(x) dan C adalah konstanta integrasi.</p>
-        
-        <h3>2. Rumus Dasar Integral</h3>
-        <div class="rumus">∫ xⁿ dx = xⁿ⁺¹/(n+1) + C, n ≠ -1</div>
-        <div class="rumus">∫ 1/x dx = ln|x| + C</div>
-        <div class="rumus">∫ eˣ dx = eˣ + C</div>
-        <div class="rumus">∫ sin x dx = -cos x + C</div>
-        <div class="rumus">∫ cos x dx = sin x + C</div>
-        
-        <h3>3. Integral Tentu</h3>
-        <div class="rumus">∫ₐᵇ f(x) dx = F(b) - F(a)</div>
-        <p>Digunakan untuk menghitung luas daerah di bawah kurva pada interval [a,b].</p>
-        
-        <h3>4. Teknik Pengintegralan</h3>
-        <p><strong>Substitusi:</strong> Misalkan u = g(x), maka du = g'(x) dx</p>
-        <div class="rumus">∫ f(g(x))·g'(x) dx = ∫ f(u) du</div>
-        <p><strong>Integral Parsial:</strong></p>
-        <div class="rumus">∫ u dv = uv - ∫ v du</div>
-        
-        <h3>5. Aplikasi Integral</h3>
-        <ul>
-          <li>Luas daerah antara dua kurva</li>
-          <li>Volume benda putar (metode cakram dan kulit tabung)</li>
-          <li>Panjang busur kurva</li>
-        </ul>
-        
-        <div class="example-box">
-          <strong>📌 Contoh:</strong><br>
-          ∫ x² dx = x³/3 + C<br>
-          ∫₀¹ x² dx = (1³/3) - (0³/3) = 1/3
-        </div>
-      `
-    },
-    "program-linear": {
-      title: "📊 Program Linear",
-      content: `
-        <p>Program linear adalah metode matematika untuk menemukan solusi optimal (maksimum atau minimum) dari suatu masalah dengan batasan-batasan tertentu.</p>
-        
-        <h3>1. Komponen Utama</h3>
-        <ul>
-          <li><strong>Fungsi Tujuan (Objektif):</strong> Z = ax + by (maksimalkan/minimalkan)</li>
-          <li><strong>Kendala (Batasan):</strong> Sistem pertidaksamaan linear</li>
-          <li><strong>Variabel Keputusan:</strong> x, y (bebas non-negatif)</li>
-        </ul>
-        
-        <h3>2. Bentuk Umum</h3>
-        <div class="rumus">Maksimumkan Z = c₁x₁ + c₂x₂ + ... + cₙxₙ</div>
-        <div class="rumus">dengan kendala: a₁₁x₁ + a₁₂x₂ + ... ≤ b₁</div>
-        <div class="rumus">x₁, x₂, ..., xₙ ≥ 0</div>
-        
-        <h3>3. Langkah Penyelesaian (Metode Grafik)</h3>
-        <ol>
-          <li>Mengubah soal cerita ke model matematika</li>
-          <li>Menggambar grafik kendala</li>
-          <li>Menentukan daerah himpunan penyelesaian (DHP)</li>
-          <li>Mencari titik pojok DHP</li>
-          <li>Substitusi titik pojok ke fungsi tujuan</li>
-          <li>Pilih nilai optimal (terbesar/terkecil)</li>
-        </ol>
-        
-        <h3>4. Metode Simpleks</h3>
-        <p>Untuk masalah dengan banyak variabel (>2), digunakan metode simpleks dengan tabel iterasi.</p>
-        
-        <div class="example-box">
-          <strong>📌 Contoh Soal:</strong><br>
-          Maksimumkan Z = 3x + 5y<br>
-          Kendala: x + y ≤ 4, 2x + y ≤ 6, x ≥ 0, y ≥ 0<br>
-          Titik pojok: (0,0) → Z=0; (0,4) → Z=20; (2,2) → Z=16; (3,0) → Z=9<br>
-          Solusi optimal: x=0, y=4, Z maksimum = 20
-        </div>
-      `
-    },
-    "teori-bilangan": {
-      title: "🔢 Pengantar Teori Bilangan",
-      content: `
-        <p>Teori bilangan mempelajari sifat-sifat bilangan bulat (ℤ) dan hubungan antar bilangan.</p>
-        
-        <h3>1. Keterbagian (Divisibility)</h3>
-        <div class="rumus">a | b (a membagi b) jika ∃ k ∈ ℤ sehingga b = k·a</div>
-        
-        <h3>2. Algoritma Pembagian</h3>
-        <div class="rumus">a = b·q + r, dengan 0 ≤ r < |b|</div>
-        <p>q = hasil bagi, r = sisa pembagian</p>
-        
-        <h3>3. FPB (Faktor Persekutuan Terbesar)</h3>
-        <p>FPB(a,b) adalah bilangan terbesar yang membagi a dan b.</p>
-        <div class="rumus">gcd(a,b) = gcd(b, a mod b)</div>
-        
-        <h3>4. Algoritma Euklides</h3>
-        <div class="rumus">gcd(48,18) = gcd(18,12) = gcd(12,6) = gcd(6,0) = 6</div>
-        
-        <h3>5. Bilangan Prima</h3>
-        <p>Bilangan prima adalah bilangan >1 yang hanya habis dibagi 1 dan dirinya sendiri.</p>
-        <div class="rumus">2, 3, 5, 7, 11, 13, 17, 19, 23, ...</div>
-        
-        <h3>6. Teorema Dasar Aritmatika</h3>
-        <p>Setiap bilangan bulat >1 dapat dinyatakan sebagai perkalian bilangan prima secara unik.</p>
-        <div class="rumus">84 = 2² × 3 × 7</div>
-        
-        <h3>7. Kekongruenan (Modulo)</h3>
-        <div class="rumus">a ≡ b (mod m) ⇔ m | (a - b)</div>
-        
-        <div class="example-box">
-          <strong>📌 Contoh:</strong><br>
-          17 ≡ 2 (mod 5) karena 17-2=15 habis dibagi 5.
-        </div>
-      `
-    },
-    "pkn": {
-      title: "🇮🇩 Pendidikan Kewarganegaraan",
-      content: `
-        <p>Pendidikan Kewarganegaraan (PKn) membentuk warga negara yang cerdas, aktif, dan bertanggung jawab.</p>
-        
-        <h3>1. Pilar Kebangsaan</h3>
-        <ul>
-          <li><strong>Pancasila:</strong> Dasar negara dan pandangan hidup bangsa</li>
-          <li><strong>UUD 1945:</strong> Konstitusi Negara Republik Indonesia</li>
-          <li><strong>NKRI:</strong> Negara Kesatuan Republik Indonesia</li>
-          <li><strong>Bhinneka Tunggal Ika:</strong> Semboyan persatuan dalam keberagaman</li>
-        </ul>
-        
-        <h3>2. Hak dan Kewajiban Warga Negara</h3>
-        <p>Hak: mendapatkan pendidikan, pekerjaan, perlindungan hukum<br>
-        Kewajiban: membayar pajak, menaati hukum, bela negara</p>
-        
-        <h3>3. Demokrasi Indonesia</h3>
-        <p>Demokrasi Pancasila yang mengutamakan musyawarah mufakat.</p>
-        
-        <h3>4. Sistem Hukum dan Peradilan</h3>
-        <p>Supremasi hukum, peradilan yang bebas dan tidak memihak.</p>
-        
-        <div class="example-box">
-          💡 <strong>Nilai Karakter:</strong> Jujur, disiplin, kerja keras, mandiri, demokratis, tanggung jawab.
-        </div>
-      `
-    },
-    "pancasila": {
-      title: "🦅 Pendidikan Pancasila",
-      content: `
-        <p>Pendidikan Pancasila bertujuan membentuk karakter bangsa berdasarkan nilai-nilai Pancasila.</p>
-        
-        <h3>1. Sejarah Perumusan Pancasila</h3>
-        <p>Dirumuskan oleh BPUPKI (29 Mei - 1 Juni 1945) dan disahkan PPKI pada 18 Agustus 1945.</p>
-        
-        <h3>2. Nilai-nilai Setiap Sila</h3>
-        <ul>
-          <li><strong>Sila 1 (Ketuhanan):</strong> Toleransi beragama, kebebasan beribadah</li>
-          <li><strong>Sila 2 (Kemanusiaan):</strong> HAM, keadilan, persamaan derajat</li>
-          <li><strong>Sila 3 (Persatuan):</strong> Nasionalisme, cinta tanah air</li>
-          <li><strong>Sila 4 (Kerakyatan):</strong> Musyawarah, demokrasi, kepemimpinan bijak</li>
-          <li><strong>Sila 5 (Keadilan Sosial):</strong> Gotong royong, kesejahteraan bersama</li>
-        </ul>
-        
-        <h3>3. Pancasila sebagai Ideologi Terbuka</h3>
-        <p>Bersifat dinamis dan adaptif terhadap perkembangan zaman.</p>
-        
-        <h3>4. Profil Pelajar Pancasila</h3>
-        <p>Beriman, berkebinekaan global, gotong royong, mandiri, bernalar kritis, kreatif.</p>
-        
-        <div class="example-box">
-          💡 <strong>Implementasi:</strong> Menghormati teman berbeda agama, musyawarah di kelas, membantu sesama.
-        </div>
-      `
-    },
-    "konservasi": {
-      title: "🌿 Pendidikan Konservasi",
-      content: `
-        <p>Pendidikan konservasi membangun kesadaran dan perilaku peduli lingkungan untuk keberlanjutan.</p>
-        
-        <h3>1. Konsep Dasar Konservasi</h3>
-        <p>Perlindungan, pengawetan, dan pemanfaatan lestari sumber daya alam.</p>
-        
-        <h3>2. Keanekaragaman Hayati (Biodiversity)</h3>
-        <p>Ekosistem, spesies, dan genetik. Contoh: hutan mangrove, terumbu karang.</p>
-        
-        <h3>3. Pengelolaan Lingkungan (3R)</h3>
-        <div class="rumus">Reduce (mengurangi) → Reuse (menggunakan kembali) → Recycle (mendaur ulang)</div>
-        
-        <h3>4. Konservasi Energi</h3>
-        <p>Hemat listrik, penggunaan energi terbarukan (matahari, angin, air).</p>
-        
-        <h3>5. Konservasi Budaya</h3>
-        <p>Melestarikan tradisi, bahasa daerah, dan seni budaya lokal.</p>
-        
-        <h3>6. Landasan Hukum</h3>
-        <p>UU No. 5 Tahun 1990 tentang Konservasi Sumber Daya Alam Hayati.</p>
-        
-        <div class="example-box">
-          💡 <strong>Aksi Nyata:</strong> Membuang sampah pada tempatnya, hemat air, menanam pohon, menggunakan tas belanja sendiri.
-        </div>
-      `
-    }
+    "aljabar-vektor": { title: "📐 Aljabar Vektor", content: `<p>Aljabar vektor adalah cabang matematika yang mempelajari operasi pada vektor.</p><h3>1. Penjumlahan Vektor</h3><div class="rumus">a + b = (a₁+b₁, a₂+b₂, a₃+b₃)</div><h3>2. Pengurangan Vektor</h3><div class="rumus">a - b = (a₁-b₁, a₂-b₂, a₃-b₃)</div><h3>3. Perkalian Skalar</h3><div class="rumus">k·a = (k·a₁, k·a₂, k·a₃)</div><h3>4. Perkalian Titik (Dot Product)</h3><div class="rumus">a·b = a₁b₁ + a₂b₂ + a₃b₃</div><h3>5. Perkalian Silang (Cross Product)</h3><div class="rumus">a×b = (a₂b₃-a₃b₂, a₃b₁-a₁b₃, a₁b₂-a₂b₁)</div><div class="example-box"><strong>📌 Contoh:</strong> a=(2,3,1), b=(4,1,2) → a+b=(6,4,3), a·b=13</div>` },
+    "kalkulus": { title: "∫ Kalkulus Integral", content: `<p>Kalkulus integral mempelajari integral sebagai kebalikan turunan.</p><h3>Rumus Dasar</h3><div class="rumus">∫ xⁿ dx = xⁿ⁺¹/(n+1) + C, n≠-1</div><div class="rumus">∫ 1/x dx = ln|x| + C</div><div class="rumus">∫ eˣ dx = eˣ + C</div><div class="rumus">∫ sin x dx = -cos x + C</div><div class="rumus">∫ cos x dx = sin x + C</div><h3>Integral Tentu</h3><div class="rumus">∫ₐᵇ f(x) dx = F(b) - F(a)</div><h3>Integral Parsial</h3><div class="rumus">∫ u dv = uv - ∫ v du</div><div class="example-box"><strong>📌 Contoh:</strong> ∫ x² dx = x³/3 + C, ∫₀¹ x² dx = 1/3</div>` },
+    "program-linear": { title: "📊 Program Linear", content: `<p>Program linear mencari solusi optimal dengan batasan tertentu.</p><h3>Bentuk Umum</h3><div class="rumus">Maksimumkan Z = c₁x₁ + c₂x₂</div><div class="rumus">Kendala: a₁₁x₁ + a₁₂x₂ ≤ b₁, x₁,x₂ ≥ 0</div><h3>Langkah Penyelesaian</h3><ol><li>Model matematika</li><li>Grafik kendala</li><li>Titik pojok</li><li>Uji fungsi tujuan</li></ol><div class="example-box"><strong>📌 Contoh:</strong> Maks Z=3x+5y, kendala x+y≤4, 2x+y≤6 → solusi (0,4) Z=20</div>` },
+    "teori-bilangan": { title: "🔢 Teori Bilangan", content: `<h3>Keterbagian</h3><div class="rumus">a|b ⇔ ∃k∈ℤ, b=k·a</div><h3>Algoritma Pembagian</h3><div class="rumus">a = bq + r, 0≤r<|b|</div><h3>FPB (Algoritma Euklides)</h3><div class="rumus">gcd(a,b) = gcd(b, a mod b)</div><h3>Bilangan Prima</h3><p>2,3,5,7,11,13,17,...</p><h3>Kekongruenan</h3><div class="rumus">a ≡ b (mod m) ⇔ m|(a-b)</div><div class="example-box"><strong>📌 Contoh:</strong> 17 ≡ 2 (mod 5)</div>` },
+    "pkn": { title: "🇮🇩 Pendidikan Kewarganegaraan", content: `<h3>Pilar Kebangsaan</h3><ul><li>Pancasila - Dasar negara</li><li>UUD 1945 - Konstitusi</li><li>NKRI - Negara Kesatuan</li><li>Bhinneka Tunggal Ika - Persatuan</li></ul><h3>Hak & Kewajiban</h3><p>Hak: pendidikan, pekerjaan, hukum. Kewajiban: pajak, taat hukum, bela negara.</p><h3>Demokrasi Pancasila</h3><p>Mengutamakan musyawarah mufakat.</p>` },
+    "pancasila": { title: "🦅 Pendidikan Pancasila", content: `<h3>Nilai-nilai Pancasila</h3><ul><li>Sila 1: Ketuhanan - Toleransi beragama</li><li>Sila 2: Kemanusiaan - HAM & keadilan</li><li>Sila 3: Persatuan - Nasionalisme</li><li>Sila 4: Kerakyatan - Musyawarah</li><li>Sila 5: Keadilan Sosial - Gotong royong</li></ul><h3>Profil Pelajar Pancasila</h3><p>Beriman, berkebinekaan global, gotong royong, mandiri, bernalar kritis, kreatif.</p>` },
+    "konservasi": { title: "🌿 Pendidikan Konservasi", content: `<h3>Konsep Dasar</h3><p>Perlindungan, pengawetan, pemanfaatan lestari SDA.</p><h3>Prinsip 3R</h3><div class="rumus">Reduce → Reuse → Recycle</div><h3>Konservasi Energi</h3><p>Hemat listrik, energi terbarukan.</p><h3>Konservasi Budaya</h3><p>Melestarikan tradisi, bahasa daerah, seni budaya.</p><div class="example-box">💡 Aksi nyata: buang sampah pada tempatnya, hemat air, menanam pohon.</div>` }
   };
 
-  // KONTEN ALGORITMA (dengan Linear & Binary Search)
+  // KONTEN ALGORITMA LENGKAP
   function getAlgoritmaContent() {
     return `
       <div class="modul-header">
         <div class="badge-unnes">ALGORITMA PEMROGRAMAN</div>
-        <h1>🔎 Algoritma Pencarian : <br> Linear Search dan Binary Search</h1>
-        <div class="sub">
-          <strong>Kelompok 10</strong><br>
-          1. Nabila 'Aina Syarifa (2504030043)<br>
-          2. Muhammad Elian Nabil (2504030062)<br>
-          3. Achmad Muqorrobin (2504030064)<br><br>
-          <strong>Dosen Pengampu :</strong> Bapak Amidi, S.Si., M.Pd.<br><br>
-          <strong>PRODI MATEMATIKA</strong><br>
-          <strong>UNIVERSITAS NEGERI SEMARANG 2026</strong>
-        </div>
+        <h1>🔎 Algoritma Pencarian : Linear Search dan Binary Search</h1>
+        <div class="sub"><strong>Kelompok 10</strong><br>1. Nabila 'Aina Syarifa (2504030043)<br>2. Muhammad Elian Nabil (2504030062)<br>3. Achmad Muqorrobin (2504030064)<br><br><strong>Dosen Pengampu :</strong> <br> Bapak Amidi, S.Si., M.Pd.<br><br><strong>Program Studi Matematika</strong><br> <strong> Fakultas Matematika dan Ilmu Pengetahuan Alam<strong> <br> <strong>UNIVERSITAS NEGERI SEMARANG 2026<strong></div>
       </div>
       <div class="algo-panel">
         <div class="panel-card">
-          <div class="card-header linear-header">
-            <h2><span>🔍</span> Linear Search <span class="complexity-tag">O(n)</span></h2>
-          </div>
+          <div class="card-header linear-header"><h2>🔍 Linear Search <span class="complexity-tag">O(n)</span></h2></div>
           <div class="card-body">
-            <div class="input-group">
-              <label>📊 Data Array</label>
-              <textarea id="linearData" rows="4">17, 8, 21, 5, 12, 99, 3, 45, 67, 89, 100, 200, 55, 77, 88, 120, 500, 1000, 2500</textarea>
-            </div>
-            <div class="input-group">
-              <label>🎯 Angka yang dicari</label>
-              <input type="number" id="linearTarget" value="99">
-            </div>
-            <button class="btn-cari" id="btnLinearCari">🔎 Cari</button>
-            <div class="result-box result-linear" id="linearResult">💡 Hasil akan tampil di sini</div>
+            <div class="input-group"><label>📊 Data Array</label><textarea id="linearData" rows="4">17, 8, 21, 5, 12, 99, 3, 45, 67, 89, 100, 200, 55, 77, 88, 120, 500, 1000, 2500</textarea></div>
+            <div class="input-group"><label>🎯 Angka yang dicari</label><input type="number" id="linearTarget" value="99"></div>
+            <button class="btn-cari" id="btnLinearCari">🔎 Cari dengan Linear Search</button>
+            <div class="result-box result-linear" id="linearResult">💡 Hasil pencarian akan tampil di sini</div>
+            <div class="info-syarat">📌 Prinsip: Membandingkan tiap elemen satu per satu.</div>
           </div>
         </div>
         <div class="panel-card">
-          <div class="card-header binary-header">
-            <h2><span>⚡</span> Binary Search <span class="complexity-tag">O(log n)</span></h2>
-          </div>
+          <div class="card-header binary-header"><h2>⚡ Binary Search <span class="complexity-tag">O(log n)</span></h2></div>
           <div class="card-body">
-            <div class="input-group">
-              <label>📊 Data Array</label>
-              <textarea id="binaryDataRaw" rows="4">5, 12, 3, 21, 8, 17, 99, 44, 2, 100, 2000, 7, 19, 88, 500, 1200</textarea>
-            </div>
-            <div class="input-group">
-              <label>🎯 Angka yang dicari</label>
-              <input type="number" id="binaryTarget" value="99">
-            </div>
-            <button class="btn-cari" id="btnBinaryCari">⚡ Cari</button>
-            <div class="result-box result-binary" id="binaryResult">💡 Hasil akan tampil di sini</div>
+            <div class="input-group"><label>📊 Data Array</label><textarea id="binaryDataRaw" rows="4">5, 12, 3, 21, 8, 17, 99, 44, 2, 100, 2000, 7, 19, 88, 500, 1200</textarea></div>
+            <div class="input-group"><label>🎯 Angka yang dicari</label><input type="number" id="binaryTarget" value="99"></div>
+            <button class="btn-cari" id="btnBinaryCari">⚡ Cari dengan Binary Search</button>
+            <div class="result-box result-binary" id="binaryResult">💡 Hasil pencarian akan tampil di sini</div>
+            <div class="info-syarat">⚠️ Syarat: data harus TERURUT (akan diurutkan otomatis).</div>
           </div>
         </div>
       </div>
     `;
   }
 
-  // Fungsi navigasi
-  function showMkList() {
-    document.getElementById('pilihMkSection').style.display = 'block';
-    document.getElementById('mkContentPage').style.display = 'none';
-  }
-
-  function showMkContent(mkId) {
-    const konten = kontenMk[mkId];
-    if (konten) {
-      document.getElementById('mkContentTitle').innerHTML = konten.title;
-      document.getElementById('mkContentBody').innerHTML = konten.content;
-    } else if (mkId === 'algoritma') {
-      document.getElementById('mkContentTitle').innerHTML = "💻 Algoritma Pemrograman";
-      document.getElementById('mkContentBody').innerHTML = getAlgoritmaContent();
-      // Inisialisasi event listener setelah konten dimuat
-      setTimeout(() => {
-        initAlgoritmaListeners();
-      }, 50);
-    } else {
-      document.getElementById('mkContentTitle').innerHTML = "📚 Mata Kuliah";
-      document.getElementById('mkContentBody').innerHTML = `<p>Konten sedang dalam pengembangan.</p>`;
-    }
-    document.getElementById('pilihMkSection').style.display = 'none';
-    document.getElementById('mkContentPage').style.display = 'block';
-  }
-
-  // Inisialisasi algoritma
-  function initAlgoritmaListeners() {
-    const linearBtn = document.getElementById('btnLinearCari');
-    const binaryBtn = document.getElementById('btnBinaryCari');
-    if (linearBtn) linearBtn.removeEventListener('click', linearSearchHandler);
-    if (binaryBtn) binaryBtn.removeEventListener('click', binarySearchHandler);
-    if (linearBtn) linearBtn.addEventListener('click', linearSearchHandler);
-    if (binaryBtn) binaryBtn.addEventListener('click', binarySearchHandler);
-  }
-
+  // FUNGSI PARSING ARRAY
   function parseArrayFromInput(str) {
     let cleaned = str.replace(/\n/g, ',').replace(/\t/g, ',').replace(/\s+/g, ',');
-    let parts = cleaned.split(',');
-    let arr = [];
+    let parts = cleaned.split(','), arr = [];
     for (let part of parts) {
       let trimmed = part.trim();
-      if (trimmed !== "") {
-        let num = Number(trimmed);
-        if (!isNaN(num)) arr.push(num);
-      }
+      if (trimmed !== "") { let num = Number(trimmed); if (!isNaN(num)) arr.push(num); }
     }
     return arr;
   }
 
+  // LINEAR SEARCH HANDLER (ELEGAN)
   function linearSearchHandler() {
     const raw = document.getElementById('linearData').value;
     const target = Number(document.getElementById('linearTarget').value);
-    if (isNaN(target)) { document.getElementById('linearResult').innerHTML = '❌ Target harus angka'; return; }
+    if (isNaN(target)) { document.getElementById('linearResult').innerHTML = '<div class="result-badge failed">❌ ERROR</div><p>Target harus angka!</p>'; return; }
     const arr = parseArrayFromInput(raw);
-    if (!arr.length) { document.getElementById('linearResult').innerHTML = '❌ Data kosong'; return; }
+    if (!arr.length) { document.getElementById('linearResult').innerHTML = '<div class="result-badge failed">❌ ERROR</div><p>Data kosong!</p>'; return; }
+    
     const startTime = performance.now();
-    let found = false, index = -1;
-    for (let i = 0; i < arr.length; i++) {
-      if (arr[i] === target) { found = true; index = i; break; }
-    }
-    const endTime = performance.now();
-    const execTime = (endTime - startTime).toFixed(3);
+    let found = false, index = -1, comparisons = 0;
+    for (let i = 0; i < arr.length; i++) { comparisons++; if (arr[i] === target) { found = true; index = i; break; } }
+    const execTime = (performance.now() - startTime).toFixed(3);
+    const arrayStr = JSON.stringify(arr);
+    
     if (found) {
       document.getElementById('linearResult').innerHTML = `
-        <div class="result-badge success">✅ DITEMUKAN</div>
+        <h4>🔍 LINEAR SEARCH - <span class="result-badge success">✅ DITEMUKAN</span></h4>
         <div class="result-detail">
-          <p><span class="label">📍 Posisi (indeks):</span><span class="value">${index}</span></p>
+          <p><span class="label">📊 Total data:</span><span class="value">${arr.length} elemen</span></p>
+          <p><span class="label">📋 Data array:</span><span class="value">[${arrayStr}]</span></p>
+          <p><span class="label">🎯 Angka dicari:</span><span class="value">${target}</span></p>
+          <p><span class="label">📍 Posisi (indeks):</span><span class="value">${index} (urutan ke-${index+1})</span></p>
+          <p><span class="label">🔢 Perbandingan:</span><span class="value">${comparisons} elemen</span></p>
           <p><span class="label">⏱️ Waktu eksekusi:</span><span class="value exec-time">${execTime} ms</span></p>
         </div>
+        <div class="result-explanation">💡 Linear search menyisir dari indeks 0 → ${index} dan menemukan nilai ${target} pada indeks ke-${index}.</div>
       `;
     } else {
       document.getElementById('linearResult').innerHTML = `
-        <div class="result-badge failed">❌ TIDAK DITEMUKAN</div>
+        <h4>🔍 LINEAR SEARCH - <span class="result-badge failed">❌ TIDAK DITEMUKAN</span></h4>
         <div class="result-detail">
+          <p><span class="label">📊 Total data:</span><span class="value">${arr.length} elemen</span></p>
+          <p><span class="label">📋 Data array:</span><span class="value">[${arrayStr}]</span></p>
+          <p><span class="label">🎯 Angka dicari:</span><span class="value">${target}</span></p>
+          <p><span class="label">🔢 Perbandingan:</span><span class="value">${comparisons} elemen (semua data)</span></p>
           <p><span class="label">⏱️ Waktu eksekusi:</span><span class="value exec-time">${execTime} ms</span></p>
         </div>
+        <div class="result-explanation">💡 Linear search telah menyisir seluruh ${comparisons} elemen, namun nilai ${target} tidak ditemukan.</div>
       `;
     }
   }
 
+  // BINARY SEARCH HANDLER (ELEGAN)
   function binarySearchHandler() {
     const raw = document.getElementById('binaryDataRaw').value;
     const target = Number(document.getElementById('binaryTarget').value);
-    if (isNaN(target)) { document.getElementById('binaryResult').innerHTML = '❌ Target harus angka'; return; }
+    if (isNaN(target)) { document.getElementById('binaryResult').innerHTML = '<div class="result-badge failed">❌ ERROR</div><p>Target harus angka!</p>'; return; }
     let original = parseArrayFromInput(raw);
-    if (!original.length) { document.getElementById('binaryResult').innerHTML = '❌ Data kosong'; return; }
+    if (!original.length) { document.getElementById('binaryResult').innerHTML = '<div class="result-badge failed">❌ ERROR</div><p>Data kosong!</p>'; return; }
+    
     const sorted = [...original].sort((a,b)=>a-b);
     const startTime = performance.now();
-    let left = 0, right = sorted.length - 1, found = false, index = -1;
+    let left = 0, right = sorted.length-1, found = false, index = -1, steps = 0;
     while (left <= right) {
-      const mid = Math.floor((left + right) / 2);
+      steps++;
+      const mid = Math.floor((left+right)/2);
       if (sorted[mid] === target) { found = true; index = mid; break; }
-      if (sorted[mid] < target) left = mid + 1;
-      else right = mid - 1;
+      if (sorted[mid] < target) left = mid+1;
+      else right = mid-1;
     }
-    const endTime = performance.now();
-    const execTime = (endTime - startTime).toFixed(3);
+    const execTime = (performance.now() - startTime).toFixed(3);
+    const maxSteps = Math.ceil(Math.log2(original.length));
+    
     if (found) {
       document.getElementById('binaryResult').innerHTML = `
-        <div class="result-badge success">✅ DITEMUKAN</div>
+        <h4>⚡ BINARY SEARCH - <span class="result-badge success">✅ DITEMUKAN</span></h4>
         <div class="result-detail">
-          <p><span class="label">📍 Posisi pada array terurut:</span><span class="value">${index}</span></p>
+          <p><span class="label">📊 Total data:</span><span class="value">${original.length} elemen</span></p>
+          <p><span class="label">📋 Data asli:</span><span class="value">[${JSON.stringify(original)}]</span></p>
+          <p><span class="label">📊 Data terurut:</span><span class="value">[${JSON.stringify(sorted)}]</span></p>
+          <p><span class="label">🎯 Angka dicari:</span><span class="value">${target}</span></p>
+          <p><span class="label">📍 Posisi (indeks terurut):</span><span class="value">${index}</span></p>
+          <p><span class="label">🔢 Langkah pembagian:</span><span class="value">${steps} kali (max ~${maxSteps})</span></p>
           <p><span class="label">⏱️ Waktu eksekusi:</span><span class="value exec-time">${execTime} ms</span></p>
         </div>
+        <div class="result-explanation">💡 Binary search membagi array menjadi dua setiap iterasi. Ditemukan pada indeks ke-${index} setelah ${steps} kali pembagian.</div>
       `;
     } else {
       document.getElementById('binaryResult').innerHTML = `
-        <div class="result-badge failed">❌ TIDAK DITEMUKAN</div>
+        <h4>⚡ BINARY SEARCH - <span class="result-badge failed">❌ TIDAK DITEMUKAN</span></h4>
         <div class="result-detail">
+          <p><span class="label">📊 Total data:</span><span class="value">${original.length} elemen</span></p>
+          <p><span class="label">📋 Data asli:</span><span class="value">[${JSON.stringify(original)}]</span></p>
+          <p><span class="label">📊 Data terurut:</span><span class="value">[${JSON.stringify(sorted)}]</span></p>
+          <p><span class="label">🎯 Angka dicari:</span><span class="value">${target}</span></p>
+          <p><span class="label">🔢 Langkah pembagian:</span><span class="value">${steps} kali</span></p>
           <p><span class="label">⏱️ Waktu eksekusi:</span><span class="value exec-time">${execTime} ms</span></p>
         </div>
+        <div class="result-explanation">💡 Binary search telah melakukan ${steps} kali pembagian, namun nilai ${target} tidak ditemukan.</div>
       `;
     }
+  }
+
+  // NAVIGASI
+  function showMkList() { document.getElementById('pilihMkSection').style.display = 'block'; document.getElementById('mkContentPage').style.display = 'none'; }
+  function showMkContent(mkId) {
+    if (mkId === 'algoritma') {
+      document.getElementById('mkContentTitle').innerHTML = "💻 Algoritma Pemrograman";
+      document.getElementById('mkContentBody').innerHTML = getAlgoritmaContent();
+      setTimeout(() => {
+        const linearBtn = document.getElementById('btnLinearCari');
+        const binaryBtn = document.getElementById('btnBinaryCari');
+        if (linearBtn) linearBtn.addEventListener('click', linearSearchHandler);
+        if (binaryBtn) binaryBtn.addEventListener('click', binarySearchHandler);
+      }, 50);
+    } else if (kontenMk[mkId]) {
+      document.getElementById('mkContentTitle').innerHTML = kontenMk[mkId].title;
+      document.getElementById('mkContentBody').innerHTML = kontenMk[mkId].content;
+    }
+    document.getElementById('pilihMkSection').style.display = 'none';
+    document.getElementById('mkContentPage').style.display = 'block';
   }
 
   // LOGIN LOGIC
@@ -1233,15 +996,12 @@
   }
 
   function logout() {
-    localStorage.removeItem('loginTime');
-    localStorage.removeItem('currentUserData');
+    localStorage.removeItem('loginTime'); localStorage.removeItem('currentUserData');
     if (sessionCheckInterval) clearInterval(sessionCheckInterval);
     currentUser = null;
     mainApp.style.display = 'none';
     loginPage.style.display = 'block';
-    loginUsername.value = '';
-    loginPassword.value = '';
-    loginErrorMsg.style.display = 'none';
+    loginUsername.value = ''; loginPassword.value = ''; loginErrorMsg.style.display = 'none';
   }
 
   function checkExistingSession() {
@@ -1256,29 +1016,20 @@
       mainApp.style.display = 'block';
       showMkList();
       startSessionChecker();
-    } else {
-      loginPage.style.display = 'block';
-      mainApp.style.display = 'none';
-    }
+    } else { loginPage.style.display = 'block'; mainApp.style.display = 'none'; }
   }
 
   loginBtn.addEventListener('click', attemptLogin);
   logoutBtn.addEventListener('click', logout);
   backToMkListBtn.addEventListener('click', showMkList);
-  loginUsername.addEventListener('keypress', (e) => { if (e.key === 'Enter') attemptLogin(); });
-  loginPassword.addEventListener('keypress', (e) => { if (e.key === 'Enter') attemptLogin(); });
+  loginUsername.addEventListener('keypress', e => { if (e.key === 'Enter') attemptLogin(); });
+  loginPassword.addEventListener('keypress', e => { if (e.key === 'Enter') attemptLogin(); });
 
-  // Event listener untuk card MK
   document.querySelectorAll('.mk-card').forEach(card => {
     const btn = card.querySelector('.btn-masuk-mk');
     const mkValue = card.getAttribute('data-mk');
-    btn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      showMkContent(mkValue);
-    });
-    card.addEventListener('click', () => {
-      showMkContent(mkValue);
-    });
+    btn.addEventListener('click', (e) => { e.stopPropagation(); showMkContent(mkValue); });
+    card.addEventListener('click', () => showMkContent(mkValue));
   });
 
   checkExistingSession();
