@@ -72,7 +72,7 @@
 
     .btn-masuk-nav {
       background: #1a4d5f;
-      color: white !important;
+      color: rgba(255, 255, 255, 0.322) !important;
       padding: 0.5rem 1.2rem;
       border-radius: 2rem;
     }
@@ -89,7 +89,6 @@
       overflow: hidden;
     }
 
-    /* Background rumus matematika, fisika, kimia - STATIS (tidak bergerak) */
     .math-bg {
       position: absolute;
       top: 0;
@@ -109,7 +108,6 @@
       color: rgba(255, 255, 255, 0.2);
       white-space: nowrap;
       text-shadow: 0 0 5px rgba(0,0,0,0.3);
-      /* TIDAK ADA ANIMASI */
     }
 
     .login-card-modern {
@@ -219,6 +217,107 @@
       font-weight: 600;
       letter-spacing: 2px;
       font-size: 1.1rem;
+    }
+
+    /* WELCOME SPLASH SCREEN - EMOTIKON SENYUM */
+    /* WELCOME SPLASH SCREEN - TANPA BACKGROUND BIRU */
+.welcome-splash {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;  /* <--- TRANSPARAN */
+    z-index: 2000;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    animation: fadeOutWelcome 0.5s ease-in-out 5.5s forwards;
+    pointer-events: none; /* agar tidak mengganggu klik */
+}
+.login-footer {
+    text-align: center;
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid #e2edf2;
+}
+
+.copyright {
+    font-size: 0.7rem;
+    color: #8ba0b0;
+    font-family: 'JetBrains Mono', monospace;
+}
+
+@keyframes fadeOutWelcome {
+    from { opacity: 1; visibility: visible; }
+    to { opacity: 0; visibility: hidden; }
+}
+
+.smiley-emoji {
+    font-size: 6rem;
+    animation: bounce 0.6s ease-in-out infinite alternate;
+    margin-bottom: 1rem;
+    text-shadow: 0 0 20px rgba(0,0,0,0.3);
+}
+
+@keyframes bounce {
+    from { transform: translateY(0px); }
+    to { transform: translateY(-15px); }
+}
+
+.welcome-text {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #1a4d5f;
+    text-align: center;
+    padding: 0 1rem;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.welcome-name {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: #e6a800;
+    margin-top: 0.5rem;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+    @keyframes fadeOut {
+      from { opacity: 1; visibility: visible; }
+      to { opacity: 0; visibility: hidden; }
+    }
+
+    .smiley-emoji {
+      font-size: 5rem;
+      animation: bounce 0.6s ease-in-out infinite alternate;
+      margin-bottom: 1rem;
+    }
+
+    @keyframes bounce {
+      from { transform: translateY(0px); }
+      to { transform: translateY(-15px); }
+    }
+
+    .welcome-text {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: white;
+      text-align: center;
+      padding: 0 1rem;
+    }
+
+    .welcome-name {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #ffd966;
+      margin-top: 0.5rem;
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 1px;
     }
 
     .login-header {
@@ -545,6 +644,18 @@
       font-weight: 600;
       color: #1a4d5f;
     }
+    .login-footer {
+    text-align: center;
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid #e2edf2;
+    }
+
+    .copyright {
+    font-size: 1.0rem;
+    color: #8ba0b0;
+    font-family: 'JetBrains Mono', monospace;
+    }
 
     .btn-back-mk:hover {
       background: #e2edf2;
@@ -640,8 +751,20 @@
       <button class="btn-login-modern" id="btnLoginSubmit">Masuk</button>
       <div class="divider"><span>ATAU</span></div>
       <div class="register-link">Belum punya akun? <a href="#">Daftar sekarang</a></div>
+      <div class="login-footer">
+       <p class="copyright">©2026 | Praktikum Algoritma Pemrograman</p>
+       <p class="copyright">Kelompok 10 - UNNES 2026</p>
+
+    </div>
     </div>
   </div>
+</div>
+
+<!-- WELCOME SPLASH SCREEN (EMOTIKON SENYUM) -->
+<div id="welcomeSplash" class="welcome-splash">
+  <div class="smiley-emoji">😊</div>
+  <div class="welcome-text">Selamat datang,</div>
+  <div class="welcome-name" id="welcomeUserName">Mahasiswa</div>
 </div>
 
 <div id="mainApp" class="main-content">
@@ -652,7 +775,7 @@
     </div>
     <div id="pilihMkSection" class="pilih-mk-section"><h3 class="pilih-mk-title">📚 Pilih Mata Kuliah</h3><div class="mk-grid"><div class="mk-card" data-mk="aljabar-vektor"><div class="mk-icon">📐</div><div class="mk-card-name">Aljabar Vektor</div><button class="btn-masuk-mk">MASUK</button></div><div class="mk-card" data-mk="algoritma"><div class="mk-icon">💻</div><div class="mk-card-name">Algoritma Pemrograman</div><button class="btn-masuk-mk">MASUK</button></div><div class="mk-card" data-mk="kalkulus"><div class="mk-icon">∫</div><div class="mk-card-name">Kalkulus Integral</div><button class="btn-masuk-mk">MASUK</button></div><div class="mk-card" data-mk="program-linear"><div class="mk-icon">📊</div><div class="mk-card-name">Program Linear</div><button class="btn-masuk-mk">MASUK</button></div><div class="mk-card" data-mk="teori-bilangan"><div class="mk-icon">🔢</div><div class="mk-card-name">Pengantar Teori Bilangan</div><button class="btn-masuk-mk">MASUK</button></div><div class="mk-card" data-mk="pkn"><div class="mk-icon">🇮🇩</div><div class="mk-card-name">Pendidikan Kewarganegaraan</div><button class="btn-masuk-mk">MASUK</button></div><div class="mk-card" data-mk="pancasila"><div class="mk-icon">🦅</div><div class="mk-card-name">Pendidikan Pancasila</div><button class="btn-masuk-mk">MASUK</button></div><div class="mk-card" data-mk="konservasi"><div class="mk-icon">🌿</div><div class="mk-card-name">Pendidikan Konservasi</div><button class="btn-masuk-mk">MASUK</button></div></div></div>
     <div id="mkContentPage" class="mk-content-page"><div class="mk-content-header"><h2 id="mkContentTitle">Mata Kuliah</h2><button id="backToMkListBtn" class="btn-back-mk">← Kembali ke Daftar MK</button></div><div id="mkContentBody" class="mk-content-body"></div></div>
-    <div class="footer-note">© 2026 | Praktikum Algoritma Pemrograman - UNNES</div>
+    <div class="footer-note">©2026 | Praktikum Algoritma Pemrograman - UNNES</div>
   </div>
 </div>
 
@@ -877,6 +1000,21 @@
     document.getElementById('mkContentPage').style.display = 'block';
   }
 
+  function showWelcomeSplashAndDashboard(user) {
+    // Tampilkan splash screen dengan nama mahasiswa
+    const splash = document.getElementById('welcomeSplash');
+    const welcomeName = document.getElementById('welcomeUserName');
+    welcomeName.textContent = user.nama;
+    splash.style.display = 'flex';
+    
+    // Setelah 6 detik, sembunyikan splash dan tampilkan dashboard
+    setTimeout(() => {
+      splash.style.display = 'none';
+      document.getElementById('mainApp').style.display = 'block';
+      showMkList();
+    }, 2000);
+  }
+
   function showLoadingAndLogin(usernameVal, passwordVal) {
     const overlay = document.getElementById('loadingOverlay');
     overlay.style.display = 'flex';
@@ -890,8 +1028,9 @@
         document.getElementById('userNim').textContent = `NIM: ${user.nim}`;
         document.getElementById('loginErrorMsg').style.display = 'none';
         document.getElementById('loginPage').style.display = 'none';
-        document.getElementById('mainApp').style.display = 'block';
-        showMkList();
+        
+        // Tampilkan splash screen welcome (6 detik) baru kemudian dashboard
+        showWelcomeSplashAndDashboard(user);
         startSessionChecker();
       } else {
         document.getElementById('loginErrorMsg').style.display = 'block';
@@ -901,9 +1040,36 @@
     }, 1500);
   }
 
-  function logout() { localStorage.removeItem('loginTime'); localStorage.removeItem('currentUserData'); if (sessionCheckInterval) clearInterval(sessionCheckInterval); currentUser = null; document.getElementById('mainApp').style.display = 'none'; document.getElementById('loginPage').style.display = 'block'; document.getElementById('loginUsername').value = ''; document.getElementById('loginPassword').value = ''; document.getElementById('loginErrorMsg').style.display = 'none'; }
+  function logout() { 
+    localStorage.removeItem('loginTime'); 
+    localStorage.removeItem('currentUserData'); 
+    if (sessionCheckInterval) clearInterval(sessionCheckInterval); 
+    currentUser = null; 
+    document.getElementById('mainApp').style.display = 'none'; 
+    document.getElementById('loginPage').style.display = 'block'; 
+    document.getElementById('loginUsername').value = ''; 
+    document.getElementById('loginPassword').value = ''; 
+    document.getElementById('loginErrorMsg').style.display = 'none'; 
+  }
 
-  function checkExistingSession() { const saved = localStorage.getItem('currentUserData'); const loginTime = getLoginTime(); if (saved && loginTime && !isSessionExpired()) { const user = JSON.parse(saved); currentUser = user; document.getElementById('userFullName').textContent = user.nama; document.getElementById('userNim').textContent = `NIM: ${user.nim}`; document.getElementById('loginPage').style.display = 'none'; document.getElementById('mainApp').style.display = 'block'; showMkList(); startSessionChecker(); } else { document.getElementById('loginPage').style.display = 'block'; document.getElementById('mainApp').style.display = 'none'; } }
+  function checkExistingSession() { 
+    const saved = localStorage.getItem('currentUserData'); 
+    const loginTime = getLoginTime(); 
+    if (saved && loginTime && !isSessionExpired()) { 
+      const user = JSON.parse(saved); 
+      currentUser = user; 
+      document.getElementById('userFullName').textContent = user.nama; 
+      document.getElementById('userNim').textContent = `NIM: ${user.nim}`; 
+      document.getElementById('loginPage').style.display = 'none'; 
+      // Jika session masih aktif, langsung tampilkan dashboard tanpa splash
+      document.getElementById('mainApp').style.display = 'block'; 
+      showMkList(); 
+      startSessionChecker(); 
+    } else { 
+      document.getElementById('loginPage').style.display = 'block'; 
+      document.getElementById('mainApp').style.display = 'none'; 
+    } 
+  }
 
   const loginBtn = document.getElementById('btnLoginSubmit');
   const loginUsername = document.getElementById('loginUsername');
@@ -921,7 +1087,7 @@
 
   document.querySelectorAll('.mk-card').forEach(card => { const btn = card.querySelector('.btn-masuk-mk'); const mkValue = card.getAttribute('data-mk'); btn.addEventListener('click', (e) => { e.stopPropagation(); showMkContent(mkValue); }); card.addEventListener('click', () => showMkContent(mkValue)); });
 
-  // MEMBUAT BACKGROUND RUMUS STATIS (TIDAK BERGERAK)
+  // MEMBUAT BACKGROUND RUMUS STATIS
   function generateStaticMathBackground() { 
     const container = document.getElementById('mathBg'); 
     if (!container) return; 
