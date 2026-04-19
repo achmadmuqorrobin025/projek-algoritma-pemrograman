@@ -77,24 +77,59 @@
       border-radius: 2rem;
     }
 
-    /* HALAMAN LOGIN */
+    /* HALAMAN LOGIN - BACKGROUND RUMUS JELAS */
     .login-page {
+      position: relative;
       display: flex;
       justify-content: center;
       align-items: center;
       min-height: calc(100vh - 70px);
       padding: 1rem;
-      background: linear-gradient(135deg, #f0f4f8 0%, #e8edf3 100%);
+      background: linear-gradient(135deg, #0f2c38 0%, #1a4d5f 100%);
+      overflow: hidden;
+    }
+
+    /* Background rumus matematika, fisika, kimia - lebih jelas */
+    .math-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .math-bg .formula {
+      position: absolute;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.25);
+      white-space: nowrap;
+      animation: floatFormula 18s infinite linear;
+      text-shadow: 0 0 5px rgba(0,0,0,0.3);
+    }
+
+    @keyframes floatFormula {
+      0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+      10% { opacity: 0.6; }
+      90% { opacity: 0.6; }
+      100% { transform: translateY(-100px) rotate(15deg); opacity: 0; }
     }
 
     .login-card-modern {
-      background: white;
+      position: relative;
+      z-index: 2;
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(2px);
       border-radius: 1.5rem;
       width: 100%;
       max-width: 480px;
       margin: 0 auto;
       padding: 2rem;
-      box-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.3);
     }
 
     @media (min-width: 768px) {
@@ -102,6 +137,95 @@
         max-width: 520px;
         padding: 2rem 2.2rem;
       }
+    }
+
+    /* LOADING OVERLAY - ATOM RUTHERFORD */
+    .loading-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(8px);
+      z-index: 1000;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .atom-rutherford {
+      position: relative;
+      width: 140px;
+      height: 140px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .nucleus {
+      width: 24px;
+      height: 24px;
+      background: radial-gradient(circle, #ffcc33, #e6a800);
+      border-radius: 50%;
+      position: absolute;
+      z-index: 2;
+      box-shadow: 0 0 20px rgba(255, 200, 0, 0.8);
+      animation: pulseNucleus 1s ease-in-out infinite;
+    }
+
+    @keyframes pulseNucleus {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.2); opacity: 0.8; }
+    }
+
+    .orbit {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border: 2px solid rgba(100, 200, 255, 0.8);
+      border-radius: 50%;
+      animation: rotateOrbit 3s linear infinite;
+    }
+
+    .orbit-1 {
+      transform: rotate(0deg);
+    }
+    .orbit-2 {
+      transform: rotate(60deg);
+      animation-duration: 4s;
+      border-color: rgba(255, 150, 100, 0.8);
+    }
+    .orbit-3 {
+      transform: rotate(120deg);
+      animation-duration: 5s;
+      border-color: rgba(100, 255, 150, 0.8);
+    }
+
+    @keyframes rotateOrbit {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .electron {
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      background: radial-gradient(circle, #7ad0ff, #1e88e5);
+      border-radius: 50%;
+      top: -7px;
+      left: 50%;
+      transform: translateX(-50%);
+      box-shadow: 0 0 12px #7ad0ff;
+    }
+
+    .loading-text {
+      margin-top: 25px;
+      color: white;
+      font-weight: 600;
+      letter-spacing: 2px;
+      font-size: 1.1rem;
     }
 
     .login-header {
@@ -272,8 +396,21 @@
       cursor: pointer;
       font-weight: 600;
     }
+    
+    .home-btn {
+      background: rgba(255,255,255,0.15);
+      border: none;
+      padding: 0.5rem 1.2rem;
+      border-radius: 2rem;
+      color: white;
+      cursor: pointer;
+      font-weight: 600;
+      margin-right: 1rem;
+    }
+    .home-btn:hover {
+      background: rgba(255,255,255,0.3);
+    }
 
-    /* PILIH MATA KULIAH */
     .pilih-mk-section {
       background: white;
       border-radius: var(--border-radius);
@@ -340,7 +477,6 @@
       background: #0f2c38;
     }
 
-    /* KONTEN MATA KULIAH */
     .mk-content-page {
       display: none;
       background: white;
@@ -421,7 +557,6 @@
       background: #e2edf2;
     }
 
-    /* ALGORITMA PANEL */
     .algo-panel {
       display: flex;
       flex-wrap: wrap;
@@ -454,14 +589,8 @@
       flex-wrap: wrap;
     }
 
-    .linear-header {
-      border-bottom-color: #f4a261;
-    }
-
-    .binary-header {
-      border-bottom-color: #2a9d8f;
-    }
-
+    .linear-header { border-bottom-color: #f4a261; }
+    .binary-header { border-bottom-color: #2a9d8f; }
     .complexity-tag {
       font-family: 'JetBrains Mono', monospace;
       background: #eef2f5;
@@ -470,220 +599,51 @@
       font-size: 0.7rem;
       font-weight: 500;
     }
-
-    .card-body {
-      padding: var(--spacing-xl);
-    }
-
-    .input-group {
-      margin-bottom: 1rem;
-    }
-
-    .input-group label {
-      font-weight: 600;
-      font-size: 0.8rem;
-      display: block;
-      margin-bottom: 0.4rem;
-    }
-
-    .input-group textarea,
-    .input-group input {
-      width: 100%;
-      padding: 0.7rem 1rem;
-      border: 1px solid #cbdde6;
-      border-radius: var(--border-radius);
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.85rem;
-      background: white;
-    }
-
-    .btn-cari {
-      background: #1e4663;
-      color: white;
-      border: none;
-      padding: 0.7rem;
-      border-radius: 2rem;
-      font-weight: 600;
-      cursor: pointer;
-      width: 100%;
-      font-size: 0.9rem;
-      margin-top: var(--spacing-sm);
-    }
-
-    .btn-cari:hover {
-      background: #0f2c38;
-    }
-
-    /* HASIL PENCARIAN ELEGAN */
-    .result-box {
-      margin-top: var(--spacing-lg);
-      background: #f8fafd;
-      border-radius: var(--border-radius);
-      padding: var(--spacing-md);
-      border-left: 4px solid;
-      font-size: 0.85rem;
-      max-height: 420px;
-      overflow-y: auto;
-    }
-
-    .result-linear {
-      border-left-color: #f4a261;
-    }
-
-    .result-binary {
-      border-left-color: #2a9d8f;
-    }
-
-    .result-box h4 {
-      font-size: 1rem;
-      margin-bottom: 0.8rem;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .result-badge {
-      display: inline-block;
-      padding: 0.2rem 0.6rem;
-      border-radius: 20px;
-      font-size: 0.7rem;
-      font-weight: 600;
-    }
-
-    .result-badge.success {
-      background: #d4edda;
-      color: #155724;
-    }
-
-    .result-badge.failed {
-      background: #f8d7da;
-      color: #721c24;
-    }
-
-    .result-detail {
-      background: white;
-      border-radius: 0.8rem;
-      padding: 0.8rem;
-      margin: 0.5rem 0;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.75rem;
-      border: 1px solid #e2edf2;
-    }
-
-    .result-detail p {
-      margin: 0.4rem 0;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-    }
-
-    .result-detail .label {
-      font-weight: 700;
-      color: #4a627a;
-      min-width: 140px;
-    }
-
-    .result-detail .value {
-      color: #1a2c3e;
-      word-break: break-all;
-    }
-
-    .result-explanation {
-      background: #eef2fa;
-      border-radius: 0.8rem;
-      padding: 0.7rem;
-      margin-top: 0.5rem;
-      font-size: 0.7rem;
-      color: #2c4c6c;
-      border-left: 3px solid #1a4d5f;
-    }
-
-    .exec-time {
-      font-family: 'JetBrains Mono', monospace;
-      color: #2a9d8f;
-      font-weight: 600;
-    }
-
-    .info-syarat {
-      background: #fff7e5;
-      padding: 0.5rem 0.8rem;
-      border-radius: var(--border-radius);
-      font-size: 0.7rem;
-      margin-top: var(--spacing-md);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .modul-header {
-      margin-bottom: 1.5rem;
-    }
-
-    .badge-unnes {
-      background: #0b2b26;
-      color: #d4f3ef;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.7rem;
-      padding: 0.25rem 1rem;
-      border-radius: 40px;
-      display: inline-block;
-      margin-bottom: 0.8rem;
-    }
-
-    .sub {
-      font-size: 0.85rem;
-      color: #4a627a;
-      line-height: 1.4;
-    }
-
-    .footer-note {
-      text-align: center;
-      margin-top: var(--spacing-xl);
-      font-size: 0.7rem;
-      color: #6c7e91;
-      border-top: 1px solid #d4e2ec;
-      padding-top: var(--spacing-lg);
-    }
+    .card-body { padding: var(--spacing-xl); }
+    .input-group { margin-bottom: 1rem; }
+    .input-group label { font-weight: 600; font-size: 0.8rem; display: block; margin-bottom: 0.4rem; }
+    .input-group textarea, .input-group input { width: 100%; padding: 0.7rem 1rem; border: 1px solid #cbdde6; border-radius: var(--border-radius); font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; background: white; }
+    .btn-cari { background: #1e4663; color: white; border: none; padding: 0.7rem; border-radius: 2rem; font-weight: 600; cursor: pointer; width: 100%; font-size: 0.9rem; margin-top: var(--spacing-sm); }
+    .btn-cari:hover { background: #0f2c38; }
+    .result-box { margin-top: var(--spacing-lg); background: #f8fafd; border-radius: var(--border-radius); padding: var(--spacing-md); border-left: 4px solid; font-size: 0.85rem; max-height: 420px; overflow-y: auto; }
+    .result-linear { border-left-color: #f4a261; }
+    .result-binary { border-left-color: #2a9d8f; }
+    .result-box h4 { font-size: 1rem; margin-bottom: 0.8rem; display: flex; align-items: center; gap: 8px; }
+    .result-badge { display: inline-block; padding: 0.2rem 0.6rem; border-radius: 20px; font-size: 0.7rem; font-weight: 600; }
+    .result-badge.success { background: #d4edda; color: #155724; }
+    .result-badge.failed { background: #f8d7da; color: #721c24; }
+    .result-detail { background: white; border-radius: 0.8rem; padding: 0.8rem; margin: 0.5rem 0; font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; border: 1px solid #e2edf2; }
+    .result-detail p { margin: 0.4rem 0; display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .result-detail .label { font-weight: 700; color: #4a627a; min-width: 140px; }
+    .result-detail .value { color: #1a2c3e; word-break: break-all; }
+    .result-explanation { background: #eef2fa; border-radius: 0.8rem; padding: 0.7rem; margin-top: 0.5rem; font-size: 0.7rem; color: #2c4c6c; border-left: 3px solid #1a4d5f; }
+    .exec-time { font-family: 'JetBrains Mono', monospace; color: #2a9d8f; font-weight: 600; }
+    .info-syarat { background: #fff7e5; padding: 0.5rem 0.8rem; border-radius: var(--border-radius); font-size: 0.7rem; margin-top: var(--spacing-md); display: flex; align-items: center; gap: 8px; }
+    .modul-header { margin-bottom: 1.5rem; }
+    .badge-unnes { background: #0b2b26; color: #d4f3ef; font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; padding: 0.25rem 1rem; border-radius: 40px; display: inline-block; margin-bottom: 0.8rem; }
+    .sub { font-size: 0.85rem; color: #4a627a; line-height: 1.4; }
+    .footer-note { text-align: center; margin-top: var(--spacing-xl); font-size: 0.7rem; color: #6c7e91; border-top: 1px solid #d4e2ec; padding-top: var(--spacing-lg); }
   </style>
 </head>
 <body>
 
-<!-- HALAMAN LOGIN -->
 <div id="loginPage">
   <div class="navbar">
     <div class="nav-container">
       <div class="logo-area">
         <img src="https://res.cloudinary.com/dobtafzwo/image/upload/v1776436925/logo-unnes-horizontal_lnov39.png" alt="UNNES" class="logo-unnes-nav">
       </div>
-      <div class="nav-links">
-        <a href="#" class="btn-masuk-nav">Masuk</a>
-      </div>
+      <div class="nav-links"><a href="#" class="btn-masuk-nav">Masuk</a></div>
     </div>
   </div>
   <div class="login-page">
+    <div class="math-bg" id="mathBg"></div>
     <div class="login-card-modern">
-      <div class="login-header">
-        <h1>Halo, Selamat Datang 👋</h1>
-        <p>Masukkan NIM dan Password Anda</p>
-      </div>
+      <div class="login-header"><h1>Halo, Selamat Datang 👋</h1><p>Masukkan NIM dan Password Anda</p></div>
       <div id="loginErrorMsg" class="error-message"></div>
-      <div class="form-group">
-        <label>NIM</label>
-        <div class="input-with-icon">
-          <i class="fas fa-envelope"></i>
-          <input type="text" id="loginUsername" placeholder="contoh: 2504030043">
-        </div>
-      </div>
-      <div class="form-group">
-        <label>Password</label>
-        <div class="input-with-icon">
-          <i class="fas fa-lock"></i>
-          <input type="password" id="loginPassword" placeholder="Masukkan password">
-        </div>
-      </div>
-      <div class="forgot-password">
-        <a href="#">Lupa password?</a>
-      </div>
+      <div class="form-group"><label>NIM</label><div class="input-with-icon"><i class="fas fa-envelope"></i><input type="text" id="loginUsername" placeholder="contoh: 2504030043"></div></div>
+      <div class="form-group"><label>Password</label><div class="input-with-icon"><i class="fas fa-lock"></i><input type="password" id="loginPassword" placeholder="Masukkan password"></div></div>
+      <div class="forgot-password"><a href="#">Lupa password?</a></div>
       <button class="btn-login-modern" id="btnLoginSubmit">Masuk</button>
       <div class="divider"><span>ATAU</span></div>
       <div class="register-link">Belum punya akun? <a href="#">Daftar sekarang</a></div>
@@ -691,50 +651,23 @@
   </div>
 </div>
 
-<!-- KONTEN UTAMA -->
 <div id="mainApp" class="main-content">
   <div class="dashboard-container">
-    <!-- WELCOME BANNER -->
     <div class="welcome-banner">
-      <div>
-        <span style="font-size: 0.8rem;">👋 SELAMAT DATANG,</span>
-        <div class="user-name-large" id="userFullName">Mahasiswa</div>
-        <div style="font-size: 0.8rem; opacity: 0.9;" id="userNim">NIM: -</div>
-      </div>
-      <button id="logoutBtn" class="logout-btn">LOGOUT</button>
+      <div><span style="font-size: 0.8rem;">👋 SELAMAT DATANG,</span><div class="user-name-large" id="userFullName">Mahasiswa</div><div style="font-size: 0.8rem; opacity: 0.9;" id="userNim">NIM: -</div></div>
+      <div><button id="homeBtn" class="home-btn"><i class="fas fa-home"></i> Beranda</button><button id="logoutBtn" class="logout-btn">LOGOUT</button></div>
     </div>
-
-    <!-- PILIH MATA KULIAH -->
-    <div id="pilihMkSection" class="pilih-mk-section">
-      <h3 class="pilih-mk-title">📚 Pilih Mata Kuliah</h3>
-      <div class="mk-grid">
-        <div class="mk-card" data-mk="aljabar-vektor"><div class="mk-icon">📐</div><div class="mk-card-name">Aljabar Vektor</div><button class="btn-masuk-mk">MASUK</button></div>
-        <div class="mk-card" data-mk="algoritma"><div class="mk-icon">💻</div><div class="mk-card-name">Algoritma Pemrograman</div><button class="btn-masuk-mk">MASUK</button></div>
-        <div class="mk-card" data-mk="kalkulus"><div class="mk-icon">∫</div><div class="mk-card-name">Kalkulus Integral</div><button class="btn-masuk-mk">MASUK</button></div>
-        <div class="mk-card" data-mk="program-linear"><div class="mk-icon">📊</div><div class="mk-card-name">Program Linear</div><button class="btn-masuk-mk">MASUK</button></div>
-        <div class="mk-card" data-mk="teori-bilangan"><div class="mk-icon">🔢</div><div class="mk-card-name">Pengantar Teori Bilangan</div><button class="btn-masuk-mk">MASUK</button></div>
-        <div class="mk-card" data-mk="pkn"><div class="mk-icon">🇮🇩</div><div class="mk-card-name">Pendidikan Kewarganegaraan</div><button class="btn-masuk-mk">MASUK</button></div>
-        <div class="mk-card" data-mk="pancasila"><div class="mk-icon">🦅</div><div class="mk-card-name">Pendidikan Pancasila</div><button class="btn-masuk-mk">MASUK</button></div>
-        <div class="mk-card" data-mk="konservasi"><div class="mk-icon">🌿</div><div class="mk-card-name">Pendidikan Konservasi</div><button class="btn-masuk-mk">MASUK</button></div>
-      </div>
-    </div>
-
-    <!-- KONTEN MATA KULIAH (DINAMIS) -->
-    <div id="mkContentPage" class="mk-content-page">
-      <div class="mk-content-header">
-        <h2 id="mkContentTitle">Mata Kuliah</h2>
-        <button id="backToMkListBtn" class="btn-back-mk">← Kembali ke Daftar MK</button>
-      </div>
-      <div id="mkContentBody" class="mk-content-body"></div>
-    </div>
-
+    <div id="pilihMkSection" class="pilih-mk-section"><h3 class="pilih-mk-title">📚 Pilih Mata Kuliah</h3><div class="mk-grid"><div class="mk-card" data-mk="aljabar-vektor"><div class="mk-icon">📐</div><div class="mk-card-name">Aljabar Vektor</div><button class="btn-masuk-mk">MASUK</button></div><div class="mk-card" data-mk="algoritma"><div class="mk-icon">💻</div><div class="mk-card-name">Algoritma Pemrograman</div><button class="btn-masuk-mk">MASUK</button></div><div class="mk-card" data-mk="kalkulus"><div class="mk-icon">∫</div><div class="mk-card-name">Kalkulus Integral</div><button class="btn-masuk-mk">MASUK</button></div><div class="mk-card" data-mk="program-linear"><div class="mk-icon">📊</div><div class="mk-card-name">Program Linear</div><button class="btn-masuk-mk">MASUK</button></div><div class="mk-card" data-mk="teori-bilangan"><div class="mk-icon">🔢</div><div class="mk-card-name">Pengantar Teori Bilangan</div><button class="btn-masuk-mk">MASUK</button></div><div class="mk-card" data-mk="pkn"><div class="mk-icon">🇮🇩</div><div class="mk-card-name">Pendidikan Kewarganegaraan</div><button class="btn-masuk-mk">MASUK</button></div><div class="mk-card" data-mk="pancasila"><div class="mk-icon">🦅</div><div class="mk-card-name">Pendidikan Pancasila</div><button class="btn-masuk-mk">MASUK</button></div><div class="mk-card" data-mk="konservasi"><div class="mk-icon">🌿</div><div class="mk-card-name">Pendidikan Konservasi</div><button class="btn-masuk-mk">MASUK</button></div></div></div>
+    <div id="mkContentPage" class="mk-content-page"><div class="mk-content-header"><h2 id="mkContentTitle">Mata Kuliah</h2><button id="backToMkListBtn" class="btn-back-mk">← Kembali ke Daftar MK</button></div><div id="mkContentBody" class="mk-content-body"></div></div>
     <div class="footer-note">© 2026 | Praktikum Algoritma Pemrograman - UNNES</div>
   </div>
 </div>
 
+<div id="loadingOverlay" class="loading-overlay"><div class="atom-rutherford"><div class="nucleus"></div><div class="orbit orbit-1"><div class="electron"></div></div><div class="orbit orbit-2"><div class="electron"></div></div><div class="orbit orbit-3"><div class="electron"></div></div></div><div class="loading-text">Memuat Dashboard...</div></div>
+
 <script>
-  // DATABASE MAHASISWA
-    const DATA_MAHASISWA = {
+  // DATABASE MAHASISWA (LENGKAP)
+  const DATA_MAHASISWA = {
      "2504030039": { nama: "MUHAMMAD IRSYADUL WAVI", nim: "2504030039" },
      "2504030040": { nama: "DEMAS ALAN WIBOWO", nim: "2504030040" },
      "2504030041": { nama: "SALSABILA AZZAHRA NUR RILA", nim: "2504030041" },
@@ -779,24 +712,15 @@
 
   function findUserByInput(input) { input = input.trim(); return DATA_MAHASISWA[input] || null; }
 
-  // SESSION MANAGEMENT
   let currentUser = null, sessionCheckInterval = null;
   const SESSION_DURATION_HOURS = 1;
   function saveLoginTime() { localStorage.setItem('loginTime', Date.now()); }
   function getLoginTime() { return localStorage.getItem('loginTime'); }
   function isSessionExpired() { let t = getLoginTime(); if (!t) return true; return (Date.now() - t) / (1000*60*60) >= SESSION_DURATION_HOURS; }
-  function autoLogoutByTime() {
-    localStorage.removeItem('loginTime'); localStorage.removeItem('currentUserData');
-    if (sessionCheckInterval) clearInterval(sessionCheckInterval);
-    currentUser = null;
-    document.getElementById('mainApp').style.display = 'none';
-    document.getElementById('loginPage').style.display = 'block';
-    document.getElementById('loginUsername').value = '';
-    document.getElementById('loginPassword').value = '';
-  }
+  function autoLogoutByTime() { localStorage.removeItem('loginTime'); localStorage.removeItem('currentUserData'); if (sessionCheckInterval) clearInterval(sessionCheckInterval); currentUser = null; document.getElementById('mainApp').style.display = 'none'; document.getElementById('loginPage').style.display = 'block'; document.getElementById('loginUsername').value = ''; document.getElementById('loginPassword').value = ''; }
   function startSessionChecker() { if (sessionCheckInterval) clearInterval(sessionCheckInterval); sessionCheckInterval = setInterval(() => { if (currentUser && isSessionExpired()) autoLogoutByTime(); }, 10000); }
 
-  // KONTEN MATA KULIAH LENGKAP
+  // KONTEN MATA KULIAH LENGKAP (TIDAK DIKURANGI)
   const kontenMk = {
     "aljabar-vektor": { title: "📐 Aljabar Vektor", content: `<p>Aljabar vektor adalah cabang matematika yang mempelajari operasi pada vektor.</p><h3>1. Penjumlahan Vektor</h3><div class="rumus">a + b = (a₁+b₁, a₂+b₂, a₃+b₃)</div><h3>2. Pengurangan Vektor</h3><div class="rumus">a - b = (a₁-b₁, a₂-b₂, a₃-b₃)</div><h3>3. Perkalian Skalar</h3><div class="rumus">k·a = (k·a₁, k·a₂, k·a₃)</div><h3>4. Perkalian Titik (Dot Product)</h3><div class="rumus">a·b = a₁b₁ + a₂b₂ + a₃b₃</div><h3>5. Perkalian Silang (Cross Product)</h3><div class="rumus">a×b = (a₂b₃-a₃b₂, a₃b₁-a₁b₃, a₁b₂-a₂b₁)</div><div class="example-box"><strong>📌 Contoh:</strong> a=(2,3,1), b=(4,1,2) → a+b=(6,4,3), a·b=13</div>` },
     "kalkulus": { title: "∫ Kalkulus Integral", content: `<p>Kalkulus integral mempelajari integral sebagai kebalikan turunan.</p><h3>Rumus Dasar</h3><div class="rumus">∫ xⁿ dx = xⁿ⁺¹/(n+1) + C, n≠-1</div><div class="rumus">∫ 1/x dx = ln|x| + C</div><div class="rumus">∫ eˣ dx = eˣ + C</div><div class="rumus">∫ sin x dx = -cos x + C</div><div class="rumus">∫ cos x dx = sin x + C</div><h3>Integral Tentu</h3><div class="rumus">∫ₐᵇ f(x) dx = F(b) - F(a)</div><h3>Integral Parsial</h3><div class="rumus">∫ u dv = uv - ∫ v du</div><div class="example-box"><strong>📌 Contoh:</strong> ∫ x² dx = x³/3 + C, ∫₀¹ x² dx = 1/3</div>` },
@@ -807,13 +731,12 @@
     "konservasi": { title: "🌿 Pendidikan Konservasi", content: `<h3>Konsep Dasar</h3><p>Perlindungan, pengawetan, pemanfaatan lestari SDA.</p><h3>Prinsip 3R</h3><div class="rumus">Reduce → Reuse → Recycle</div><h3>Konservasi Energi</h3><p>Hemat listrik, energi terbarukan.</p><h3>Konservasi Budaya</h3><p>Melestarikan tradisi, bahasa daerah, seni budaya.</p><div class="example-box">💡 Aksi nyata: buang sampah pada tempatnya, hemat air, menanam pohon.</div>` }
   };
 
-  // KONTEN ALGORITMA LENGKAP
   function getAlgoritmaContent() {
     return `
       <div class="modul-header">
         <div class="badge-unnes">ALGORITMA PEMROGRAMAN</div>
         <h1>🔎 Algoritma Pencarian : Linear Search dan Binary Search</h1>
-        <div class="sub"><strong>Kelompok 10</strong><br>1. Nabila 'Aina Syarifa (2504030043)<br>2. Muhammad Elian Nabil (2504030062)<br>3. Achmad Muqorrobin (2504030064)<br><br><strong>Dosen Pengampu :</strong> <br> Bapak Amidi, S.Si., M.Pd.<br><br><strong>Program Studi Matematika</strong><br> <strong> Fakultas Matematika dan Ilmu Pengetahuan Alam<strong> <br> <strong>UNIVERSITAS NEGERI SEMARANG 2026<strong></div>
+        <div class="sub"><strong>Kelompok 10</strong><br>1. Nabila 'Aina Syarifa (2504030043)<br>2. Muhammad Elian Nabil (2504030062)<br>3. Achmad Muqorrobin (2504030064)<br><br><strong>Dosen Pengampu :</strong> <br> Bapak Amidi, S.Si., M.Pd.<br><br><strong>Program Studi Matematika</strong><br> <strong> Fakultas Matematika dan Ilmu Pengetahuan Alam</strong> <br> <strong>UNIVERSITAS NEGERI SEMARANG 2026</strong></div>
       </div>
       <div class="algo-panel">
         <div class="panel-card">
@@ -840,7 +763,6 @@
     `;
   }
 
-  // FUNGSI PARSING ARRAY
   function parseArrayFromInput(str) {
     let cleaned = str.replace(/\n/g, ',').replace(/\t/g, ',').replace(/\s+/g, ',');
     let parts = cleaned.split(','), arr = [];
@@ -851,7 +773,6 @@
     return arr;
   }
 
-  // LINEAR SEARCH HANDLER (ELEGAN)
   function linearSearchHandler() {
     const raw = document.getElementById('linearData').value;
     const target = Number(document.getElementById('linearTarget').value);
@@ -893,7 +814,6 @@
     }
   }
 
-  // BINARY SEARCH HANDLER (ELEGAN)
   function binarySearchHandler() {
     const raw = document.getElementById('binaryDataRaw').value;
     const target = Number(document.getElementById('binaryTarget').value);
@@ -944,8 +864,8 @@
     }
   }
 
-  // NAVIGASI
   function showMkList() { document.getElementById('pilihMkSection').style.display = 'block'; document.getElementById('mkContentPage').style.display = 'none'; }
+  
   function showMkContent(mkId) {
     if (mkId === 'algoritma') {
       document.getElementById('mkContentTitle').innerHTML = "💻 Algoritma Pemrograman";
@@ -964,74 +884,73 @@
     document.getElementById('mkContentPage').style.display = 'block';
   }
 
-  // LOGIN LOGIC
-  const loginPage = document.getElementById('loginPage');
-  const mainApp = document.getElementById('mainApp');
+  function showLoadingAndLogin(usernameVal, passwordVal) {
+    const overlay = document.getElementById('loadingOverlay');
+    overlay.style.display = 'flex';
+    setTimeout(() => {
+      const user = findUserByInput(usernameVal);
+      if (user && passwordVal === "alpro2026") {
+        currentUser = user;
+        saveLoginTime();
+        localStorage.setItem('currentUserData', JSON.stringify({ nama: user.nama, nim: user.nim }));
+        document.getElementById('userFullName').textContent = user.nama;
+        document.getElementById('userNim').textContent = `NIM: ${user.nim}`;
+        document.getElementById('loginErrorMsg').style.display = 'none';
+        document.getElementById('loginPage').style.display = 'none';
+        document.getElementById('mainApp').style.display = 'block';
+        showMkList();
+        startSessionChecker();
+      } else {
+        document.getElementById('loginErrorMsg').style.display = 'block';
+        document.getElementById('loginErrorMsg').innerHTML = '❌ NIM atau password salah! Gunakan password: <strong>alpro2026</strong>';
+      }
+      overlay.style.display = 'none';
+    }, 1500);
+  }
+
+  function logout() { localStorage.removeItem('loginTime'); localStorage.removeItem('currentUserData'); if (sessionCheckInterval) clearInterval(sessionCheckInterval); currentUser = null; document.getElementById('mainApp').style.display = 'none'; document.getElementById('loginPage').style.display = 'block'; document.getElementById('loginUsername').value = ''; document.getElementById('loginPassword').value = ''; document.getElementById('loginErrorMsg').style.display = 'none'; }
+
+  function checkExistingSession() { const saved = localStorage.getItem('currentUserData'); const loginTime = getLoginTime(); if (saved && loginTime && !isSessionExpired()) { const user = JSON.parse(saved); currentUser = user; document.getElementById('userFullName').textContent = user.nama; document.getElementById('userNim').textContent = `NIM: ${user.nim}`; document.getElementById('loginPage').style.display = 'none'; document.getElementById('mainApp').style.display = 'block'; showMkList(); startSessionChecker(); } else { document.getElementById('loginPage').style.display = 'block'; document.getElementById('mainApp').style.display = 'none'; } }
+
   const loginBtn = document.getElementById('btnLoginSubmit');
   const loginUsername = document.getElementById('loginUsername');
   const loginPassword = document.getElementById('loginPassword');
-  const loginErrorMsg = document.getElementById('loginErrorMsg');
   const logoutBtn = document.getElementById('logoutBtn');
   const backToMkListBtn = document.getElementById('backToMkListBtn');
+  const homeBtn = document.getElementById('homeBtn');
 
-  function attemptLogin() {
-    const input = loginUsername.value.trim();
-    const password = loginPassword.value.trim();
-    const user = findUserByInput(input);
-    if (user && password === "alpro2026") {
-      currentUser = user;
-      saveLoginTime();
-      localStorage.setItem('currentUserData', JSON.stringify({ nama: user.nama, nim: user.nim }));
-      document.getElementById('userFullName').textContent = user.nama;
-      document.getElementById('userNim').textContent = `NIM: ${user.nim}`;
-      loginErrorMsg.style.display = 'none';
-      loginPage.style.display = 'none';
-      mainApp.style.display = 'block';
-      showMkList();
-      startSessionChecker();
-    } else {
-      loginErrorMsg.style.display = 'block';
-      loginErrorMsg.innerHTML = '❌ NIM atau password salah! Gunakan password: <strong>alpro2026</strong>';
-    }
-  }
-
-  function logout() {
-    localStorage.removeItem('loginTime'); localStorage.removeItem('currentUserData');
-    if (sessionCheckInterval) clearInterval(sessionCheckInterval);
-    currentUser = null;
-    mainApp.style.display = 'none';
-    loginPage.style.display = 'block';
-    loginUsername.value = ''; loginPassword.value = ''; loginErrorMsg.style.display = 'none';
-  }
-
-  function checkExistingSession() {
-    const saved = localStorage.getItem('currentUserData');
-    const loginTime = getLoginTime();
-    if (saved && loginTime && !isSessionExpired()) {
-      const user = JSON.parse(saved);
-      currentUser = user;
-      document.getElementById('userFullName').textContent = user.nama;
-      document.getElementById('userNim').textContent = `NIM: ${user.nim}`;
-      loginPage.style.display = 'none';
-      mainApp.style.display = 'block';
-      showMkList();
-      startSessionChecker();
-    } else { loginPage.style.display = 'block'; mainApp.style.display = 'none'; }
-  }
-
-  loginBtn.addEventListener('click', attemptLogin);
+  loginBtn.addEventListener('click', () => { showLoadingAndLogin(loginUsername.value.trim(), loginPassword.value.trim()); });
   logoutBtn.addEventListener('click', logout);
   backToMkListBtn.addEventListener('click', showMkList);
-  loginUsername.addEventListener('keypress', e => { if (e.key === 'Enter') attemptLogin(); });
-  loginPassword.addEventListener('keypress', e => { if (e.key === 'Enter') attemptLogin(); });
+  if (homeBtn) homeBtn.addEventListener('click', () => { showMkList(); });
+  loginUsername.addEventListener('keypress', e => { if (e.key === 'Enter') showLoadingAndLogin(loginUsername.value.trim(), loginPassword.value.trim()); });
+  loginPassword.addEventListener('keypress', e => { if (e.key === 'Enter') showLoadingAndLogin(loginUsername.value.trim(), loginPassword.value.trim()); });
 
-  document.querySelectorAll('.mk-card').forEach(card => {
-    const btn = card.querySelector('.btn-masuk-mk');
-    const mkValue = card.getAttribute('data-mk');
-    btn.addEventListener('click', (e) => { e.stopPropagation(); showMkContent(mkValue); });
-    card.addEventListener('click', () => showMkContent(mkValue));
-  });
+  document.querySelectorAll('.mk-card').forEach(card => { const btn = card.querySelector('.btn-masuk-mk'); const mkValue = card.getAttribute('data-mk'); btn.addEventListener('click', (e) => { e.stopPropagation(); showMkContent(mkValue); }); card.addEventListener('click', () => showMkContent(mkValue)); });
 
+  function generateMathBackground() { 
+    const container = document.getElementById('mathBg'); 
+    if (!container) return; 
+    const formulas = [
+      '∫ x² dx = ⅓x³ + C', 'E = mc²', 'PV = nRT', 'H₂O', 'x = (-b ± √Δ)/2a', 
+      'sin²θ + cos²θ = 1', 'F = ma', 'a² + b² = c²', 'e^(iπ) + 1 = 0', 
+      'log(ab) = log a + log b', 'lim x→0 sin x/x = 1', 'C₆H₁₂O₆', 'λ = h/p', 
+      '∇ × E = -∂B/∂t', 'x² + y² = r²', 'K = ½mv²', 'pH = -log[H⁺]', 
+      '∑ n = n(n+1)/2', 'Δ = b² - 4ac', 'f(x) = ax² + bx + c'
+    ]; 
+    for (let i = 0; i < 35; i++) { 
+      let span = document.createElement('div'); 
+      span.className = 'formula'; 
+      span.textContent = formulas[i % formulas.length]; 
+      let size = 1.0 + Math.random() * 1.5; 
+      span.style.fontSize = size + 'rem'; 
+      span.style.left = Math.random() * 100 + '%'; 
+      span.style.animationDuration = 12 + Math.random() * 20 + 's'; 
+      span.style.animationDelay = Math.random() * 10 + 's'; 
+      container.appendChild(span); 
+    } 
+  }
+  generateMathBackground();
   checkExistingSession();
 </script>
 </body>
