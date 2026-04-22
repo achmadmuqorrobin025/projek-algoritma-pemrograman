@@ -27,68 +27,133 @@
       --border-radius: 1rem;
     }
 
-    /* NAVIGATION BAR */
+    /* HAMBURGER MENU - AWALNYA HIDDEN */
+    .hamburger-menu {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 1000;
+      cursor: pointer;
+      background: #1a4d5f;
+      width: 45px;
+      height: 45px;
+      border-radius: 12px;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      transition: all 0.3s ease;
+    }
+    .hamburger-menu:hover { background: #0f2c38; }
+    .hamburger-menu i { color: white; font-size: 1.5rem; }
+    .hamburger-menu.show { display: flex; }
+
+    /* SIDEBAR */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: -300px;
+      width: 280px;
+      height: 100%;
+      background: linear-gradient(180deg, #1a4d5f 0%, #0f2c38 100%);
+      z-index: 1001;
+      transition: left 0.3s ease;
+      box-shadow: 2px 0 20px rgba(0,0,0,0.2);
+      padding-top: 80px;
+    }
+    .sidebar.open { left: 0; }
+    .sidebar-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      z-index: 1000;
+      display: none;
+    }
+    .sidebar-overlay.active { display: block; }
+    .sidebar-item {
+      padding: 1rem 1.5rem;
+      color: rgba(255,255,255,0.85);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-size: 0.95rem;
+    }
+    .sidebar-item:hover {
+      background: rgba(255,255,255,0.15);
+      color: white;
+      padding-left: 2rem;
+    }
+    .sidebar-item i { width: 24px; font-size: 1.1rem; }
+    .sidebar-footer {
+      position: absolute;
+      bottom: 30px;
+      left: 0;
+      width: 100%;
+      border-top: 1px solid rgba(255,255,255,0.2);
+      padding-top: 1rem;
+    }
+
+    /* TOMBOL PANAH KEMBALI */
+    .back-to-home {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: #1a4d5f;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      z-index: 99;
+      transition: all 0.3s ease;
+    }
+    .back-to-home:hover {
+      background: #0f2c38;
+      transform: scale(1.1);
+    }
+    .back-to-home i { color: white; font-size: 1.5rem; }
+
+    /* NAVBAR */
     .navbar {
       background: white;
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
       padding: var(--spacing-md) var(--spacing-xl);
       position: sticky;
       top: 0;
-      z-index: 100;
+      z-index: 99;
+      display: flex;
+      justify-content: center;
     }
-
     .nav-container {
       max-width: 1280px;
+      width: 100%;
       margin: 0 auto;
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: var(--spacing-md);
-    }
-
-    .logo-area {
-      display: flex;
-      align-items: center;
-      gap: var(--spacing-sm);
-    }
-
-    .logo-unnes-nav {
-      height: 45px;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: var(--spacing-lg);
+      justify-content: center;
       align-items: center;
     }
+    .logo-area { display: flex; align-items: center; gap: var(--spacing-sm); }
+    .logo-unnes-nav { height: 45px; }
 
-    .nav-links a {
-      text-decoration: none;
-      color: #4a627a;
-      font-weight: 500;
-      font-size: 0.9rem;
-    }
-
-    .btn-masuk-nav {
-      background: #1a4d5f;
-      color: rgba(255, 255, 255, 0.719) !important;
-      padding: 0.5rem 1.2rem;
-      border-radius: 2rem;
-    }
-
-    /* HALAMAN LOGIN - BACKGROUND RUMUS STATIS */
+    /* LOGIN PAGE */
     .login-page {
       position: relative;
       display: flex;
       justify-content: center;
       align-items: center;
-      min-height: calc(100vh - 70px);
+      min-height: 100vh;
       padding: 1rem;
       background: linear-gradient(135deg, #0f2c38 0%, #1a4d5f 100%);
       overflow: hidden;
     }
-
     .math-bg {
       position: absolute;
       top: 0;
@@ -99,7 +164,6 @@
       z-index: 0;
       pointer-events: none;
     }
-
     .math-bg .formula {
       position: absolute;
       font-family: 'JetBrains Mono', monospace;
@@ -107,9 +171,7 @@
       font-weight: 600;
       color: rgba(255, 255, 255, 0.2);
       white-space: nowrap;
-      text-shadow: 0 0 5px rgba(0,0,0,0.3);
     }
-
     .login-card-modern {
       position: relative;
       z-index: 2;
@@ -118,391 +180,124 @@
       border-radius: 1.5rem;
       width: 100%;
       max-width: 480px;
-      margin: 0 auto;
       padding: 2rem;
       box-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.3);
     }
+    .login-header h1 { font-size: 1.8rem; font-weight: 700; color: #1a4d5f; margin-bottom: 0.3rem; }
+    .login-header p { color: #6c7e91; font-size: 0.85rem; }
+    .form-group { margin-bottom: 1.2rem; }
+    .form-group label { font-weight: 600; font-size: 0.8rem; display: block; margin-bottom: 0.4rem; color: #2c4c6c; }
+    .input-with-icon { position: relative; }
+    .input-with-icon i { position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: #9aaebf; }
+    .input-with-icon input { width: 100%; padding: 0.8rem 1rem 0.8rem 2.8rem; border: 1px solid #d4e0e8; border-radius: 1rem; font-family: 'Inter', sans-serif; font-size: 0.9rem; }
+    .btn-login-modern { background: #1e4663; color: white; border: none; padding: 0.8rem; border-radius: 2rem; font-weight: 600; cursor: pointer; width: 100%; font-size: 0.9rem; }
+    .btn-login-modern:hover { background: #0f2c38; }
+    .error-message { background: #fee2e2; color: #d9534f; padding: 0.7rem; border-radius: 1rem; font-size: 0.75rem; margin-bottom: 1rem; text-align: center; display: none; }
+    .login-footer { text-align: center; margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid #e2edf2; }
+    .copyright { font-size: 0.7rem; color: #8ba0b0; font-family: 'JetBrains Mono', monospace; }
 
-    @media (min-width: 768px) {
-      .login-card-modern {
-        max-width: 520px;
-        padding: 2rem 2.2rem;
-      }
-    }
+    /* MAIN CONTENT */
+    .main-content { display: none; }
+    .dashboard-container { max-width: 1400px; margin: 0 auto; padding: var(--spacing-lg); }
 
-    /* LOADING OVERLAY - ATOM RUTHERFORD */
-    .loading-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.85);
-      backdrop-filter: blur(8px);
-      z-index: 1000;
-      display: none;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-    }
-
-    .atom-rutherford {
-      position: relative;
-      width: 140px;
-      height: 140px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .nucleus {
-      width: 24px;
-      height: 24px;
-      background: radial-gradient(circle, #ffcc33, #e6a800);
-      border-radius: 50%;
-      position: absolute;
-      z-index: 2;
-      box-shadow: 0 0 20px rgba(255, 200, 0, 0.8);
-      animation: pulseNucleus 1s ease-in-out infinite;
-    }
-
-    @keyframes pulseNucleus {
-      0%, 100% { transform: scale(1); opacity: 1; }
-      50% { transform: scale(1.2); opacity: 0.8; }
-    }
-
-    .orbit {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      border: 2px solid rgba(100, 200, 255, 0.8);
-      border-radius: 50%;
-      animation: rotateOrbit 3s linear infinite;
-    }
-
-    .orbit-1 {
-      transform: rotate(0deg);
-    }
-    .orbit-2 {
-      transform: rotate(60deg);
-      animation-duration: 4s;
-      border-color: rgba(255, 150, 100, 0.8);
-    }
-    .orbit-3 {
-      transform: rotate(120deg);
-      animation-duration: 5s;
-      border-color: rgba(100, 255, 150, 0.8);
-    }
-
-    @keyframes rotateOrbit {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
-    }
-
-    .electron {
-      position: absolute;
-      width: 14px;
-      height: 14px;
-      background: radial-gradient(circle, #7ad0ff, #1e88e5);
-      border-radius: 50%;
-      top: -7px;
-      left: 50%;
-      transform: translateX(-50%);
-      box-shadow: 0 0 12px #7ad0ff;
-    }
-
-    .loading-text {
-      margin-top: 25px;
-      color: white;
-      font-weight: 600;
-      letter-spacing: 2px;
-      font-size: 1.1rem;
-    }
-
-    /* WELCOME SPLASH SCREEN - EMOTIKON SENYUM */
-    /* WELCOME SPLASH SCREEN - TANPA BACKGROUND BIRU */
-.welcome-splash {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: transparent;  /* <--- TRANSPARAN */
-    z-index: 2000;
-    display: none;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    animation: fadeOutWelcome 0.5s ease-in-out 5.5s forwards;
-    pointer-events: none; /* agar tidak mengganggu klik */
-}
-.login-footer {
-    text-align: center;
-    margin-top: 1.5rem;
-    padding-top: 1rem;
-    border-top: 1px solid #e2edf2;
-}
-
-.copyright {
-    font-size: 0.7rem;
-    color: #8ba0b0;
-    font-family: 'JetBrains Mono', monospace;
-}
-
-@keyframes fadeOutWelcome {
-    from { opacity: 1; visibility: visible; }
-    to { opacity: 0; visibility: hidden; }
-}
-
-.smiley-emoji {
-    font-size: 6rem;
-    animation: bounce 0.6s ease-in-out infinite alternate;
-    margin-bottom: 1rem;
-    text-shadow: 0 0 20px rgba(0,0,0,0.3);
-}
-
-@keyframes bounce {
-    from { transform: translateY(0px); }
-    to { transform: translateY(-15px); }
-}
-
-.welcome-text {
-    font-size: 1.8rem;
-    font-weight: 700;
-    color: #1a4d5f;
-    text-align: center;
-    padding: 0 1rem;
-    text-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
-
-.welcome-name {
-    font-size: 2.2rem;
-    font-weight: 800;
-    color: #e6a800;
-    margin-top: 0.5rem;
-    text-align: center;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    text-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
-
-    @keyframes fadeOut {
-      from { opacity: 1; visibility: visible; }
-      to { opacity: 0; visibility: hidden; }
-    }
-
-    .smiley-emoji {
-      font-size: 5rem;
-      animation: bounce 0.6s ease-in-out infinite alternate;
-      margin-bottom: 1rem;
-    }
-
-    @keyframes bounce {
-      from { transform: translateY(0px); }
-      to { transform: translateY(-15px); }
-    }
-
-    .welcome-text {
-      font-size: 1.8rem;
-      font-weight: 700;
-      color: white;
-      text-align: center;
-      padding: 0 1rem;
-    }
-
-    .welcome-name {
-      font-size: 2.2rem;
-      font-weight: 800;
-      color: #ffd966;
-      margin-top: 0.5rem;
-      text-align: center;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-
-    .login-header {
-      text-align: center;
-      margin-bottom: 1.5rem;
-    }
-
-    .login-header h1 {
-      font-size: 1.8rem;
-      font-weight: 700;
-      color: #1a4d5f;
-      margin-bottom: 0.3rem;
-    }
-
-    .login-header p {
-      color: #6c7e91;
-      font-size: 0.85rem;
-    }
-
-    .form-group {
-      margin-bottom: 1.2rem;
-    }
-
-    .form-group label {
-      font-weight: 600;
-      font-size: 0.8rem;
-      display: block;
-      margin-bottom: 0.4rem;
-      color: #2c4c6c;
-    }
-
-    .input-with-icon {
-      position: relative;
-    }
-
-    .input-with-icon i {
-      position: absolute;
-      left: 1rem;
-      top: 50%;
-      transform: translateY(-50%);
-      color: #9aaebf;
-      font-size: 1rem;
-    }
-
-    .input-with-icon input {
-      width: 100%;
-      padding: 0.8rem 1rem 0.8rem 2.8rem;
-      border: 1px solid #d4e0e8;
-      border-radius: 1rem;
-      font-family: 'Inter', sans-serif;
-      font-size: 0.9rem;
-    }
-
-    .input-with-icon input:focus {
-      outline: none;
-      border-color: #1a4d5f;
-    }
-
-    .forgot-password {
-      text-align: right;
-      margin-bottom: 1.2rem;
-    }
-
-    .forgot-password a {
-      font-size: 0.75rem;
-      color: #2a9d8f;
-      text-decoration: none;
-    }
-
-    .btn-login-modern {
-      background: #1e4663;
-      color: white;
-      border: none;
-      padding: 0.8rem;
-      border-radius: 2rem;
-      font-weight: 600;
-      cursor: pointer;
-      width: 100%;
-      font-size: 0.9rem;
-    }
-
-    .btn-login-modern:hover {
-      background: #0f2c38;
-    }
-
-    .divider {
-      text-align: center;
-      margin: 1.2rem 0;
-      position: relative;
-    }
-
-    .divider::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 50%;
-      width: 100%;
-      height: 1px;
-      background: #e2edf2;
-    }
-
-    .divider span {
+    /* PROFIL PAGE (BERANDA) */
+    .profil-page {
       background: white;
-      padding: 0 1rem;
-      position: relative;
-      font-size: 0.75rem;
-      color: #8ba0b0;
-    }
-
-    .register-link {
-      text-align: center;
-      margin-top: 1.2rem;
-      font-size: 0.85rem;
-    }
-
-    .register-link a {
-      color: #2a9d8f;
-      text-decoration: none;
-      font-weight: 600;
-    }
-
-    .error-message {
-      background: #fee2e2;
-      color: #d9534f;
-      padding: 0.7rem;
-      border-radius: 1rem;
-      font-size: 0.75rem;
-      margin-bottom: 1rem;
-      text-align: center;
-      display: none;
-    }
-
-    /* KONTEN UTAMA */
-    .main-content {
-      display: none;
-    }
-
-    .dashboard-container {
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: var(--spacing-lg);
-    }
-
-    .welcome-banner {
-      background: linear-gradient(135deg, #1a4d5f, #0f2c38);
       border-radius: var(--border-radius);
-      padding: var(--spacing-lg) var(--spacing-xl);
+      padding: var(--spacing-xl);
       margin-bottom: var(--spacing-xl);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+    .profil-header {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 2px solid #e2edf2;
+    }
+    .profil-avatar {
+      position: relative;
+      width: 120px;
+      height: 120px;
+      background: linear-gradient(135deg, #1a4d5f, #2a9d8f);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      overflow: hidden;
+    }
+    .profil-avatar:hover::after {
+      content: "📷";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(0,0,0,0.6);
+      color: white;
+      text-align: center;
+      padding: 5px;
+      font-size: 12px;
+    }
+    .profil-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    #uploadFotoInput { display: none; }
+    .profil-info h2 { font-size: 1.8rem; color: #1a4d5f; margin-bottom: 0.5rem; }
+    .profil-info p { color: #6c7e91; margin-bottom: 0.3rem; }
+    .profil-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .stat-card {
+      background: #f8fafd;
+      border-radius: 1rem;
+      padding: 1rem;
+      text-align: center;
+      border: 1px solid #e2edf2;
+    }
+    .stat-number { font-size: 2rem; font-weight: 700; color: #1a4d5f; }
+    .stat-label { font-size: 0.8rem; color: #6c7e91; }
+
+    /* RIWAYAT AKTIVITAS */
+    .riwayat-aktivitas {
+      background: #f8fafd;
+      border-radius: var(--border-radius);
+      padding: var(--spacing-lg);
+      margin-top: var(--spacing-lg);
+    }
+    .record-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+    .record-header h3 { color: #1a4d5f; display: flex; align-items: center; gap: 8px; }
+    .btn-clear-record { background: #eef2f5; border: none; padding: 0.3rem 1rem; border-radius: 2rem; cursor: pointer; font-size: 0.7rem; color: #d9534f; }
+    .record-list { max-height: 300px; overflow-y: auto; }
+    .record-item {
+      background: white;
+      border-radius: 0.8rem;
+      padding: 0.8rem;
+      margin-bottom: 0.5rem;
+      border-left: 4px solid #2a9d8f;
+      font-size: 0.8rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
-      color: white;
     }
+    .record-date { color: #8ba0b0; font-size: 0.7rem; font-family: monospace; }
+    .empty-record { text-align: center; color: #8ba0b0; padding: 2rem; }
 
-    .user-name-large {
-      font-size: 1.6rem;
-      font-weight: 700;
-      margin: var(--spacing-sm) 0;
-    }
-
-    .logout-btn {
-      background: rgba(255,255,255,0.2);
-      border: none;
-      padding: 0.5rem 1.2rem;
-      border-radius: 2rem;
-      color: white;
-      cursor: pointer;
-      font-weight: 600;
-    }
-    
-    .home-btn {
-      background: rgba(255,255,255,0.15);
-      border: none;
-      padding: 0.5rem 1.2rem;
-      border-radius: 2rem;
-      color: white;
-      cursor: pointer;
-      font-weight: 600;
-      margin-right: 1rem;
-    }
-    .home-btn:hover {
-      background: rgba(255,255,255,0.3);
-    }
-
+    /* MK CONTENT PAGE & GRID */
     .pilih-mk-section {
       background: white;
       border-radius: var(--border-radius);
@@ -510,21 +305,12 @@
       margin-bottom: 2rem;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
     }
-
-    .pilih-mk-title {
-      text-align: center;
-      font-size: 1.3rem;
-      color: #1a4d5f;
-      margin-bottom: 1.5rem;
-      font-weight: 600;
-    }
-
+    .pilih-mk-title { text-align: center; font-size: 1.3rem; color: #1a4d5f; margin-bottom: 1.5rem; font-weight: 600; }
     .mk-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
       gap: 1rem;
     }
-
     .mk-card {
       background: #f9fbfe;
       border: 1px solid #e2edf2;
@@ -534,25 +320,12 @@
       transition: all 0.2s ease;
       cursor: pointer;
     }
-
     .mk-card:hover {
       transform: translateY(-3px);
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-      border-color: #cbdde6;
     }
-
-    .mk-icon {
-      font-size: 2rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .mk-card-name {
-      font-weight: 600;
-      font-size: 0.85rem;
-      color: #1a2c3e;
-      margin-bottom: 0.8rem;
-    }
-
+    .mk-icon { font-size: 2rem; margin-bottom: 0.5rem; }
+    .mk-card-name { font-weight: 600; font-size: 0.85rem; color: #1a2c3e; margin-bottom: 0.8rem; }
     .btn-masuk-mk {
       background: #1e4663;
       color: white;
@@ -564,11 +337,6 @@
       font-size: 0.75rem;
       width: 100%;
     }
-
-    .btn-masuk-mk:hover {
-      background: #0f2c38;
-    }
-
     .mk-content-page {
       display: none;
       background: white;
@@ -577,7 +345,6 @@
       margin-top: 1rem;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
     }
-
     .mk-content-header {
       display: flex;
       justify-content: space-between;
@@ -587,159 +354,217 @@
       padding-bottom: 1rem;
       border-bottom: 2px solid #e2edf2;
     }
+    .btn-back-mk { background: #eef2f5; border: none; padding: 0.5rem 1.2rem; border-radius: 2rem; cursor: pointer; font-weight: 600; color: #1a4d5f; }
 
-    .mk-content-header h2 {
-      color: #1a4d5f;
-      font-size: 1.6rem;
-    }
-
-    .mk-content-body {
-      line-height: 1.6;
-      font-size: 0.95rem;
-    }
-
-    .mk-content-body h3 {
-      color: #1a4d5f;
-      margin: 1rem 0 0.5rem 0;
-    }
-
-    .mk-content-body h4 {
-      color: #2a9d8f;
-      margin: 0.8rem 0 0.3rem 0;
-    }
-
-    .mk-content-body p {
-      margin-bottom: 0.8rem;
-    }
-
-    .mk-content-body ul, .mk-content-body ol {
-      margin-left: 1.5rem;
-      margin-bottom: 1rem;
-    }
-
-    .mk-content-body .rumus {
-      background: #f0f4fa;
-      padding: 0.5rem 1rem;
-      border-radius: 0.5rem;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.9rem;
-      margin: 0.5rem 0;
-      overflow-x: auto;
-    }
-
-    .mk-content-body .example-box {
-      background: #eef2fa;
-      border-left: 4px solid #1a4d5f;
-      padding: 0.8rem;
-      border-radius: 0.5rem;
-      margin: 0.8rem 0;
-    }
-
-    .btn-back-mk {
-      background: #eef2f5;
-      border: none;
-      padding: 0.5rem 1.2rem;
-      border-radius: 2rem;
-      cursor: pointer;
-      font-weight: 600;
-      color: #1a4d5f;
-    }
-    .login-footer {
-    text-align: center;
-    margin-top: 1.5rem;
-    padding-top: 1rem;
-    border-top: 1px solid #e2edf2;
-    }
-
-    .copyright {
-    font-size: 1.0rem;
-    color: #8ba0b0;
-    font-family: 'JetBrains Mono', monospace;
-    }
-
-    .btn-back-mk:hover {
-      background: #e2edf2;
-    }
-
-    .algo-panel {
-      display: flex;
-      flex-wrap: wrap;
-      gap: var(--spacing-xl);
-      margin: var(--spacing-xl) 0;
-    }
-
-    .panel-card {
-      flex: 1;
-      min-width: 340px;
-      background: white;
-      border-radius: var(--border-radius);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
-      border: 1px solid #e2edf2;
-      overflow: hidden;
-    }
-
-    .card-header {
-      padding: var(--spacing-lg) var(--spacing-xl);
-      background: #f9fbfe;
-      border-bottom: 2px solid;
-    }
-
-    .card-header h2 {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-weight: 700;
-      font-size: 1.4rem;
-      flex-wrap: wrap;
-    }
-
+    /* ALGORITMA PANEL */
+    .algo-panel { display: flex; flex-wrap: wrap; gap: var(--spacing-xl); margin: var(--spacing-xl) 0; }
+    .panel-card { flex: 1; min-width: 340px; background: white; border-radius: var(--border-radius); box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05); border: 1px solid #e2edf2; overflow: hidden; }
+    .card-header { padding: var(--spacing-lg) var(--spacing-xl); background: #f9fbfe; border-bottom: 2px solid; }
     .linear-header { border-bottom-color: #f4a261; }
     .binary-header { border-bottom-color: #2a9d8f; }
-    .complexity-tag {
-      font-family: 'JetBrains Mono', monospace;
-      background: #eef2f5;
-      padding: 0.2rem 0.7rem;
-      border-radius: 40px;
-      font-size: 0.7rem;
-      font-weight: 500;
-    }
+    .complexity-tag { font-family: 'JetBrains Mono', monospace; background: #eef2f5; padding: 0.2rem 0.7rem; border-radius: 40px; font-size: 0.7rem; }
     .card-body { padding: var(--spacing-xl); }
     .input-group { margin-bottom: 1rem; }
     .input-group label { font-weight: 600; font-size: 0.8rem; display: block; margin-bottom: 0.4rem; }
-    .input-group textarea, .input-group input { width: 100%; padding: 0.7rem 1rem; border: 1px solid #cbdde6; border-radius: var(--border-radius); font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; background: white; }
-    .btn-cari { background: #1e4663; color: white; border: none; padding: 0.7rem; border-radius: 2rem; font-weight: 600; cursor: pointer; width: 100%; font-size: 0.9rem; margin-top: var(--spacing-sm); }
-    .btn-cari:hover { background: #0f2c38; }
-    .result-box { margin-top: var(--spacing-lg); background: #f8fafd; border-radius: var(--border-radius); padding: var(--spacing-md); border-left: 4px solid; font-size: 0.85rem; max-height: 420px; overflow-y: auto; }
+    .input-group textarea, .input-group input { width: 100%; padding: 0.7rem 1rem; border: 1px solid #cbdde6; border-radius: var(--border-radius); font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; }
+    .btn-cari { background: #1e4663; color: white; border: none; padding: 0.7rem; border-radius: 2rem; font-weight: 600; cursor: pointer; width: 100%; margin-top: var(--spacing-sm); }
+    .result-box { margin-top: var(--spacing-lg); background: #f8fafd; border-radius: var(--border-radius); padding: var(--spacing-md); border-left: 4px solid; max-height: 420px; overflow-y: auto; }
     .result-linear { border-left-color: #f4a261; }
     .result-binary { border-left-color: #2a9d8f; }
-    .result-box h4 { font-size: 1rem; margin-bottom: 0.8rem; display: flex; align-items: center; gap: 8px; }
-    .result-badge { display: inline-block; padding: 0.2rem 0.6rem; border-radius: 20px; font-size: 0.7rem; font-weight: 600; }
-    .result-badge.success { background: #d4edda; color: #155724; }
-    .result-badge.failed { background: #f8d7da; color: #721c24; }
-    .result-detail { background: white; border-radius: 0.8rem; padding: 0.8rem; margin: 0.5rem 0; font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; border: 1px solid #e2edf2; }
-    .result-detail p { margin: 0.4rem 0; display: flex; flex-wrap: wrap; gap: 0.5rem; }
-    .result-detail .label { font-weight: 700; color: #4a627a; min-width: 140px; }
-    .result-detail .value { color: #1a2c3e; word-break: break-all; }
-    .result-explanation { background: #eef2fa; border-radius: 0.8rem; padding: 0.7rem; margin-top: 0.5rem; font-size: 0.7rem; color: #2c4c6c; border-left: 3px solid #1a4d5f; }
-    .exec-time { font-family: 'JetBrains Mono', monospace; color: #2a9d8f; font-weight: 600; }
     .info-syarat { background: #fff7e5; padding: 0.5rem 0.8rem; border-radius: var(--border-radius); font-size: 0.7rem; margin-top: var(--spacing-md); display: flex; align-items: center; gap: 8px; }
-    .modul-header { margin-bottom: 1.5rem; }
-    .badge-unnes { background: #0b2b26; color: #d4f3ef; font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; padding: 0.25rem 1rem; border-radius: 40px; display: inline-block; margin-bottom: 0.8rem; }
-    .sub { font-size: 0.85rem; color: #4a627a; line-height: 1.4; }
+
+    /* LATIHAN SOAL */
+    .soal-item {
+      background: #f9fbfe;
+      border-radius: 1rem;
+      padding: 1rem;
+      margin-bottom: 1rem;
+    }
+    .btn-cek-jawaban {
+      background: #2a9d8f;
+      color: white;
+      border: none;
+      padding: 0.3rem 1rem;
+      border-radius: 1rem;
+      margin-top: 0.5rem;
+      cursor: pointer;
+    }
+
+    /* RASIONALISASI PTN */
+    .rasionalisasi-search {
+      background: white;
+      border-radius: var(--border-radius);
+      padding: var(--spacing-xl);
+    }
+    .search-box {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .search-box input {
+      flex: 1;
+      padding: 0.8rem 1rem;
+      border: 1px solid #cbdde6;
+      border-radius: 1rem;
+      font-size: 0.9rem;
+    }
+    .search-box select {
+      padding: 0.8rem 1rem;
+      border: 1px solid #cbdde6;
+      border-radius: 1rem;
+      background: white;
+      font-size: 0.9rem;
+    }
+    .search-box button {
+      background: #1a4d5f;
+      color: white;
+      border: none;
+      padding: 0.8rem 1.5rem;
+      border-radius: 1rem;
+      cursor: pointer;
+    }
+    .university-result { margin-top: 1.5rem; max-height: 400px; overflow-y: auto; }
+    .univ-card {
+      background: #f9fbfe;
+      border: 1px solid #e2edf2;
+      border-radius: 1rem;
+      padding: 1rem;
+      margin-bottom: 0.8rem;
+    }
+    .univ-name { font-weight: 700; color: #1a4d5f; margin-bottom: 0.5rem; }
+    .univ-prodi { font-size: 0.85rem; color: #2a9d8f; }
+    .univ-daya { font-size: 0.75rem; color: #6c7e91; margin-top: 0.3rem; }
+
+    /* LOADING ATOM RUTHERFORD */
+    .loading-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(8px);
+      z-index: 2000;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+    .atom-rutherford {
+      position: relative;
+      width: 140px;
+      height: 140px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .nucleus {
+      width: 24px;
+      height: 24px;
+      background: radial-gradient(circle, #ffcc33, #e6a800);
+      border-radius: 50%;
+      position: absolute;
+      z-index: 2;
+      box-shadow: 0 0 20px rgba(255, 200, 0, 0.8);
+      animation: pulseNucleus 1s ease-in-out infinite;
+    }
+    @keyframes pulseNucleus {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.2); opacity: 0.8; }
+    }
+    .orbit {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border: 2px solid rgba(100, 200, 255, 0.8);
+      border-radius: 50%;
+      animation: rotateOrbit 3s linear infinite;
+    }
+    .orbit-1 { transform: rotate(0deg); }
+    .orbit-2 { transform: rotate(60deg); animation-duration: 4s; border-color: rgba(255, 150, 100, 0.8); }
+    .orbit-3 { transform: rotate(120deg); animation-duration: 5s; border-color: rgba(100, 255, 150, 0.8); }
+    @keyframes rotateOrbit {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    .electron {
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      background: radial-gradient(circle, #7ad0ff, #1e88e5);
+      border-radius: 50%;
+      top: -7px;
+      left: 50%;
+      transform: translateX(-50%);
+      box-shadow: 0 0 12px #7ad0ff;
+    }
+    .loading-text { margin-top: 25px; color: white; font-weight: 600; letter-spacing: 2px; font-size: 1.1rem; }
+
+    /* WELCOME SPLASH */
+    .welcome-splash {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: transparent;
+      z-index: 2000;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      animation: fadeOutWelcome 0.5s ease-in-out 5.5s forwards;
+      pointer-events: none;
+    }
+    @keyframes fadeOutWelcome {
+      from { opacity: 1; visibility: visible; }
+      to { opacity: 0; visibility: hidden; }
+    }
+    .smiley-emoji { font-size: 6rem; animation: bounce 0.6s ease-in-out infinite alternate; margin-bottom: 1rem; }
+    @keyframes bounce { from { transform: translateY(0px); } to { transform: translateY(-15px); } }
+    .welcome-text { font-size: 1.8rem; font-weight: 700; color: #1a4d5f; text-align: center; }
+    .welcome-name { font-size: 2.2rem; font-weight: 800; color: #e6a800; margin-top: 0.5rem; text-align: center; }
+
     .footer-note { text-align: center; margin-top: var(--spacing-xl); font-size: 0.7rem; color: #6c7e91; border-top: 1px solid #d4e2ec; padding-top: var(--spacing-lg); }
   </style>
 </head>
 <body>
 
-<div id="loginPage">
-  <div class="navbar">
-    <div class="nav-container">
-      <div class="logo-area">
-        <img src="https://res.cloudinary.com/dobtafzwo/image/upload/v1776436925/logo-unnes-horizontal_lnov39.png" alt="UNNES" class="logo-unnes-nav">
-      </div>
-      <div class="nav-links"><a href="#" class="btn-masuk-nav">Masuk</a></div>
+<!-- HAMBURGER MENU -->
+<div class="hamburger-menu" id="hamburgerBtn">
+  <i class="fas fa-bars"></i>
+</div>
+
+<!-- SIDEBAR -->
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item" data-page="beranda"><i class="fas fa-home"></i> Beranda</div>
+  <div class="sidebar-item" data-page="mata-kuliah"><i class="fas fa-book"></i> Mata Kuliah</div>
+  <div class="sidebar-item" data-page="latihan-soal"><i class="fas fa-pencil-alt"></i> Latihan Soal</div>
+  <div class="sidebar-item" data-page="hasil-nilai"><i class="fas fa-chart-line"></i> Hasil Nilai</div>
+  <div class="sidebar-item" data-page="game-materi"><i class="fas fa-gamepad"></i> Game Materi</div>
+  <div class="sidebar-item" data-page="rasionalisasi-ptn"><i class="fas fa-university"></i> Rasionalisasi PTN</div>
+  <div class="sidebar-item" data-page="profil"><i class="fas fa-user-circle"></i> Profil</div>
+  <div class="sidebar-footer"><div class="sidebar-item" data-page="keluar"><i class="fas fa-sign-out-alt"></i> Keluar</div></div>
+</div>
+
+<!-- TOMBOL PANAH KEMBALI -->
+<div class="back-to-home" id="backToHomeBtn">
+  <i class="fas fa-arrow-up"></i>
+</div>
+
+<!-- NAVBAR -->
+<div class="navbar">
+  <div class="nav-container">
+    <div class="logo-area">
+      <img src="https://res.cloudinary.com/dobtafzwo/image/upload/v1776436925/logo-unnes-horizontal_lnov39.png" alt="UNNES" class="logo-unnes-nav">
     </div>
   </div>
+</div>
+
+<!-- LOGIN PAGE -->
+<div id="loginPage">
   <div class="login-page">
     <div class="math-bg" id="mathBg"></div>
     <div class="login-card-modern">
@@ -747,372 +572,265 @@
       <div id="loginErrorMsg" class="error-message"></div>
       <div class="form-group"><label>NIM</label><div class="input-with-icon"><i class="fas fa-envelope"></i><input type="text" id="loginUsername" placeholder="contoh: 2504030043"></div></div>
       <div class="form-group"><label>Password</label><div class="input-with-icon"><i class="fas fa-lock"></i><input type="password" id="loginPassword" placeholder="Masukkan password"></div></div>
-      <div class="forgot-password"><a href="#">Lupa password?</a></div>
       <button class="btn-login-modern" id="btnLoginSubmit">Masuk</button>
-      <div class="divider"><span>ATAU</span></div>
-      <div class="register-link">Belum punya akun? <a href="#">Daftar sekarang</a></div>
       <div class="login-footer">
-       <p class="copyright">©2026 | Praktikum Algoritma Pemrograman</p>
-       <p class="copyright">Kelompok 10 - UNNES 2026</p>
-
-    </div>
+        <p class="copyright">©2026 | Praktikum Algoritma Pemrograman</p>
+        <p class="copyright">Kelompok 10 - UNNES 2026</p>
+      </div>
     </div>
   </div>
 </div>
 
-<!-- WELCOME SPLASH SCREEN (EMOTIKON SENYUM) -->
+<!-- WELCOME SPLASH -->
 <div id="welcomeSplash" class="welcome-splash">
   <div class="smiley-emoji">😊</div>
   <div class="welcome-text">Selamat datang,</div>
   <div class="welcome-name" id="welcomeUserName">Mahasiswa</div>
 </div>
 
+<!-- LOADING OVERLAY -->
+<div id="loadingOverlay" class="loading-overlay">
+  <div class="atom-rutherford">
+    <div class="nucleus"></div>
+    <div class="orbit orbit-1"><div class="electron"></div></div>
+    <div class="orbit orbit-2"><div class="electron"></div></div>
+    <div class="orbit orbit-3"><div class="electron"></div></div>
+  </div>
+  <div class="loading-text">Memuat Dashboard...</div>
+</div>
+
+<!-- MAIN APP -->
 <div id="mainApp" class="main-content">
   <div class="dashboard-container">
-    <div class="welcome-banner">
-      <div><span style="font-size: 0.8rem;">👋 SELAMAT DATANG,</span><div class="user-name-large" id="userFullName">Mahasiswa</div><div style="font-size: 0.8rem; opacity: 0.9;" id="userNim">NIM: -</div></div>
-      <div><button id="homeBtn" class="home-btn"><i class="fas fa-home"></i> Beranda</button><button id="logoutBtn" class="logout-btn">LOGOUT</button></div>
+    <!-- HALAMAN PROFIL (BERANDA) -->
+    <div id="profilPage" class="profil-page">
+      <div class="profil-header">
+        <div class="profil-avatar" id="avatarUploadBtn">
+          <img id="fotoProfilImg" src="https://ui-avatars.com/api/?background=1a4d5f&color=fff&rounded=true&size=120&bold=true&name=User">
+        </div>
+        <input type="file" id="uploadFotoInput" accept="image/*">
+        <div class="profil-info">
+          <h2 id="profilNama">Mahasiswa</h2>
+          <p><i class="fas fa-id-card"></i> NIM: <span id="profilNim">-</span></p>
+          <p><i class="fas fa-envelope"></i> mahasiswa@students.unnes.ac.id</p>
+          <p><i class="fas fa-calendar"></i> Angkatan 2025</p>
+        </div>
+      </div>
+      <div class="profil-stats">
+        <div class="stat-card"><div class="stat-number" id="statMk">0</div><div class="stat-label">Mata Kuliah Diikuti</div></div>
+        <div class="stat-card"><div class="stat-number" id="statLatihan">0</div><div class="stat-label">Latihan Soal</div></div>
+        <div class="stat-card"><div class="stat-number" id="statGame">0</div><div class="stat-label">Game Dimainkan</div></div>
+        <div class="stat-card"><div class="stat-number" id="statRata">0</div><div class="stat-label">Rata-rata Nilai</div></div>
+      </div>
+      
+      <!-- RIWAYAT AKTIVITAS -->
+      <div class="riwayat-aktivitas">
+        <div class="record-header">
+          <h3><i class="fas fa-history"></i> Riwayat Aktivitas</h3>
+          <button class="btn-clear-record" id="btnClearRecord"><i class="fas fa-trash"></i> Hapus Semua</button>
+        </div>
+        <div id="recordList" class="record-list">
+          <div class="empty-record">Belum ada aktivitas. Silakan mulai belajar!</div>
+        </div>
+      </div>
     </div>
-    <div id="pilihMkSection" class="pilih-mk-section"><h3 class="pilih-mk-title">📚 Pilih Mata Kuliah</h3><div class="mk-grid"><div class="mk-card" data-mk="aljabar-vektor"><div class="mk-icon">📐</div><div class="mk-card-name">Aljabar Vektor</div><button class="btn-masuk-mk">MASUK</button></div><div class="mk-card" data-mk="algoritma"><div class="mk-icon">💻</div><div class="mk-card-name">Algoritma Pemrograman</div><button class="btn-masuk-mk">MASUK</button></div><div class="mk-card" data-mk="kalkulus"><div class="mk-icon">∫</div><div class="mk-card-name">Kalkulus Integral</div><button class="btn-masuk-mk">MASUK</button></div><div class="mk-card" data-mk="program-linear"><div class="mk-icon">📊</div><div class="mk-card-name">Program Linear</div><button class="btn-masuk-mk">MASUK</button></div><div class="mk-card" data-mk="teori-bilangan"><div class="mk-icon">🔢</div><div class="mk-card-name">Pengantar Teori Bilangan</div><button class="btn-masuk-mk">MASUK</button></div><div class="mk-card" data-mk="pkn"><div class="mk-icon">🇮🇩</div><div class="mk-card-name">Pendidikan Kewarganegaraan</div><button class="btn-masuk-mk">MASUK</button></div><div class="mk-card" data-mk="pancasila"><div class="mk-icon">🦅</div><div class="mk-card-name">Pendidikan Pancasila</div><button class="btn-masuk-mk">MASUK</button></div><div class="mk-card" data-mk="konservasi"><div class="mk-icon">🌿</div><div class="mk-card-name">Pendidikan Konservasi</div><button class="btn-masuk-mk">MASUK</button></div></div></div>
-    <div id="mkContentPage" class="mk-content-page"><div class="mk-content-header"><h2 id="mkContentTitle">Mata Kuliah</h2><button id="backToMkListBtn" class="btn-back-mk">← Kembali ke Daftar MK</button></div><div id="mkContentBody" class="mk-content-body"></div></div>
+
+    <!-- MATA KULIAH PAGE -->
+    <div id="mataKuliahPage" style="display:none;">
+      <div class="pilih-mk-section">
+        <h3 class="pilih-mk-title">📚 Pilih Mata Kuliah</h3>
+        <div class="mk-grid">
+          <div class="mk-card" data-mk="aljabar-vektor"><div class="mk-icon">📐</div><div class="mk-card-name">Aljabar Vektor</div><button class="btn-masuk-mk">MASUK</button></div>
+          <div class="mk-card" data-mk="algoritma"><div class="mk-icon">💻</div><div class="mk-card-name">Algoritma Pemrograman</div><button class="btn-masuk-mk">MASUK</button></div>
+          <div class="mk-card" data-mk="kalkulus"><div class="mk-icon">∫</div><div class="mk-card-name">Kalkulus Integral</div><button class="btn-masuk-mk">MASUK</button></div>
+          <div class="mk-card" data-mk="program-linear"><div class="mk-icon">📊</div><div class="mk-card-name">Program Linear</div><button class="btn-masuk-mk">MASUK</button></div>
+          <div class="mk-card" data-mk="teori-bilangan"><div class="mk-icon">🔢</div><div class="mk-card-name">Teori Bilangan</div><button class="btn-masuk-mk">MASUK</button></div>
+          <div class="mk-card" data-mk="pkn"><div class="mk-icon">🇮🇩</div><div class="mk-card-name">Pendidikan Kewarganegaraan</div><button class="btn-masuk-mk">MASUK</button></div>
+          <div class="mk-card" data-mk="pancasila"><div class="mk-icon">🦅</div><div class="mk-card-name">Pendidikan Pancasila</div><button class="btn-masuk-mk">MASUK</button></div>
+          <div class="mk-card" data-mk="konservasi"><div class="mk-icon">🌿</div><div class="mk-card-name">Pendidikan Konservasi</div><button class="btn-masuk-mk">MASUK</button></div>
+        </div>
+      </div>
+      <div id="mkContentPage" class="mk-content-page" style="display:none;">
+        <div class="mk-content-header"><h2 id="mkContentTitle">Mata Kuliah</h2><button id="backToMkListBtn" class="btn-back-mk">← Kembali ke Daftar MK</button></div>
+        <div id="mkContentBody" class="mk-content-body"></div>
+      </div>
+    </div>
+
+    <!-- LATIHAN SOAL PAGE -->
+    <div id="latihanSoalPage" style="display:none;">
+      <div class="pilih-mk-section">
+        <h3 class="pilih-mk-title">📝 Pilih Mata Kuliah untuk Latihan Soal</h3>
+        <div class="mk-grid" id="latihanMkGrid"></div>
+      </div>
+      <div id="latihanSoalContainer" style="display:none; background:white; border-radius:var(--border-radius); padding:1.5rem;">
+        <div class="mk-content-header">
+          <h2 id="latihanMkTitle">Latihan Soal</h2>
+          <button id="backToLatihanListBtn" class="btn-back-mk">← Kembali ke Daftar MK</button>
+        </div>
+        <div id="latihanSoalContent"></div>
+      </div>
+    </div>
+
+    <!-- HASIL NILAI PAGE -->
+    <div id="hasilNilaiPage" style="display:none; background:white; border-radius:var(--border-radius); padding:2rem; text-align:center;">
+      <h2>📊 Hasil Nilai</h2>
+      <p>Fitur hasil nilai sedang dalam pengembangan.</p>
+    </div>
+
+    <!-- GAME MATERI PAGE -->
+    <div id="gameMateriPage" style="display:none; background:white; border-radius:var(--border-radius); padding:2rem; text-align:center;">
+      <h2>🎮 Game Materi</h2>
+      <p>Fitur game materi sedang dalam pengembangan.</p>
+    </div>
+
+    <!-- RASIONALISASI PTN PAGE -->
+    <div id="rasionalisasiPage" style="display:none;">
+      <div class="rasionalisasi-search">
+        <h2><i class="fas fa-university"></i> Rasionalisasi PTN</h2>
+        <p>Cari program studi, universitas, dan lihat daya tampung</p>
+        <div class="search-box">
+          <input type="text" id="searchProdi" placeholder="Cari program studi... (contoh: Matematika, Informatika)">
+          <select id="jenjangSelect">
+            <option value="">Semua Jenjang</option>
+            <option value="S1">S1 (Sarjana)</option>
+            <option value="D4">D4 (Sarjana Terapan)</option>
+            <option value="D3">D3 (Diploma Tiga)</option>
+          </select>
+          <button id="btnCariProdi"><i class="fas fa-search"></i> Cari</button>
+        </div>
+        <div id="universityResult" class="university-result">
+          <div class="empty-record">Silakan masukkan program studi yang ingin dicari</div>
+        </div>
+        <div class="info-syarat" style="margin-top:1rem;">
+          <i class="fas fa-link"></i> Sumber data: <a href="https://snpmb.id/snbp/daftar-ptn-snbp" target="_blank">https://snpmb.id/snbp/daftar-ptn-snbp</a>
+        </div>
+      </div>
+    </div>
+
     <div class="footer-note">©2026 | Praktikum Algoritma Pemrograman - UNNES</div>
   </div>
 </div>
 
-<div id="loadingOverlay" class="loading-overlay"><div class="atom-rutherford"><div class="nucleus"></div><div class="orbit orbit-1"><div class="electron"></div></div><div class="orbit orbit-2"><div class="electron"></div></div><div class="orbit orbit-3"><div class="electron"></div></div></div><div class="loading-text">Memuat Dashboard...</div></div>
-
 <script>
-  // DATABASE MAHASISWA (LENGKAP)
+  // ========== DATABASE MAHASISWA ==========
   const DATA_MAHASISWA = {
-     "2504030039": { nama: "MUHAMMAD IRSYADUL WAVI", nim: "2504030039" },
-     "2504030040": { nama: "DEMAS ALAN WIBOWO", nim: "2504030040" },
-     "2504030041": { nama: "SALSABILA AZZAHRA NUR RILA", nim: "2504030041" },
-     "2504030042": { nama: "NOOR AYYANAH AZZA", nim: "2504030042" },
-     "2504030043": { nama: "NABILA 'AINA SYARIFA", nim: "2504030043" },
-     "2504030044": { nama: "MARENO DWI FAISHAL AL FATTAH", nim: "2504030044" },
-     "2504030045": { nama: "HAICHAL WAIZ AL QODRI", nim: "2504030045" },
-      "2504030046": { nama: "Chafiyya Shofa", nim: "2504030046" },
-      "2504030047": { nama: "AZ ZAHRA NADIA HAUNA", nim: "2504030047" },
-      "2504030048": { nama: "Azka Qaani' Muhana", nim: "2504030048" },
-      "2504030049": { nama: "Wulan Hari Cahyani", nim: "2504030049" },
-     "2504030050": { nama: "klara faradina wahda", nim: "2504030050" },
-     "2504030051": { nama: "Nayla Syifa Khilyatul Aulia", nim: "2504030051" },
-     "2504030052": { nama: "NAILA DISTI AMANDA MEILANY", nim: "2504030052" },
-      "2504030053": { nama: "Cinta Na'ilah Fajrina", nim: "2504030053" },
-      "2504030054": { nama: "Ananda Muhammad Fikra Aditama", nim: "2504030054" },
-      "2504030055": { nama: "Elvis Salma", nim: "2504030055" },
-      "2504030056": { nama: "Naufal Saputra", nim: "2504030056" },
-      "2504030057": { nama: "Taufiqurrahman", nim: "2504030057" },
-     "2504030058": { nama: "Adhisty Dwi Purwanti", nim: "2504030058" },
-     "2504030059": { nama: "Muhammad Fairuz Zaki", nim: "2504030059" },
-      "2504030060": { nama: "Auzora Intan Aulia", nim: "2504030060" },
-      "2504030061": { nama: "Sukma Rucitasari", nim: "2504030061" },
-      "2504030062": { nama: "Muhamad Elian Nabil", nim: "2504030062" },
-      "2504030063": { nama: "Ismail Hasan", nim: "2504030063" },
-      "2504030064": { nama: "ACHMAD MUQORROBIN", nim: "2504030064" },
-     "2504030065": { nama: "Farella Gita Putri Ramadani", nim: "2504030065" },
-     "2504030066": { nama: "Yuniana Afni", nim: "2504030066" },
-      "2504030067": { nama: "Belda Ardella Ramadhani", nim: "2504030067" },
-      "2504030068": { nama: "Ega Patriya", nim: "2504030068" },
-     "2504030069": { nama: "Hasifa Sulistia Ramadhani", nim: "2504030069" },
-     "2504030070": { nama: "Gading Adi Raga", nim: "2504030070" },
-      "2504030071": { nama: "Farris Muhamad Indi Lutfhi", nim: "2504030071" },
-      "2504030072": { nama: "IMMANUEL HUTAPEA", nim: "2504030072" },
-      "2504030073": { nama: "Daniel Ignasius Iwan Lutan", nim: "2504030073" },
-      "2504030074": { nama: "NINDA RISMAWATI VIRGINIA", nim: "2504030074" },
-      "2504030075": { nama: "Agil Aliy Ashghar", nim: "2504030075" },
-     "2504030076": { nama: "Zahwa Cinta Nabila", nim: "2504030076" },
-     "4111419050": { nama: "AZIZ NURHIDAYAT ADRIYANTO", nim: "4111419050" },
-     "2604": { nama: "Amidi, S.Si., M.Pd.", nim: "2604" },
-    };
+    "2504030043": { nama: "NABILA 'AINA SYARIFA", nim: "2504030043" },
+    "2504030062": { nama: "MUHAMAD ELIAN NABIL", nim: "2504030062" },
+    "2504030064": { nama: "ACHMAD MUQORROBIN", nim: "2504030064" },
+    "2604": { nama: "Amidi, S.Si., M.Pd.", nim: "2604" },
+  };
 
-  function findUserByInput(input) { input = input.trim(); return DATA_MAHASISWA[input] || null; }
+  // ========== DATABASE PTN ==========
+  const databasePTN = [
+    { univ: "Universitas Negeri Semarang (UNNES)", prodi: "Matematika", jenjang: "S1", dayaTampung: 120, peminat: 850 },
+    { univ: "Universitas Negeri Semarang (UNNES)", prodi: "Ilmu Komputer", jenjang: "S1", dayaTampung: 100, peminat: 1200 },
+    { univ: "Universitas Negeri Semarang (UNNES)", prodi: "Pendidikan Matematika", jenjang: "S1", dayaTampung: 150, peminat: 950 },
+    { univ: "Universitas Negeri Semarang (UNNES)", prodi: "Teknik Elektro", jenjang: "S1", dayaTampung: 80, peminat: 600 },
+    { univ: "Universitas Negeri Semarang (UNNES)", prodi: "Manajemen", jenjang: "S1", dayaTampung: 200, peminat: 1500 },
+    { univ: "Universitas Negeri Semarang (UNNES)", prodi: "Teknik Informatika", jenjang: "D4", dayaTampung: 60, peminat: 700 },
+    { univ: "Universitas Gadjah Mada (UGM)", prodi: "Matematika", jenjang: "S1", dayaTampung: 100, peminat: 2000 },
+    { univ: "Universitas Gadjah Mada (UGM)", prodi: "Informatika", jenjang: "S1", dayaTampung: 80, peminat: 2500 },
+    { univ: "Institut Teknologi Bandung (ITB)", prodi: "Matematika", jenjang: "S1", dayaTampung: 60, peminat: 1800 },
+    { univ: "Institut Teknologi Bandung (ITB)", prodi: "Informatika", jenjang: "S1", dayaTampung: 100, peminat: 3000 },
+    { univ: "Universitas Indonesia (UI)", prodi: "Matematika", jenjang: "S1", dayaTampung: 80, peminat: 1700 },
+    { univ: "Universitas Indonesia (UI)", prodi: "Ilmu Komputer", jenjang: "S1", dayaTampung: 90, peminat: 2200 },
+    { univ: "Universitas Diponegoro (UNDIP)", prodi: "Matematika", jenjang: "S1", dayaTampung: 100, peminat: 900 },
+    { univ: "Universitas Diponegoro (UNDIP)", prodi: "Informatika", jenjang: "S1", dayaTampung: 80, peminat: 1100 },
+    { univ: "Politeknik Negeri Semarang (POLINES)", prodi: "Teknik Informatika", jenjang: "D4", dayaTampung: 70, peminat: 650 },
+    { univ: "Politeknik Negeri Jakarta (PNJ)", prodi: "Teknik Informatika", jenjang: "D4", dayaTampung: 60, peminat: 800 },
+  ];
 
-  let currentUser = null, sessionCheckInterval = null;
+  // ========== KONTEN MATA KULIAH (8 MK) ==========
+  const kontenMk = {
+    "aljabar-vektor": { title: "📐 Aljabar Vektor", content: `<p>Aljabar vektor mempelajari operasi pada vektor.</p><div class="rumus" style="background:#f0f4fa;padding:0.5rem;">a + b = (a₁+b₁, a₂+b₂)</div><div class="example-box" style="background:#eef2fa;padding:0.8rem;"><strong>📌 Contoh:</strong> a=(2,3), b=(4,1) → a+b=(6,4)</div>` },
+    "kalkulus": { title: "∫ Kalkulus Integral", content: `<p>Kalkulus integral mempelajari integral sebagai kebalikan turunan.</p><div class="rumus" style="background:#f0f4fa;padding:0.5rem;">∫ xⁿ dx = xⁿ⁺¹/(n+1) + C</div>` },
+    "program-linear": { title: "📊 Program Linear", content: `<p>Program linear mencari solusi optimal dengan batasan tertentu.</p><div class="rumus" style="background:#f0f4fa;padding:0.5rem;">Maks Z = c₁x₁ + c₂x₂</div>` },
+    "teori-bilangan": { title: "🔢 Teori Bilangan", content: `<h3>Keterbagian</h3><div class="rumus">a|b ⇔ ∃k∈ℤ, b=k·a</div><h3>FPB</h3><div class="rumus">gcd(a,b) = gcd(b, a mod b)</div>` },
+    "pkn": { title: "🇮🇩 Pendidikan Kewarganegaraan", content: `<h3>Pilar Kebangsaan</h3><ul><li>Pancasila</li><li>UUD 1945</li><li>NKRI</li><li>Bhinneka Tunggal Ika</li></ul>` },
+    "pancasila": { title: "🦅 Pendidikan Pancasila", content: `<h3>Nilai-nilai Pancasila</h3><ul><li>Sila 1: Ketuhanan</li><li>Sila 2: Kemanusiaan</li><li>Sila 3: Persatuan</li><li>Sila 4: Kerakyatan</li><li>Sila 5: Keadilan Sosial</li></ul>` },
+    "konservasi": { title: "🌿 Pendidikan Konservasi", content: `<h3>Prinsip 3R</h3><div class="rumus">Reduce → Reuse → Recycle</div><p>Hemat energi, lestarikan budaya.</p>` }
+  };
+
+  // ========== LATIHAN SOAL (8 MK) ==========
+  const soalPerMk = {
+    "aljabar-vektor": { title: "Aljabar Vektor", soal: [{ pertanyaan: "Hasil a + b dari a=(2,3) dan b=(4,1) adalah...", jawaban: "(6,4)" }, { pertanyaan: "Vektor satuan adalah...", jawaban: "vektor dengan panjang 1" }] },
+    "algoritma": { title: "Algoritma Pemrograman", soal: [{ pertanyaan: "Kompleksitas Linear Search?", jawaban: "O(n)" }, { pertanyaan: "Syarat Binary Search?", jawaban: "data terurut" }] },
+    "kalkulus": { title: "Kalkulus Integral", soal: [{ pertanyaan: "∫ x² dx = ...", jawaban: "x³/3 + C" }, { pertanyaan: "∫ 1/x dx = ...", jawaban: "ln|x| + C" }] },
+    "program-linear": { title: "Program Linear", soal: [{ pertanyaan: "Apa fungsi tujuan?", jawaban: "fungsi yang dimaksimalkan" }] },
+    "teori-bilangan": { title: "Teori Bilangan", soal: [{ pertanyaan: "Apa kepanjangan FPB?", jawaban: "Faktor Persekutuan Terbesar" }] },
+    "pkn": { title: "Pendidikan Kewarganegaraan", soal: [{ pertanyaan: "Dasar negara Indonesia?", jawaban: "Pancasila" }] },
+    "pancasila": { title: "Pendidikan Pancasila", soal: [{ pertanyaan: "Sila ke-3 Pancasila?", jawaban: "Persatuan Indonesia" }] },
+    "konservasi": { title: "Pendidikan Konservasi", soal: [{ pertanyaan: "Kepanjangan 3R?", jawaban: "Reduce Reuse Recycle" }] }
+  };
+
+  let currentUser = null;
+  let sessionCheckInterval = null;
+  let activityRecords = [];
+
   const SESSION_DURATION_HOURS = 1;
+
+  // ========== RIWAYAT AKTIVITAS ==========
+  function loadRecords() { const saved = localStorage.getItem('activityRecords'); activityRecords = saved ? JSON.parse(saved) : []; renderRecords(); }
+  function saveRecords() { localStorage.setItem('activityRecords', JSON.stringify(activityRecords)); }
+  function addRecord(activity, detail = "") { const now = new Date(); const dateStr = now.toLocaleDateString('id-ID') + ' ' + now.toLocaleTimeString('id-ID'); activityRecords.unshift({ id: Date.now(), date: dateStr, activity: activity, detail: detail }); if (activityRecords.length > 50) activityRecords.pop(); saveRecords(); renderRecords(); updateStats(); }
+  function clearRecords() { activityRecords = []; saveRecords(); renderRecords(); addRecord('Riwayat', 'Dibersihkan'); }
+  function renderRecords() { const container = document.getElementById('recordList'); if (!container) return; if (activityRecords.length === 0) { container.innerHTML = '<div class="empty-record">📭 Belum ada aktivitas</div>'; return; } container.innerHTML = activityRecords.map(rec => `<div class="record-item"><div><strong>${rec.activity}</strong> ${rec.detail ? `<br><small>${rec.detail}</small>` : ''}</div><div class="record-date">${rec.date}</div></div>`).join(''); }
+  function updateStats() { const mkCount = activityRecords.filter(r => r.activity === 'Membuka Mata Kuliah').length; const latihanCount = activityRecords.filter(r => r.activity === 'Latihan Soal' && r.detail.includes('✅')).length; document.getElementById('statMk').textContent = mkCount; document.getElementById('statLatihan').textContent = latihanCount; document.getElementById('statGame').textContent = "0"; document.getElementById('statRata').textContent = "85"; }
+
+  // ========== FOTO PROFIL ==========
+  function loadFotoProfil() { const saved = localStorage.getItem('fotoProfil'); if (saved) document.getElementById('fotoProfilImg').src = saved; }
+  document.getElementById('avatarUploadBtn')?.addEventListener('click', () => { document.getElementById('uploadFotoInput').click(); });
+  document.getElementById('uploadFotoInput')?.addEventListener('change', (e) => { const file = e.target.files[0]; if (file && file.type.startsWith('image/')) { const reader = new FileReader(); reader.onload = function(event) { const imgData = event.target.result; document.getElementById('fotoProfilImg').src = imgData; localStorage.setItem('fotoProfil', imgData); addRecord('Foto Profil', 'Foto profil diperbarui'); }; reader.readAsDataURL(file); } else { alert('Harap pilih file gambar!'); } });
+
+  // ========== ALGORITMA PENCARIAN ==========
+  function parseArrayFromInput(str) { let cleaned = str.replace(/\n/g, ',').replace(/\t/g, ',').replace(/\s+/g, ','); let parts = cleaned.split(','), arr = []; for (let part of parts) { let trimmed = part.trim(); if (trimmed !== "") { let num = Number(trimmed); if (!isNaN(num)) arr.push(num); } } return arr; }
+  function linearSearchHandler() { const raw = document.getElementById('linearData')?.value; const target = Number(document.getElementById('linearTarget')?.value); if (isNaN(target) || !raw) return; const arr = parseArrayFromInput(raw); if (!arr.length) return; let found = false, index = -1, comparisons = 0; for (let i = 0; i < arr.length; i++) { comparisons++; if (arr[i] === target) { found = true; index = i; break; } } if (found) { addRecord('Linear Search', `Ditemukan ${target} di indeks ${index}`); if(document.getElementById('linearResult')) document.getElementById('linearResult').innerHTML = `<h4>✅ DITEMUKAN</h4><p>Indeks: ${index}, Perbandingan: ${comparisons}</p>`; } else { addRecord('Linear Search', `Tidak ditemukan ${target}`); if(document.getElementById('linearResult')) document.getElementById('linearResult').innerHTML = `<h4>❌ TIDAK DITEMUKAN</h4>`; } }
+  function binarySearchHandler() { const raw = document.getElementById('binaryDataRaw')?.value; const target = Number(document.getElementById('binaryTarget')?.value); if (isNaN(target) || !raw) return; let original = parseArrayFromInput(raw); if (!original.length) return; const sorted = [...original].sort((a,b)=>a-b); let left = 0, right = sorted.length-1, found = false, index = -1, steps = 0; while (left <= right) { steps++; const mid = Math.floor((left+right)/2); if (sorted[mid] === target) { found = true; index = mid; break; } if (sorted[mid] < target) left = mid+1; else right = mid-1; } if (found) { addRecord('Binary Search', `Ditemukan ${target}`); if(document.getElementById('binaryResult')) document.getElementById('binaryResult').innerHTML = `<h4>✅ DITEMUKAN</h4><p>Indeks: ${index}, Langkah: ${steps}</p>`; } else { addRecord('Binary Search', `Tidak ditemukan ${target}`); if(document.getElementById('binaryResult')) document.getElementById('binaryResult').innerHTML = `<h4>❌ TIDAK DITEMUKAN</h4>`; } }
+
+  function getAlgoritmaContent() { return `<div class="algo-panel"><div class="panel-card"><div class="card-header linear-header"><h2>🔍 Linear Search <span class="complexity-tag">O(n)</span></h2></div><div class="card-body"><div class="input-group"><label>📊 Data Array</label><textarea id="linearData" rows="4">17, 8, 21, 5, 12, 99, 3, 45, 67, 89, 100, 200, 55, 77, 88, 120, 500, 1000, 2500</textarea></div><div class="input-group"><label>🎯 Angka yang dicari</label><input type="number" id="linearTarget" value="99"></div><button class="btn-cari" id="btnLinearCari">🔎 Cari</button><div class="result-box result-linear" id="linearResult">💡 Hasil</div><div class="info-syarat">📌 Prinsip: Membandingkan tiap elemen satu per satu.</div></div></div><div class="panel-card"><div class="card-header binary-header"><h2>⚡ Binary Search <span class="complexity-tag">O(log n)</span></h2></div><div class="card-body"><div class="input-group"><label>📊 Data Array</label><textarea id="binaryDataRaw" rows="4">5, 12, 3, 21, 8, 17, 99, 44, 2, 100, 2000, 7, 19, 88, 500, 1200</textarea></div><div class="input-group"><label>🎯 Angka yang dicari</label><input type="number" id="binaryTarget" value="99"></div><button class="btn-cari" id="btnBinaryCari">⚡ Cari</button><div class="result-box result-binary" id="binaryResult">💡 Hasil</div><div class="info-syarat">⚠️ Syarat: data harus TERURUT.</div></div></div></div>`; }
+
+  // ========== LATIHAN SOAL ==========
+  function loadLatihanMkGrid() { const grid = document.getElementById('latihanMkGrid'); if (!grid) return; grid.innerHTML = Object.keys(soalPerMk).map(mkId => `<div class="mk-card" data-latihan="${mkId}"><div class="mk-icon">📝</div><div class="mk-card-name">${soalPerMk[mkId].title}</div><button class="btn-masuk-mk">MULAI</button></div>`).join(''); document.querySelectorAll('[data-latihan]').forEach(card => { card.addEventListener('click', () => showLatihanSoal(card.getAttribute('data-latihan'))); }); }
+  function showLatihanSoal(mkId) { const data = soalPerMk[mkId]; if (!data) return; document.getElementById('latihanMkTitle').textContent = `📝 Latihan: ${data.title}`; const soalHtml = data.soal.map((s, idx) => `<div class="soal-item"><p><strong>Soal ${idx+1}:</strong> ${s.pertanyaan}</p><div class="input-group"><input type="text" id="jawaban${idx}" placeholder="Jawaban Anda..."></div><button class="btn-cek-jawaban" data-soal="${idx}" data-jawaban="${s.jawaban.toLowerCase()}">Cek Jawaban</button><div id="feedback${idx}"></div></div>`).join(''); document.getElementById('latihanSoalContent').innerHTML = soalHtml; document.querySelector('#latihanSoalPage .pilih-mk-section').style.display = 'none'; document.getElementById('latihanSoalContainer').style.display = 'block'; addRecord('Latihan Soal', `Membuka ${data.title}`); document.querySelectorAll('.btn-cek-jawaban').forEach(btn => { btn.addEventListener('click', () => { const soalIdx = btn.getAttribute('data-soal'); const jawabanBenar = btn.getAttribute('data-jawaban'); const userJawaban = document.getElementById(`jawaban${soalIdx}`).value.trim().toLowerCase(); const feedback = document.getElementById(`feedback${soalIdx}`); if (userJawaban === jawabanBenar) { feedback.innerHTML = '<span style="color:#2a9d8f;">✅ Benar!</span>'; addRecord('Latihan Soal', `${data.title} - Soal ${parseInt(soalIdx)+1} ✅`); } else { feedback.innerHTML = `<span style="color:#d9534f;">❌ Salah. Jawaban: ${jawabanBenar}</span>`; addRecord('Latihan Soal', `${data.title} - Soal ${parseInt(soalIdx)+1} ❌`); } }); }); }
+  function backToLatihanList() { document.getElementById('latihanSoalContainer').style.display = 'none'; document.querySelector('#latihanSoalPage .pilih-mk-section').style.display = 'block'; }
+
+  // ========== RASIONALISASI PTN ==========
+  function cariProdi() { const keyword = document.getElementById('searchProdi').value.toLowerCase().trim(); const jenjang = document.getElementById('jenjangSelect').value; const resultDiv = document.getElementById('universityResult'); if (!keyword) { resultDiv.innerHTML = '<div class="empty-record">Masukkan program studi</div>'; return; } const hasil = databasePTN.filter(item => item.prodi.toLowerCase().includes(keyword) && (jenjang === "" || item.jenjang === jenjang)); if (hasil.length === 0) { resultDiv.innerHTML = `<div class="empty-record">Tidak ditemukan "${keyword}"</div>`; addRecord('Rasionalisasi PTN', `Mencari "${keyword}" - 0 hasil`); } else { resultDiv.innerHTML = hasil.map(item => `<div class="univ-card"><div class="univ-name">${item.univ}</div><div class="univ-prodi">${item.prodi} (${item.jenjang})</div><div class="univ-daya">Daya Tampung: ${item.dayaTampung} | Peminat: ${item.peminat} | Rasio: ${(item.peminat/item.dayaTampung).toFixed(1)}:1</div></div>`).join(''); addRecord('Rasionalisasi PTN', `Mencari "${keyword}" - ${hasil.length} hasil`); } }
+
+  // ========== PAGE NAVIGATION ==========
+  function showPage(pageId) { document.getElementById('profilPage').style.display = 'none'; document.getElementById('mataKuliahPage').style.display = 'none'; document.getElementById('latihanSoalPage').style.display = 'none'; document.getElementById('hasilNilaiPage').style.display = 'none'; document.getElementById('gameMateriPage').style.display = 'none'; document.getElementById('rasionalisasiPage').style.display = 'none'; document.getElementById(pageId).style.display = 'block'; }
+  function showMkList() { document.getElementById('mkContentPage').style.display = 'none'; if(document.querySelector('#mataKuliahPage .pilih-mk-section')) document.querySelector('#mataKuliahPage .pilih-mk-section').style.display = 'block'; }
+  function showMkContent(mkId) { if(document.querySelector('#mataKuliahPage .pilih-mk-section')) document.querySelector('#mataKuliahPage .pilih-mk-section').style.display = 'none'; document.getElementById('mkContentPage').style.display = 'block'; if (mkId === 'algoritma') { document.getElementById('mkContentTitle').innerHTML = "💻 Algoritma Pemrograman"; document.getElementById('mkContentBody').innerHTML = getAlgoritmaContent(); addRecord('Membuka Mata Kuliah', 'Algoritma Pemrograman'); setTimeout(() => { const linearBtn = document.getElementById('btnLinearCari'); const binaryBtn = document.getElementById('btnBinaryCari'); if (linearBtn) linearBtn.addEventListener('click', linearSearchHandler); if (binaryBtn) binaryBtn.addEventListener('click', binarySearchHandler); }, 50); } else if (kontenMk[mkId]) { document.getElementById('mkContentTitle').innerHTML = kontenMk[mkId].title; document.getElementById('mkContentBody').innerHTML = kontenMk[mkId].content; addRecord('Membuka Mata Kuliah', kontenMk[mkId].title); } else { document.getElementById('mkContentTitle').innerHTML = "Mata Kuliah"; document.getElementById('mkContentBody').innerHTML = `<p>Konten sedang dalam pengembangan.</p>`; addRecord('Membuka Mata Kuliah', mkId); } }
+
+  // ========== SIDEBAR & LOGIN ==========
+  function closeSidebar() { document.getElementById('sidebar').classList.remove('open'); document.getElementById('sidebarOverlay').classList.remove('active'); }
+  function openSidebar() { document.getElementById('sidebar').classList.add('open'); document.getElementById('sidebarOverlay').classList.add('active'); }
   function saveLoginTime() { localStorage.setItem('loginTime', Date.now()); }
   function getLoginTime() { return localStorage.getItem('loginTime'); }
   function isSessionExpired() { let t = getLoginTime(); if (!t) return true; return (Date.now() - t) / (1000*60*60) >= SESSION_DURATION_HOURS; }
-  function autoLogoutByTime() { localStorage.removeItem('loginTime'); localStorage.removeItem('currentUserData'); if (sessionCheckInterval) clearInterval(sessionCheckInterval); currentUser = null; document.getElementById('mainApp').style.display = 'none'; document.getElementById('loginPage').style.display = 'block'; document.getElementById('loginUsername').value = ''; document.getElementById('loginPassword').value = ''; }
+  function autoLogoutByTime() { localStorage.removeItem('loginTime'); localStorage.removeItem('currentUserData'); if (sessionCheckInterval) clearInterval(sessionCheckInterval); currentUser = null; document.getElementById('mainApp').style.display = 'none'; document.getElementById('loginPage').style.display = 'block'; document.querySelector('.hamburger-menu').classList.remove('show'); }
   function startSessionChecker() { if (sessionCheckInterval) clearInterval(sessionCheckInterval); sessionCheckInterval = setInterval(() => { if (currentUser && isSessionExpired()) autoLogoutByTime(); }, 10000); }
+  function logout() { localStorage.removeItem('loginTime'); localStorage.removeItem('currentUserData'); if (sessionCheckInterval) clearInterval(sessionCheckInterval); currentUser = null; document.getElementById('mainApp').style.display = 'none'; document.getElementById('loginPage').style.display = 'block'; document.querySelector('.hamburger-menu').classList.remove('show'); closeSidebar(); }
+  function showWelcomeSplashAndDashboard(user) { const splash = document.getElementById('welcomeSplash'); document.getElementById('welcomeUserName').textContent = user.nama; splash.style.display = 'flex'; setTimeout(() => { splash.style.display = 'none'; document.getElementById('mainApp').style.display = 'block'; showPage('profilPage'); loadRecords(); loadFotoProfil(); loadLatihanMkGrid(); addRecord('Login', `Mahasiswa ${user.nama} login`); document.querySelector('.hamburger-menu').classList.add('show'); }, 2000); }
+  function showLoadingAndLogin(usernameVal, passwordVal) { const overlay = document.getElementById('loadingOverlay'); overlay.style.display = 'flex'; setTimeout(() => { const user = DATA_MAHASISWA[usernameVal]; if (user && passwordVal === "alpro2026") { currentUser = user; saveLoginTime(); localStorage.setItem('currentUserData', JSON.stringify({ nama: user.nama, nim: user.nim })); document.getElementById('profilNama').textContent = user.nama; document.getElementById('profilNim').textContent = user.nim; document.getElementById('loginErrorMsg').style.display = 'none'; document.getElementById('loginPage').style.display = 'none'; showWelcomeSplashAndDashboard(user); startSessionChecker(); } else { document.getElementById('loginErrorMsg').style.display = 'block'; document.getElementById('loginErrorMsg').innerHTML = '❌ NIM atau password salah! Gunakan password: <strong>alpro2026</strong>'; } overlay.style.display = 'none'; }, 1500); }
+  function checkExistingSession() { const saved = localStorage.getItem('currentUserData'); const loginTime = getLoginTime(); if (saved && loginTime && !isSessionExpired()) { const user = JSON.parse(saved); currentUser = user; document.getElementById('profilNama').textContent = user.nama; document.getElementById('profilNim').textContent = user.nim; document.getElementById('loginPage').style.display = 'none'; document.getElementById('mainApp').style.display = 'block'; showPage('profilPage'); loadRecords(); loadFotoProfil(); loadLatihanMkGrid(); startSessionChecker(); document.querySelector('.hamburger-menu').classList.add('show'); } else { document.getElementById('loginPage').style.display = 'block'; document.getElementById('mainApp').style.display = 'none'; } }
 
-  // KONTEN MATA KULIAH LENGKAP
-  const kontenMk = {
-    "aljabar-vektor": { title: "📐 Aljabar Vektor", content: `<p>Aljabar vektor adalah cabang matematika yang mempelajari operasi pada vektor.</p><h3>1. Penjumlahan Vektor</h3><div class="rumus">a + b = (a₁+b₁, a₂+b₂, a₃+b₃)</div><h3>2. Pengurangan Vektor</h3><div class="rumus">a - b = (a₁-b₁, a₂-b₂, a₃-b₃)</div><h3>3. Perkalian Skalar</h3><div class="rumus">k·a = (k·a₁, k·a₂, k·a₃)</div><h3>4. Perkalian Titik (Dot Product)</h3><div class="rumus">a·b = a₁b₁ + a₂b₂ + a₃b₃</div><h3>5. Perkalian Silang (Cross Product)</h3><div class="rumus">a×b = (a₂b₃-a₃b₂, a₃b₁-a₁b₃, a₁b₂-a₂b₁)</div><div class="example-box"><strong>📌 Contoh:</strong> a=(2,3,1), b=(4,1,2) → a+b=(6,4,3), a·b=13</div>` },
-    "kalkulus": { title: "∫ Kalkulus Integral", content: `<p>Kalkulus integral mempelajari integral sebagai kebalikan turunan.</p><h3>Rumus Dasar</h3><div class="rumus">∫ xⁿ dx = xⁿ⁺¹/(n+1) + C, n≠-1</div><div class="rumus">∫ 1/x dx = ln|x| + C</div><div class="rumus">∫ eˣ dx = eˣ + C</div><div class="rumus">∫ sin x dx = -cos x + C</div><div class="rumus">∫ cos x dx = sin x + C</div><h3>Integral Tentu</h3><div class="rumus">∫ₐᵇ f(x) dx = F(b) - F(a)</div><h3>Integral Parsial</h3><div class="rumus">∫ u dv = uv - ∫ v du</div><div class="example-box"><strong>📌 Contoh:</strong> ∫ x² dx = x³/3 + C, ∫₀¹ x² dx = 1/3</div>` },
-    "program-linear": { title: "📊 Program Linear", content: `<p>Program linear mencari solusi optimal dengan batasan tertentu.</p><h3>Bentuk Umum</h3><div class="rumus">Maksimumkan Z = c₁x₁ + c₂x₂</div><div class="rumus">Kendala: a₁₁x₁ + a₁₂x₂ ≤ b₁, x₁,x₂ ≥ 0</div><h3>Langkah Penyelesaian</h3><ol><li>Model matematika</li><li>Grafik kendala</li><li>Titik pojok</li><li>Uji fungsi tujuan</li></ol><div class="example-box"><strong>📌 Contoh:</strong> Maks Z=3x+5y, kendala x+y≤4, 2x+y≤6 → solusi (0,4) Z=20</div>` },
-    "teori-bilangan": { title: "🔢 Teori Bilangan", content: `<h3>Keterbagian</h3><div class="rumus">a|b ⇔ ∃k∈ℤ, b=k·a</div><h3>Algoritma Pembagian</h3><div class="rumus">a = bq + r, 0≤r<|b|</div><h3>FPB (Algoritma Euklides)</h3><div class="rumus">gcd(a,b) = gcd(b, a mod b)</div><h3>Bilangan Prima</h3><p>2,3,5,7,11,13,17,...</p><h3>Kekongruenan</h3><div class="rumus">a ≡ b (mod m) ⇔ m|(a-b)</div><div class="example-box"><strong>📌 Contoh:</strong> 17 ≡ 2 (mod 5)</div>` },
-    "pkn": { title: "🇮🇩 Pendidikan Kewarganegaraan", content: `<h3>Pilar Kebangsaan</h3><ul><li>Pancasila - Dasar negara</li><li>UUD 1945 - Konstitusi</li><li>NKRI - Negara Kesatuan</li><li>Bhinneka Tunggal Ika - Persatuan</li></ul><h3>Hak & Kewajiban</h3><p>Hak: pendidikan, pekerjaan, hukum. Kewajiban: pajak, taat hukum, bela negara.</p><h3>Demokrasi Pancasila</h3><p>Mengutamakan musyawarah mufakat.</p>` },
-    "pancasila": { title: "🦅 Pendidikan Pancasila", content: `<h3>Nilai-nilai Pancasila</h3><ul><li>Sila 1: Ketuhanan - Toleransi beragama</li><li>Sila 2: Kemanusiaan - HAM & keadilan</li><li>Sila 3: Persatuan - Nasionalisme</li><li>Sila 4: Kerakyatan - Musyawarah</li><li>Sila 5: Keadilan Sosial - Gotong royong</li></ul><h3>Profil Pelajar Pancasila</h3><p>Beriman, berkebinekaan global, gotong royong, mandiri, bernalar kritis, kreatif.</p>` },
-    "konservasi": { title: "🌿 Pendidikan Konservasi", content: `<h3>Konsep Dasar</h3><p>Perlindungan, pengawetan, pemanfaatan lestari SDA.</p><h3>Prinsip 3R</h3><div class="rumus">Reduce → Reuse → Recycle</div><h3>Konservasi Energi</h3><p>Hemat listrik, energi terbarukan.</p><h3>Konservasi Budaya</h3><p>Melestarikan tradisi, bahasa daerah, seni budaya.</p><div class="example-box">💡 Aksi nyata: buang sampah pada tempatnya, hemat air, menanam pohon.</div>` }
-  };
+  // ========== EVENT LISTENERS ==========
+  document.getElementById('hamburgerBtn').addEventListener('click', openSidebar);
+  document.getElementById('sidebarOverlay').addEventListener('click', closeSidebar);
+  document.getElementById('backToHomeBtn').addEventListener('click', () => { showPage('profilPage'); closeSidebar(); });
+  document.getElementById('btnLoginSubmit').addEventListener('click', () => { showLoadingAndLogin(document.getElementById('loginUsername').value.trim(), document.getElementById('loginPassword').value.trim()); });
+  document.getElementById('btnClearRecord').addEventListener('click', () => { clearRecords(); });
+  document.getElementById('backToMkListBtn').addEventListener('click', showMkList);
+  document.getElementById('backToLatihanListBtn').addEventListener('click', backToLatihanList);
+  document.getElementById('btnCariProdi').addEventListener('click', cariProdi);
+  document.getElementById('searchProdi').addEventListener('keypress', (e) => { if (e.key === 'Enter') cariProdi(); });
 
-  function getAlgoritmaContent() {
-    return `
-      <div class="modul-header">
-        <div class="badge-unnes">ALGORITMA PEMROGRAMAN</div>
-        <h1>🔎 Algoritma Pencarian : Linear Search dan Binary Search</h1>
-        <div class="sub"><strong>Kelompok 10</strong><br>1. Nabila 'Aina Syarifa (2504030043)<br>2. Muhammad Elian Nabil (2504030062)<br>3. Achmad Muqorrobin (2504030064)<br><br><strong>Dosen Pengampu :</strong> <br> Bapak Amidi, S.Si., M.Pd.<br><br><strong>Program Studi Matematika</strong><br> <strong> Fakultas Matematika dan Ilmu Pengetahuan Alam</strong> <br> <strong>UNIVERSITAS NEGERI SEMARANG 2026</strong></div>
-      </div>
-      <div class="algo-panel">
-        <div class="panel-card">
-          <div class="card-header linear-header"><h2>🔍 Linear Search <span class="complexity-tag">O(n)</span></h2></div>
-          <div class="card-body">
-            <div class="input-group"><label>📊 Data Array</label><textarea id="linearData" rows="4">17, 8, 21, 5, 12, 99, 3, 45, 67, 89, 100, 200, 55, 77, 88, 120, 500, 1000, 2500</textarea></div>
-            <div class="input-group"><label>🎯 Angka yang dicari</label><input type="number" id="linearTarget" value="99"></div>
-            <button class="btn-cari" id="btnLinearCari">🔎 Cari dengan Linear Search</button>
-            <div class="result-box result-linear" id="linearResult">💡 Hasil pencarian akan tampil di sini</div>
-            <div class="info-syarat">📌 Prinsip: Membandingkan tiap elemen satu per satu.</div>
-          </div>
-        </div>
-        <div class="panel-card">
-          <div class="card-header binary-header"><h2>⚡ Binary Search <span class="complexity-tag">O(log n)</span></h2></div>
-          <div class="card-body">
-            <div class="input-group"><label>📊 Data Array</label><textarea id="binaryDataRaw" rows="4">5, 12, 3, 21, 8, 17, 99, 44, 2, 100, 2000, 7, 19, 88, 500, 1200</textarea></div>
-            <div class="input-group"><label>🎯 Angka yang dicari</label><input type="number" id="binaryTarget" value="99"></div>
-            <button class="btn-cari" id="btnBinaryCari">⚡ Cari dengan Binary Search</button>
-            <div class="result-box result-binary" id="binaryResult">💡 Hasil pencarian akan tampil di sini</div>
-            <div class="info-syarat">⚠️ Syarat: data harus TERURUT (akan diurutkan otomatis).</div>
-          </div>
-        </div>
-      </div>
-    `;
-  }
+  document.querySelectorAll('.sidebar-item').forEach(item => { item.addEventListener('click', () => { const page = item.getAttribute('data-page'); closeSidebar(); if (page === 'keluar') logout(); else if (page === 'beranda') { showPage('profilPage'); addRecord('Membuka Halaman', 'Beranda'); } else if (page === 'mata-kuliah') { showPage('mataKuliahPage'); showMkList(); } else if (page === 'latihan-soal') { showPage('latihanSoalPage'); addRecord('Membuka Halaman', 'Latihan Soal'); } else if (page === 'hasil-nilai') { showPage('hasilNilaiPage'); addRecord('Membuka Halaman', 'Hasil Nilai'); } else if (page === 'game-materi') { showPage('gameMateriPage'); addRecord('Membuka Halaman', 'Game Materi'); } else if (page === 'rasionalisasi-ptn') { showPage('rasionalisasiPage'); addRecord('Membuka Halaman', 'Rasionalisasi PTN'); } else if (page === 'profil') { showPage('profilPage'); addRecord('Membuka Halaman', 'Profil'); } }); });
 
-  function parseArrayFromInput(str) {
-    let cleaned = str.replace(/\n/g, ',').replace(/\t/g, ',').replace(/\s+/g, ',');
-    let parts = cleaned.split(','), arr = [];
-    for (let part of parts) {
-      let trimmed = part.trim();
-      if (trimmed !== "") { let num = Number(trimmed); if (!isNaN(num)) arr.push(num); }
-    }
-    return arr;
-  }
+  document.querySelectorAll('.mk-card').forEach(card => { const btn = card.querySelector('.btn-masuk-mk'); const mkValue = card.getAttribute('data-mk'); if (btn) btn.addEventListener('click', (e) => { e.stopPropagation(); showMkContent(mkValue); }); card.addEventListener('click', () => showMkContent(mkValue)); });
 
-  function linearSearchHandler() {
-    const raw = document.getElementById('linearData').value;
-    const target = Number(document.getElementById('linearTarget').value);
-    if (isNaN(target)) { document.getElementById('linearResult').innerHTML = '<div class="result-badge failed">❌ ERROR</div><p>Target harus angka!</p>'; return; }
-    const arr = parseArrayFromInput(raw);
-    if (!arr.length) { document.getElementById('linearResult').innerHTML = '<div class="result-badge failed">❌ ERROR</div><p>Data kosong!</p>'; return; }
-    
-    const startTime = performance.now();
-    let found = false, index = -1, comparisons = 0;
-    for (let i = 0; i < arr.length; i++) { comparisons++; if (arr[i] === target) { found = true; index = i; break; } }
-    const execTime = (performance.now() - startTime).toFixed(3);
-    const arrayStr = JSON.stringify(arr);
-    
-    if (found) {
-      document.getElementById('linearResult').innerHTML = `
-        <h4>🔍 LINEAR SEARCH - <span class="result-badge success">✅ DITEMUKAN</span></h4>
-        <div class="result-detail">
-          <p><span class="label">📊 Total data:</span><span class="value">${arr.length} elemen</span></p>
-          <p><span class="label">📋 Data array:</span><span class="value">[${arrayStr}]</span></p>
-          <p><span class="label">🎯 Angka dicari:</span><span class="value">${target}</span></p>
-          <p><span class="label">📍 Posisi (indeks):</span><span class="value">${index} (urutan ke-${index+1})</span></p>
-          <p><span class="label">🔢 Perbandingan:</span><span class="value">${comparisons} elemen</span></p>
-          <p><span class="label">⏱️ Waktu eksekusi:</span><span class="value exec-time">${execTime} ms</span></p>
-        </div>
-        <div class="result-explanation">💡 Linear search menyisir dari indeks 0 → ${index} dan menemukan nilai ${target} pada indeks ke-${index}.</div>
-      `;
-    } else {
-      document.getElementById('linearResult').innerHTML = `
-        <h4>🔍 LINEAR SEARCH - <span class="result-badge failed">❌ TIDAK DITEMUKAN</span></h4>
-        <div class="result-detail">
-          <p><span class="label">📊 Total data:</span><span class="value">${arr.length} elemen</span></p>
-          <p><span class="label">📋 Data array:</span><span class="value">[${arrayStr}]</span></p>
-          <p><span class="label">🎯 Angka dicari:</span><span class="value">${target}</span></p>
-          <p><span class="label">🔢 Perbandingan:</span><span class="value">${comparisons} elemen (semua data)</span></p>
-          <p><span class="label">⏱️ Waktu eksekusi:</span><span class="value exec-time">${execTime} ms</span></p>
-        </div>
-        <div class="result-explanation">💡 Linear search telah menyisir seluruh ${comparisons} elemen, namun nilai ${target} tidak ditemukan.</div>
-      `;
-    }
-  }
-
-  function binarySearchHandler() {
-    const raw = document.getElementById('binaryDataRaw').value;
-    const target = Number(document.getElementById('binaryTarget').value);
-    if (isNaN(target)) { document.getElementById('binaryResult').innerHTML = '<div class="result-badge failed">❌ ERROR</div><p>Target harus angka!</p>'; return; }
-    let original = parseArrayFromInput(raw);
-    if (!original.length) { document.getElementById('binaryResult').innerHTML = '<div class="result-badge failed">❌ ERROR</div><p>Data kosong!</p>'; return; }
-    
-    const sorted = [...original].sort((a,b)=>a-b);
-    const startTime = performance.now();
-    let left = 0, right = sorted.length-1, found = false, index = -1, steps = 0;
-    while (left <= right) {
-      steps++;
-      const mid = Math.floor((left+right)/2);
-      if (sorted[mid] === target) { found = true; index = mid; break; }
-      if (sorted[mid] < target) left = mid+1;
-      else right = mid-1;
-    }
-    const execTime = (performance.now() - startTime).toFixed(3);
-    const maxSteps = Math.ceil(Math.log2(original.length));
-    
-    if (found) {
-      document.getElementById('binaryResult').innerHTML = `
-        <h4>⚡ BINARY SEARCH - <span class="result-badge success">✅ DITEMUKAN</span></h4>
-        <div class="result-detail">
-          <p><span class="label">📊 Total data:</span><span class="value">${original.length} elemen</span></p>
-          <p><span class="label">📋 Data asli:</span><span class="value">[${JSON.stringify(original)}]</span></p>
-          <p><span class="label">📊 Data terurut:</span><span class="value">[${JSON.stringify(sorted)}]</span></p>
-          <p><span class="label">🎯 Angka dicari:</span><span class="value">${target}</span></p>
-          <p><span class="label">📍 Posisi (indeks terurut):</span><span class="value">${index}</span></p>
-          <p><span class="label">🔢 Langkah pembagian:</span><span class="value">${steps} kali (max ~${maxSteps})</span></p>
-          <p><span class="label">⏱️ Waktu eksekusi:</span><span class="value exec-time">${execTime} ms</span></p>
-        </div>
-        <div class="result-explanation">💡 Binary search membagi array menjadi dua setiap iterasi. Ditemukan pada indeks ke-${index} setelah ${steps} kali pembagian.</div>
-      `;
-    } else {
-      document.getElementById('binaryResult').innerHTML = `
-        <h4>⚡ BINARY SEARCH - <span class="result-badge failed">❌ TIDAK DITEMUKAN</span></h4>
-        <div class="result-detail">
-          <p><span class="label">📊 Total data:</span><span class="value">${original.length} elemen</span></p>
-          <p><span class="label">📋 Data asli:</span><span class="value">[${JSON.stringify(original)}]</span></p>
-          <p><span class="label">📊 Data terurut:</span><span class="value">[${JSON.stringify(sorted)}]</span></p>
-          <p><span class="label">🎯 Angka dicari:</span><span class="value">${target}</span></p>
-          <p><span class="label">🔢 Langkah pembagian:</span><span class="value">${steps} kali</span></p>
-          <p><span class="label">⏱️ Waktu eksekusi:</span><span class="value exec-time">${execTime} ms</span></p>
-        </div>
-        <div class="result-explanation">💡 Binary search telah melakukan ${steps} kali pembagian, namun nilai ${target} tidak ditemukan.</div>
-      `;
-    }
-  }
-
-  function showMkList() { document.getElementById('pilihMkSection').style.display = 'block'; document.getElementById('mkContentPage').style.display = 'none'; }
-  
-  function showMkContent(mkId) {
-    if (mkId === 'algoritma') {
-      document.getElementById('mkContentTitle').innerHTML = "💻 Algoritma Pemrograman";
-      document.getElementById('mkContentBody').innerHTML = getAlgoritmaContent();
-      setTimeout(() => {
-        const linearBtn = document.getElementById('btnLinearCari');
-        const binaryBtn = document.getElementById('btnBinaryCari');
-        if (linearBtn) linearBtn.addEventListener('click', linearSearchHandler);
-        if (binaryBtn) binaryBtn.addEventListener('click', binarySearchHandler);
-      }, 50);
-    } else if (kontenMk[mkId]) {
-      document.getElementById('mkContentTitle').innerHTML = kontenMk[mkId].title;
-      document.getElementById('mkContentBody').innerHTML = kontenMk[mkId].content;
-    }
-    document.getElementById('pilihMkSection').style.display = 'none';
-    document.getElementById('mkContentPage').style.display = 'block';
-  }
-
-  function showWelcomeSplashAndDashboard(user) {
-    // Tampilkan splash screen dengan nama mahasiswa
-    const splash = document.getElementById('welcomeSplash');
-    const welcomeName = document.getElementById('welcomeUserName');
-    welcomeName.textContent = user.nama;
-    splash.style.display = 'flex';
-    
-    // Setelah 6 detik, sembunyikan splash dan tampilkan dashboard
-    setTimeout(() => {
-      splash.style.display = 'none';
-      document.getElementById('mainApp').style.display = 'block';
-      showMkList();
-    }, 2000);
-  }
-
-  function showLoadingAndLogin(usernameVal, passwordVal) {
-    const overlay = document.getElementById('loadingOverlay');
-    overlay.style.display = 'flex';
-    setTimeout(() => {
-      const user = findUserByInput(usernameVal);
-      if (user && passwordVal === "alpro2026") {
-        currentUser = user;
-        saveLoginTime();
-        localStorage.setItem('currentUserData', JSON.stringify({ nama: user.nama, nim: user.nim }));
-        document.getElementById('userFullName').textContent = user.nama;
-        document.getElementById('userNim').textContent = `NIM: ${user.nim}`;
-        document.getElementById('loginErrorMsg').style.display = 'none';
-        document.getElementById('loginPage').style.display = 'none';
-        
-        // Tampilkan splash screen welcome (6 detik) baru kemudian dashboard
-        showWelcomeSplashAndDashboard(user);
-        startSessionChecker();
-      } else {
-        document.getElementById('loginErrorMsg').style.display = 'block';
-        document.getElementById('loginErrorMsg').innerHTML = '❌ NIM atau password salah! Gunakan password: <strong>alpro2026</strong>';
-      }
-      overlay.style.display = 'none';
-    }, 1500);
-  }
-
-  function logout() { 
-    localStorage.removeItem('loginTime'); 
-    localStorage.removeItem('currentUserData'); 
-    if (sessionCheckInterval) clearInterval(sessionCheckInterval); 
-    currentUser = null; 
-    document.getElementById('mainApp').style.display = 'none'; 
-    document.getElementById('loginPage').style.display = 'block'; 
-    document.getElementById('loginUsername').value = ''; 
-    document.getElementById('loginPassword').value = ''; 
-    document.getElementById('loginErrorMsg').style.display = 'none'; 
-  }
-
-  function checkExistingSession() { 
-    const saved = localStorage.getItem('currentUserData'); 
-    const loginTime = getLoginTime(); 
-    if (saved && loginTime && !isSessionExpired()) { 
-      const user = JSON.parse(saved); 
-      currentUser = user; 
-      document.getElementById('userFullName').textContent = user.nama; 
-      document.getElementById('userNim').textContent = `NIM: ${user.nim}`; 
-      document.getElementById('loginPage').style.display = 'none'; 
-      // Jika session masih aktif, langsung tampilkan dashboard tanpa splash
-      document.getElementById('mainApp').style.display = 'block'; 
-      showMkList(); 
-      startSessionChecker(); 
-    } else { 
-      document.getElementById('loginPage').style.display = 'block'; 
-      document.getElementById('mainApp').style.display = 'none'; 
-    } 
-  }
-
-  const loginBtn = document.getElementById('btnLoginSubmit');
-  const loginUsername = document.getElementById('loginUsername');
-  const loginPassword = document.getElementById('loginPassword');
-  const logoutBtn = document.getElementById('logoutBtn');
-  const backToMkListBtn = document.getElementById('backToMkListBtn');
-  const homeBtn = document.getElementById('homeBtn');
-
-  loginBtn.addEventListener('click', () => { showLoadingAndLogin(loginUsername.value.trim(), loginPassword.value.trim()); });
-  logoutBtn.addEventListener('click', logout);
-  backToMkListBtn.addEventListener('click', showMkList);
-  if (homeBtn) homeBtn.addEventListener('click', () => { showMkList(); });
-  loginUsername.addEventListener('keypress', e => { if (e.key === 'Enter') showLoadingAndLogin(loginUsername.value.trim(), loginPassword.value.trim()); });
-  loginPassword.addEventListener('keypress', e => { if (e.key === 'Enter') showLoadingAndLogin(loginUsername.value.trim(), loginPassword.value.trim()); });
-
-  document.querySelectorAll('.mk-card').forEach(card => { const btn = card.querySelector('.btn-masuk-mk'); const mkValue = card.getAttribute('data-mk'); btn.addEventListener('click', (e) => { e.stopPropagation(); showMkContent(mkValue); }); card.addEventListener('click', () => showMkContent(mkValue)); });
-
-  // MEMBUAT BACKGROUND RUMUS STATIS
-  function generateStaticMathBackground() { 
-    const container = document.getElementById('mathBg'); 
-    if (!container) return; 
-    const formulas = [
-      '∫ x² dx = ⅓x³ + C', 'E = mc²', 'PV = nRT', 'H₂O', 'x = (-b ± √Δ)/2a', 
-      'sin²θ + cos²θ = 1', 'F = ma', 'a² + b² = c²', 'e^(iπ) + 1 = 0', 
-      'log(ab) = log a + log b', 'lim x→0 sin x/x = 1', 'C₆H₁₂O₆', 'λ = h/p', 
-      '∇ × E = -∂B/∂t', 'x² + y² = r²', 'K = ½mv²', 'pH = -log[H⁺]', 
-      '∑ n = n(n+1)/2', 'Δ = b² - 4ac', 'f(x) = ax² + bx + c', 
-      'α + β = -b/a', 'sin(α+β) = sinα cosβ + cosα sinβ', 'V = ⁴⁄₃πr³',
-      '∫∫∫ div F dV', '∂u/∂t = α ∇²u', 'ψ(x) = Ae^(ikx)'
-    ]; 
-    for (let i = 0; i < 45; i++) { 
-      let span = document.createElement('div'); 
-      span.className = 'formula'; 
-      span.textContent = formulas[i % formulas.length]; 
-      let size = 0.9 + Math.random() * 1.3; 
-      span.style.fontSize = size + 'rem'; 
-      span.style.left = Math.random() * 100 + '%'; 
-      span.style.top = Math.random() * 100 + '%';
-      span.style.opacity = 0.15 + Math.random() * 0.2;
-      span.style.transform = `rotate(${Math.random() * 360}deg)`;
-      container.appendChild(span); 
-    } 
-  }
+  function generateStaticMathBackground() { const container = document.getElementById('mathBg'); if (!container) return; const formulas = ['∫ x² dx = ⅓x³ + C', 'E = mc²', 'PV = nRT', 'x = (-b ± √Δ)/2a', 'sin²θ + cos²θ = 1']; for (let i = 0; i < 30; i++) { let span = document.createElement('div'); span.className = 'formula'; span.textContent = formulas[i % formulas.length]; span.style.fontSize = (0.9 + Math.random() * 1.3) + 'rem'; span.style.left = Math.random() * 100 + '%'; span.style.top = Math.random() * 100 + '%'; span.style.opacity = 0.15 + Math.random() * 0.2; container.appendChild(span); } }
   generateStaticMathBackground();
   checkExistingSession();
 </script>
