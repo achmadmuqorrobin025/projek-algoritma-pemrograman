@@ -1064,71 +1064,121 @@ const gameQuestions = {
   "aljabar-vektor": {
     title: "Aljabar Vektor",
     questions: [
-      { text: "Hasil dari (2,3) + (4,1) = ?", options: ["(6,4)", "(5,5)", "(8,3)", "(2,4)"], correct: "(6,4)" },
-      { text: "Vektor satuan adalah vektor dengan panjang?", options: ["0", "1", "2", "Tak terhingga"], correct: "1" },
-      { text: "Perkalian skalar 3 × (2,4) menghasilkan?", options: ["(5,7)", "(6,12)", "(2,4)", "(3,12)"], correct: "(6,12)" },
-      { text: "Panjang vektor (3,4) adalah?", options: ["5", "7", "12", "25"], correct: "5" }
+      { text: "Hasil dari (2,3) + (4,1) = ?", options: ["(6,4)", "(5,5)", "(8,3)", "(2,4)", "(7,2)", "(3,7)"], correct: "(6,4)" },
+      { text: "Vektor satuan adalah vektor dengan panjang?", options: ["0", "1", "2", "Tak terhingga", "3", "4", "5"], correct: "1" },
+      { text: "Perkalian skalar 3 × (2,4) menghasilkan?", options: ["(5,7)", "(6,12)", "(2,4)", "(3,12)", "(8,14)", "(5,11)"], correct: "(6,12)" },
+      { text: "Panjang vektor (3,4) adalah?", options: ["5", "7", "12", "25", "6", "8", "10"], correct: "5" },
+      { text: "Hasil dot product (2,3) · (4,1) = ?", options: ["11", "10", "8", "6", "12", "14", "9"], correct: "11" },
+      { text: "Vektor (5,12) memiliki panjang?", options: ["13", "17", "7", "10", "15", "12", "14"], correct: "13" },
+      { text: "Hasil dari (3,2) - (1,4) = ?", options: ["(2,-2)", "(4,6)", "(2,2)", "(4,-2)", "(1,3)", "(3,1)"], correct: "(2,-2)" },
+      { text: "Vektor yang berlawanan dengan (2,-3) adalah?", options: ["(-2,3)", "(2,3)", "(-2,-3)", "(3,-2)", "(-3,2)", "(3,2)"], correct: "(-2,3)" },
+      { text: "Jika a = (1,2) dan b = (3,1), maka 2a + b = ?", options: ["(5,5)", "(4,3)", "(5,4)", "(6,6)", "(4,5)", "(6,5)"], correct: "(5,5)" },
+      { text: "Vektor nol dilambangkan dengan?", options: ["0", "1", "Null", "Zero", "∅", "∞", "undefined"], correct: "0" }
     ]
   },
   "algoritma": {
     title: "Algoritma Pemrograman",
     questions: [
-      { text: "Kompleksitas Linear Search?", options: ["O(1)", "O(n)", "O(log n)", "O(n²)"], correct: "O(n)" },
-      { text: "Syarat Binary Search?", options: ["Data Random", "Data Terurut", "Data Prima", "Data Ganjil"], correct: "Data Terurut" },
-      { text: "Struktur Data LIFO?", options: ["Queue", "Stack", "Array", "Linked List"], correct: "Stack" },
-      { text: "Struktur Data FIFO?", options: ["Stack", "Queue", "Tree", "Graph"], correct: "Queue" },
-      { text: "Kompleksitas Binary Search?", options: ["O(1)", "O(n)", "O(log n)", "O(n²)"], correct: "O(log n)" },
-      { text: "Divide and Conquer contohnya?", options: ["Bubble Sort", "Quick Sort", "Selection Sort", "Insertion Sort"], correct: "Quick Sort" }
+      { text: "Kompleksitas Linear Search?", options: ["O(1)", "O(n)", "O(log n)", "O(n²)", "O(2^n)", "O(n!)", "O(n log n)"], correct: "O(n)" },
+      { text: "Syarat Binary Search?", options: ["Data Random", "Data Terurut", "Data Prima", "Data Ganjil", "Data Genap", "Data Acak", "Data Berulang"], correct: "Data Terurut" },
+      { text: "Struktur Data LIFO?", options: ["Queue", "Stack", "Array", "Linked List", "Tree", "Graph", "Heap"], correct: "Stack" },
+      { text: "Struktur Data FIFO?", options: ["Stack", "Queue", "Tree", "Graph", "Array", "Linked List", "Heap"], correct: "Queue" },
+      { text: "Kompleksitas Binary Search?", options: ["O(1)", "O(n)", "O(log n)", "O(n²)", "O(2^n)", "O(n!)", "O(n log n)"], correct: "O(log n)" },
+      { text: "Divide and Conquer contohnya?", options: ["Bubble Sort", "Quick Sort", "Selection Sort", "Insertion Sort", "Merge Sort", "Heap Sort", "Counting Sort"], correct: "Quick Sort" },
+      { text: "Kompleksitas Bubble Sort terburuk?", options: ["O(n)", "O(n log n)", "O(n²)", "O(log n)", "O(1)", "O(2^n)", "O(n!)"], correct: "O(n²)" },
+      { text: "Algoritma pencarian tercepat pada data terurut?", options: ["Linear Search", "Binary Search", "Jump Search", "Exponential Search", "Interpolation Search", "Fibonacci Search", "Ternary Search"], correct: "Binary Search" },
+      { text: "Struktur data yang menggunakan prinsip 'first in first out'?", options: ["Stack", "Queue", "Array", "List", "Set", "Map", "Tree"], correct: "Queue" },
+      { text: "Kompleksitas Merge Sort?", options: ["O(n)", "O(n²)", "O(n log n)", "O(log n)", "O(1)", "O(2^n)", "O(n!)"], correct: "O(n log n)" }
     ]
   },
   "kalkulus": {
     title: "Kalkulus Integral",
     questions: [
-      { text: "∫ x² dx = ?", options: ["x³ + C", "x³/3 + C", "2x + C", "x²/2 + C"], correct: "x³/3 + C" },
-      { text: "∫ 1/x dx = ?", options: ["ln x + C", "e^x + C", "x + C", "1 + C"], correct: "ln x + C" },
-      { text: "∫ 2x dx = ?", options: ["x² + C", "2x² + C", "x + C", "2 + C"], correct: "x² + C" },
-      { text: "∫ cos x dx = ?", options: ["sin x + C", "-sin x + C", "cos x + C", "-cos x + C"], correct: "sin x + C" }
+      { text: "∫ x² dx = ?", options: ["x³ + C", "x³/3 + C", "2x + C", "x²/2 + C", "3x² + C", "x⁴/4 + C", "x + C"], correct: "x³/3 + C" },
+      { text: "∫ 1/x dx = ?", options: ["ln x + C", "e^x + C", "x + C", "1 + C", "x² + C", "sin x + C", "cos x + C"], correct: "ln x + C" },
+      { text: "∫ 2x dx = ?", options: ["x² + C", "2x² + C", "x + C", "2 + C", "4x + C", "x²/2 + C", "2x + C"], correct: "x² + C" },
+      { text: "∫ cos x dx = ?", options: ["sin x + C", "-sin x + C", "cos x + C", "-cos x + C", "tan x + C", "sec x + C", "csc x + C"], correct: "sin x + C" },
+      { text: "∫ sin x dx = ?", options: ["cos x + C", "-cos x + C", "sin x + C", "-sin x + C", "tan x + C", "sec x + C", "csc x + C"], correct: "-cos x + C" },
+      { text: "∫ 3x² dx = ?", options: ["x³ + C", "3x³ + C", "x³/3 + C", "6x + C", "x⁴ + C", "3x + C", "x² + C"], correct: "x³ + C" },
+      { text: "∫ e^x dx = ?", options: ["e^x + C", "x e^x + C", "ln x + C", "x + C", "e^{x+1} + C", "xe^x + C", "e^{2x} + C"], correct: "e^x + C" },
+      { text: "∫ (4x³) dx = ?", options: ["x⁴ + C", "4x⁴ + C", "12x² + C", "x⁴/4 + C", "x⁵ + C", "3x⁴ + C", "2x⁴ + C"], correct: "x⁴ + C" },
+      { text: "∫ sec² x dx = ?", options: ["tan x + C", "sec x + C", "csc x + C", "cot x + C", "sin x + C", "cos x + C", "ln|sec x| + C"], correct: "tan x + C" },
+      { text: "∫ (6x⁵) dx = ?", options: ["x⁶ + C", "6x⁶ + C", "30x⁴ + C", "x⁶/6 + C", "x⁵ + C", "x⁷ + C", "36x⁴ + C"], correct: "x⁶ + C" }
     ]
   },
   "program-linear": {
     title: "Program Linear",
     questions: [
-      { text: "Apa fungsi tujuan dalam program linear?", options: ["Fungsi yang diminimalkan", "Fungsi yang dimaksimalkan", "Fungsi kendala", "Fungsi batasan"], correct: "Fungsi yang dimaksimalkan" },
-      { text: "Daerah penyelesaian program linear disebut?", options: ["Daerah arsiran", "Daerah feasible", "Daerah kuadran", "Daerah linear"], correct: "Daerah feasible" },
-      { text: "Metode yang digunakan untuk menyelesaikan program linear?", options: ["Eliminasi", "Substitusi", "Simpleks", "Integral"], correct: "Simpleks" }
+      { text: "Apa fungsi tujuan dalam program linear?", options: ["Fungsi yang diminimalkan", "Fungsi yang dimaksimalkan", "Fungsi kendala", "Fungsi batasan", "Fungsi variabel", "Fungsi objektif", "Fungsi linear"], correct: "Fungsi yang dimaksimalkan" },
+      { text: "Daerah penyelesaian program linear disebut?", options: ["Daerah arsiran", "Daerah feasible", "Daerah kuadran", "Daerah linear", "Daerah optimal", "Daerah solusi", "Daerah kendala"], correct: "Daerah feasible" },
+      { text: "Metode yang digunakan untuk menyelesaikan program linear?", options: ["Eliminasi", "Substitusi", "Simpleks", "Integral", "Diferensial", "Grafik", "Newton"], correct: "Simpleks" },
+      { text: "Titik pojok yang menghasilkan nilai optimal disebut?", options: ["Titik optimal", "Titik solusi", "Titik feasible", "Titik ekstrim", "Titik kritis", "Titik maksimum", "Titik minimum"], correct: "Titik ekstrim" },
+      { text: "Kendala dalam program linear berbentuk?", options: ["Persamaan", "Pertidaksamaan", "Fungsi", "Grafik", "Tabel", "Matriks", "Vektor"], correct: "Pertidaksamaan" },
+      { text: "Metode grafik hanya bisa untuk berapa variabel?", options: ["1", "2", "3", "4", "5", "6", "bebas"], correct: "2" },
+      { text: "Fungsi objektif Z = 3x + 4y, nilai maksimum dari (0,5) adalah?", options: ["15", "20", "12", "25", "30", "18", "22"], correct: "20" },
+      { text: "Apa yang dimaksud dengan solusi optimal?", options: ["Solusi terbaik", "Solusi acak", "Solusi awal", "Solusi akhir", "Solusi sementara", "Solusi mungkin", "Solusi tidak terbatas"], correct: "Solusi terbaik" },
+      { text: "Metode simpleks menggunakan tabel yang disebut?", options: ["Tabel Simpleks", "Tabel Optimal", "Tabel Iterasi", "Tabel Variabel", "Tabel Kendala", "Tabel Solusi", "Tabel Matriks"], correct: "Tabel Simpleks" },
+      { text: "Variabel yang ditambahkan untuk mengubah pertidaksamaan menjadi persamaan?", options: ["Variabel slack", "Variabel surplus", "Variabel buatan", "Variabel dasar", "Variabel bebas", "Variabel terikat", "Variabel keputusan"], correct: "Variabel slack" }
     ]
   },
   "teori-bilangan": {
     title: "Teori Bilangan",
     questions: [
-      { text: "Apa kepanjangan FPB?", options: ["Faktor Pembagi Bersama", "Faktor Persekutuan Terbesar", "Fungsi Prima Bilangan", "Faktor Prima Bersama"], correct: "Faktor Persekutuan Terbesar" },
-      { text: "Bilangan prima adalah bilangan yang hanya habis dibagi?", options: ["1 dan 2", "1 dan dirinya sendiri", "2 dan 3", "Semua bilangan"], correct: "1 dan dirinya sendiri" },
-      { text: "FPB dari 12 dan 18 adalah?", options: ["3", "6", "9", "12"], correct: "6" },
-      { text: "KPK dari 4 dan 6 adalah?", options: ["8", "10", "12", "24"], correct: "12" }
+      { text: "Apa kepanjangan FPB?", options: ["Faktor Pembagi Bersama", "Faktor Persekutuan Terbesar", "Fungsi Prima Bilangan", "Faktor Prima Bersama", "Faktor Pembagi Terbesar", "Fungsi Persekutuan Bilangan", "Faktor Persekutuan Bilangan"], correct: "Faktor Persekutuan Terbesar" },
+      { text: "Bilangan prima adalah bilangan yang hanya habis dibagi?", options: ["1 dan 2", "1 dan dirinya sendiri", "2 dan 3", "Semua bilangan", "1 dan 0", "2 dan 4", "3 dan 5"], correct: "1 dan dirinya sendiri" },
+      { text: "FPB dari 12 dan 18 adalah?", options: ["3", "6", "9", "12", "2", "4", "8"], correct: "6" },
+      { text: "KPK dari 4 dan 6 adalah?", options: ["8", "10", "12", "24", "6", "16", "18"], correct: "12" },
+      { text: "Bilangan 17 termasuk bilangan?", options: ["Prima", "Komposit", "Genap", "Ganjil", "Cacah", "Bulat", "Real"], correct: "Prima" },
+      { text: "FPB dari 24 dan 36 adalah?", options: ["6", "8", "12", "18", "4", "10", "14"], correct: "12" },
+      { text: "KPK dari 8 dan 12 adalah?", options: ["16", "20", "24", "32", "12", "18", "28"], correct: "24" },
+      { text: "Bilangan 1 termasuk bilangan?", options: ["Prima", "Komposit", "Unit", "Cacah", "Genap", "Ganjil", "Bulat"], correct: "Unit" },
+      { text: "FPB dari 15 dan 25 adalah?", options: ["3", "5", "10", "15", "2", "4", "6"], correct: "5" },
+      { text: "KPK dari 6 dan 9 adalah?", options: ["12", "15", "18", "24", "9", "21", "27"], correct: "18" }
     ]
   },
   "pkn": {
     title: "Pendidikan Kewarganegaraan",
     questions: [
-      { text: "Dasar negara Indonesia adalah?", options: ["UUD 1945", "Pancasila", "Bhinneka Tunggal Ika", "Garuda Pancasila"], correct: "Pancasila" },
-      { text: "Bendera negara Indonesia adalah?", options: ["Merah Putih", "Merah Biru", "Putih Hitam", "Kuning Merah"], correct: "Merah Putih" },
-      { text: "Lambang negara Indonesia adalah?", options: ["Burung Garuda", "Banteng", "Padi Kapas", "Bintang"], correct: "Burung Garuda" }
+      { text: "Dasar negara Indonesia adalah?", options: ["UUD 1945", "Pancasila", "Bhinneka Tunggal Ika", "Garuda Pancasila", "NKRI", "Proklamasi", "Sumpah Pemuda"], correct: "Pancasila" },
+      { text: "Bendera negara Indonesia adalah?", options: ["Merah Putih", "Merah Biru", "Putih Hitam", "Kuning Merah", "Hijau Putih", "Biru Putih", "Hitam Merah"], correct: "Merah Putih" },
+      { text: "Lambang negara Indonesia adalah?", options: ["Burung Garuda", "Banteng", "Padi Kapas", "Bintang", "Rantai", "Pohon Beringin", "Kepala Banteng"], correct: "Burung Garuda" },
+      { text: "Sila ke-1 Pancasila berbunyi?", options: ["Kemanusiaan", "Ketuhanan", "Persatuan", "Kerakyatan", "Keadilan", "Kebangsaan", "Kekeluargaan"], correct: "Ketuhanan" },
+      { text: "Bhinneka Tunggal Ika berarti?", options: ["Berbeda-beda tetap satu", "Satu untuk semua", "Bersatu kita teguh", "Damai sejahtera", "Adil makmur", "Rukun damai", "Satu bangsa"], correct: "Berbeda-beda tetap satu" },
+      { text: "UUD 1945 disahkan pada tanggal?", options: ["17 Agustus 1945", "18 Agustus 1945", "19 Agustus 1945", "20 Agustus 1945", "16 Agustus 1945", "21 Agustus 1945", "15 Agustus 1945"], correct: "18 Agustus 1945" },
+      { text: "Hak warga negara untuk memilih disebut?", options: ["Hak pilih", "Hak suara", "Hak asasi", "Hak politik", "Hak sipil", "Hak demokrasi", "Hak konstitusi"], correct: "Hak pilih" },
+      { text: "Lembaga yang berwenang mengubah UUD 1945 adalah?", options: ["DPR", "MPR", "Presiden", "MA", "MK", "KY", "BPK"], correct: "MPR" },
+      { text: "Sila ke-4 Pancasila dilambangkan dengan?", options: ["Bintang", "Rantai", "Pohon Beringin", "Kepala Banteng", "Padi Kapas", "Burung Garuda", "Bunga"], correct: "Kepala Banteng" },
+      { text: "Negara Kesatuan Republik Indonesia berbentuk?", options: ["Republik", "Monarki", "Federal", "Serikat", "Kerajaan", "Kesultanan", "Demokrasi"], correct: "Republik" }
     ]
   },
   "pancasila": {
     title: "Pendidikan Pancasila",
     questions: [
-      { text: "Sila ke-3 Pancasila adalah?", options: ["Ketuhanan", "Kemanusiaan", "Persatuan Indonesia", "Kerakyatan"], correct: "Persatuan Indonesia" },
-      { text: "Sila ke-5 Pancasila adalah?", options: ["Ketuhanan", "Kemanusiaan", "Persatuan", "Keadilan Sosial"], correct: "Keadilan Sosial" },
-      { text: "Jumlah sila dalam Pancasila adalah?", options: ["3", "4", "5", "6"], correct: "5" }
+      { text: "Sila ke-3 Pancasila adalah?", options: ["Ketuhanan", "Kemanusiaan", "Persatuan Indonesia", "Kerakyatan", "Keadilan Sosial", "Kebangsaan", "Kekeluargaan"], correct: "Persatuan Indonesia" },
+      { text: "Sila ke-5 Pancasila adalah?", options: ["Ketuhanan", "Kemanusiaan", "Persatuan", "Kerakyatan", "Keadilan Sosial", "Kebangsaan", "Kekeluargaan"], correct: "Keadilan Sosial" },
+      { text: "Jumlah sila dalam Pancasila adalah?", options: ["3", "4", "5", "6", "2", "7", "8"], correct: "5" },
+      { text: "Sila ke-2 Pancasila berbunyi?", options: ["Ketuhanan", "Kemanusiaan yang adil dan beradab", "Persatuan Indonesia", "Kerakyatan", "Keadilan Sosial", "Kebangsaan", "Kekeluargaan"], correct: "Kemanusiaan yang adil dan beradab" },
+      { text: "Sila ke-4 Pancasila berbunyi?", options: ["Ketuhanan", "Kemanusiaan", "Persatuan", "Kerakyatan yang dipimpin oleh hikmat kebijaksanaan dalam permusyawaratan/perwakilan", "Keadilan Sosial", "Kebangsaan", "Kekeluargaan"], correct: "Kerakyatan yang dipimpin oleh hikmat kebijaksanaan dalam permusyawaratan/perwakilan" },
+      { text: "Tokoh penggali Pancasila adalah?", options: ["Soekarno", "Hatta", "Soepomo", "Muhammad Yamin", "Agus Salim", "Ki Hajar Dewantara", "Jenderal Sudirman"], correct: "Soekarno" },
+      { text: "Nilai-nilai Pancasila bersifat?", options: ["Universal", "Lokal", "Regional", "Nasional", "Internasional", "Global", "Temporal"], correct: "Universal" },
+      { text: "Pancasila sebagai ideologi negara bersifat?", options: ["Terbuka", "Tertutup", "Kaku", "Luwes", "Tetap", "Berubah", "Dinamis"], correct: "Terbuka" },
+      { text: "Sila ke-1 Pancasila dilambangkan dengan?", options: ["Bintang", "Rantai", "Pohon Beringin", "Kepala Banteng", "Padi Kapas", "Burung Garuda", "Bunga"], correct: "Bintang" },
+      { text: "Pancasila ditetapkan sebagai dasar negara pada tanggal?", options: ["1 Juni 1945", "17 Agustus 1945", "18 Agustus 1945", "22 Juni 1945", "20 Mei 1945", "28 Oktober 1945", "10 November 1945"], correct: "18 Agustus 1945" }
     ]
   },
   "konservasi": {
     title: "Pendidikan Konservasi",
     questions: [
-      { text: "Apa kepanjangan 3R?", options: ["Reduce, Reuse, Recycle", "Read, Write, Repeat", "Reduce, Return, Reset", "Reuse, Renew, Rebuild"], correct: "Reduce, Reuse, Recycle" },
-      { text: "Langkah pertama dalam 3R adalah?", options: ["Recycle", "Reuse", "Reduce", "Repair"], correct: "Reduce" },
-      { text: "Contoh kegiatan reuse adalah?", options: ["Membuang sampah", "Menggunakan botol bekas", "Membakar sampah", "Mengubur sampah"], correct: "Menggunakan botol bekas" }
+      { text: "Apa kepanjangan 3R?", options: ["Reduce, Reuse, Recycle", "Read, Write, Repeat", "Reduce, Return, Reset", "Reuse, Renew, Rebuild", "Recycle, Reuse, Reduce", "Repair, Reuse, Recycle", "Reduce, Recycle, Reuse"], correct: "Reduce, Reuse, Recycle" },
+      { text: "Langkah pertama dalam 3R adalah?", options: ["Recycle", "Reuse", "Reduce", "Repair", "Rebuild", "Renew", "Return"], correct: "Reduce" },
+      { text: "Contoh kegiatan reuse adalah?", options: ["Membuang sampah", "Menggunakan botol bekas", "Membakar sampah", "Mengubur sampah", "Mendaur ulang", "Menimbun sampah", "Menghancurkan"], correct: "Menggunakan botol bekas" },
+      { text: "Konservasi sumber daya alam bertujuan untuk?", options: ["Melestarikan", "Mengeksploitasi", "Merusak", "Menguras", "Menghabiskan", "Membuang", "Mengabaikan"], correct: "Melestarikan" },
+      { text: "Contoh energi terbarukan adalah?", options: ["Matahari", "Batu bara", "Minyak bumi", "Gas alam", "Uranium", "Plastik", "Logam"], correct: "Matahari" },
+      { text: "Dampak pemanasan global adalah?", options: ["Mencairnya es kutub", "Hujan deras", "Angin topan", "Gempa bumi", "Gunung meletus", "Tsunami", "Tanah longsor"], correct: "Mencairnya es kutub" },
+      { text: "Gas rumah kaca yang paling dominan adalah?", options: ["CO2", "CH4", "N2O", "CFC", "O3", "H2O", "SO2"], correct: "CO2" },
+      { text: "Kegiatan yang ramah lingkungan disebut?", options: ["Eco-friendly", "Green house", "Global warming", "Ozone layer", "Acid rain", "Climate change", "Deforestation"], correct: "Eco-friendly" },
+      { text: "Sampah organik dapat diolah menjadi?", options: ["Kompos", "Plastik", "Logam", "Kaca", "Karet", "Besi", "Tembaga"], correct: "Kompos" },
+      { text: "Hutan yang dilestarikan disebut?", options: ["Hutan lindung", "Hutan produksi", "Hutan industri", "Hutan kota", "Hutan bakau", "Hutan hujan", "Hutan gundul"], correct: "Hutan lindung" }
     ]
   }
 };
@@ -1238,7 +1288,7 @@ function gameLoop() {
   gameCtx.fillStyle = "#1a4d5f";
   gameCtx.font = "bold 16px 'Inter'";
   gameCtx.textAlign = "center";
-  gameCtx.fillText(`📝 ${gameQuestionText}`, gameWidth/2, 40);
+  gameCtx.fillText(`${gameQuestionText}`, gameWidth/2, 40);
   gameCtx.font = "12px 'Inter'";
   gameCtx.fillStyle = "#6c7e91";
   gameCtx.fillText(`Soal ${gameCurrentQuestionIndex + 1}/${gameCurrentQuestions.length}`, gameWidth/2, 65);
@@ -1374,22 +1424,25 @@ function endGame(isWin) {
   const maxScore = totalSoal * 10;
   const nilai = Math.round((gameScore / maxScore) * 100);
   
-  // Buat modal popup di tengah layar
+  // Buat modal popup di tengah layar (tidak menghilangkan area game)
   let modalHtml = '';
   
   if (isWin) {
     modalHtml = `
-      <div id="gameModal" style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:10000; display:flex; justify-content:center; align-items:center;">
-        <div style="background:white; border-radius:2rem; padding:2rem; text-align:center; max-width:400px; width:90%; animation: bounce 0.5s ease;">
+      <div id="gameModal" style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); z-index:10000; display:flex; justify-content:center; align-items:center;">
+        <div style="background:white; border-radius:2rem; padding:2rem; text-align:center; max-width:450px; width:90%; animation: bounce 0.5s ease;">
           <div style="font-size:5rem;">🏆🎉🏆</div>
           <h2 style="color:#2a9d8f; margin:1rem 0;">SELAMAT!</h2>
           <h3 style="color:#1a4d5f;">ANDA MENANG!</h3>
           <div style="margin:1.5rem 0; padding:1rem; background:#f0f4fa; border-radius:1rem;">
-            <p style="font-size:1.2rem;"><strong>✨ Skor Akhir:</strong> ${gameScore} / ${maxScore}</p>
-            <p style="font-size:1.5rem;"><strong>📊 Nilai:</strong> ${nilai}</p>
-            <p style="font-size:0.8rem; color:#6c7e91;">✅ Benar: ${gameScore/10} soal</p>
+            <p><strong>✨ Skor Akhir:</strong> ${gameScore} / ${maxScore}</p>
+            <p><strong>📊 Nilai:</strong> ${nilai}</p>
+            <p>✅ Benar: ${gameScore/10} dari ${totalSoal} soal</p>
           </div>
-          <button id="closeGameModal" class="btn-login-modern" style="background:#2a9d8f; width:auto; padding:0.7rem 2rem; margin-top:0.5rem;">Kembali ke Game</button>
+          <div style="display:flex; gap:1rem; justify-content:center;">
+            <button id="playAgainFromModal" class="btn-login-modern" style="background:#2a9d8f; width:auto; padding:0.7rem 1.5rem;">🔄 Main Lagi</button>
+            <button id="closeGameModal" class="btn-back-mk" style="background:#1a4d5f; color:white; width:auto; padding:0.7rem 1.5rem;">Tutup</button>
+          </div>
         </div>
       </div>
     `;
@@ -1407,33 +1460,39 @@ function endGame(isWin) {
     
   } else {
     modalHtml = `
-      <div id="gameModal" style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:10000; display:flex; justify-content:center; align-items:center;">
-        <div style="background:white; border-radius:2rem; padding:2rem; text-align:center; max-width:400px; width:90%; animation: bounce 0.5s ease;">
+      <div id="gameModal" style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); z-index:10000; display:flex; justify-content:center; align-items:center;">
+        <div style="background:white; border-radius:2rem; padding:2rem; text-align:center; max-width:450px; width:90%; animation: bounce 0.5s ease;">
           <div style="font-size:5rem;">😭💀😭</div>
           <h2 style="color:#d9534f; margin:1rem 0;">GAME OVER!</h2>
           <div style="margin:1.5rem 0; padding:1rem; background:#f0f4fa; border-radius:1rem;">
-            <p style="font-size:1.2rem;"><strong>✨ Skor Akhir:</strong> ${gameScore} / ${maxScore}</p>
-            <p style="font-size:0.8rem; color:#6c7e91;">✅ Benar: ${gameScore/10} soal</p>
+            <p><strong>✨ Skor Akhir:</strong> ${gameScore} / ${maxScore}</p>
+            <p>✅ Benar: ${Math.floor(gameScore/10)} dari ${totalSoal} soal</p>
           </div>
-          <button id="closeGameModal" class="btn-login-modern" style="background:#f4a261; width:auto; padding:0.7rem 2rem; margin-top:0.5rem;">Coba Lagi</button>
+          <div style="display:flex; gap:1rem; justify-content:center;">
+            <button id="playAgainFromModal" class="btn-login-modern" style="background:#f4a261; width:auto; padding:0.7rem 1.5rem;">🔄 Coba Lagi</button>
+            <button id="closeGameModal" class="btn-back-mk" style="background:#1a4d5f; color:white; width:auto; padding:0.7rem 1.5rem;">Tutup</button>
+          </div>
         </div>
       </div>
     `;
     addRecord('Game', `${gameQuestions[gameCurrentMk].title} - GAME OVER! Skor: ${gameScore}`);
   }
   
-  // Sembunyikan area game
-  document.getElementById('gameArea').style.display = 'none';
-  document.getElementById('gameMkGrid').style.display = 'grid';
-  
-  // Tampilkan modal
+  // Tampilkan modal (tanpa menyembunyikan game area)
   document.body.insertAdjacentHTML('beforeend', modalHtml);
   
-  // Event untuk tombol tutup
-  document.getElementById('closeGameModal').addEventListener('click', () => {
+  // Event untuk tombol Main Lagi
+  document.getElementById('playAgainModal')?.addEventListener('click', () => {
     const modal = document.getElementById('gameModal');
     if (modal) modal.remove();
-    gameActive = false;
+    startGame(gameCurrentMk);
+  });
+  
+  // Event untuk tombol Tutup (kembali ke pilih MK)
+  document.getElementById('closeGameModal')?.addEventListener('click', () => {
+    const modal = document.getElementById('gameModal');
+    if (modal) modal.remove();
+    // Hanya tutup modal, game area tetap di belakang (tidak kembali ke pilih MK)
   });
 }
 
