@@ -827,7 +827,10 @@
   <div class="login-page">
     <div class="math-bg" id="mathBg"></div>
     <div class="login-card-modern">
-      <div class="login-header"><h1>Halo, Selamat Datang 👋</h1><p>Masukkan NIM dan Password Anda</p></div>
+      <div class="login-header" style="text-align: center;">
+        <h1>Halo, Selamat Datang 👋</h1>
+        <p>Masukkan NIM dan Password Anda</p>
+      </div>
       <div id="loginErrorMsg" class="error-message"></div>
       <div class="form-group"><label>NIM</label><div class="input-with-icon"><i class="fas fa-envelope"></i><input type="text" id="loginUsername" placeholder="contoh: 2504030043"></div></div>
       <div class="form-group"><label>Password</label><div class="input-with-icon"><i class="fas fa-lock"></i><input type="password" id="loginPassword" placeholder="Masukkan password"></div></div>
@@ -837,6 +840,19 @@
         <p class="copyright">Kelompok 10 - UNNES 2026</p>
       </div>
     </div>
+  </div>
+</div>
+
+<div id="produkPage" style="display:none;">
+  <div style="background:white; border-radius:1rem; padding:2rem;">
+    <h2 style="color:#1a4d5f; text-align:center;"><i class="fas fa-box"></i> Buku Matematika</h2>
+    <p style="color:#6c7e91; text-align:center; margin-bottom:1rem;">Koleksi buku terbaik dari para ilmuwan matematika ternama</p>
+    
+    <!-- INFO KERANJANG - DI ATAS PRODUK -->
+    <div id="produkCartInfo" style="margin-bottom:1rem;"></div>
+    
+    <!-- DAFTAR PRODUK -->
+    <div class="mk-grid" id="produkGrid"></div>
   </div>
 </div>
 
@@ -8823,18 +8839,19 @@ function resetSidebarMenu() {
   });
   
   // Urutan menu baru
-  const menuItems = [
-    { page: "beranda", icon: "fas fa-home", text: "Beranda" },
-    { page: "mata-kuliah", icon: "fas fa-book", text: "Materi" },
-    { page: "latihan-soal", icon: "fas fa-pencil-alt", text: "Latihan Soal" },
-    { page: "game-materi", icon: "fas fa-gamepad", text: "Game Materi" },
-    { page: "produkPage", icon: "fas fa-box", text: "Produk" },
-    { page: "keranjangPage", icon: "fas fa-shopping-cart", text: "Keranjang" },
-    { page: "pembayaranPage", icon: "fas fa-credit-card", text: "Pembayaran" },
-    { page: "rasionalisasi-ptn", icon: "fas fa-university", text: "Rasionalisasi Jurusan" },
-    { page: "rekomendasiPage", icon: "fas fa-robot", text: "Scan Nilai" },
-    { page: "profil", icon: "fas fa-user-circle", text: "Profil" }
-  ];
+const menuItems = [
+  { page: "beranda", icon: "fas fa-home", text: "Beranda" },
+  { page: "mata-kuliah", icon: "fas fa-book", text: "Materi" },
+  { page: "latihan-soal", icon: "fas fa-pencil-alt", text: "Latihan Soal" },
+  { page: "game-materi", icon: "fas fa-gamepad", text: "Game Materi" },
+  { page: "produkPage", icon: "fas fa-box", text: "Produk" },
+  { page: "keranjangPage", icon: "fas fa-shopping-cart", text: "Keranjang" },
+  { page: "pembayaranPage", icon: "fas fa-credit-card", text: "Pembayaran" },
+  { page: "riwayatPage", icon: "fas fa-history", text: "Riwayat Belanja" }, // <-- MENU INI
+  { page: "rasionalisasi-ptn", icon: "fas fa-university", text: "Rasionalisasi Jurusan" },
+  { page: "rekomendasiPage", icon: "fas fa-robot", text: "Scan Nilai" },
+  { page: "profil", icon: "fas fa-user-circle", text: "Profil" }
+];
   
   // Insert menu items
   let prevItem = null;
@@ -8875,8 +8892,8 @@ if (!document.getElementById('produkPage')) {
   produkPage.style.display = 'none';
   produkPage.innerHTML = `
     <div style="background:white; border-radius:1rem; padding:2rem;">
-      <h2 style="color:#1a4d5f;"><i class="fas fa-box"></i>Buku Matematika</h2>
-      <p style="color:#6c7e91; margin-bottom:1rem;">Koleksi buku terbaik dari para ilmuwan matematika ternama</p>
+      <h2 style="color:#1a4d5f;text-align: center;"></i>Buku Matematika</h2>
+      <p style="color:#6c7e91; margin-bottom:1rem; text-align: center;">Koleksi buku terbaik dari para ilmuwan matematika ternama</p>
       <div class="mk-grid" id="produkGrid"></div>
       <div id="produkCartInfo" style="margin-top:1rem; padding:1rem; background:#f8fafd; border-radius:1rem;"></div>
     </div>
@@ -8891,7 +8908,60 @@ const produkData = [
   { id: 3, nama: "Disquisitiones Arithmeticae", penulis: "Carl Friedrich Gauss", harga: 185000, icon: "📕", stok: 4, deskripsi: "Teori bilangan modern" },
   { id: 4, nama: "The Man Who Knew Infinity", penulis: "Srinivasa Ramanujan", harga: 145000, icon: "📙", stok: 10, deskripsi: "Biografi dan karya Ramanujan" },
   { id: 5, nama: "Gödel, Escher, Bach", penulis: "Douglas Hofstadter", harga: 175000, icon: "📗", stok: 6, deskripsi: "Kecerdasan buatan dan matematika" },
-  { id: 6, nama: "A Brief History of Time", penulis: "Stephen Hawking", harga: 110000, icon: "📘", stok: 12, deskripsi: "Kosmologi dan fisika teoritis" }
+  { id: 6, nama: "A Brief History of Time", penulis: "Stephen Hawking", harga: 110000, icon: "📘", stok: 12, deskripsi: "Kosmologi dan fisika teoritis" },
+  { id: 1, nama: "Buku Tulis Sidu 58 Lembar", penulis: "Sidu", harga: 5000, icon: "📓", stok: 100, kategori: "Buku", deskripsi: "Buku tulis 58 lembar, kertas putih" },
+  { id: 2, nama: "Buku Tulis Big Boss 58 Lembar", penulis: "Big Boss", harga: 5500, icon: "📔", stok: 85, kategori: "Buku", deskripsi: "Buku tulis 58 lembar, cover tebal" },
+  { id: 3, nama: "Buku Catatan Mini", penulis: "Joyko", harga: 8000, icon: "📕", stok: 50, kategori: "Buku", deskripsi: "Buku catatan ukuran saku" },
+  
+  // ========== PENSIL ==========
+  { id: 4, nama: "Pensil 2B Joyko", penulis: "Joyko", harga: 3000, icon: "✏️", stok: 200, kategori: "Pensil", deskripsi: "Pensil 2B, ujung runcing" },
+  { id: 5, nama: "Pensil Mekanik 0.5mm", penulis: "Faber Castell", harga: 15000, icon: "✎", stok: 75, kategori: "Pensil", deskripsi: "Pensil mekanik isi 0.5mm" },
+  { id: 6, nama: "Pensil Warna 12 Warna", penulis: "Joyko", harga: 18000, icon: "🖍️", stok: 40, kategori: "Pensil", deskripsi: "Pensil warna 12 warna" },
+  
+  // ========== PULPEN ==========
+  { id: 7, nama: "Pulpen Hitam Standar", penulis: "Snowman", harga: 3500, icon: "🖊️", stok: 150, kategori: "Pulpen", deskripsi: "Pulpen hitam tinta cair" },
+  { id: 8, nama: "Pulpen Gel 0.5mm Hitam", penulis: "Zebra", harga: 8000, icon: "✒️", stok: 90, kategori: "Pulpen", deskripsi: "Pulpen gel 0.5mm, tinta hitam" },
+  { id: 9, nama: "Pulpen Gel Warna (Set 6)", penulis: "Snowman", harga: 25000, icon: "🖌️", stok: 30, kategori: "Pulpen", deskripsi: "Set pulpen gel 6 warna" },
+  
+  // ========== PENGHAPUS & RAutAN ==========
+  { id: 10, nama: "Penghapus Putih", penulis: "Joyko", harga: 2500, icon: "🧽", stok: 120, kategori: "Penghapus", deskripsi: "Penghapus putih lembut" },
+  { id: 11, nama: "Penghapus Papan Tulis", penulis: "Snowman", harga: 5000, icon: "🧼", stok: 60, kategori: "Penghapus", deskripsi: "Penghapus untuk papan tulis" },
+  { id: 12, nama: "Rautan Pensil 2 Lubang", penulis: "Joyko", harga: 6000, icon: "✂️", stok: 80, kategori: "Rautan", deskripsi: "Rautan pensil 2 lubang" },
+  
+  // ========== PENGARIS ==========
+  { id: 13, nama: "Penggaris 15cm", penulis: "Butterfly", harga: 4000, icon: "📏", stok: 100, kategori: "Penggaris", deskripsi: "Penggaris plastik 15cm" },
+  { id: 14, nama: "Penggaris 30cm", penulis: "Butterfly", harga: 7000, icon: "📐", stok: 70, kategori: "Penggaris", deskripsi: "Penggaris plastik 30cm" },
+  { id: 15, nama: "Penggaris Segitiga Set", penulis: "Joyko", harga: 12000, icon: "📏", stok: 40, kategori: "Penggaris", deskripsi: "Set penggaris segitiga" },
+  
+  // ========== SPIDOL & MARKER ==========
+  { id: 16, nama: "Spidol Hitam Permanent", penulis: "Snowman", harga: 7000, icon: "🖍️", stok: 90, kategori: "Spidol", deskripsi: "Spidol permanen hitam" },
+  { id: 17, nama: "Spidol Warna (Set 4)", penulis: "Joyko", harga: 15000, icon: "🖌️", stok: 45, kategori: "Spidol", deskripsi: "Set spidol warna 4 pcs" },
+  { id: 18, nama: "Stabilo Warna (Set 5)", penulis: "Stabilo", harga: 25000, icon: "🖍️", stok: 35, kategori: "Stabilo", deskripsi: "Highlighter 5 warna" },
+  
+  // ========== STICKY NOTES & LABEL ==========
+  { id: 19, nama: "Sticky Notes 3x3 (50 lembar)", penulis: "Joyko", harga: 8000, icon: "📋", stok: 65, kategori: "Sticky Notes", deskripsi: "Sticky notes warna warni" },
+  { id: 20, nama: "Sticky Notes Besar 76x76", penulis: "3M", harga: 15000, icon: "📌", stok: 40, kategori: "Sticky Notes", deskripsi: "Sticky notes ukuran besar" },
+  { id: 21, nama: "Label Nama Stiker", penulis: "Joyko", harga: 5000, icon: "🏷️", stok: 100, kategori: "Label", deskripsi: "Stiker label nama" },
+  
+  // ========== MAP & FOLDER ==========
+  { id: 22, nama: "Map Plastik", penulis: "Big Boss", harga: 6000, icon: "📁", stok: 80, kategori: "Map", deskripsi: "Map plastik bening" },
+  { id: 23, nama: "Folder Kertas Karton", penulis: "Sidu", harga: 7000, icon: "📂", stok: 60, kategori: "Folder", deskripsi: "Folder kertas warna" },
+  { id: 24, nama: "Map Snell Hekter", penulis: "Big Boss", harga: 12000, icon: "📎", stok: 50, kategori: "Map", deskripsi: "Map snell dengan hekter" },
+  
+  // ========== LEM & ISOLASI ==========
+  { id: 25, nama: "Lem Kertas Pritt", penulis: "Pritt", harga: 8000, icon: "🧴", stok: 70, kategori: "Lem", deskripsi: "Lem kertas stick" },
+  { id: 26, nama: "Isolasi Bening", penulis: "Joyko", harga: 10000, icon: "📦", stok: 55, kategori: "Isolasi", deskripsi: "Isolasi bening 1 roll" },
+  { id: 27, nama: "Double Tape", penulis: "Snowman", harga: 12000, icon: "🔲", stok: 40, kategori: "Double Tape", deskripsi: "Double tape 1 roll" },
+  
+  // ========== LAINNYA ==========
+  { id: 28, nama: "Gunting", penulis: "Joyko", harga: 15000, icon: "✂️", stok: 45, kategori: "Gunting", deskripsi: "Gunting stainless" },
+  { id: 29, nama: "Tip-ex Kertas", penulis: "Snowman", harga: 7000, icon: "⌨️", stok: 60, kategori: "Tip-ex", deskripsi: "Tip-ex roll" },
+  { id: 30, nama: "Klip Kertas isi 100", penulis: "Joyko", harga: 3000, icon: "📎", stok: 200, kategori: "Klip", deskripsi: "Klip kertas ukuran sedang" },
+  { id: 31, nama: "Stapler", penulis: "Joyko", harga: 20000, icon: "🖇️", stok: 30, kategori: "Stapler", deskripsi: "Stapler kecil + isi" },
+  { id: 32, nama: "Isi Stapler (1 box)", penulis: "Joyko", harga: 5000, icon: "📌", stok: 80, kategori: "Isi Stapler", deskripsi: "Isi stapler 1000 pcs" },
+  { id: 33, nama: "Kalkulator Ilmiah", penulis: "Casio", harga: 85000, icon: "🧮", stok: 20, kategori: "Kalkulator", deskripsi: "Kalkulator ilmiah 12 digit" },
+  { id: 34, nama: "Buku Agenda 2026", penulis: "Sidu", harga: 25000, icon: "📅", stok: 40, kategori: "Buku", deskripsi: "Buku agenda tahun 2026" },
+  { id: 35, nama: "Tempat Pensil", penulis: "Joyko", harga: 12000, icon: "🥤", stok: 55, kategori: "Tempat Pensil", deskripsi: "Tempat pensil kanvas" }
 ];
 
 // Keranjang
@@ -8988,44 +9058,67 @@ if (!document.getElementById('keranjangPage')) {
   keranjangPage.style.display = 'none';
   keranjangPage.innerHTML = `
     <div style="background:white; border-radius:1rem; padding:2rem;">
-      <h2 style="color:#1a4d5f;"><i class="fas fa-shopping-cart"></i> 🛒 Keranjang Belanja</h2>
+      <h2 style="color:#1a4d5f; text-align:center;"><i class="fas fa-shopping-cart"></i> 🛒 Keranjang Belanja</h2>
       <div id="cartItemsContainer"></div>
       <div style="margin-top:1rem; display:flex; gap:1rem; justify-content:flex-end;">
-        <button id="backToProdukBtn" class="btn-back-mk">← Lanjut Belanja</button>
-        <button id="checkoutBtn" class="btn-login-modern" style="background:#2a9d8f; width:auto;">Checkout</button>
+        <button class="btn-back-mk" onclick="window.showPage('produkPage')">← Lanjut Belanja</button>
+        <button class="btn-login-modern" style="background:#2a9d8f; width:auto;" onclick="window.handleCheckout()">Checkout</button>
       </div>
     </div>
   `;
   document.querySelector('.dashboard-container').appendChild(keranjangPage);
 }
 
+// Fungsi global untuk checkout
+window.handleCheckout = function() {
+  const cartData = JSON.parse(localStorage.getItem('cart') || '[]');
+  if (cartData.length === 0) {
+    alert('❌ Keranjang kosong!');
+    return;
+  }
+  showPage('pembayaranPage');
+};
+
 function renderCart() {
   const container = document.getElementById('cartItemsContainer');
   if (!container) return;
   let cartData = JSON.parse(localStorage.getItem('cart') || '[]');
+  
   if (cartData.length === 0) {
-    container.innerHTML = '<div class="empty-record">🛒Keranjang kosong. Yuk belanja dulu!</div>';
+    container.innerHTML = '<div class="empty-record">🛒 Keranjang kosong. Yuk belanja dulu!</div>';
+    // Sembunyikan tombol checkout jika keranjang kosong
+    const checkoutBtn = document.getElementById('checkoutBtn');
+    if (checkoutBtn) checkoutBtn.style.display = 'none';
     return;
   }
+  
+  // Tampilkan tombol checkout
+  const checkoutBtn = document.getElementById('checkoutBtn');
+  if (checkoutBtn) checkoutBtn.style.display = 'block';
+  
   container.innerHTML = `
     <style>
       .cart-table { width:100%; border-collapse:collapse; }
       .cart-table th, .cart-table td { padding:12px; text-align:left; border-bottom:1px solid #e2edf2; }
       .cart-table th { background:#f0f4fa; }
       .qty-btn { background:#1a4d5f; color:white; border:none; width:30px; height:30px; border-radius:50%; cursor:pointer; margin:0 5px; }
+      .qty-btn:hover { background:#0f2c38; }
       .remove-btn { background:#d9534f; color:white; border:none; padding:5px 12px; border-radius:5px; cursor:pointer; }
+      .remove-btn:hover { background:#c9302c; }
     </style>
     <table class="cart-table">
-      <thead><tr><th>Produk</th><th>Penulis</th><th>Harga</th><th>Jumlah</th><th>Subtotal</th><th>Aksi</th></tr></thead>
+      <thead>
+        <tr><th>Produk</th><th>Penulis</th><th>Harga</th><th>Jumlah</th><th>Subtotal</th><th>Aksi</th></tr>
+      </thead>
       <tbody>
         ${cartData.map(item => `
           <tr>
             <td>${item.icon} <strong>${item.nama}</strong></td>
             <td>${item.penulis}</td>
             <td>Rp ${item.harga.toLocaleString()}</td>
-            <td>
+            <td style="text-align:center;">
               <button class="qty-btn" data-id="${item.id}" data-change="-1">-</button>
-              ${item.quantity}
+              <span style="margin:0 10px;">${item.quantity}</span>
               <button class="qty-btn" data-id="${item.id}" data-change="1">+</button>
             </td>
             <td>Rp ${(item.harga * item.quantity).toLocaleString()}</td>
@@ -9034,13 +9127,18 @@ function renderCart() {
         `).join('')}
       </tbody>
       <tfoot>
-        <tr style="background:#f0f4fa;"><td colspan="4" style="text-align:right;"><strong>Total</strong></td><td colspan="2"><strong>Rp ${cartData.reduce((s,i) => s + (i.harga * i.quantity), 0).toLocaleString()}</strong></td></tr>
+        <tr style="background:#f0f4fa;">
+          <td colspan="4" style="text-align:right;"><strong>Total</strong></td>
+          <td colspan="2"><strong>Rp ${cartData.reduce((s,i) => s + (i.harga * i.quantity), 0).toLocaleString()}</strong></td>
+        </tr>
       </tfoot>
     </table>
   `;
   
+  // Event listener untuk tombol quantity
   document.querySelectorAll('.qty-btn').forEach(btn => {
-    btn.onclick = () => {
+    btn.onclick = (e) => {
+      e.stopPropagation();
       let cartData = JSON.parse(localStorage.getItem('cart') || '[]');
       const id = parseInt(btn.getAttribute('data-id'));
       const change = parseInt(btn.getAttribute('data-change'));
@@ -9063,8 +9161,10 @@ function renderCart() {
     };
   });
   
+  // Event listener untuk tombol hapus
   document.querySelectorAll('.remove-btn').forEach(btn => {
-    btn.onclick = () => {
+    btn.onclick = (e) => {
+      e.stopPropagation();
       let cartData = JSON.parse(localStorage.getItem('cart') || '[]');
       const id = parseInt(btn.getAttribute('data-id'));
       cartData = cartData.filter(i => i.id !== id);
@@ -9075,6 +9175,57 @@ function renderCart() {
   });
 }
 
+// Event listener untuk tombol (dipasang di luar renderCart)
+function initCartButtons() {
+  // Tombol Lanjut Belanja
+  const backToProdukBtn = document.getElementById('backToProdukBtn');
+  if (backToProdukBtn) {
+    // Hapus listener lama jika ada
+    const newBtn = backToProdukBtn.cloneNode(true);
+    backToProdukBtn.parentNode.replaceChild(newBtn, backToProdukBtn);
+    newBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      console.log("Lanjut Belanja diklik");
+      showPage('produkPage');
+    });
+  }
+  
+  // Tombol Checkout
+  const checkoutBtn = document.getElementById('checkoutBtn');
+  if (checkoutBtn) {
+    const newCheckoutBtn = checkoutBtn.cloneNode(true);
+    checkoutBtn.parentNode.replaceChild(newCheckoutBtn, checkoutBtn);
+    newCheckoutBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      console.log("Checkout diklik");
+      const cartData = JSON.parse(localStorage.getItem('cart') || '[]');
+      if (cartData.length === 0) {
+        alert('❌ Keranjang kosong! Tambahkan produk terlebih dahulu.');
+        return;
+      }
+      showPage('pembayaranPage');
+    });
+  }
+}
+
+// Panggil initCartButtons setiap kali halaman keranjang ditampilkan
+// Update fungsi showPage
+const originalShowPageForCart = window.showPage;
+window.showPage = function(pageId) {
+  originalShowPageForCart(pageId);
+  if (pageId === 'keranjangPage') {
+    renderCart();
+    initCartButtons();
+  }
+  if (pageId === 'pembayaranPage') {
+    renderPembayaran();
+  }
+  if (pageId === 'produkPage') {
+    renderProduk();
+    updateCartInfo();
+  }
+};
+
 // ========== HALAMAN PEMBAYARAN - VERSI LENGKAP ==========
 if (!document.getElementById('pembayaranPage')) {
   const pembayaranPage = document.createElement('div');
@@ -9082,7 +9233,7 @@ if (!document.getElementById('pembayaranPage')) {
   pembayaranPage.style.display = 'none';
   pembayaranPage.innerHTML = `
     <div style="background:white; border-radius:1rem; padding:2rem;">
-      <h2 style="color:#1a4d5f;"></i> 💳Pembayaran</h2>
+      <h2 style="color:#1a4d5f;text-align: center;"></i> 💳Pembayaran</h2>
       <div id="pembayaranDetail"></div>
       <div id="pembayaranForm" style="margin-top:1.5rem;"></div>
       <div style="margin-top:1rem; display:flex; gap:1rem; justify-content:flex-end;">
@@ -9093,7 +9244,124 @@ if (!document.getElementById('pembayaranPage')) {
   `;
   document.querySelector('.dashboard-container').appendChild(pembayaranPage);
 }
+// ========== HALAMAN RIWAYAT PEMBELIAN ==========
+if (!document.getElementById('riwayatPage')) {
+  const riwayatPage = document.createElement('div');
+  riwayatPage.id = 'riwayatPage';
+  riwayatPage.style.display = 'none';  // <-- AWALNYA HIDDEN
+  riwayatPage.innerHTML = `...`;
+  document.querySelector('.dashboard-container').appendChild(riwayatPage);
+}
 
+function simpanRiwayat(orderId, method, total, items, customerData) {
+  const now = new Date();
+  
+  // Ambil user yang sedang login
+  let currentUserData = currentUser;
+  if (!currentUserData) {
+    const saved = localStorage.getItem('currentUserData');
+    if (saved) currentUserData = JSON.parse(saved);
+  }
+  
+  if (!currentUserData || !currentUserData.nim) {
+    console.error('User tidak ditemukan, riwayat tidak tersimpan');
+    return;
+  }
+  
+  const nim = currentUserData.nim;
+  const riwayat = {
+    id: orderId,
+    tanggal: now.toISOString(),
+    tanggalFormatted: now.toLocaleDateString('id-ID') + ' ' + now.toLocaleTimeString('id-ID'),
+    metode: method,
+    total: total,
+    items: items.map(item => ({
+      nama: item.nama,
+      quantity: item.quantity,
+      harga: item.harga,
+      subtotal: item.harga * item.quantity
+    })),
+    customer: customerData
+  };
+  
+  // Ambil riwayat untuk user ini
+  let allRiwayat = JSON.parse(localStorage.getItem(`riwayat_${nim}`) || '[]');
+  allRiwayat.unshift(riwayat);
+  localStorage.setItem(`riwayat_${nim}`, JSON.stringify(allRiwayat));
+  
+  // Update tampilan jika sedang di halaman riwayat
+  if (document.getElementById('riwayatPage')?.style.display !== 'none') {
+    renderRiwayat();
+  }
+  
+  addRecord('Pembelian', `Order ${orderId} - Rp ${total.toLocaleString()}`);
+}
+
+// Fungsi untuk menampilkan riwayat
+function renderRiwayat() {
+  const container = document.getElementById('riwayatContainer');
+  if (!container) return;
+  
+  const allRiwayat = JSON.parse(localStorage.getItem('riwayatBelanja') || '[]');
+  
+  if (allRiwayat.length === 0) {
+    container.innerHTML = `
+      <div class="empty-record" style="padding:3rem;">
+        <div style="font-size:4rem;">🛍️</div>
+        <p>Belum ada riwayat pembelian</p>
+        <p style="font-size:0.8rem;">Yuk belanja dulu di halaman Produk!</p>
+      </div>
+    `;
+    return;
+  }
+  
+  container.innerHTML = allRiwayat.map(riwayat => `
+    <div style="background:#f8fafd; border-radius:1rem; padding:1rem; margin-bottom:1rem; border-left:4px solid #2a9d8f;">
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; margin-bottom:0.5rem;">
+        <div><strong>🧾 Order:</strong> ${riwayat.id}</div>
+        <div><strong>📅 Tanggal:</strong> ${riwayat.tanggalFormatted}</div>
+        <div><strong>💳 Metode:</strong> ${riwayat.metode === 'transfer' ? 'Transfer Bank' : (riwayat.metode === 'qris' ? 'QRIS' : 'COD')}</div>
+      </div>
+      <div style="background:white; border-radius:0.5rem; padding:0.5rem; margin:0.5rem 0;">
+        <table style="width:100%; font-size:0.75rem;">
+          <thead><tr><th>Produk</th><th>Jumlah</th><th>Harga</th><th>Subtotal</th></tr></thead>
+          <tbody>
+            ${riwayat.items.map(item => `
+              <tr><td>${item.nama}</td><td style="text-align:center">x${item.quantity}</td><td>Rp ${item.harga.toLocaleString()}</td><td>Rp ${item.subtotal.toLocaleString()}</td></tr>
+            `).join('')}
+          </tbody>
+        </table>
+      </div>
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-top:0.5rem;">
+        <div><strong>Total:</strong> <span style="color:#2a9d8f; font-size:1.1rem;">Rp ${riwayat.total.toLocaleString()}</span></div>
+        <button class="btn-back-mk" style="background:#1a4d5f; color:white; padding:0.3rem 0.8rem;" onclick="detailRiwayat('${riwayat.id}')">Detail</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+// Fungsi detail riwayat
+function detailRiwayat(orderId) {
+  const allRiwayat = JSON.parse(localStorage.getItem('riwayatBelanja') || '[]');
+  const riwayat = allRiwayat.find(r => r.id === orderId);
+  if (!riwayat) return;
+  
+  alert(`📋 DETAIL ORDER\n\nOrder: ${riwayat.id}\nTanggal: ${riwayat.tanggalFormatted}\nMetode: ${riwayat.metode}\nTotal: Rp ${riwayat.total.toLocaleString()}\n\nBarang:\n${riwayat.items.map(i => `- ${i.nama} x${i.quantity} = Rp ${i.subtotal.toLocaleString()}`).join('\n')}`);
+}
+
+// Hapus semua riwayat
+document.getElementById('hapusSemuaRiwayat')?.addEventListener('click', () => {
+  if (confirm('⚠️ Yakin ingin menghapus SEMUA riwayat pembelian? Tindakan ini tidak bisa dibatalkan!')) {
+    localStorage.setItem('riwayatBelanja', '[]');
+    renderRiwayat();
+    addRecord('Riwayat', 'Semua riwayat pembelian dihapus');
+    alert('✅ Semua riwayat telah dihapus!');
+  }
+});
+
+// Panggil renderRiwayat saat halaman dibuka
+window.renderRiwayat = renderRiwayat;
+window.detailRiwayat = detailRiwayat;
 // Variabel untuk menyimpan data pembayaran
 let paymentData = {
   method: 'transfer',
@@ -9380,6 +9648,9 @@ document.getElementById('confirmPaymentBtn')?.addEventListener('click', () => {
   }
   
   if (isValid) {
+    // SIMPAN RIWAYAT
+    simpanRiwayat(orderId, method, total, cartData, customerData);
+    
     // Bersihkan timer QRIS
     if (qrisTimerInterval) clearInterval(qrisTimerInterval);
     
@@ -9418,8 +9689,8 @@ if (!document.getElementById('rekomendasiPage')) {
   rekomendasiPage.style.display = 'none';
   rekomendasiPage.innerHTML = `
     <div style="background:white; border-radius:1rem; padding:2rem;">
-      <h2 style="color:#1a4d5f;"></i>Scan Nilai & Rekomendasi Jurusan</h2>
-      <p style="color:#6c7e91;">Pilih metode input nilai:</p>
+      <h2 style="color:#1a4d5f; text-align: center;"></i>Scan Nilai</h2>
+      <p style="color:#6c7e91;text-align: center;">Pilih metode input nilai:</p>
       
       <!-- TAB OPSI -->
       <div style="display:flex; gap:1rem; margin-bottom:1.5rem; border-bottom:2px solid #e2edf2;">
@@ -9585,6 +9856,85 @@ function prosesManual() {
   
   const rataRata = total / count;
   tampilkanRekomendasi(nilaiMap, rataRata);
+}
+
+// ========== MENYIMPAN STATE HALAMAN ==========
+function saveCurrentPageToStorage() {
+  // Cari halaman mana yang sedang aktif
+  const pages = ['profilPage', 'mataKuliahPage', 'latihanSoalPage', 'hasilNilaiPage', 
+                 'gameMateriPage', 'rasionalisasiPage', 'produkPage', 'keranjangPage', 
+                 'pembayaranPage', 'rekomendasiPage', 'riwayatPage'];
+  
+  for (const page of pages) {
+    const el = document.getElementById(page);
+    if (el && el.style.display !== 'none') {
+      localStorage.setItem('lastActivePage', page);
+      
+      // Simpan state spesifik per halaman
+      if (page === 'produkPage') {
+        // Simpan scroll position jika perlu
+      }
+      if (page === 'keranjangPage') {
+        // Simpan data keranjang sudah otomatis di localStorage
+      }
+      if (page === 'riwayatPage') {
+        // Riwayat sudah tersimpan di localStorage
+      }
+      if (page === 'mataKuliahPage') {
+        const mkContentVisible = document.getElementById('mkContentPage')?.style.display === 'block';
+        localStorage.setItem('mataKuliah_mkVisible', mkContentVisible);
+        if (mkContentVisible) {
+          const mkTitle = document.getElementById('mkContentTitle')?.innerText || '';
+          localStorage.setItem('mataKuliah_lastMK', mkTitle);
+        }
+      }
+      if (page === 'latihanSoalPage') {
+        const latihanVisible = document.getElementById('latihanSoalContainer')?.style.display === 'block';
+        localStorage.setItem('latihanSoal_active', latihanVisible);
+      }
+      break;
+    }
+  }
+}
+
+// Fungsi untuk memuat halaman terakhir
+function loadLastPage() {
+  const lastPage = localStorage.getItem('lastActivePage');
+  const validPages = ['profilPage', 'mataKuliahPage', 'latihanSoalPage', 'hasilNilaiPage', 
+                      'gameMateriPage', 'rasionalisasiPage', 'produkPage', 'keranjangPage', 
+                      'pembayaranPage', 'rekomendasiPage', 'riwayatPage'];
+  
+  if (lastPage && validPages.includes(lastPage) && currentUser) {
+    showPage(lastPage);
+    
+    // Restore state spesifik
+    if (lastPage === 'mataKuliahPage') {
+      const mkVisible = localStorage.getItem('mataKuliah_mkVisible') === 'true';
+      if (mkVisible) {
+        // Tampilkan konten MK terakhir
+        const lastMK = localStorage.getItem('mataKuliah_lastMK');
+        if (lastMK) {
+          // Cari MK ID berdasarkan title
+          for (const [id, data] of Object.entries(kontenMk)) {
+            if (data.title === lastMK) {
+              showMkContent(id);
+              break;
+            }
+          }
+        }
+      }
+    }
+    
+    if (lastPage === 'latihanSoalPage') {
+      const latihanActive = localStorage.getItem('latihanSoal_active') === 'true';
+      if (latihanActive) {
+        // Bisa restore latihan jika diperlukan
+      }
+    }
+    
+    return true;
+  }
+  return false;
 }
 
 // Proses upload file
