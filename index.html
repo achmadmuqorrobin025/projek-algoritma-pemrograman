@@ -505,6 +505,11 @@
       margin-top: 0.5rem;
       cursor: pointer;
     }
+    @keyframes bounce {
+  0% { transform: scale(0.8); opacity: 0; }
+  80% { transform: scale(1.05); }
+  100% { transform: scale(1); opacity: 1; }
+    }
 
     /* RASIONALISASI PTN */
     .rasionalisasi-search {
@@ -1025,15 +1030,36 @@
     <div id="universityResult" class="university-result" style="margin-top: 1.5rem;"></div>
   </div>
 </div>
+<!-- MAIN APP -->
 
-    <div class="footer-note">©2026 | Praktikum Algoritma Pemrograman - UNNES</div>
-  </div>
-</div>
+<footer style="text-align: center; padding: 1rem; font-size: 0.7rem; color: #6c7e91; border-top: 1px solid #e2edf2; margin-top: 2rem;">
+  ©2026 | Praktikum Algoritma Pemrograman - UNNES
+</footer>
 
 <script>
   // ========== GAME PENANGKAP JAWABAN (KUCING) ==========
 
 // Database soal per mata kuliah
+// ========== DEKLARASI VARIABEL GAME ==========
+let gameCurrentMk = null;
+let gameCurrentQuestions = [];
+let gameCurrentQuestionIndex = 0;
+let gameScore = 0;
+let gameLives = 3;
+let gameActive = false;
+let gameItems = [];
+let gameCatX = 0;
+let gameSpawnCounter = 0;
+let gameSpawnDelay = 80;
+let gameAnimationId = null;
+let gameCanvas = null;
+let gameCtx = null;
+let gameWidth = 800;
+let gameHeight = 500;
+let gameQuestionText = "";
+let gameCurrentOptions = [];
+let gameCorrectAnswer = "";
+let gameItemSpeed = 2.5;
 const gameQuestions = {
   "aljabar-vektor": {
     title: "Aljabar Vektor",
@@ -1111,7 +1137,6 @@ const gameQuestions = {
 function loadGameMkGrid() {
   const grid = document.getElementById('gameMkGrid');
   if (!grid) return;
-  
   const mkList = Object.keys(gameQuestions);
   grid.innerHTML = mkList.map(mkId => `
     <div class="mk-card" data-game-mk="${mkId}">
@@ -1120,7 +1145,6 @@ function loadGameMkGrid() {
       <button class="btn-masuk-mk">MAIN</button>
     </div>
   `).join('');
-  
   document.querySelectorAll('[data-game-mk]').forEach(card => {
     card.addEventListener('click', () => startGame(card.getAttribute('data-game-mk')));
   });
@@ -1136,6 +1160,7 @@ function startGame(mkId) {
   gameItems = [];
   gameCatX = gameWidth / 2 - 40;
   gameSpawnCounter = 0;
+  gameSpawnDelay = 80;
   
   document.getElementById('gameMkName').innerText = gameQuestions[mkId].title;
   document.getElementById('gameScore').innerText = "0";
@@ -1144,17 +1169,14 @@ function startGame(mkId) {
   document.getElementById('gameMkGrid').style.display = 'none';
   document.getElementById('gameResult').style.display = 'none';
   
-  // Load soal pertama
   loadNextQuestion();
   
-  // Start game loop
   if (gameAnimationId) cancelAnimationFrame(gameAnimationId);
   gameAnimationId = requestAnimationFrame(gameLoop);
 }
 
 function loadNextQuestion() {
   if (gameCurrentQuestionIndex >= gameCurrentQuestions.length) {
-    // Game selesai - menang!
     endGame(true);
     return;
   }
@@ -1163,18 +1185,22 @@ function loadNextQuestion() {
   gameQuestionText = q.text;
   gameCurrentOptions = [...q.options];
   gameCorrectAnswer = q.correct;
+  
+  document.getElementById('gameQuestionCount').innerText = gameCurrentQuestionIndex + 1;
+  document.getElementById('gameTotalQuestions').innerText = gameCurrentQuestions.length;
+  
+  console.log("Soal baru:", gameQuestionText, "Jawaban benar:", gameCorrectAnswer);
 }
 
-// Perbaiki spawnItem - background putih
 function spawnItem() {
   if (!gameActive) return;
   
-  // Pilih jawaban random (termasuk yang salah)
+  if (gameCurrentOptions.length === 0) return;
+  
   const randomIndex = Math.floor(Math.random() * gameCurrentOptions.length);
   const answerText = gameCurrentOptions[randomIndex];
   const isCorrect = (answerText === gameCorrectAnswer);
-  
-  const x = Math.random() * (gameWidth - 60) + 30;
+  const x = Math.random() * (gameWidth - 100) + 50;
   
   gameItems.push({
     x: x,
@@ -1182,13 +1208,10 @@ function spawnItem() {
     text: answerText,
     isCorrect: isCorrect,
     width: 80,
-    height: 35,
-    showFeedback: false,     // untuk animasi feedback
-    feedbackType: null       // 'correct' atau 'wrong'
+    height: 35
   });
 }
 
-// Perbaiki gameLoop
 function gameLoop() {
   if (!gameActive) {
     if (gameAnimationId) cancelAnimationFrame(gameAnimationId);
@@ -1203,111 +1226,124 @@ function gameLoop() {
     gameCanvas.height = gameHeight;
   }
   
-  // Clear canvas
   gameCtx.clearRect(0, 0, gameWidth, gameHeight);
   
-  // Gambar background
+  // Background
   gameCtx.fillStyle = "#87CEEB";
   gameCtx.fillRect(0, 0, gameWidth, gameHeight);
   gameCtx.fillStyle = "#8FBC8F";
   gameCtx.fillRect(0, gameHeight - 80, gameWidth, 80);
   
-  // Gambar soal di atas
+  // Soal
   gameCtx.fillStyle = "#1a4d5f";
   gameCtx.font = "bold 16px 'Inter'";
   gameCtx.textAlign = "center";
   gameCtx.fillText(`📝 ${gameQuestionText}`, gameWidth/2, 40);
-  
-  // Tampilkan progress soal
   gameCtx.font = "12px 'Inter'";
   gameCtx.fillStyle = "#6c7e91";
   gameCtx.fillText(`Soal ${gameCurrentQuestionIndex + 1}/${gameCurrentQuestions.length}`, gameWidth/2, 65);
+  gameCtx.fillStyle = "#d9534f";
+  gameCtx.fillText(`❤️ ${gameLives}`, gameWidth - 50, 30);
   
-  // Gambar item yang jatuh
+  // Gambar kucing
+  gameCtx.fillStyle = "#f4a261";
+  gameCtx.beginPath();
+  gameCtx.ellipse(gameCatX + 40, gameHeight - 45, 35, 30, 0, 0, Math.PI * 2);
+  gameCtx.fill();
+  gameCtx.fillStyle = "#f4a261";
+  gameCtx.beginPath();
+  gameCtx.ellipse(gameCatX + 40, gameHeight - 70, 25, 22, 0, 0, Math.PI * 2);
+  gameCtx.fill();
+  gameCtx.fillStyle = "#e76f51";
+  gameCtx.beginPath();
+  gameCtx.moveTo(gameCatX + 25, gameHeight - 85);
+  gameCtx.lineTo(gameCatX + 15, gameHeight - 100);
+  gameCtx.lineTo(gameCatX + 35, gameHeight - 92);
+  gameCtx.fill();
+  gameCtx.beginPath();
+  gameCtx.moveTo(gameCatX + 55, gameHeight - 85);
+  gameCtx.lineTo(gameCatX + 65, gameHeight - 100);
+  gameCtx.lineTo(gameCatX + 45, gameHeight - 92);
+  gameCtx.fill();
+  gameCtx.fillStyle = "#2c3e50";
+  gameCtx.beginPath();
+  gameCtx.arc(gameCatX + 30, gameHeight - 75, 4, 0, Math.PI * 2);
+  gameCtx.fill();
+  gameCtx.beginPath();
+  gameCtx.arc(gameCatX + 50, gameHeight - 75, 4, 0, Math.PI * 2);
+  gameCtx.fill();
+  gameCtx.fillStyle = "white";
+  gameCtx.beginPath();
+  gameCtx.arc(gameCatX + 28, gameHeight - 77, 1.5, 0, Math.PI * 2);
+  gameCtx.fill();
+  gameCtx.beginPath();
+  gameCtx.arc(gameCatX + 48, gameHeight - 77, 1.5, 0, Math.PI * 2);
+  gameCtx.fill();
+  gameCtx.fillStyle = "#e76f51";
+  gameCtx.beginPath();
+  gameCtx.arc(gameCatX + 40, gameHeight - 68, 3, 0, Math.PI * 2);
+  gameCtx.fill();
+  gameCtx.fillStyle = "#8B4513";
+  gameCtx.fillRect(gameCatX + 10, gameHeight - 95, 60, 12);
+  
+  // Gambar item dan cek tabrakan
   for (let i = 0; i < gameItems.length; i++) {
     const item = gameItems[i];
     item.y += gameItemSpeed;
     
-    // Background PUTIH untuk semua jawaban
+    // Gambar item (PUTIH semua)
     gameCtx.fillStyle = "white";
     gameCtx.shadowBlur = 3;
-    gameCtx.shadowColor = "rgba(0,0,0,0.2)";
     gameCtx.beginPath();
     gameCtx.roundRect(item.x - item.width/2, item.y - 15, item.width, 30, 15);
     gameCtx.fill();
     gameCtx.shadowBlur = 0;
-    
-    // Border abu-abu tipis
     gameCtx.strokeStyle = "#cbdde6";
     gameCtx.lineWidth = 1;
     gameCtx.beginPath();
     gameCtx.roundRect(item.x - item.width/2, item.y - 15, item.width, 30, 15);
     gameCtx.stroke();
     
-    // Teks jawaban warna gelap
     gameCtx.fillStyle = "#1a2c3e";
     gameCtx.font = "bold 11px 'Inter'";
-    gameCtx.textAlign = "center";
     gameCtx.fillText(item.text, item.x, item.y);
     
-    // Tampilkan feedback jika ada (centang/silang)
-    if (item.showFeedback) {
-      const feedbackX = item.x;
-      const feedbackY = item.y - 20;
-      gameCtx.font = "bold 24px 'Inter'";
-      gameCtx.textAlign = "center";
-      if (item.feedbackType === 'correct') {
-        gameCtx.fillStyle = "#2a9d8f";
-        gameCtx.fillText("✓", feedbackX, feedbackY);
-      } else if (item.feedbackType === 'wrong') {
-        gameCtx.fillStyle = "#d9534f";
-        gameCtx.fillText("✗", feedbackX, feedbackY);
-      }
-    }
+    // DETEKSI TABRAKAN
+    const catLeft = gameCatX + 10;
+    const catRight = gameCatX + 70;
+    const itemLeft = item.x - item.width/2;
+    const itemRight = item.x + item.width/2;
+    const itemBottom = item.y + 15;
+    const catTop = gameHeight - 75;
     
-    // Cek collision dengan kucing
-    const catBottom = gameHeight - 60;
-    const catLeft = gameCatX;
-    const catRight = gameCatX + 80;
-    
-    if (item.y + 15 > catBottom && item.x + item.width/2 > catLeft && item.x - item.width/2 < catRight) {
-      // Tertangkap!
+    if (itemBottom > catTop && itemRight > catLeft && itemLeft < catRight) {
+      console.log("TERTANGKAP! Jawaban:", item.text, "Benar?", item.isCorrect);
+      
       if (item.isCorrect) {
         gameScore += 10;
         document.getElementById('gameScore').innerText = gameScore;
-        addRecord('Game', `${gameQuestions[gameCurrentMk].title} - Jawaban benar: ${item.text}`);
-        
-        // Tampilkan centang hijau
-        item.showFeedback = true;
-        item.feedbackType = 'correct';
-        
-        // Hapus item setelah feedback (0.5 detik)
-        setTimeout(() => {
-          const index = gameItems.indexOf(item);
-          if (index !== -1) gameItems.splice(index, 1);
-        }, 300);
-        
+        addRecord('Game', `✅ Benar: ${item.text} (+10 poin)`);
       } else {
         gameLives--;
         document.getElementById('gameLives').innerText = gameLives;
-        addRecord('Game', `${gameQuestions[gameCurrentMk].title} - Jawaban salah: ${item.text}`);
-        
-        // Tampilkan silang merah
-        item.showFeedback = true;
-        item.feedbackType = 'wrong';
-        
-        // Hapus item setelah feedback
-        setTimeout(() => {
-          const index = gameItems.indexOf(item);
-          if (index !== -1) gameItems.splice(index, 1);
-        }, 300);
-        
+        addRecord('Game', `❌ Salah: ${item.text} (nyawa: ${gameLives})`);
         if (gameLives <= 0) {
           endGame(false);
           return;
         }
       }
-      continue;
+      
+      // Lanjut ke soal berikutnya
+      gameCurrentQuestionIndex++;
+      if (gameCurrentQuestionIndex < gameCurrentQuestions.length) {
+        loadNextQuestion();
+        gameItems = []; // Hapus semua item yang jatuh
+        gameSpawnCounter = 0;
+      } else {
+        endGame(true);
+        return;
+      }
+      break; // Keluar dari loop, frame berikutnya akan spawn item baru
     }
     
     // Hapus item yang jatuh ke bawah tanpa tertangkap
@@ -1317,312 +1353,95 @@ function gameLoop() {
     }
   }
   
-  // Gambar kucing (sama seperti sebelumnya)
-  gameCtx.fillStyle = "#f4a261";
-  gameCtx.beginPath();
-  gameCtx.ellipse(gameCatX + 40, gameHeight - 45, 35, 30, 0, 0, Math.PI * 2);
-  gameCtx.fill();
-  gameCtx.fillStyle = "#f4a261";
-  gameCtx.beginPath();
-  gameCtx.ellipse(gameCatX + 40, gameHeight - 70, 25, 22, 0, 0, Math.PI * 2);
-  gameCtx.fill();
-  gameCtx.fillStyle = "#e76f51";
-  gameCtx.beginPath();
-  gameCtx.moveTo(gameCatX + 25, gameHeight - 85);
-  gameCtx.lineTo(gameCatX + 15, gameHeight - 100);
-  gameCtx.lineTo(gameCatX + 35, gameHeight - 92);
-  gameCtx.fill();
-  gameCtx.beginPath();
-  gameCtx.moveTo(gameCatX + 55, gameHeight - 85);
-  gameCtx.lineTo(gameCatX + 65, gameHeight - 100);
-  gameCtx.lineTo(gameCatX + 45, gameHeight - 92);
-  gameCtx.fill();
-  gameCtx.fillStyle = "#2c3e50";
-  gameCtx.beginPath();
-  gameCtx.arc(gameCatX + 30, gameHeight - 75, 4, 0, Math.PI * 2);
-  gameCtx.fill();
-  gameCtx.beginPath();
-  gameCtx.arc(gameCatX + 50, gameHeight - 75, 4, 0, Math.PI * 2);
-  gameCtx.fill();
-  gameCtx.fillStyle = "white";
-  gameCtx.beginPath();
-  gameCtx.arc(gameCatX + 28, gameHeight - 77, 1.5, 0, Math.PI * 2);
-  gameCtx.fill();
-  gameCtx.beginPath();
-  gameCtx.arc(gameCatX + 48, gameHeight - 77, 1.5, 0, Math.PI * 2);
-  gameCtx.fill();
-  gameCtx.fillStyle = "#e76f51";
-  gameCtx.beginPath();
-  gameCtx.arc(gameCatX + 40, gameHeight - 68, 3, 0, Math.PI * 2);
-  gameCtx.fill();
-  gameCtx.beginPath();
-  gameCtx.moveTo(gameCatX + 20, gameHeight - 68);
-  gameCtx.lineTo(gameCatX + 5, gameHeight - 70);
-  gameCtx.moveTo(gameCatX + 20, gameHeight - 65);
-  gameCtx.lineTo(gameCatX + 5, gameHeight - 63);
-  gameCtx.moveTo(gameCatX + 60, gameHeight - 68);
-  gameCtx.lineTo(gameCatX + 75, gameHeight - 70);
-  gameCtx.moveTo(gameCatX + 60, gameHeight - 65);
-  gameCtx.lineTo(gameCatX + 75, gameHeight - 63);
-  gameCtx.stroke();
-  gameCtx.fillStyle = "#8B4513";
-  gameCtx.fillRect(gameCatX + 10, gameHeight - 95, 60, 12);
-  gameCtx.fillStyle = "#A0522D";
-  gameCtx.fillRect(gameCatX + 15, gameHeight - 93, 50, 6);
-  
   // Spawn item baru
-  gameSpawnCounter++;
-  if (gameSpawnCounter >= gameSpawnDelay) {
-    gameSpawnCounter = 0;
-    spawnItem();
-    gameSpawnDelay = Math.max(40, 80 - Math.floor(gameScore / 100));
+  if (gameItems.length < 3 && gameActive) {
+    gameSpawnCounter++;
+    if (gameSpawnCounter >= gameSpawnDelay) {
+      gameSpawnCounter = 0;
+      spawnItem();
+      gameSpawnDelay = Math.max(40, 70 - Math.floor(gameScore / 100));
+    }
   }
   
   gameAnimationId = requestAnimationFrame(gameLoop);
 }
 
-// Perbaiki endGame - simpan nilai ke sistem
 function endGame(isWin) {
   gameActive = false;
   if (gameAnimationId) cancelAnimationFrame(gameAnimationId);
   
-  const resultDiv = document.getElementById('gameResult');
-  const resultText = document.getElementById('gameResultText');
+  const totalSoal = gameCurrentQuestions.length;
+  const maxScore = totalSoal * 10;
+  const nilai = Math.round((gameScore / maxScore) * 100);
   
-  // Ambil data user
-  let currentUserData = currentUser;
-  if (!currentUserData) {
-    const saved = localStorage.getItem('currentUserData');
-    if (saved) currentUserData = JSON.parse(saved);
-  }
+  // Buat modal popup di tengah layar
+  let modalHtml = '';
   
   if (isWin) {
-    const totalSoal = gameCurrentQuestions.length;
-    const maxScore = totalSoal * 10;
-    const nilai = Math.round((gameScore / maxScore) * 100);
-    
-    resultText.innerHTML = `
-      <div style="font-size: 3rem;">🏆🎉🏆</div>
-      <h3 style="color: #2a9d8f;">SELAMAT! ANDA MENANG!</h3>
-      <p>Skor akhir: <strong>${gameScore}</strong> / ${maxScore}</p>
-      <p>Nilai: <strong>${nilai}</strong></p>
-      <p>Berhasil menyelesaikan ${totalSoal} soal!</p>
+    modalHtml = `
+      <div id="gameModal" style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:10000; display:flex; justify-content:center; align-items:center;">
+        <div style="background:white; border-radius:2rem; padding:2rem; text-align:center; max-width:400px; width:90%; animation: bounce 0.5s ease;">
+          <div style="font-size:5rem;">🏆🎉🏆</div>
+          <h2 style="color:#2a9d8f; margin:1rem 0;">SELAMAT!</h2>
+          <h3 style="color:#1a4d5f;">ANDA MENANG!</h3>
+          <div style="margin:1.5rem 0; padding:1rem; background:#f0f4fa; border-radius:1rem;">
+            <p style="font-size:1.2rem;"><strong>✨ Skor Akhir:</strong> ${gameScore} / ${maxScore}</p>
+            <p style="font-size:1.5rem;"><strong>📊 Nilai:</strong> ${nilai}</p>
+            <p style="font-size:0.8rem; color:#6c7e91;">✅ Benar: ${gameScore/10} soal</p>
+          </div>
+          <button id="closeGameModal" class="btn-login-modern" style="background:#2a9d8f; width:auto; padding:0.7rem 2rem; margin-top:0.5rem;">Kembali ke Game</button>
+        </div>
+      </div>
     `;
     addRecord('Game', `${gameQuestions[gameCurrentMk].title} - MENANG! Nilai: ${nilai}`);
     
-    // Simpan nilai ke database permanen
+    // Simpan nilai ke database
+    let currentUserData = currentUser;
+    if (!currentUserData) {
+      const saved = localStorage.getItem('currentUserData');
+      if (saved) currentUserData = JSON.parse(saved);
+    }
     if (currentUserData && currentUserData.nim) {
       simpanNilai(currentUserData.nim, currentUserData.nama, nilai, totalSoal, gameScore/10);
     }
+    
   } else {
-    resultText.innerHTML = `
-      <div style="font-size: 3rem;">😭💀😭</div>
-      <h3 style="color: #d9534f;">GAME OVER!</h3>
-      <p>Skor akhir: <strong>${gameScore}</strong></p>
-      <p>Nyawa habis! Coba lagi ya!</p>
+    modalHtml = `
+      <div id="gameModal" style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:10000; display:flex; justify-content:center; align-items:center;">
+        <div style="background:white; border-radius:2rem; padding:2rem; text-align:center; max-width:400px; width:90%; animation: bounce 0.5s ease;">
+          <div style="font-size:5rem;">😭💀😭</div>
+          <h2 style="color:#d9534f; margin:1rem 0;">GAME OVER!</h2>
+          <div style="margin:1.5rem 0; padding:1rem; background:#f0f4fa; border-radius:1rem;">
+            <p style="font-size:1.2rem;"><strong>✨ Skor Akhir:</strong> ${gameScore} / ${maxScore}</p>
+            <p style="font-size:0.8rem; color:#6c7e91;">✅ Benar: ${gameScore/10} soal</p>
+          </div>
+          <button id="closeGameModal" class="btn-login-modern" style="background:#f4a261; width:auto; padding:0.7rem 2rem; margin-top:0.5rem;">Coba Lagi</button>
+        </div>
+      </div>
     `;
     addRecord('Game', `${gameQuestions[gameCurrentMk].title} - GAME OVER! Skor: ${gameScore}`);
   }
   
-  resultDiv.style.display = 'block';
-}
-
-function gameLoop() {
-  if (!gameActive) {
-    if (gameAnimationId) cancelAnimationFrame(gameAnimationId);
-    return;
-  }
+  // Sembunyikan area game
+  document.getElementById('gameArea').style.display = 'none';
+  document.getElementById('gameMkGrid').style.display = 'grid';
   
-  if (!gameCanvas) {
-    gameCanvas = document.getElementById('gameCanvas');
-    if (!gameCanvas) return;
-    gameCtx = gameCanvas.getContext('2d');
-    gameCanvas.width = gameWidth;
-    gameCanvas.height = gameHeight;
-  }
+  // Tampilkan modal
+  document.body.insertAdjacentHTML('beforeend', modalHtml);
   
-  // Clear canvas
-  gameCtx.clearRect(0, 0, gameWidth, gameHeight);
-  
-  // Gambar background
-  // Langit
-  gameCtx.fillStyle = "#87CEEB";
-  gameCtx.fillRect(0, 0, gameWidth, gameHeight);
-  // Rumput
-  gameCtx.fillStyle = "#8FBC8F";
-  gameCtx.fillRect(0, gameHeight - 80, gameWidth, 80);
-  
-  // Gambar soal di atas
-  gameCtx.fillStyle = "#1a4d5f";
-  gameCtx.font = "bold 18px 'Inter'";
-  gameCtx.textAlign = "center";
-  gameCtx.fillText(`📝 ${gameQuestionText}`, gameWidth/2, 50);
-  
-  // Gambar item yang jatuh
-  for (let i = 0; i < gameItems.length; i++) {
-    const item = gameItems[i];
-    item.y += gameItemSpeed;
-    
-    // Gambar background jawaban
-    gameCtx.fillStyle = item.isCorrect ? "#2a9d8f" : "#d9534f";
-    gameCtx.shadowBlur = 4;
-    gameCtx.shadowColor = "rgba(0,0,0,0.2)";
-    gameCtx.beginPath();
-    gameCtx.roundRect(item.x - item.width/2, item.y - 15, item.width, 30, 15);
-    gameCtx.fill();
-    gameCtx.shadowBlur = 0;
-    
-    // Gambar teks jawaban
-    gameCtx.fillStyle = "white";
-    gameCtx.font = "bold 12px 'Inter'";
-    gameCtx.textAlign = "center";
-    gameCtx.fillText(item.text, item.x, item.y);
-    
-    // Cek collision dengan kucing
-    const catBottom = gameHeight - 60;
-    const catLeft = gameCatX;
-    const catRight = gameCatX + 80;
-    
-    if (item.y + 15 > catBottom && item.x + item.width/2 > catLeft && item.x - item.width/2 < catRight) {
-      // Tertangkap!
-      if (item.isCorrect) {
-        gameScore += 10;
-        document.getElementById('gameScore').innerText = gameScore;
-        addRecord('Game', `${gameQuestions[gameCurrentMk].title} - Jawaban benar: ${item.text}`);
-      } else {
-        gameLives--;
-        document.getElementById('gameLives').innerText = gameLives;
-        addRecord('Game', `${gameQuestions[gameCurrentMk].title} - Jawaban salah: ${item.text}`);
-        
-        if (gameLives <= 0) {
-          endGame(false);
-          return;
-        }
-      }
-      // Hapus item
-      gameItems.splice(i, 1);
-      i--;
-      continue;
-    }
-    
-    // Hapus item yang jatuh ke bawah tanpa tertangkap
-    if (item.y + 20 > gameHeight - 60) {
-      gameItems.splice(i, 1);
-      i--;
-    }
-  }
-  
-  // Gambar kucing
-  // Badan
-  gameCtx.fillStyle = "#f4a261";
-  gameCtx.beginPath();
-  gameCtx.ellipse(gameCatX + 40, gameHeight - 45, 35, 30, 0, 0, Math.PI * 2);
-  gameCtx.fill();
-  // Kepala
-  gameCtx.fillStyle = "#f4a261";
-  gameCtx.beginPath();
-  gameCtx.ellipse(gameCatX + 40, gameHeight - 70, 25, 22, 0, 0, Math.PI * 2);
-  gameCtx.fill();
-  // Telinga
-  gameCtx.fillStyle = "#e76f51";
-  gameCtx.beginPath();
-  gameCtx.moveTo(gameCatX + 25, gameHeight - 85);
-  gameCtx.lineTo(gameCatX + 15, gameHeight - 100);
-  gameCtx.lineTo(gameCatX + 35, gameHeight - 92);
-  gameCtx.fill();
-  gameCtx.beginPath();
-  gameCtx.moveTo(gameCatX + 55, gameHeight - 85);
-  gameCtx.lineTo(gameCatX + 65, gameHeight - 100);
-  gameCtx.lineTo(gameCatX + 45, gameHeight - 92);
-  gameCtx.fill();
-  // Mata
-  gameCtx.fillStyle = "#2c3e50";
-  gameCtx.beginPath();
-  gameCtx.arc(gameCatX + 30, gameHeight - 75, 4, 0, Math.PI * 2);
-  gameCtx.fill();
-  gameCtx.beginPath();
-  gameCtx.arc(gameCatX + 50, gameHeight - 75, 4, 0, Math.PI * 2);
-  gameCtx.fill();
-  gameCtx.fillStyle = "white";
-  gameCtx.beginPath();
-  gameCtx.arc(gameCatX + 28, gameHeight - 77, 1.5, 0, Math.PI * 2);
-  gameCtx.fill();
-  gameCtx.beginPath();
-  gameCtx.arc(gameCatX + 48, gameHeight - 77, 1.5, 0, Math.PI * 2);
-  gameCtx.fill();
-  // Hidung
-  gameCtx.fillStyle = "#e76f51";
-  gameCtx.beginPath();
-  gameCtx.arc(gameCatX + 40, gameHeight - 68, 3, 0, Math.PI * 2);
-  gameCtx.fill();
-  // Kumis
-  gameCtx.beginPath();
-  gameCtx.moveTo(gameCatX + 20, gameHeight - 68);
-  gameCtx.lineTo(gameCatX + 5, gameHeight - 70);
-  gameCtx.moveTo(gameCatX + 20, gameHeight - 65);
-  gameCtx.lineTo(gameCatX + 5, gameHeight - 63);
-  gameCtx.moveTo(gameCatX + 60, gameHeight - 68);
-  gameCtx.lineTo(gameCatX + 75, gameHeight - 70);
-  gameCtx.moveTo(gameCatX + 60, gameHeight - 65);
-  gameCtx.lineTo(gameCatX + 75, gameHeight - 63);
-  gameCtx.stroke();
-  
-  // Nampan di kepala
-  gameCtx.fillStyle = "#8B4513";
-  gameCtx.fillRect(gameCatX + 10, gameHeight - 95, 60, 12);
-  gameCtx.fillStyle = "#A0522D";
-  gameCtx.fillRect(gameCatX + 15, gameHeight - 93, 50, 6);
-  
-  // Spawn item baru
-  gameSpawnCounter++;
-  if (gameSpawnCounter >= gameSpawnDelay) {
-    gameSpawnCounter = 0;
-    spawnItem();
-    // Semakin tinggi skor, semakin cepat spawn
-    gameSpawnDelay = Math.max(40, 80 - Math.floor(gameScore / 100));
-  }
-  
-  gameAnimationId = requestAnimationFrame(gameLoop);
-}
-
-function endGame(isWin) {
-  gameActive = false;
-  if (gameAnimationId) cancelAnimationFrame(gameAnimationId);
-  
-  const resultDiv = document.getElementById('gameResult');
-  const resultText = document.getElementById('gameResultText');
-  
-  if (isWin) {
-    resultText.innerHTML = `
-      <div style="font-size: 3rem;">🏆🎉🏆</div>
-      <h3 style="color: #2a9d8f;">SELAMAT! ANDA MENANG!</h3>
-      <p>Skor akhir: <strong>${gameScore}</strong></p>
-      <p>Berhasil menyelesaikan ${gameCurrentQuestions.length} soal!</p>
-    `;
-    addRecord('Game', `${gameQuestions[gameCurrentMk].title} - MENANG! Skor: ${gameScore}`);
-    
-    // Simpan nilai ke database
-    if (currentUser) {
-      const totalSoal = gameCurrentQuestions.length;
-      const nilai = Math.round((gameScore / (totalSoal * 10)) * 100);
-      simpanNilai(currentUser.nim, currentUser.nama, Math.max(nilai, 0), totalSoal, gameScore/10);
-    }
-  } else {
-    resultText.innerHTML = `
-      <div style="font-size: 3rem;">😭💀😭</div>
-      <h3 style="color: #d9534f;">GAME OVER!</h3>
-      <p>Skor akhir: <strong>${gameScore}</strong></p>
-      <p>Nyawa habis! Coba lagi ya!</p>
-    `;
-    addRecord('Game', `${gameQuestions[gameCurrentMk].title} - GAME OVER! Skor: ${gameScore}`);
-  }
-  
-  resultDiv.style.display = 'block';
+  // Event untuk tombol tutup
+  document.getElementById('closeGameModal').addEventListener('click', () => {
+    const modal = document.getElementById('gameModal');
+    if (modal) modal.remove();
+    gameActive = false;
+  });
 }
 
 function resetGame() {
   if (gameCurrentMk) {
-    startGame(gameCurrentMk);
+    if (gameAnimationId) cancelAnimationFrame(gameAnimationId);
+    gameActive = false;
+    setTimeout(() => startGame(gameCurrentMk), 100);
   }
 }
 
@@ -1634,26 +1453,16 @@ function backToGameMenu() {
   document.getElementById('gameResult').style.display = 'none';
 }
 
-// Event listeners untuk kontrol kucing
-function moveCatLeft() {
-  gameCatX = Math.max(0, gameCatX - 30);
-}
+function moveCatLeft() { gameCatX = Math.max(0, gameCatX - 30); }
+function moveCatRight() { gameCatX = Math.min(gameWidth - 80, gameCatX + 30); }
 
-function moveCatRight() {
-  gameCatX = Math.min(gameWidth - 80, gameCatX + 30);
-}
-
-// Inisialisasi game saat halaman dibuka
 function initGamePage() {
   loadGameMkGrid();
-  
-  // Kontrol keyboard
   window.addEventListener('keydown', (e) => {
     if (!gameActive) return;
     if (e.key === 'ArrowLeft') moveCatLeft();
     if (e.key === 'ArrowRight') moveCatRight();
   });
-  
   document.getElementById('moveLeftBtn')?.addEventListener('click', moveCatLeft);
   document.getElementById('moveRightBtn')?.addEventListener('click', moveCatRight);
   document.getElementById('resetGameBtn')?.addEventListener('click', resetGame);
@@ -1661,7 +1470,6 @@ function initGamePage() {
   document.getElementById('backToGameMenu')?.addEventListener('click', backToGameMenu);
 }
 
-// RoundRect helper
 if (!CanvasRenderingContext2D.prototype.roundRect) {
   CanvasRenderingContext2D.prototype.roundRect = function(x, y, w, h, r) {
     if (w < 2 * r) r = w / 2;
