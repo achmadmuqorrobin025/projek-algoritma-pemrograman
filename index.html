@@ -26,6 +26,11 @@
       --spacing-xl: 2rem;
       --border-radius: 1rem;
     }
+    @keyframes bounce {
+  0% { transform: scale(0.8); opacity: 0; }
+  80% { transform: scale(1.02); }
+  100% { transform: scale(1); opacity: 1; }
+}
 
     /* HAMBURGER MENU - AWALNYA HIDDEN */
     .hamburger-menu {
@@ -7863,27 +7868,1421 @@ const databasePTN = [
     ]}
 ];
   // ========== KONTEN MATA KULIAH (8 MK) ==========
-  const kontenMk = {
-    "aljabar-vektor": { title: "📐 Aljabar Vektor", content: `<p>Aljabar vektor mempelajari operasi pada vektor.</p><div class="rumus" style="background:#f0f4fa;padding:0.5rem;">a + b = (a₁+b₁, a₂+b₂)</div><div class="example-box" style="background:#eef2fa;padding:0.8rem;"><strong>📌 Contoh:</strong> a=(2,3), b=(4,1) → a+b=(6,4)</div>` },
-    "kalkulus": { title: "∫ Kalkulus Integral", content: `<p>Kalkulus integral mempelajari integral sebagai kebalikan turunan.</p><div class="rumus" style="background:#f0f4fa;padding:0.5rem;">∫ xⁿ dx = xⁿ⁺¹/(n+1) + C</div>` },
-    "program-linear": { title: "📊 Program Linear", content: `<p>Program linear mencari solusi optimal dengan batasan tertentu.</p><div class="rumus" style="background:#f0f4fa;padding:0.5rem;">Maks Z = c₁x₁ + c₂x₂</div>` },
-    "teori-bilangan": { title: "🔢 Teori Bilangan", content: `<h3>Keterbagian</h3><div class="rumus">a|b ⇔ ∃k∈ℤ, b=k·a</div><h3>FPB</h3><div class="rumus">gcd(a,b) = gcd(b, a mod b)</div>` },
-    "pkn": { title: "🇮🇩 Pendidikan Kewarganegaraan", content: `<h3>Pilar Kebangsaan</h3><ul><li>Pancasila</li><li>UUD 1945</li><li>NKRI</li><li>Bhinneka Tunggal Ika</li></ul>` },
-    "pancasila": { title: "🦅 Pendidikan Pancasila", content: `<h3>Nilai-nilai Pancasila</h3><ul><li>Sila 1: Ketuhanan</li><li>Sila 2: Kemanusiaan</li><li>Sila 3: Persatuan</li><li>Sila 4: Kerakyatan</li><li>Sila 5: Keadilan Sosial</li></ul>` },
-    "konservasi": { title: "🌿 Pendidikan Konservasi", content: `<h3>Prinsip 3R</h3><div class="rumus">Reduce → Reuse → Recycle</div><p>Hemat energi, lestarikan budaya.</p>` }
-  };
+ // ========== KONTEN MATA KULIAH SUPER LENGKAP (8 MK) ==========
+const kontenMk = {
+  "aljabar-vektor": { 
+    title: "📐 Aljabar Vektor", 
+    content: `
+      <style>
+        .materi-section { margin-bottom: 2rem; }
+        .materi-section h3 { color: #1a4d5f; margin-bottom: 0.8rem; border-left: 4px solid #2a9d8f; padding-left: 12px; }
+        .materi-section h4 { color: #2a9d8f; margin: 1rem 0 0.5rem 0; }
+        .rumus-box { background: #f0f4fa; padding: 1rem; border-radius: 0.8rem; margin: 1rem 0; border-left: 4px solid #f4a261; }
+        .contoh-box { background: #e8f5e9; padding: 1rem; border-radius: 0.8rem; margin: 1rem 0; border-left: 4px solid #2a9d8f; }
+        .soal-box { background: #fff7e5; padding: 1rem; border-radius: 0.8rem; margin: 1rem 0; border-left: 4px solid #f4a261; }
+        .list-content { padding-left: 1.5rem; margin: 0.5rem 0; }
+        .list-content li { margin: 0.3rem 0; }
+      </style>
+      
+      <div class="materi-section">
+        <h3>📌 Definisi Vektor</h3>
+        <p>Vektor adalah besaran yang memiliki nilai (magnitudo) dan arah. Berbeda dengan skalar yang hanya memiliki nilai saja.</p>
+        <div class="rumus-box">
+          <strong>Contoh Besaran Vektor:</strong>
+          <ul class="list-content">
+            <li>Perpindahan (displacement)</li>
+            <li>Kecepatan (velocity)</li>
+            <li>Percepatan (acceleration)</li>
+            <li>Gaya (force)</li>
+            <li>Momentum</li>
+          </ul>
+        </div>
+        <div class="rumus-box">
+          <strong>Contoh Besaran Skalar:</strong>
+          <ul class="list-content">
+            <li>Jarak (distance)</li>
+            <li>Kelajuan (speed)</li>
+            <li>Massa</li>
+            <li>Suhu</li>
+            <li>Waktu</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="materi-section">
+        <h3>📐 Notasi Vektor</h3>
+        <div class="rumus-box">
+          <p><strong>Vektor 2 Dimensi:</strong></p>
+          <p>a = (a₁, a₂) atau a = a₁i + a₂j</p>
+          <p>i = vektor satuan arah sumbu x = (1,0)</p>
+          <p>j = vektor satuan arah sumbu y = (0,1)</p>
+          <p style="margin-top: 0.8rem;"><strong>Vektor 3 Dimensi:</strong></p>
+          <p>a = (a₁, a₂, a₃) atau a = a₁i + a₂j + a₃k</p>
+          <p>k = vektor satuan arah sumbu z = (0,0,1)</p>
+        </div>
+      </div>
+      
+      <div class="materi-section">
+        <h3>➕ Operasi Vektor</h3>
+        
+        <h4>1. Penjumlahan Vektor</h4>
+        <div class="rumus-box">
+          <p><strong>Rumus:</strong> a + b = (a₁+b₁, a₂+b₂, a₃+b₃)</p>
+          <p><strong>Sifat:</strong> Komutatif (a+b = b+a) dan Asosiatif [(a+b)+c = a+(b+c)]</p>
+          <div class="contoh-box">
+            <strong>📌 Contoh:</strong> a = (2,3), b = (4,1)<br>
+            a + b = (2+4, 3+1) = (6,4)
+          </div>
+        </div>
+        
+        <h4>2. Pengurangan Vektor</h4>
+        <div class="rumus-box">
+          <p><strong>Rumus:</strong> a - b = (a₁-b₁, a₂-b₂, a₃-b₃)</p>
+          <div class="contoh-box">
+            <strong>📌 Contoh:</strong> a = (5,7), b = (2,3)<br>
+            a - b = (5-2, 7-3) = (3,4)
+          </div>
+        </div>
+        
+        <h4>3. Perkalian Skalar</h4>
+        <div class="rumus-box">
+          <p><strong>Rumus:</strong> k·a = (k·a₁, k·a₂, k·a₃)</p>
+          <div class="contoh-box">
+            <strong>📌 Contoh:</strong> a = (2,4), k = 3<br>
+            3·a = (3×2, 3×4) = (6,12)
+          </div>
+        </div>
+        
+        <h4>4. Dot Product (Perkalian Titik)</h4>
+        <div class="rumus-box">
+          <p><strong>Rumus:</strong> a · b = a₁b₁ + a₂b₂ + a₃b₃</p>
+          <p><strong>Hasilnya berupa SKALAR (bukan vektor)</strong></p>
+          <div class="contoh-box">
+            <strong>📌 Contoh:</strong> a = (2,3), b = (4,1)<br>
+            a·b = (2×4) + (3×1) = 8 + 3 = 11
+          </div>
+        </div>
+        
+        <h4>5. Cross Product (Perkalian Silang) - 3D</h4>
+        <div class="rumus-box">
+          <p><strong>Rumus:</strong> a × b = |a||b| sin θ</p>
+          <p><strong>Hasilnya berupa VEKTOR</strong> yang tegak lurus dengan a dan b</p>
+          <p>a × b = (a₂b₃ - a₃b₂, a₃b₁ - a₁b₃, a₁b₂ - a₂b₁)</p>
+        </div>
+      </div>
+      
+      <div class="materi-section">
+        <h3>📏 Panjang (Magnitudo) Vektor</h3>
+        <div class="rumus-box">
+          <p><strong>Rumus:</strong> |a| = √(a₁² + a₂² + a₃²)</p>
+          <div class="contoh-box">
+            <strong>📌 Contoh:</strong> a = (3,4)<br>
+            |a| = √(3² + 4²) = √(9+16) = √25 = 5
+          </div>
+        </div>
+      </div>
+      
+      <div class="materi-section">
+        <h3>🎯 Vektor Satuan (Unit Vector)</h3>
+        <div class="rumus-box">
+          <p>Vektor yang panjangnya = 1</p>
+          <p><strong>Rumus:</strong> ê = a / |a|</p>
+          <div class="contoh-box">
+            <strong>📌 Contoh:</strong> a = (3,4), |a| = 5<br>
+            ê = (3/5, 4/5) = (0.6, 0.8)<br>
+            Cek: √(0.6²+0.8²) = √(0.36+0.64) = √1 = 1
+          </div>
+        </div>
+      </div>
+      
+      <div class="materi-section">
+        <h3>📐 Sudut Antara Dua Vektor</h3>
+        <div class="rumus-box">
+          <p><strong>Rumus:</strong> cos θ = (a·b) / (|a|·|b|)</p>
+          <div class="contoh-box">
+            <strong>📌 Contoh:</strong> a = (1,0), b = (0,1)<br>
+            a·b = 0, |a|=1, |b|=1<br>
+            cos θ = 0/1 = 0 → θ = 90°
+          </div>
+        </div>
+      </div>
+      
+      <div class="materi-section">
+        <h3>📊 Proyeksi Vektor</h3>
+        <div class="rumus-box">
+          <p><strong>Proyeksi skalar a pada b:</strong> |a| cos θ = (a·b) / |b|</p>
+          <p><strong>Proyeksi vektor a pada b:</strong> ((a·b) / (|b|²)) · b</p>
+        </div>
+      </div>
+      
+      <div class="materi-section">
+        <h3>🧮 Latihan Soal</h3>
+        <div class="soal-box">
+          <p><strong>Soal 1:</strong> Diketahui a = (1,2) dan b = (3,4). Hitung 2a + b!</p>
+          <p><strong>Penyelesaian:</strong> 2a = (2,4), 2a+b = (2+3, 4+4) = (5,8)</p>
+        </div>
+        <div class="soal-box">
+          <p><strong>Soal 2:</strong> Hitung panjang vektor (6,8)!</p>
+          <p><strong>Penyelesaian:</strong> |v| = √(6²+8²) = √(36+64) = √100 = 10</p>
+        </div>
+        <div class="soal-box">
+          <p><strong>Soal 3:</strong> Hitung dot product (2,5)·(3,1)!</p>
+          <p><strong>Penyelesaian:</strong> (2×3)+(5×1) = 6+5 = 11</p>
+        </div>
+      </div>
+    `
+  },
+  
+  "algoritma": { 
+    title: "💻 Algoritma Pemrograman", 
+    content: `
+      <style>
+        .materi-section { margin-bottom: 2rem; }
+        .materi-section h3 { color: #1a4d5f; margin-bottom: 0.8rem; border-left: 4px solid #2a9d8f; padding-left: 12px; }
+        .materi-section h4 { color: #2a9d8f; margin: 1rem 0 0.5rem 0; }
+        .rumus-box { background: #f0f4fa; padding: 1rem; border-radius: 0.8rem; margin: 1rem 0; border-left: 4px solid #f4a261; }
+        .contoh-box { background: #e8f5e9; padding: 1rem; border-radius: 0.8rem; margin: 1rem 0; border-left: 4px solid #2a9d8f; }
+        .code-box { background: #2d2d2d; color: #f8f8f2; padding: 1rem; border-radius: 0.8rem; font-family: monospace; margin: 1rem 0; overflow-x: auto; }
+        .soal-box { background: #fff7e5; padding: 1rem; border-radius: 0.8rem; margin: 1rem 0; border-left: 4px solid #f4a261; }
+      </style>
+      
+      <div class="materi-section">
+        <h3>📌 Apa itu Algoritma?</h3>
+        <p>Algoritma adalah urutan langkah-langkah logis dan sistematis untuk menyelesaikan suatu masalah. Algoritma harus:</p>
+        <ul class="list-content">
+          <li><strong>Finite (Berhingga):</strong> Harus berakhir setelah sejumlah langkah</li>
+          <li><strong>Definite (Pasti):</strong> Setiap langkah harus jelas dan tidak ambigu</li>
+          <li><strong>Input (Masukan):</strong> Menerima data masukan</li>
+          <li><strong>Output (Keluaran):</strong> Menghasilkan keluaran</li>
+          <li><strong>Effective (Efektif):</strong> Langkah-langkah dapat dilaksanakan</li>
+        </ul>
+      </div>
+      
+      <div class="materi-section">
+        <h3>🔍 Linear Search (Pencarian Linear)</h3>
+        <p>Linear search adalah metode pencarian data dengan memeriksa setiap elemen satu per satu dari awal hingga akhir.</p>
+        <div class="code-box">
+          <pre style="margin:0; color:#f8f8f2;">
+function linearSearch(arr, target) {
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] === target) {
+      return i; // Ditemukan di indeks i
+    }
+  }
+  return -1; // Tidak ditemukan
+}</pre>
+        </div>
+        <div class="rumus-box">
+          <p><strong>Kompleksitas Waktu:</strong> O(n)</p>
+          <p><strong>Kompleksitas Ruang:</strong> O(1)</p>
+          <p><strong>Kelebihan:</strong> Data tidak perlu terurut, mudah diimplementasikan</p>
+          <p><strong>Kekurangan:</strong> Lambat untuk data yang sangat besar</p>
+        </div>
+        <div class="contoh-box">
+          <strong>📌 Contoh:</strong> Cari angka 99 pada [17, 8, 21, 5, 12, 99, 3]<br>
+          Langkah: cek 17→8→21→5→12→99 (ditemukan di indeks 5)
+        </div>
+      </div>
+      
+      <div class="materi-section">
+        <h3>⚡ Binary Search (Pencarian Biner)</h3>
+        <p>Binary search adalah metode pencarian dengan membagi data menjadi dua bagian secara berulang. <strong>Syarat utama: DATA HARUS TERURUT!</strong></p>
+        <div class="code-box">
+          <pre style="margin:0; color:#f8f8f2;">
+function binarySearch(arr, target) {
+  let left = 0;
+  let right = arr.length - 1;
+  
+  while (left <= right) {
+    let mid = Math.floor((left + right) / 2);
+    
+    if (arr[mid] === target) {
+      return mid; // Ditemukan
+    } else if (arr[mid] < target) {
+      left = mid + 1; // Cari di kanan
+    } else {
+      right = mid - 1; // Cari di kiri
+    }
+  }
+  return -1; // Tidak ditemukan
+}</pre>
+        </div>
+        <div class="rumus-box">
+          <p><strong>Kompleksitas Waktu:</strong> O(log n)</p>
+          <p><strong>Kompleksitas Ruang:</strong> O(1)</p>
+          <p><strong>Kelebihan:</strong> Sangat cepat untuk data besar</p>
+          <p><strong>Kekurangan:</strong> Data harus terurut</p>
+        </div>
+        <div class="contoh-box">
+          <strong>📌 Contoh:</strong> Cari angka 31 pada [3, 8, 15, 21, 31, 45, 67, 89]<br>
+          Langkah: mid=31 (ditemukan dalam 1 langkah!)
+        </div>
+      </div>
+      
+      <div class="materi-section">
+        <h3>📚 Struktur Data Stack (LIFO)</h3>
+        <p>Stack adalah struktur data dengan prinsip <strong>Last In First Out</strong> (yang terakhir masuk, pertama keluar). Mirip seperti tumpukan piring.</p>
+        <div class="code-box">
+          <pre style="margin:0; color:#f8f8f2;">
+class Stack {
+  constructor() {
+    this.items = [];
+  }
+  push(element) { this.items.push(element); } // tambah
+  pop() { return this.items.pop(); } // hapus terakhir
+  peek() { return this.items[this.items.length-1]; } // lihat teratas
+  isEmpty() { return this.items.length === 0; }
+}</pre>
+        </div>
+        <div class="rumus-box">
+          <p><strong>Operasi Stack:</strong> Push (tambah), Pop (hapus), Peek (lihat teratas)</p>
+          <p><strong>Aplikasi:</strong> Undo/Redo, Evaluasi ekspresi, Backtracking</p>
+        </div>
+      </div>
+      
+      <div class="materi-section">
+        <h3>📚 Struktur Data Queue (FIFO)</h3>
+        <p>Queue adalah struktur data dengan prinsip <strong>First In First Out</strong> (yang pertama masuk, pertama keluar). Mirip seperti antrian.</p>
+        <div class="code-box">
+          <pre style="margin:0; color:#f8f8f2;">
+class Queue {
+  constructor() {
+    this.items = [];
+  }
+  enqueue(element) { this.items.push(element); } // tambah
+  dequeue() { return this.items.shift(); } // hapus pertama
+  front() { return this.items[0]; } // lihat paling depan
+  isEmpty() { return this.items.length === 0; }
+}</pre>
+        </div>
+        <div class="rumus-box">
+          <p><strong>Operasi Queue:</strong> Enqueue (tambah), Dequeue (hapus), Front (lihat depan)</p>
+          <p><strong>Aplikasi:</strong> Manajemen proses CPU, Antrian pesan, BFS</p>
+        </div>
+      </div>
+      
+      <div class="materi-section">
+        <h3>🔄 Divide and Conquer</h3>
+        <p>Divide and Conquer adalah strategi algoritma dengan tiga langkah:</p>
+        <ol class="list-content">
+          <li><strong>Divide (Membagi):</strong> Memecah masalah menjadi sub-masalah kecil</li>
+          <li><strong>Conquer (Mengatasi):</strong> Menyelesaikan sub-masalah secara rekursif</li>
+          <li><strong>Combine (Menggabungkan):</strong> Menggabungkan solusi sub-masalah</li>
+        </ol>
+        <div class="rumus-box">
+          <p><strong>Contoh Algoritma:</strong> Quick Sort, Merge Sort, Binary Search, Karatsuba (perkalian)</p>
+        </div>
+        <div class="code-box">
+          <pre style="margin:0; color:#f8f8f2;">
+function divideConquer(arr) {
+  if (arr.length <= 1) return arr; // base case
+  
+  let mid = Math.floor(arr.length / 2);
+  let left = divideConquer(arr.slice(0, mid));
+  let right = divideConquer(arr.slice(mid));
+  
+  return merge(left, right); // combine
+}</pre>
+        </div>
+      </div>
+      
+      <div class="materi-section">
+        <h3>🧮 Kompleksitas Algoritma (Big O)</h3>
+        <div class="rumus-box">
+          <p><strong>O(1) - Konstan:</strong> Akses array, operasi aritmatika</p>
+          <p><strong>O(log n) - Logaritmik:</strong> Binary Search</p>
+          <p><strong>O(n) - Linear:</strong> Linear Search, iterasi sederhana</p>
+          <p><strong>O(n log n) - Linieritmik:</strong> Merge Sort, Quick Sort</p>
+          <p><strong>O(n²) - Kuadratik:</strong> Bubble Sort, Selection Sort</p>
+          <p><strong>O(2ⁿ) - Eksponensial:</strong> Fibonacci rekursif</p>
+        </div>
+      </div>
+      
+      <div class="materi-section">
+        <h3>📈 Perbandingan Algoritma Sorting</h3>
+        <table style="width:100%; border-collapse:collapse; margin:1rem 0;">
+          <thead><tr style="background:#1a4d5f; color:white;"><th style="padding:0.5rem;">Algoritma</th><th style="padding:0.5rem;">Best</th><th style="padding:0.5rem;">Average</th><th style="padding:0.5rem;">Worst</th></tr></thead>
+          <tbody>
+            <tr style="border-bottom:1px solid #e2edf2;"><td style="padding:0.5rem;">Bubble Sort</td><td>O(n)</td><td>O(n²)</td><td>O(n²)</td></tr>
+            <tr style="border-bottom:1px solid #e2edf2;"><td style="padding:0.5rem;">Quick Sort</td><td>O(n log n)</td><td>O(n log n)</td><td>O(n²)</td></tr>
+            <tr style="border-bottom:1px solid #e2edf2;"><td style="padding:0.5rem;">Merge Sort</td><td>O(n log n)</td><td>O(n log n)</td><td>O(n log n)</td></tr>
+            <tr style="border-bottom:1px solid #e2edf2;"><td style="padding:0.5rem;">Selection Sort</td><td>O(n²)</td><td>O(n²)</td><td>O(n²)</td></tr>
+          </tbody>
+        </table>
+      </div>
+      
+      <div class="materi-section">
+        <h3>🧮 Latihan Soal</h3>
+        <div class="soal-box">
+          <p><strong>Soal 1:</strong> Berapa kompleksitas Linear Search?</p>
+          <p><strong>Jawaban:</strong> O(n)</p>
+        </div>
+        <div class="soal-box">
+          <p><strong>Soal 2:</strong> Apa syarat Binary Search?</p>
+          <p><strong>Jawaban:</strong> Data harus terurut (sorted)</p>
+        </div>
+        <div class="soal-box">
+          <p><strong>Soal 3:</strong> Perbedaan Stack dan Queue?</p>
+          <p><strong>Jawaban:</strong> Stack: LIFO (Last In First Out), Queue: FIFO (First In First Out)</p>
+        </div>
+        <div class="soal-box">
+          <p><strong>Soal 4:</strong> Sebutkan algoritma yang menggunakan Divide and Conquer!</p>
+          <p><strong>Jawaban:</strong> Merge Sort, Quick Sort, Binary Search</p>
+        </div>
+      </div>
+    `
+  },
+  
+  "kalkulus": { 
+    title: "∫ Kalkulus Integral", 
+    content: `
+      <style>
+        .materi-section { margin-bottom: 2rem; }
+        .materi-section h3 { color: #1a4d5f; margin-bottom: 0.8rem; border-left: 4px solid #2a9d8f; padding-left: 12px; }
+        .materi-section h4 { color: #2a9d8f; margin: 1rem 0 0.5rem 0; }
+        .rumus-box { background: #f0f4fa; padding: 1rem; border-radius: 0.8rem; margin: 1rem 0; border-left: 4px solid #f4a261; }
+        .contoh-box { background: #e8f5e9; padding: 1rem; border-radius: 0.8rem; margin: 1rem 0; border-left: 4px solid #2a9d8f; }
+        .soal-box { background: #fff7e5; padding: 1rem; border-radius: 0.8rem; margin: 1rem 0; border-left: 4px solid #f4a261; }
+      </style>
+      
+      <div class="materi-section">
+        <h3>📌 Definisi Integral</h3>
+        <p>Integral adalah kebalikan dari turunan (anti-turunan). Integral digunakan untuk menghitung luas daerah di bawah kurva, volume benda putar, dan aplikasi lainnya.</p>
+        <div class="rumus-box">
+          <p><strong>Notasi Integral:</strong> ∫ f(x) dx = F(x) + C</p>
+          <p>di mana F'(x) = f(x) dan C adalah konstanta integrasi</p>
+        </div>
+      </div>
+      
+      <div class="materi-section">
+        <h3>📐 Rumus Dasar Integral Tak Tentu</h3>
+        <div class="rumus-box">
+          <p><strong>1. ∫ xⁿ dx = xⁿ⁺¹/(n+1) + C</strong> , untuk n ≠ -1</p>
+          <p><strong>2. ∫ 1/x dx = ln|x| + C</strong></p>
+          <p><strong>3. ∫ eˣ dx = eˣ + C</strong></p>
+          <p><strong>4. ∫ aˣ dx = aˣ/ln a + C</strong> , a > 0, a ≠ 1</p>
+          <p><strong>5. ∫ k·f(x) dx = k ∫ f(x) dx</strong></p>
+          <p><strong>6. ∫ [f(x) ± g(x)] dx = ∫ f(x) dx ± ∫ g(x) dx</strong></p>
+        </div>
+        <div class="contoh-box">
+          <strong>📌 Contoh:</strong> ∫ 3x² dx = 3·(x³/3) + C = x³ + C
+        </div>
+        <div class="contoh-box">
+          <strong>📌 Contoh:</strong> ∫ (2x + 5) dx = x² + 5x + C
+        </div>
+      </div>
+      
+      <div class="materi-section">
+        <h3>📐 Integral Trigonometri</h3>
+        <div class="rumus-box">
+          <p>∫ sin x dx = -cos x + C</p>
+          <p>∫ cos x dx = sin x + C</p>
+          <p>∫ sec² x dx = tan x + C</p>
+          <p>∫ csc² x dx = -cot x + C</p>
+          <p>∫ sec x tan x dx = sec x + C</p>
+          <p>∫ csc x cot x dx = -csc x + C</p>
+        </div>
+        <div class="contoh-box">
+          <strong>📌 Contoh:</strong> ∫ (sin x + cos x) dx = -cos x + sin x + C
+        </div>
+      </div>
+      
+      <div class="materi-section">
+        <h3>📐 Integral Tertentu (Definite Integral)</h3>
+        <div class="rumus-box">
+          <p>∫ₐᵇ f(x) dx = F(b) - F(a)</p>
+          <p>di mana F adalah anti-turunan dari f</p>
+        </div>
+        <div class="contoh-box">
+          <strong>📌 Contoh:</strong> ∫₀¹ x² dx = [x³/3]₀¹ = (1³/3) - (0³/3) = 1/3
+        </div>
+        <div class="rumus-box">
+          <p><strong>Sifat-sifat Integral Tertentu:</strong></p>
+          <p>∫ₐᵃ f(x) dx = 0</p>
+          <p>∫ₐᵇ f(x) dx = -∫ᵇₐ f(x) dx</p>
+          <p>∫ₐᵇ f(x) dx = ∫ₐᶜ f(x) dx + ∫ᶜᵇ f(x) dx</p>
+        </div>
+      </div>
+      
+      <div class="materi-section">
+        <h3>🔄 Integral Substitusi</h3>
+        <p>Metode substitusi digunakan ketika integral memiliki bentuk f(g(x))·g'(x).</p>
+        <div class="rumus-box">
+          <p>Misalkan u = g(x), maka du = g'(x) dx</p>
+          <p>∫ f(g(x))·g'(x) dx = ∫ f(u) du</p>
+        </div>
+        <div class="contoh-box">
+          <strong>📌 Contoh:</strong> ∫ 2x·cos(x²+1) dx<br>
+          Misal u = x²+1, du = 2x dx<br>
+          ∫ cos u du = sin u + C = sin(x²+1) + C
+        </div>
+      </div>
+      
+      <div class="materi-section">
+        <h3>📊 Integral Parsial</h3>
+        <div class="rumus-box">
+          <p>∫ u dv = u·v - ∫ v du</p>
+          <p>Pilih u dan dv dengan aturan <strong>LIATE</strong> (Logaritma, Invers trigonometri, Aljabar, Trigonometri, Eksponensial)</p>
+        </div>
+        <div class="contoh-box">
+          <strong>📌 Contoh:</strong> ∫ x·eˣ dx<br>
+          Misal u = x → du = dx, dv = eˣ dx → v = eˣ<br>
+          ∫ x·eˣ dx = x·eˣ - ∫ eˣ dx = x·eˣ - eˣ + C = eˣ(x-1) + C
+        </div>
+      </div>
+      
+      <div class="materi-section">
+        <h3>📐 Integral Pecahan Parsial</h3>
+        <p>Untuk integral berbentuk ∫ P(x)/Q(x) dx dengan derajat P(x) < derajat Q(x)</p>
+        <div class="contoh-box">
+          <strong>📌 Contoh:</strong> ∫ 1/(x²-1) dx = ∫ 1/[(x-1)(x+1)] dx<br>
+          = ∫ [A/(x-1) + B/(x+1)] dx = ½ ln|x-1| - ½ ln|x+1| + C
+        </div>
+      </div>
+      
+      <div class="materi-section">
+        <h3>📊 Luas Daerah di Bawah Kurva</h3>
+        <div class="rumus-box">
+          <p>Luas = ∫ₐᵇ |f(x) - g(x)| dx</p>
+          <p>untuk luas antara kurva f(x) dan g(x)</p>
+        </div>
+        <div class="contoh-box">
+          <strong>📌 Contoh:</strong> Luas di bawah y = x² dari 0 sampai 2<br>
+          L = ∫₀² x² dx = [x³/3]₀² = 8/3 satuan luas
+        </div>
+      </div>
+      
+      <div class="materi-section">
+        <h3>🧮 Latihan Soal</h3>
+        <div class="soal-box">
+          <p><strong>Soal 1:</strong> ∫ x³ dx = ?</p>
+          <p><strong>Jawaban:</strong> x⁴/4 + C</p>
+        </div>
+        <div class="soal-box">
+          <p><strong>Soal 2:</strong> ∫ (3x² + 2x) dx = ?</p>
+          <p><strong>Jawaban:</strong> x³ + x² + C</p>
+        </div>
+        <div class="soal-box">
+          <p><strong>Soal 3:</strong> ∫₀² 4x dx = ?</p>
+          <p><strong>Jawaban:</strong> [2x²]₀² = 8</p>
+        </div>
+        <div class="soal-box">
+          <p><strong>Soal 4:</strong> ∫ (2x+3)⁵ dx = ?</p>
+          <p><strong>Jawaban:</strong> (2x+3)⁶/12 + C</p>
+        </div>
+      </div>
+    `
+  },
+  
+  "program-linear": { 
+    title: "📊 Program Linear", 
+    content: `
+      <style>
+        .materi-section { margin-bottom: 2rem; }
+        .materi-section h3 { color: #1a4d5f; margin-bottom: 0.8rem; border-left: 4px solid #2a9d8f; padding-left: 12px; }
+        .materi-section h4 { color: #2a9d8f; margin: 1rem 0 0.5rem 0; }
+        .rumus-box { background: #f0f4fa; padding: 1rem; border-radius: 0.8rem; margin: 1rem 0; border-left: 4px solid #f4a261; }
+        .contoh-box { background: #e8f5e9; padding: 1rem; border-radius: 0.8rem; margin: 1rem 0; border-left: 4px solid #2a9d8f; }
+        .soal-box { background: #fff7e5; padding: 1rem; border-radius: 0.8rem; margin: 1rem 0; border-left: 4px solid #f4a261; }
+      </style>
+      
+      <div class="materi-section">
+        <h3>📌 Definisi Program Linear</h3>
+        <p>Program linear adalah metode matematika untuk mencari nilai optimal (maksimum atau minimum) dari suatu fungsi dengan batasan-batasan yang berupa pertidaksamaan linear.</p>
+        <div class="rumus-box">
+          <p><strong>Komponen Program Linear:</strong></p>
+          <ul class="list-content">
+            <li>Fungsi Tujuan (Objective Function)</li>
+            <li>Fungsi Kendala (Constraint Functions)</li>
+            <li>Variabel Keputusan (Decision Variables)</li>
+            <li>Batasan Non-Negatif (x, y ≥ 0)</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="materi-section">
+        <h3>📐 Bentuk Umum Program Linear</h3>
+        <div class="rumus-box">
+          <p><strong>Fungsi Tujuan:</strong></p>
+          <p>Maksimumkan/Minimumkan Z = c₁x₁ + c₂x₂ + ... + cₙxₙ</p>
+          <p><strong>Kendala:</strong></p>
+          <p>a₁₁x₁ + a₁₂x₂ + ... ≤ b₁</p>
+          <p>a₂₁x₁ + a₂₂x₂ + ... ≤ b₂</p>
+          <p>...</p>
+          <p>aₘ₁x₁ + aₘ₂x₂ + ... ≤ bₘ</p>
+          <p><strong>Non-negatif:</strong> x₁, x₂, ..., xₙ ≥ 0</p>
+        </div>
+      </div>
+      
+      <div class="materi-section">
+        <h3>📌 Istilah Penting</h3>
+        <div class="rumus-box">
+          <p><strong>Fungsi Objektif:</strong> Fungsi yang akan dioptimalkan (dicari maks/min)</p>
+          <p><strong>Daerah Feasible:</strong> Daerah yang memenuhi semua kendala</p>
+          <p><strong>Solusi Optimal:</strong> Nilai terbaik dari fungsi objektif dalam daerah feasible</p>
+          <p><strong>Titik Ekstrim:</strong> Titik sudut/pojok dari daerah feasible</p>
+          <p><strong>Kendala:</strong> Batasan yang harus dipenuhi</p>
+        </div>
+      </div>
+      
+      <div class="materi-section">
+        <h3>📊 Metode Grafik (2 Variabel)</h3>
+        <p><strong>Langkah-langkah:</strong></p>
+        <ol class="list-content">
+          <li>Menggambar garis dari setiap kendala</li>
+          <li>Menentukan daerah feasible (arsiran)</li>
+          <li>Menentukan titik-titik pojok daerah feasible</li>
+          <li>Menghitung nilai fungsi tujuan di setiap titik pojok</li>
+          <li>Memilih nilai terbaik (maks/min)</li>
+        </ol>
+        
+        <div class="contoh-box">
+          <strong>📌 Contoh Soal:</strong><br>
+          Maks Z = 3x + 4y<br>
+          Kendala:
+          <ul>
+            <li>x + y ≤ 6</li>
+            <li>2x + y ≤ 10</li>
+            <li>x ≥ 0, y ≥ 0</li>
+          </ul>
+          <br>
+          <strong>Penyelesaian:</strong><br>
+          Titik pojok: (0,0) → Z=0, (0,6) → Z=24, (5,0) → Z=15, (4,2) → Z=20<br>
+          <strong>Solusi optimal:</strong> x=4, y=2 dengan Z=20
+        </div>
+      </div>
+      
+      <div class="materi-section">
+        <h3>🔄 Metode Simpleks</h3>
+        <p>Metode simpleks digunakan untuk program linear dengan lebih dari 2 variabel.</p>
+        <div class="rumus-box">
+          <p><strong>Langkah-langkah:</strong></p>
+          <ol class="list-content">
+            <li>Ubahlah kendala menjadi bentuk persamaan (tambahkan variabel slack)</li>
+            <li>Buat tabel simpleks awal</li>
+            <li>Tentukan kolom pivot (nilai Z negatif terbesar)</li>
+            <li>Tentukan baris pivot (rasio terkecil positif)</li>
+            <li>Lakukan operasi baris untuk pivot = 1</li>
+            <li>Ulangi sampai semua koefisien Z ≥ 0</li>
+          </ol>
+        </div>
+        <div class="contoh-box">
+          <strong>📌 Contoh:</strong> Maks Z = 3x₁ + 2x₂<br>
+          Kendala: x₁ + x₂ ≤ 4, 2x₁ + x₂ ≤ 6, x₁,x₂ ≥ 0<br>
+          Bentuk baku: x₁ + x₂ + s₁ = 4, 2x₁ + x₂ + s₂ = 6<br>
+          Solusi optimal: x₁=2, x₂=2, Z=10
+        </div>
+      </div>
+      
+      <div class="materi-section">
+        <h3>📐 Metode Dual Simpleks</h3>
+        <div class="rumus-box">
+          <p>Metode dual simpleks digunakan untuk masalah primal yang tidak feasible tetapi dual feasible.</p>
+          <p>Primal dan dual memiliki hubungan:</p>
+          <ul class="list-content">
+            <li>Jika primal maks, maka dual min</li>
+            <li>Koefisien fungsi tujuan primal menjadi konstanta dual</li>
+            <li>Konstanta primal menjadi koefisien fungsi tujuan dual</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="materi-section">
+        <h3>📊 Analisis Sensitivitas</h3>
+        <div class="rumus-box">
+          <p>Analisis sensitivitas mempelajari perubahan solusi optimal saat ada perubahan parameter (koefisien fungsi tujuan, kendala, atau konstanta).</p>
+          <p><strong>Informasi dari analisis:</strong></p>
+          <ul class="list-content">
+            <li>Shadow price (nilai dual)</li>
+            <li>Range optimality</li>
+            <li>Range feasibility</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="materi-section">
+        <h3>🧮 Latihan Soal</h3>
+        <div class="soal-box">
+          <p><strong>Soal 1:</strong> Apa yang disebut daerah feasible?</p>
+          <p><strong>Jawaban:</strong> Daerah yang memenuhi semua kendala program linear</p>
+        </div>
+        <div class="soal-box">
+          <p><strong>Soal 2:</strong> Metode apa yang digunakan jika variabel lebih dari 2?</p>
+          <p><strong>Jawaban:</strong> Metode Simpleks</p>
+        </div>
+        <div class="soal-box">
+          <p><strong>Soal 3:</strong> Maks Z = 2x + 3y dengan kendala x+y ≤ 4, x+2y ≤ 6, x,y ≥ 0. Tentukan solusi optimal!</p>
+          <p><strong>Jawaban:</strong> x=2, y=2, Z=10</p>
+        </div>
+      </div>
+    `
+  },
+  
+  "teori-bilangan": { 
+    title: "🔢 Teori Bilangan", 
+    content: `
+      <style>
+        .materi-section { margin-bottom: 2rem; }
+        .materi-section h3 { color: #1a4d5f; margin-bottom: 0.8rem; border-left: 4px solid #2a9d8f; padding-left: 12px; }
+        .rumus-box { background: #f0f4fa; padding: 1rem; border-radius: 0.8rem; margin: 1rem 0; border-left: 4px solid #f4a261; }
+        .contoh-box { background: #e8f5e9; padding: 1rem; border-radius: 0.8rem; margin: 1rem 0; border-left: 4px solid #2a9d8f; }
+        .soal-box { background: #fff7e5; padding: 1rem; border-radius: 0.8rem; margin: 1rem 0; border-left: 4px solid #f4a261; }
+      </style>
+      
+      <div class="materi-section">
+        <h3>📌 Definisi Teori Bilangan</h3>
+        <p>Teori bilangan adalah cabang matematika yang mempelajari sifat-sifat bilangan bulat (integer) dan hubungan antar bilangan bulat.</p>
+      </div>
+      
+      <div class="materi-section">
+        <h3>🔢 Jenis-jenis Bilangan</h3>
+        <div class="rumus-box">
+          <p><strong>1. Bilangan Asli:</strong> N = {1, 2, 3, 4, ...}</p>
+          <p><strong>2. Bilangan Cacah:</strong> W = {0, 1, 2, 3, 4, ...}</p>
+          <p><strong>3. Bilangan Bulat:</strong> Z = {..., -3, -2, -1, 0, 1, 2, 3, ...}</p>
+          <p><strong>4. Bilangan Prima:</strong> Bilangan > 1 yang hanya habis dibagi 1 dan dirinya sendiri</p>
+          <p><strong>5. Bilangan Komposit:</strong> Bilangan > 1 yang bukan prima</p>
+          <p><strong>6. Bilangan Genap:</strong> Habis dibagi 2 → 2, 4, 6, ...</p>
+          <p><strong>7. Bilangan Ganjil:</strong> Tidak habis dibagi 2 → 1, 3, 5, ...</p>
+        </div>
+      </div>
+      
+      <div class="materi-section">
+        <h3>🔢 Bilangan Prima (1-100)</h3>
+        <div class="rumus-box">
+          <p>2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97</p>
+          <p><strong>Fakta: 2 adalah satu-satunya bilangan prima genap</strong></p>
+        </div>
+      </div>
+      
+      <div class="materi-section">
+        <h3>📊 FPB (Faktor Persekutuan Terbesar)</h3>
+        <div class="rumus-box">
+          <p>FPB adalah bilangan terbesar yang dapat membagi habis semua bilangan yang diberikan.</p>
+          <p><strong>Cara 1: Faktorisasi Prima</strong></p>
+          <div class="contoh-box">
+            12 = 2² × 3<br>
+            18 = 2 × 3²<br>
+            FPB(12,18) = 2 × 3 = 6
+          </div>
+          <p><strong>Cara 2: Algoritma Euclid</strong></p>
+          <div class="contoh-box">
+            FPB(48,18)<br>
+            48 ÷ 18 = 2 sisa 12 → FPB(18,12)<br>
+            18 ÷ 12 = 1 sisa 6 → FPB(12,6)<br>
+            12 ÷ 6 = 2 sisa 0 → FPB = 6
+          </div>
+        </div>
+      </div>
+      
+      <div class="materi-section">
+        <h3>📊 KPK (Kelipatan Persekutuan Terkecil)</h3>
+        <div class="rumus-box">
+          <p>KPK adalah bilangan terkecil yang habis dibagi oleh semua bilangan yang diberikan.</p>
+          <div class="contoh-box">
+            12 = 2² × 3<br>
+            18 = 2 × 3²<br>
+            KPK(12,18) = 2² × 3² = 4 × 9 = 36
+          </div>
+          <p><strong>Hubungan FPB dan KPK:</strong> a × b = FPB(a,b) × KPK(a,b)</p>
+          <div class="contoh-box">
+            12 × 18 = 216<br>
+            FPB(12,18) × KPK(12,18) = 6 × 36 = 216 ✓
+          </div>
+        </div>
+      </div>
+      
+      <div class="materi-section">
+        <h3>📈 Keterbagian (Divisibility)</h3>
+        <div class="rumus-box">
+          <p>a | b (a membagi b) jika ada bilangan k sehingga b = k × a</p>
+          <p><strong>Ciri bilangan habis dibagi:</strong></p>
+          <ul class="list-content">
+            <li>2: Angka terakhir genap</li>
+            <li>3: Jumlah digit habis dibagi 3</li>
+            <li>4: Dua angka terakhir habis dibagi 4</li>
+            <li>5: Angka terakhir 0 atau 5</li>
+            <li>6: Habis dibagi 2 DAN 3</li>
+            <li>8: Tiga angka terakhir habis dibagi 8</li>
+            <li>9: Jumlah digit habis dibagi 9</li>
+            <li>10: Angka terakhir 0</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="materi-section">
+        <h3>🧮 Kongruensi Modulo</h3>
+        <div class="rumus-box">
+          <p>a ≡ b (mod m) jika m membagi (a-b)</p>
+          <div class="contoh-box">
+            17 ≡ 2 (mod 5) karena 17-2 = 15 habis dibagi 5<br>
+            7 ≡ 1 (mod 3) karena 7-1 = 6 habis dibagi 3
+          </div>
+        </div>
+      </div>
+      
+      <div class="materi-section">
+        <h3>📐 Teorema Dasar Aritmetika</h3>
+        <div class="rumus-box">
+          <p>Setiap bilangan bulat > 1 dapat dinyatakan secara unik sebagai perkalian bilangan-bilangan prima.</p>
+          <div class="contoh-box">
+            60 = 2² × 3 × 5<br>
+            84 = 2² × 3 × 7<br>
+            100 = 2² × 5²
+          </div>
+        </div>
+      </div>
+      
+      <div class="materi-section">
+        <h3>🧮 Latihan Soal</h3>
+        <div class="soal-box">
+          <p><strong>Soal 1:</strong> FPB dari 24 dan 36 adalah?</p>
+          <p><strong>Jawaban:</strong> 12</p>
+        </div>
+        <div class="soal-box">
+          <p><strong>Soal 2:</strong> KPK dari 6 dan 8 adalah?</p>
+          <p><strong>Jawaban:</strong> 24</p>
+        </div>
+        <div class="soal-box">
+          <p><strong>Soal 3:</strong> Bilangan prima ke-7 adalah?</p>
+          <p><strong>Jawaban:</strong> 17</p>
+        </div>
+        <div class="soal-box">
+          <p><strong>Soal 4:</strong> 47 termasuk bilangan apa?</p>
+          <p><strong>Jawaban:</strong> Bilangan Prima</p>
+        </div>
+      </div>
+    `
+  },
+  
+  "pkn": { 
+    title: "🇮🇩 Pendidikan Kewarganegaraan", 
+    content: `
+      <style>
+        .materi-section { margin-bottom: 2rem; }
+        .materi-section h3 { color: #1a4d5f; margin-bottom: 0.8rem; border-left: 4px solid #2a9d8f; padding-left: 12px; }
+        .rumus-box { background: #f0f4fa; padding: 1rem; border-radius: 0.8rem; margin: 1rem 0; border-left: 4px solid #f4a261; }
+        .contoh-box { background: #e8f5e9; padding: 1rem; border-radius: 0.8rem; margin: 1rem 0; border-left: 4px solid #2a9d8f; }
+        .soal-box { background: #fff7e5; padding: 1rem; border-radius: 0.8rem; margin: 1rem 0; border-left: 4px solid #f4a261; }
+      </style>
+      
+      <div class="materi-section">
+        <h3>📌 Pengertian Pendidikan Kewarganegaraan</h3>
+        <p>Pendidikan Kewarganegaraan (PKn) adalah mata pelajaran yang bertujuan membentuk warga negara yang baik, cerdas, terampil, dan bertanggung jawab serta memiliki kesadaran berbangsa dan bernegara.</p>
+      </div>
+      
+      <div class="materi-section">
+        <h3>📜 Pancasila sebagai Dasar Negara</h3>
+        <div class="rumus-box">
+          <p>Pancasila ditetapkan sebagai dasar negara Indonesia pada tanggal <strong>18 Agustus 1945</strong>.</p>
+          <p>Tokoh perumus Pancasila: <strong>Ir. Soekarno, Drs. Moh. Hatta, Mr. Moh. Yamin, Prof. Dr. Mr. Soepomo</strong></p>
+        </div>
+        <div class="rumus-box">
+          <p><strong>Bunyi 5 Sila Pancasila:</strong></p>
+          <ol class="list-content">
+            <li>Ketuhanan Yang Maha Esa</li>
+            <li>Kemanusiaan yang adil dan beradab</li>
+            <li>Persatuan Indonesia</li>
+            <li>Kerakyatan yang dipimpin oleh hikmat kebijaksanaan dalam permusyawaratan/perwakilan</li>
+            <li>Keadilan sosial bagi seluruh rakyat Indonesia</li>
+          </ol>
+        </div>
+      </div>
+      
+      <div class="materi-section">
+        <h3>🇮🇩 Lambang Negara: Burung Garuda</h3>
+        <div class="rumus-box">
+          <p><strong>Makna Burung Garuda:</strong></p>
+          <ul class="list-content">
+            <li>Jumlah bulu melambangkan tanggal Proklamasi Kemerdekaan (17-8-1945)</li>
+            <li>Warna emas melambangkan keagungan dan kejayaan</li>
+            <li>Perisai di dada melambangkan pertahanan</li>
+          </ul>
+          <p><strong>Semboyan:</strong> Bhinneka Tunggal Ika (Berbeda-beda tetapi tetap satu)</p>
+        </div>
+      </div>
+      
+      <div class="materi-section">
+        <h3>📖 UUD 1945</h3>
+        <div class="rumus-box">
+          <p>UUD 1945 adalah hukum dasar tertulis Indonesia. Disahkan pada tanggal <strong>18 Agustus 1945</strong> oleh PPKI.</p>
+          <p><strong>Struktur UUD 1945:</strong></p>
+          <ul class="list-content">
+            <li>Pembukaan (4 alinea)</li>
+            <li>Batang tubuh (16 bab, 37 pasal)</li>
+            <li>Penjelasan (tidak berlaku setelah amandemen)</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="materi-section">
+        <h3>🏛️ Lembaga Negara</h3>
+        <div class="rumus-box">
+          <p><strong>1. MPR (Majelis Permusyawaratan Rakyat):</strong> Melantik Presiden dan mengubah UUD</p>
+          <p><strong>2. DPR (Dewan Perwakilan Rakyat):</strong> Membuat undang-undang</p>
+          <p><strong>3. Presiden:</strong> Kepala negara dan kepala pemerintahan</p>
+          <p><strong>4. MA (Mahkamah Agung):</strong> Peradilan tertinggi</p>
+          <p><strong>5. MK (Mahkamah Konstitusi):</strong> Menguji UU terhadap UUD</p>
+          <p><strong>6. BPK (Badan Pemeriksa Keuangan):</strong> Memeriksa keuangan negara</p>
+          <p><strong>7. DPD (Dewan Perwakilan Daerah):</strong> Mewakili daerah</p>
+        </div>
+      </div>
+      
+      <div class="materi-section">
+        <h3>🦅 Hak dan Kewajiban Warga Negara</h3>
+        <div class="rumus-box">
+          <p><strong>Hak Warga Negara (Pasal 27-34 UUD 1945):</strong></p>
+          <ul class="list-content">
+            <li>Hak mendapat pekerjaan dan penghidupan layak</li>
+            <li>Hak mendapat pendidikan (Pasal 31)</li>
+            <li>Hak beragama dan beribadah (Pasal 29)</li>
+            <li>Hak berpendapat dan berserikat</li>
+            <li>Hak atas kesejahteraan sosial</li>
+          </ul>
+          <p><strong>Kewajiban Warga Negara:</strong></p>
+          <ul class="list-content">
+            <li>Wajib menaati hukum dan pemerintahan</li>
+            <li>Wajib membayar pajak (Pasal 23A)</li>
+            <li>Wajib ikut serta dalam upaya bela negara</li>
+            <li>Wajib menghormati hak asasi orang lain</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="materi-section">
+        <h3>🌏 Wawasan Nusantara</h3>
+        <div class="rumus-box">
+          <p>Wawasan Nusantara adalah cara pandang bangsa Indonesia tentang diri dan lingkungannya berdasarkan Pancasila dan UUD 1945.</p>
+          <p><strong>Asas Wawasan Nusantara:</strong></p>
+          <ul class="list-content">
+            <li>Kesatuan politik</li>
+            <li>Kesatuan ekonomi</li>
+            <li>Kesatuan sosial budaya</li>
+            <li>Kesatuan pertahanan keamanan</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="materi-section">
+        <h3>🧮 Latihan Soal</h3>
+        <div class="soal-box">
+          <p><strong>Soal 1:</strong> Dasar negara Indonesia adalah?</p>
+          <p><strong>Jawaban:</strong> Pancasila</p>
+        </div>
+        <div class="soal-box">
+          <p><strong>Soal 2:</strong> Semboyan negara Indonesia adalah?</p>
+          <p><strong>Jawaban:</strong> Bhinneka Tunggal Ika</p>
+        </div>
+        <div class="soal-box">
+          <p><strong>Soal 3:</strong> Lembaga yang berwenang mengubah UUD 1945 adalah?</p>
+          <p><strong>Jawaban:</strong> MPR</p>
+        </div>
+        <div class="soal-box">
+          <p><strong>Soal 4:</strong> Pasal yang mengatur tentang hak mendapat pendidikan adalah?</p>
+          <p><strong>Jawaban:</strong> Pasal 31</p>
+        </div>
+      </div>
+    `
+  },
+  
+  "pancasila": { 
+    title: "🦅 Pendidikan Pancasila", 
+    content: `
+      <style>
+        .materi-section { margin-bottom: 2rem; }
+        .materi-section h3 { color: #1a4d5f; margin-bottom: 0.8rem; border-left: 4px solid #2a9d8f; padding-left: 12px; }
+        .rumus-box { background: #f0f4fa; padding: 1rem; border-radius: 0.8rem; margin: 1rem 0; border-left: 4px solid #f4a261; }
+        .contoh-box { background: #e8f5e9; padding: 1rem; border-radius: 0.8rem; margin: 1rem 0; border-left: 4px solid #2a9d8f; }
+        .soal-box { background: #fff7e5; padding: 1rem; border-radius: 0.8rem; margin: 1rem 0; border-left: 4px solid #f4a261; }
+      </style>
+      
+      <div class="materi-section">
+        <h3>📌 Pengertian Pancasila</h3>
+        <p>Pancasila adalah dasar negara dan pandangan hidup bangsa Indonesia yang terdiri dari lima sila yang saling terkait dan tidak terpisahkan.</p>
+      </div>
+      
+      <div class="materi-section">
+        <h3>⭐ Sejarah Lahirnya Pancasila</h3>
+        <div class="rumus-box">
+          <p><strong>1 Juni 1945:</strong> Ir. Soekarno menyampaikan pidato "Lahirnya Pancasila" di sidang BPUPKI</p>
+          <p><strong>22 Juni 1945:</strong> Piagam Jakarta (Jakarta Charter) dirumuskan oleh Panitia Sembilan</p>
+          <p><strong>18 Agustus 1945:</strong> Pancasila disahkan sebagai dasar negara oleh PPKI</p>
+        </div>
+      </div>
+      
+      <div class="materi-section">
+        <h3>📜 Lima Sila Pancasila dan Lambangnya</h3>
+        <div class="rumus-box">
+          <p><strong>Sila ke-1 (⭐ Bintang):</strong> Ketuhanan Yang Maha Esa</p>
+          <p><strong>Makna:</strong> Bangsa Indonesia menyatakan kepercayaan dan ketakwaan terhadap Tuhan Yang Maha Esa.</p>
+          
+          <p style="margin-top:1rem;"><strong>Sila ke-2 (⛓️ Rantai):</strong> Kemanusiaan yang adil dan beradab</p>
+          <p><strong>Makna:</strong> Mengakui dan memperlakukan manusia sesuai harkat dan martabatnya.</p>
+          
+          <p style="margin-top:1rem;"><strong>Sila ke-3 (🌳 Pohon Beringin):</strong> Persatuan Indonesia</p>
+          <p><strong>Makna:</strong> Cinta tanah air, bangsa, dan persatuan Indonesia.</p>
+          
+          <p style="margin-top:1rem;"><strong>Sila ke-4 (🐃 Kepala Banteng):</strong> Kerakyatan yang dipimpin oleh hikmat kebijaksanaan dalam permusyawaratan/perwakilan</p>
+          <p><strong>Makna:</strong> Kedaulatan rakyat dan musyawarah mufakat.</p>
+          
+          <p style="margin-top:1rem;"><strong>Sila ke-5 (🌾 Padi Kapas):</strong> Keadilan sosial bagi seluruh rakyat Indonesia</p>
+          <p><strong>Makna:</strong> Kesejahteraan bersama dan keadilan di segala bidang.</p>
+        </div>
+      </div>
+      
+      <div class="materi-section">
+        <h3>💡 Nilai-nilai Pancasila</h3>
+        <div class="rumus-box">
+          <p><strong>1. Nilai Religius:</strong> Setiap warga negara bebas memeluk agama sesuai keyakinan.</p>
+          <p><strong>2. Nilai Kemanusiaan:</strong> Menghargai hak asasi manusia dan persamaan derajat.</p>
+          <p><strong>3. Nilai Persatuan:</strong> Mengutamakan kepentingan bangsa di atas kepentingan pribadi.</p>
+          <p><strong>4. Nilai Kerakyatan:</strong> Menyelesaikan masalah melalui musyawarah.</p>
+          <p><strong>5. Nilai Keadilan:</strong> Pemerataan pembangunan dan kesejahteraan.</p>
+        </div>
+      </div>
+      
+      <div class="materi-section">
+        <h3>🏛️ Pancasila sebagai Ideologi Terbuka</h3>
+        <div class="rumus-box">
+          <p>Pancasila adalah ideologi terbuka yang berarti:</p>
+          <ul class="list-content">
+            <li><strong>Dinamis:</strong> Dapat menyesuaikan dengan perkembangan zaman</li>
+            <li><strong>Aktual:</strong> Selalu relevan dengan kebutuhan bangsa</li>
+            <li><strong>Antisipatif:</strong> Mampu menghadapi tantangan masa depan</li>
+            <li><strong>Fleksibel:</strong> Tidak kaku namun nilai dasarnya tetap</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="materi-section">
+        <h3>📊 Pancasila vs Ideologi Lain</h3>
+        <table style="width:100%; border-collapse:collapse; margin:1rem 0;">
+          <thead><tr style="background:#1a4d5f; color:white;"><th style="padding:0.5rem;">Aspek</th><th style="padding:0.5rem;">Pancasila</th><th style="padding:0.5rem;">Liberalisme</th><th style="padding:0.5rem;">Komunisme</th></tr></thead>
+          <tbody>
+            <tr style="border-bottom:1px solid #e2edf2;"><td style="padding:0.5rem;">Ketuhanan</td><td>Diakui</td><td>Diakui/Ditolak</td><td>Ateisme</td></tr>
+            <tr style="border-bottom:1px solid #e2edf2;"><td style="padding:0.5rem;">Kepemilikan</td><td>Kolektif & individu</td><td>Individu mutlak</td><td>Negara</td></tr>
+            <tr style="border-bottom:1px solid #e2edf2;"><td style="padding:0.5rem;">Kekuasaan</td><td>Musyawarah</td><td>Demokrasi liberal</td><td>Diktatur proletariat</td></tr>
+          </tbody>
+        </table>
+      </div>
+      
+      <div class="materi-section">
+        <h3>🌍 Implementasi Pancasila di Era Digital</h3>
+        <div class="rumus-box">
+          <ul class="list-content">
+            <li>Sila 1: Memfilter konten keagamaan yang hoaks</li>
+            <li>Sila 2: Bermedia sosial dengan santun</li>
+            <li>Sila 3: Tidak menyebarkan ujaran kebencian</li>
+            <li>Sila 4: Bermusyawarah di grup diskusi</li>
+            <li>Sila 5: Menjaga keadilan informasi</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="materi-section">
+        <h3>🧮 Latihan Soal</h3>
+        <div class="soal-box">
+          <p><strong>Soal 1:</strong> Sila ke-3 Pancasila adalah?</p>
+          <p><strong>Jawaban:</strong> Persatuan Indonesia</p>
+        </div>
+        <div class="soal-box">
+          <p><strong>Soal 2:</strong> Lambang sila ke-5 adalah?</p>
+          <p><strong>Jawaban:</strong> Padi dan Kapas</p>
+        </div>
+        <div class="soal-box">
+          <p><strong>Soal 3:</strong> Tokoh yang menggali Pancasila adalah?</p>
+          <p><strong>Jawaban:</strong> Ir. Soekarno</p>
+        </div>
+        <div class="soal-box">
+          <p><strong>Soal 4:</strong> Pancasila bersifat ideologi?</p>
+          <p><strong>Jawaban:</strong> Terbuka</p>
+        </div>
+      </div>
+    `
+  },
+  
+  "konservasi": { 
+    title: "🌿 Pendidikan Konservasi", 
+    content: `
+      <style>
+        .materi-section { margin-bottom: 2rem; }
+        .materi-section h3 { color: #1a4d5f; margin-bottom: 0.8rem; border-left: 4px solid #2a9d8f; padding-left: 12px; }
+        .rumus-box { background: #f0f4fa; padding: 1rem; border-radius: 0.8rem; margin: 1rem 0; border-left: 4px solid #f4a261; }
+        .contoh-box { background: #e8f5e9; padding: 1rem; border-radius: 0.8rem; margin: 1rem 0; border-left: 4px solid #2a9d8f; }
+        .soal-box { background: #fff7e5; padding: 1rem; border-radius: 0.8rem; margin: 1rem 0; border-left: 4px solid #f4a261; }
+      </style>
+      
+      <div class="materi-section">
+        <h3>📌 Pengertian Konservasi</h3>
+        <p>Konservasi adalah upaya perlindungan, pengelolaan, dan pelestarian sumber daya alam serta lingkungan hidup secara bijaksana untuk keberlanjutan ekosistem.</p>
+      </div>
+      
+      <div class="materi-section">
+        <h3>♻️ Prinsip 3R (Reduce, Reuse, Recycle)</h3>
+        <div class="rumus-box">
+          <p><strong>1. Reduce (Mengurangi):</strong> Meminimalisir penggunaan barang yang tidak perlu</p>
+          <div class="contoh-box">
+            Contoh: Mengurangi penggunaan kantong plastik, menggunakan botol minum sendiri
+          </div>
+          
+          <p style="margin-top:1rem;"><strong>2. Reuse (Menggunakan Kembali):</strong> Memakai barang bekas untuk fungsi yang sama</p>
+          <div class="contoh-box">
+            Contoh: Menggunakan botol bekas sebagai tempat air, memakai tas belanja kain
+          </div>
+          
+          <p style="margin-top:1rem;"><strong>3. Recycle (Mendaur Ulang):</strong> Mengolah sampah menjadi produk baru</p>
+          <div class="contoh-box">
+            Contoh: Kertas daur ulang, plastik diolah menjadi biji plastik
+          </div>
+        </div>
+      </div>
+      
+      <div class="materi-section">
+        <h3>🌍 Pemanasan Global (Global Warming)</h3>
+        <div class="rumus-box">
+          <p>Pemanasan global adalah peningkatan suhu rata-rata atmosfer bumi akibat efek rumah kaca.</p>
+          <p><strong>Penyebab:</strong></p>
+          <ul class="list-content">
+            <li>Emisi gas rumah kaca (CO₂, CH₄, N₂O, CFC)</li>
+            <li>Pembakaran bahan bakar fosil</li>
+            <li>Deforestasi (penggundulan hutan)</li>
+            <li>Limbah industri dan pertanian</li>
+          </ul>
+          <p><strong>Dampak:</strong></p>
+          <ul class="list-content">
+            <li>Mencairnya es di kutub → naiknya permukaan air laut</li>
+            <li>Perubahan iklim ekstrem (banjir, kekeringan, badai)</li>
+            <li>Kepunahan spesies</li>
+            <li>Gangguan kesehatan (heatstroke, penyakit pernapasan)</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="materi-section">
+        <h3>💡 Energi Terbarukan</h3>
+        <div class="rumus-box">
+          <p>Energi terbarukan adalah energi yang dapat diperbaharui secara alami dan tidak akan habis.</p>
+          <table style="width:100%; border-collapse:collapse; margin:1rem 0;">
+            <thead><tr style="background:#1a4d5f; color:white;"><th style="padding:0.5rem;">Jenis</th><th style="padding:0.5rem;">Sumber</th><th style="padding:0.5rem;">Keunggulan</th></tr></thead>
+            <tbody>
+              <tr style="border-bottom:1px solid #e2edf2;"><td style="padding:0.5rem;">☀️ Surya</td><td style="padding:0.5rem;">Matahari</td><td style="padding:0.5rem;">Tak terbatas, ramah lingkungan</td></tr>
+              <tr style="border-bottom:1px solid #e2edf2;"><td style="padding:0.5rem;">💨 Angin</td><td style="padding:0.5rem;">Kincir angin</td><td style="padding:0.5rem;">Biaya operasional rendah</td></tr>
+              <tr style="border-bottom:1px solid #e2edf2;"><td style="padding:0.5rem;">💧 Air</td><td style="padding:0.5rem;">PLTA</td><td style="padding:0.5rem;">Efisiensi tinggi</td></tr>
+              <tr style="border-bottom:1px solid #e2edf2;"><td style="padding:0.5rem;">🌋 Panas Bumi</td><td style="padding:0.5rem;">Geothermal</td><td style="padding:0.5rem;">Stabil 24 jam</td></tr>
+              <tr style="border-bottom:1px solid #e2edf2;"><td style="padding:0.5rem;">🍃 Biomassa</td><td style="padding:0.5rem;">Sampah organik</td><td style="padding:0.5rem;">Mengurangi sampah</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      
+      <div class="materi-section">
+        <h3>🌳 Konservasi Hutan</h3>
+        <div class="rumus-box">
+          <p><strong>Jenis-jenis hutan konservasi:</strong></p>
+          <ul class="list-content">
+            <li><strong>Hutan Lindung:</strong> Melindungi sistem penyangga kehidupan</li>
+            <li><strong>Hutan Suaka Alam:</strong> Melindungi keanekaragaman hayati</li>
+            <li><strong>Hutan Wisata:</strong> Pemanfaatan rekreasi dan pendidikan</li>
+            <li><strong>Taman Nasional:</strong> Pelestarian ekosistem asli</li>
+          </ul>
+          <p><strong>Manfaat hutan:</strong> Penyerap CO₂, penghasil O₂, mencegah banjir dan erosi, habitat satwa</p>
+        </div>
+      </div>
+      
+      <div class="materi-section">
+        <h3>♻️ Pengelolaan Sampah</h3>
+        <div class="rumus-box">
+          <p><strong>Jenis Sampah:</strong></p>
+          <ul class="list-content">
+            <li><strong>Organik:</strong> Sisa makanan, daun, kayu → dijadikan kompos</li>
+            <li><strong>Anorganik:</strong> Plastik, logam, kaca, kertas → didaur ulang</li>
+            <li><strong>B3:</strong> Limbah berbahaya (baterai, obat kadaluarsa) → dikelola khusus</li>
+          </ul>
+          <p><strong>Metode pengelolaan:</strong> TPA, 3R, insinerator, biokonversi (maggot)</p>
+        </div>
+      </div>
+      
+      <div class="materi-section">
+        <h3>💧 Konservasi Air</h3>
+        <div class="rumus-box">
+          <p><strong>Cara menghemat air:</strong></p>
+          <ul class="list-content">
+            <li>Memperbaiki keran bocor</li>
+            <li>Menggunakan gayung saat mandi/mencuci</li>
+            <li>Menampung air hujan</li>
+            <li>Menggunakan mesin cuci saat penuh</li>
+            <li>Menyiram tanaman dengan air bekas cucian</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="materi-section">
+        <h3>🧮 Latihan Soal</h3>
+        <div class="soal-box">
+          <p><strong>Soal 1:</strong> Apa kepanjangan 3R?</p>
+          <p><strong>Jawaban:</strong> Reduce, Reuse, Recycle</p>
+        </div>
+        <div class="soal-box">
+          <p><strong>Soal 2:</strong> Contoh energi terbarukan?</p>
+          <p><strong>Jawaban:</strong> Matahari, angin, air, panas bumi, biomassa</p>
+        </div>
+        <div class="soal-box">
+          <p><strong>Soal 3:</strong> Dampak pemanasan global?</p>
+          <p><strong>Jawaban:</strong> Mencairnya es kutub, perubahan iklim ekstrem</p>
+        </div>
+        <div class="soal-box">
+          <p><strong>Soal 4:</strong> Cara menghemat air?</p>
+          <p><strong>Jawaban:</strong> Memperbaiki keran bocor, menggunakan air secukupnya</p>
+        </div>
+      </div>
+    `
+  }
+};
 
   // ========== LATIHAN SOAL (8 MK) ==========
-  const soalPerMk = {
-    "aljabar-vektor": { title: "Aljabar Vektor", soal: [{ pertanyaan: "Hasil a + b dari a=(2,3) dan b=(4,1) adalah...", jawaban: "(6,4)" }, { pertanyaan: "Vektor satuan adalah...", jawaban: "vektor dengan panjang 1" }] },
-    "algoritma": { title: "Algoritma Pemrograman", soal: [{ pertanyaan: "Kompleksitas Linear Search?", jawaban: "O(n)" }, { pertanyaan: "Syarat Binary Search?", jawaban: "data terurut" }] },
-    "kalkulus": { title: "Kalkulus Integral", soal: [{ pertanyaan: "∫ x² dx = ...", jawaban: "x³/3 + C" }, { pertanyaan: "∫ 1/x dx = ...", jawaban: "ln|x| + C" }] },
-    "program-linear": { title: "Program Linear", soal: [{ pertanyaan: "Apa fungsi tujuan?", jawaban: "fungsi yang dimaksimalkan" }] },
-    "teori-bilangan": { title: "Teori Bilangan", soal: [{ pertanyaan: "Apa kepanjangan FPB?", jawaban: "Faktor Persekutuan Terbesar" }] },
-    "pkn": { title: "Pendidikan Kewarganegaraan", soal: [{ pertanyaan: "Dasar negara Indonesia?", jawaban: "Pancasila" }] },
-    "pancasila": { title: "Pendidikan Pancasila", soal: [{ pertanyaan: "Sila ke-3 Pancasila?", jawaban: "Persatuan Indonesia" }] },
-    "konservasi": { title: "Pendidikan Konservasi", soal: [{ pertanyaan: "Kepanjangan 3R?", jawaban: "Reduce Reuse Recycle" }] }
-  };
+  // ========== LATIHAN SOAL (25 SOAL PER MK) ==========
+const soalPerMk = {
+  "aljabar-vektor": {
+    title: "Aljabar Vektor",
+    soal: [
+      { pertanyaan: "Apa yang dimaksud dengan vektor?", a: "Besaran yang hanya memiliki nilai", b: "Besaran yang memiliki nilai dan arah", c: "Besaran yang tidak memiliki satuan", d: "Besaran skalar", jawaban: "b" },
+      { pertanyaan: "Vektor satuan adalah vektor dengan panjang...", a: "0", b: "1", c: "2", d: "Tak terhingga", jawaban: "b" },
+      { pertanyaan: "Hasil dari (2,3) + (4,1) = ...", a: "(6,4)", b: "(5,5)", c: "(8,3)", d: "(2,4)", jawaban: "a" },
+      { pertanyaan: "Perkalian skalar 3 × (2,4) menghasilkan...", a: "(5,7)", b: "(6,12)", c: "(2,4)", d: "(3,12)", jawaban: "b" },
+      { pertanyaan: "Panjang vektor (3,4) adalah...", a: "5", b: "7", c: "12", d: "25", jawaban: "a" },
+      { pertanyaan: "Hasil dot product (2,3)·(4,1) = ...", a: "8", b: "11", c: "14", d: "6", jawaban: "b" },
+      { pertanyaan: "Vektor (5,12) memiliki panjang...", a: "13", b: "17", c: "7", d: "10", jawaban: "a" },
+      { pertanyaan: "Hasil dari (3,2) - (1,4) = ...", a: "(2,-2)", b: "(4,6)", c: "(2,2)", d: "(4,-2)", jawaban: "a" },
+      { pertanyaan: "Vektor yang berlawanan dengan (2,-3) adalah...", a: "(-2,3)", b: "(2,3)", c: "(-2,-3)", d: "(3,-2)", jawaban: "a" },
+      { pertanyaan: "Jika a=(1,2) dan b=(3,1), maka 2a+b = ...", a: "(5,5)", b: "(4,3)", c: "(5,4)", d: "(6,6)", jawaban: "a" },
+      { pertanyaan: "Apa lambang vektor satuan arah sumbu x?", a: "i", b: "j", c: "k", d: "l", jawaban: "a" },
+      { pertanyaan: "Apa lambang vektor satuan arah sumbu y?", a: "i", b: "j", c: "k", d: "l", jawaban: "b" },
+      { pertanyaan: "Operasi perkalian titik menghasilkan besaran...", a: "Vektor", b: "Skalar", c: "Matriks", d: "Tensor", jawaban: "b" },
+      { pertanyaan: "Dua vektor dikatakan sejajar jika...", a: "Dot product = 0", b: "Salah satu kelipatan yang lain", c: "Panjangnya sama", d: "Arahnya berlawanan", jawaban: "b" },
+      { pertanyaan: "Dua vektor tegak lurus jika...", a: "Dot product = 0", b: "Dot product = 1", c: "Panjangnya = 0", d: "Cross product = 0", jawaban: "a" },
+      { pertanyaan: "Panjang vektor (0,5) adalah...", a: "0", b: "5", c: "25", d: "1", jawaban: "b" },
+      { pertanyaan: "Vektor nol adalah vektor yang...", a: "Panjangnya 0", b: "Komponennya 0 semua", c: "Tidak punya arah", d: "Semua benar", jawaban: "d" },
+      { pertanyaan: "Jika |a| = 4 dan |b| = 3, sudut 60°, maka a·b = ...", a: "12", b: "6", c: "10", d: "7", jawaban: "b" },
+      { pertanyaan: "Cross product dari vektor sejajar adalah...", a: "0", b: "1", c: "Vektor itu sendiri", d: "Tak terdefinisi", jawaban: "a" },
+      { pertanyaan: "Sifat komutatif berlaku pada operasi...", a: "Dot product", b: "Cross product", c: "Keduanya", d: "Tidak keduanya", jawaban: "a" },
+      { pertanyaan: "Vektor posisi adalah vektor yang berpangkal di...", a: "Sembarang titik", b: "Titik pusat koordinat", c: "Titik ujung", d: "Titik tengah", jawaban: "b" },
+      { pertanyaan: "Panjang vektor (1,2,2) adalah...", a: "3", b: "4", c: "5", d: "9", jawaban: "a" },
+      { pertanyaan: "Besar sudut antara vektor i dan j adalah...", a: "0°", b: "45°", c: "90°", d: "180°", jawaban: "c" },
+      { pertanyaan: "Jika a = (2,1) dan b = (1,3), maka a-2b = ...", a: "(0,-5)", b: "(4,-5)", c: "(4,5)", d: "(0,5)", jawaban: "a" },
+      { pertanyaan: "Manakah yang merupakan besaran vektor?", a: "Massa", b: "Suhu", c: "Kecepatan", d: "Waktu", jawaban: "c" }
+    ]
+  },
+  "algoritma": {
+    title: "Algoritma Pemrograman",
+    soal: [
+      { pertanyaan: "Kompleksitas Linear Search adalah...", a: "O(1)", b: "O(n)", c: "O(log n)", d: "O(n²)", jawaban: "b" },
+      { pertanyaan: "Syarat Binary Search adalah...", a: "Data random", b: "Data terurut", c: "Data prima", d: "Data ganjil", jawaban: "b" },
+      { pertanyaan: "Struktur Data LIFO adalah...", a: "Queue", b: "Stack", c: "Array", d: "Linked List", jawaban: "b" },
+      { pertanyaan: "Struktur Data FIFO adalah...", a: "Stack", b: "Queue", c: "Tree", d: "Graph", jawaban: "b" },
+      { pertanyaan: "Kompleksitas Binary Search adalah...", a: "O(1)", b: "O(n)", c: "O(log n)", d: "O(n²)", jawaban: "c" },
+      { pertanyaan: "Divide and Conquer contohnya adalah...", a: "Bubble Sort", b: "Quick Sort", c: "Selection Sort", d: "Insertion Sort", jawaban: "b" },
+      { pertanyaan: "Kompleksitas Bubble Sort terburuk adalah...", a: "O(n)", b: "O(n log n)", c: "O(n²)", d: "O(log n)", jawaban: "c" },
+      { pertanyaan: "Algoritma pencarian tercepat pada data terurut adalah...", a: "Linear Search", b: "Binary Search", c: "Jump Search", d: "Interpolation Search", jawaban: "b" },
+      { pertanyaan: "Operasi push pada stack digunakan untuk...", a: "Menghapus data", b: "Menambah data", c: "Melihat data teratas", d: "Mengosongkan stack", jawaban: "b" },
+      { pertanyaan: "Operasi pop pada stack digunakan untuk...", a: "Menambah data", b: "Menghapus data teratas", c: "Melihat data paling bawah", d: "Mengurutkan data", jawaban: "b" },
+      { pertanyaan: "Kompleksitas Merge Sort adalah...", a: "O(n)", b: "O(n²)", c: "O(n log n)", d: "O(log n)", jawaban: "c" },
+      { pertanyaan: "Array adalah struktur data yang menyimpan elemen dengan tipe data...", a: "Berbeda", b: "Sama", c: "Acak", d: "Campuran", jawaban: "b" },
+      { pertanyaan: "Stack sering diibaratkan seperti...", a: "Antrian", b: "Tumpukan piring", c: "Garis lurus", d: "Pohon", jawaban: "b" },
+      { pertanyaan: "Queue sering diibaratkan seperti...", a: "Tumpukan piring", b: "Antrian", c: "Pohon", d: "Graf", jawaban: "b" },
+      { pertanyaan: "Algoritma sorting dengan kompleksitas O(n²) adalah...", a: "Merge Sort", b: "Quick Sort", c: "Bubble Sort", d: "Heap Sort", jawaban: "c" },
+      { pertanyaan: "Notasi O(n) disebut kompleksitas...", a: "Konstan", b: "Linear", c: "Logaritmik", d: "Kuadratik", jawaban: "b" },
+      { pertanyaan: "Notasi O(log n) disebut kompleksitas...", a: "Konstan", b: "Linear", c: "Logaritmik", d: "Eksponensial", jawaban: "c" },
+      { pertanyaan: "Linked list terdiri dari node yang berisi...", a: "Data dan pointer", b: "Data saja", c: "Pointer saja", d: "Array", jawaban: "a" },
+      { pertanyaan: "Algoritma rekursif adalah algoritma yang...", a: "Memanggil dirinya sendiri", b: "Menggunakan perulangan", c: "Tidak pernah berakhir", d: "Hanya untuk sorting", jawaban: "a" },
+      { pertanyaan: "Manakah yang bukan termasuk sorting algorithm?", a: "Quick Sort", b: "Merge Sort", c: "Binary Search", d: "Bubble Sort", jawaban: "c" },
+      { pertanyaan: "Stack digunakan pada fitur...", a: "Undo/Redo", b: "Antrian", c: "Sorting", d: "Pencarian", jawaban: "a" },
+      { pertanyaan: "Queue digunakan pada...", a: "Undo/Redo", b: "Manajemen proses CPU", c: "Pencarian biner", d: "Sorting cepat", jawaban: "b" },
+      { pertanyaan: "Kompleksitas terbaik Quick Sort adalah...", a: "O(n)", b: "O(n²)", c: "O(n log n)", d: "O(log n)", jawaban: "c" },
+      { pertanyaan: "Hash table menggunakan fungsi...", a: "Hash function", b: "Sorting", c: "Searching", d: "Recursive", jawaban: "a" },
+      { pertanyaan: "Algoritma yang menggunakan strategi bagi dan kuasai adalah...", a: "Linear Search", b: "Binary Search", c: "Bubble Sort", d: "Selection Sort", jawaban: "b" }
+    ]
+  },
+  "kalkulus": {
+    title: "Kalkulus Integral",
+    soal: [
+      { pertanyaan: "∫ x² dx = ...", a: "x³ + C", b: "x³/3 + C", c: "2x + C", d: "x²/2 + C", jawaban: "b" },
+      { pertanyaan: "∫ 1/x dx = ...", a: "ln x + C", b: "e^x + C", c: "x + C", d: "1 + C", jawaban: "a" },
+      { pertanyaan: "∫ 2x dx = ...", a: "x² + C", b: "2x² + C", c: "x + C", d: "2 + C", jawaban: "a" },
+      { pertanyaan: "∫ cos x dx = ...", a: "sin x + C", b: "-sin x + C", c: "cos x + C", d: "-cos x + C", jawaban: "a" },
+      { pertanyaan: "∫ sin x dx = ...", a: "cos x + C", b: "-cos x + C", c: "sin x + C", d: "-sin x + C", jawaban: "b" },
+      { pertanyaan: "∫ 3x² dx = ...", a: "x³ + C", b: "3x³ + C", c: "x³/3 + C", d: "6x + C", jawaban: "a" },
+      { pertanyaan: "∫ e^x dx = ...", a: "e^x + C", b: "x e^x + C", c: "ln x + C", d: "x + C", jawaban: "a" },
+      { pertanyaan: "∫ (4x³) dx = ...", a: "x⁴ + C", b: "4x⁴ + C", c: "12x² + C", d: "x⁴/4 + C", jawaban: "a" },
+      { pertanyaan: "∫ sec² x dx = ...", a: "tan x + C", b: "sec x + C", c: "csc x + C", d: "cot x + C", jawaban: "a" },
+      { pertanyaan: "∫ (6x⁵) dx = ...", a: "x⁶ + C", b: "6x⁶ + C", c: "30x⁴ + C", d: "x⁶/6 + C", jawaban: "a" },
+      { pertanyaan: "∫₀¹ x dx = ...", a: "0", b: "1/2", c: "1", d: "2", jawaban: "b" },
+      { pertanyaan: "∫₀² 2x dx = ...", a: "2", b: "4", c: "6", d: "8", jawaban: "b" },
+      { pertanyaan: "Luas daerah di bawah kurva y = x² dari 0 sampai 2 adalah...", a: "4/3", b: "8/3", c: "3", d: "4", jawaban: "b" },
+      { pertanyaan: "∫ (2x+3)⁵ dx dengan substitusi u = 2x+3 menjadi...", a: "u⁵ + C", b: "u⁶/12 + C", c: "u⁵/12 + C", d: "u⁶/6 + C", jawaban: "b" },
+      { pertanyaan: "Hasil ∫₀^π/2 sin x dx = ...", a: "0", b: "1", c: "2", d: "π/2", jawaban: "b" },
+      { pertanyaan: "Hasil ∫₀^π/2 cos x dx = ...", a: "0", b: "1", c: "2", d: "π/2", jawaban: "b" },
+      { pertanyaan: "Sifat ∫ₐᵇ f(x) dx = ...", a: "F(a)-F(b)", b: "F(b)-F(a)", c: "F(a)+F(b)", d: "-F(b)-F(a)", jawaban: "b" },
+      { pertanyaan: "∫ k·f(x) dx = ...", a: "k ∫ f(x) dx", b: "∫ f(x) dx + k", c: "∫ k dx + ∫ f(x) dx", d: "k + ∫ f(x) dx", jawaban: "a" },
+      { pertanyaan: "∫ [f(x) + g(x)] dx = ...", a: "∫ f(x) dx + ∫ g(x) dx", b: "∫ f(x) dx - ∫ g(x) dx", c: "∫ f(x) dx × ∫ g(x) dx", d: "∫ f(x) dx ÷ ∫ g(x) dx", jawaban: "a" },
+      { pertanyaan: "Integral disebut juga sebagai...", a: "Anti turunan", b: "Turunan", c: "Limit", d: "Derivatif", jawaban: "a" },
+      { pertanyaan: "∫ (5x⁴) dx = ...", a: "x⁵ + C", b: "5x⁵ + C", c: "20x³ + C", d: "x⁵/5 + C", jawaban: "a" },
+      { pertanyaan: "∫ 0 dx = ...", a: "0", b: "C", c: "x", d: "1", jawaban: "b" },
+      { pertanyaan: "∫ (x³ + 3x²) dx = ...", a: "x⁴/4 + x³ + C", b: "x⁴ + x³ + C", c: "3x² + 6x + C", d: "x⁴/4 + 6x + C", jawaban: "a" },
+      { pertanyaan: "∫ cos 2x dx = ...", a: "sin 2x + C", b: "½ sin 2x + C", c: "2 sin 2x + C", d: "-sin 2x + C", jawaban: "b" },
+      { pertanyaan: "∫ sin 3x dx = ...", a: "cos 3x + C", b: "-⅓ cos 3x + C", c: "3 cos 3x + C", d: "-cos 3x + C", jawaban: "b" }
+    ]
+  },
+  "program-linear": {
+    title: "Program Linear",
+    soal: [
+      { pertanyaan: "Apa fungsi tujuan dalam program linear?", a: "Fungsi yang diminimalkan", b: "Fungsi yang dimaksimalkan", c: "Fungsi kendala", d: "Fungsi batasan", jawaban: "b" },
+      { pertanyaan: "Daerah penyelesaian program linear disebut...", a: "Daerah arsiran", b: "Daerah feasible", c: "Daerah kuadran", d: "Daerah linear", jawaban: "b" },
+      { pertanyaan: "Metode yang digunakan untuk menyelesaikan program linear dengan banyak variabel...", a: "Eliminasi", b: "Substitusi", c: "Simpleks", d: "Integral", jawaban: "c" },
+      { pertanyaan: "Titik pojok yang menghasilkan nilai optimal disebut...", a: "Titik optimal", b: "Titik solusi", c: "Titik feasible", d: "Titik ekstrim", jawaban: "d" },
+      { pertanyaan: "Kendala dalam program linear berbentuk...", a: "Persamaan", b: "Pertidaksamaan", c: "Fungsi", d: "Grafik", jawaban: "b" },
+      { pertanyaan: "Metode grafik hanya bisa untuk berapa variabel?", a: "1", b: "2", c: "3", d: "4", jawaban: "b" },
+      { pertanyaan: "Fungsi objektif Z = 3x + 4y, nilai maksimum dari (0,5) adalah...", a: "15", b: "20", c: "12", d: "25", jawaban: "b" },
+      { pertanyaan: "Apa yang dimaksud dengan solusi optimal?", a: "Solusi terbaik", b: "Solusi acak", c: "Solusi awal", d: "Solusi akhir", jawaban: "a" },
+      { pertanyaan: "Metode simpleks menggunakan tabel yang disebut...", a: "Tabel Simpleks", b: "Tabel Optimal", c: "Tabel Iterasi", d: "Tabel Variabel", jawaban: "a" },
+      { pertanyaan: "Variabel yang ditambahkan untuk mengubah pertidaksamaan menjadi persamaan...", a: "Variabel slack", b: "Variabel surplus", c: "Variabel buatan", d: "Variabel dasar", jawaban: "a" },
+      { pertanyaan: "Maks Z = 2x + 3y dengan kendala x+y ≤ 4, x+2y ≤ 6, x,y ≥ 0. Solusi optimal x=...", a: "1", b: "2", c: "3", d: "4", jawaban: "b" },
+      { pertanyaan: "Maks Z = 2x + 3y dengan kendala x+y ≤ 4, x+2y ≤ 6, x,y ≥ 0. Solusi optimal y=...", a: "1", b: "2", c: "3", d: "4", jawaban: "b" },
+      { pertanyaan: "Maks Z = 2x + 3y dengan kendala x+y ≤ 4, x+2y ≤ 6, x,y ≥ 0. Nilai Z maksimal...", a: "8", b: "10", c: "12", d: "14", jawaban: "b" },
+      { pertanyaan: "Dalam metode grafik, titik (0,0) disebut...", a: "Titik optimal", b: "Titik origin", c: "Titik pojok", d: "Titik tengah", jawaban: "b" },
+      { pertanyaan: "Program linear termasuk cabang dari...", a: "Aljabar", b: "Statistika", c: "Optimasi", d: "Geometri", jawaban: "c" },
+      { pertanyaan: "Batasan non-negatif dalam program linear adalah...", a: "x ≤ 0, y ≤ 0", b: "x ≥ 0, y ≥ 0", c: "x = 0, y = 0", d: "x ≠ 0, y ≠ 0", jawaban: "b" },
+      { pertanyaan: "Kendala yang diwakili garis x = 0 adalah...", a: "Sumbu Y", b: "Sumbu X", c: "Garis diagonal", d: "Garis vertikal", jawaban: "b" },
+      { pertanyaan: "Kendala yang diwakili garis y = 0 adalah...", a: "Sumbu Y", b: "Sumbu X", c: "Garis diagonal", d: "Garis horizontal", jawaban: "a" },
+      { pertanyaan: "Daerah feasible selalu berbentuk...", a: "Lingkaran", b: "Segitiga", c: "Segi banyak konveks", d: "Persegi", jawaban: "c" },
+      { pertanyaan: "Shadow price adalah konsep dalam...", a: "Program linear", b: "Statistika", c: "Aljabar", d: "Geometri", jawaban: "a" },
+      { pertanyaan: "Masalah maksimasi dan minimasi adalah...", a: "Sama", b: "Berlawanan", c: "Tidak terkait", d: "Identik", jawaban: "b" },
+      { pertanyaan: "Titik pojok diperoleh dari...", a: "Perpotongan garis kendala", b: "Perpotongan kurva", c: "Perpotongan lingkaran", d: "Titik acak", jawaban: "a" },
+      { pertanyaan: "Variabel buatan digunakan pada metode...", a: "Grafik", b: "Simpleks fase 1", c: "Eliminasi", d: "Substitusi", jawaban: "b" },
+      { pertanyaan: "Fungsi tujuan dalam program linear disebut juga...", a: "Fungsi objektif", b: "Fungsi linear", c: "Fungsi kendala", d: "Fungsi kuadrat", jawaban: "a" },
+      { pertanyaan: "Program linear pertama kali dikembangkan oleh...", a: "Euclid", b: "Newton", c: "Dantzig", d: "Gauss", jawaban: "c" }
+    ]
+  },
+  "teori-bilangan": {
+    title: "Teori Bilangan",
+    soal: [
+      { pertanyaan: "Apa kepanjangan FPB?", a: "Faktor Pembagi Bersama", b: "Faktor Persekutuan Terbesar", c: "Fungsi Prima Bilangan", d: "Faktor Prima Bersama", jawaban: "b" },
+      { pertanyaan: "Bilangan prima adalah bilangan yang hanya habis dibagi...", a: "1 dan 2", b: "1 dan dirinya sendiri", c: "2 dan 3", d: "Semua bilangan", jawaban: "b" },
+      { pertanyaan: "FPB dari 12 dan 18 adalah...", a: "3", b: "6", c: "9", d: "12", jawaban: "b" },
+      { pertanyaan: "KPK dari 4 dan 6 adalah...", a: "8", b: "10", c: "12", d: "24", jawaban: "c" },
+      { pertanyaan: "Bilangan 17 termasuk bilangan...", a: "Prima", b: "Komposit", c: "Genap", d: "Ganjil saja", jawaban: "a" },
+      { pertanyaan: "FPB dari 24 dan 36 adalah...", a: "6", b: "8", c: "12", d: "18", jawaban: "c" },
+      { pertanyaan: "KPK dari 8 dan 12 adalah...", a: "16", b: "20", c: "24", d: "32", jawaban: "c" },
+      { pertanyaan: "Bilangan 1 termasuk bilangan...", a: "Prima", b: "Komposit", c: "Unit", d: "Genap", jawaban: "c" },
+      { pertanyaan: "FPB dari 15 dan 25 adalah...", a: "3", b: "5", c: "10", d: "15", jawaban: "b" },
+      { pertanyaan: "KPK dari 6 dan 9 adalah...", a: "12", b: "15", c: "18", d: "24", jawaban: "c" },
+      { pertanyaan: "Bilangan prima terkecil adalah...", a: "0", b: "1", c: "2", d: "3", jawaban: "c" },
+      { pertanyaan: "Bilangan prima genap hanya...", a: "2", b: "4", c: "6", d: "8", jawaban: "a" },
+      { pertanyaan: "FPB(30,45) = ...", a: "15", b: "10", c: "20", d: "5", jawaban: "a" },
+      { pertanyaan: "KPK(10,15) = ...", a: "20", b: "30", c: "40", d: "50", jawaban: "b" },
+      { pertanyaan: "Bilangan komposit terkecil adalah...", a: "2", b: "3", c: "4", d: "5", jawaban: "c" },
+      { pertanyaan: "Faktor dari 12 adalah...", a: "1,2,3,4,6,12", b: "1,2,3,5,6,12", c: "1,2,4,6,8,12", d: "Semua jawaban salah", jawaban: "a" },
+      { pertanyaan: "Bilangan prima antara 10 dan 20 adalah...", a: "11,13,17,19", b: "11,13,15,17", c: "11,13,15,19", d: "11,13,17,18", jawaban: "a" },
+      { pertanyaan: "Bilangan 49 termasuk bilangan...", a: "Prima", b: "Komposit", c: "Genap", d: "Ganjil saja", jawaban: "b" },
+      { pertanyaan: "Algoritma yang digunakan untuk mencari FPB adalah...", a: "Euclid", b: "Eratosthenes", c: "Gauss", d: "Fermat", jawaban: "a" },
+      { pertanyaan: "Metode mencari bilangan prima disebut...", a: "Euclid", b: "Sieve of Eratosthenes", c: "Fermat", d: "Goldbach", jawaban: "b" },
+      { pertanyaan: "Bilangan 2n untuk n bulat disebut...", a: "Ganjil", b: "Genap", c: "Prima", d: "Komposit", jawaban: "b" },
+      { pertanyaan: "Bilangan 2n+1 untuk n bulat disebut...", a: "Ganjil", b: "Genap", c: "Prima", d: "Komposit", jawaban: "a" },
+      { pertanyaan: "Teorema dasar aritmetika berkaitan dengan...", a: "Penjumlahan", b: "Perkalian bilangan prima", c: "Pengurangan", d: "Pembagian", jawaban: "b" },
+      { pertanyaan: "KPK(12,15) = ...", a: "30", b: "45", c: "60", d: "75", jawaban: "c" },
+      { pertanyaan: "FPB(18,24) = ...", a: "6", b: "8", c: "9", d: "12", jawaban: "a" }
+    ]
+  },
+  "pkn": {
+    title: "Pendidikan Kewarganegaraan",
+    soal: [
+      { pertanyaan: "Dasar negara Indonesia adalah...", a: "UUD 1945", b: "Pancasila", c: "Bhinneka Tunggal Ika", d: "Garuda Pancasila", jawaban: "b" },
+      { pertanyaan: "Bendera negara Indonesia adalah...", a: "Merah Putih", b: "Merah Biru", c: "Putih Hitam", d: "Kuning Merah", jawaban: "a" },
+      { pertanyaan: "Lambang negara Indonesia adalah...", a: "Burung Garuda", b: "Banteng", c: "Padi Kapas", d: "Bintang", jawaban: "a" },
+      { pertanyaan: "Sila ke-1 Pancasila berbunyi...", a: "Kemanusiaan", b: "Ketuhanan", c: "Persatuan", d: "Kerakyatan", jawaban: "b" },
+      { pertanyaan: "Bhinneka Tunggal Ika berarti...", a: "Berbeda-beda tetap satu", b: "Satu untuk semua", c: "Bersatu kita teguh", d: "Damai sejahtera", jawaban: "a" },
+      { pertanyaan: "UUD 1945 disahkan pada tanggal...", a: "17 Agustus 1945", b: "18 Agustus 1945", c: "19 Agustus 1945", d: "20 Agustus 1945", jawaban: "b" },
+      { pertanyaan: "Hak warga negara untuk memilih disebut...", a: "Hak pilih", b: "Hak suara", c: "Hak asasi", d: "Hak politik", jawaban: "a" },
+      { pertanyaan: "Lembaga yang berwenang mengubah UUD 1945 adalah...", a: "DPR", b: "MPR", c: "Presiden", d: "MA", jawaban: "b" },
+      { pertanyaan: "Sila ke-4 Pancasila dilambangkan dengan...", a: "Bintang", b: "Rantai", c: "Pohon Beringin", d: "Kepala Banteng", jawaban: "d" },
+      { pertanyaan: "Negara Kesatuan Republik Indonesia berbentuk...", a: "Republik", b: "Monarki", c: "Federal", d: "Serikat", jawaban: "a" },
+      { pertanyaan: "Pasal yang mengatur tentang hak mendapat pendidikan adalah...", a: "Pasal 27", b: "Pasal 28", c: "Pasal 29", d: "Pasal 31", jawaban: "d" },
+      { pertanyaan: "Lambang sila ke-2 Pancasila adalah...", a: "Bintang", b: "Rantai", c: "Pohon Beringin", d: "Kepala Banteng", jawaban: "b" },
+      { pertanyaan: "Lambang sila ke-3 Pancasila adalah...", a: "Bintang", b: "Rantai", c: "Pohon Beringin", d: "Kepala Banteng", jawaban: "c" },
+      { pertanyaan: "Lambang sila ke-5 Pancasila adalah...", a: "Bintang", b: "Rantai", c: "Pohon Beringin", d: "Padi Kapas", jawaban: "d" },
+      { pertanyaan: "BPK kepanjangan dari...", a: "Badan Pemeriksa Keuangan", b: "Badan Pengawas Keuangan", c: "Badan Pemeriksa Kesejahteraan", d: "Badan Pengawas Kesejahteraan", jawaban: "a" },
+      { pertanyaan: "MK kepanjangan dari...", a: "Mahkamah Konstitusi", b: "Mahkamah Kehakiman", c: "Majelis Konstitusi", d: "Majelis Kehakiman", jawaban: "a" },
+      { pertanyaan: "Presiden Indonesia saat ini adalah...", a: "Joko Widodo", b: "Prabowo Subianto", c: "Megawati", d: "SBY", jawaban: "b" },
+      { pertanyaan: "Hari kesaktian Pancasila diperingati setiap...", a: "1 Juni", b: "1 Oktober", c: "17 Agustus", d: "18 Agustus", jawaban: "b" },
+      { pertanyaan: "Hari lahir Pancasila diperingati setiap...", a: "1 Juni", b: "1 Oktober", c: "17 Agustus", d: "18 Agustus", jawaban: "a" },
+      { pertanyaan: "Landasan ideal bangsa Indonesia adalah...", a: "Pancasila", b: "UUD 1945", c: "Ketetapan MPR", d: "Peraturan Pemerintah", jawaban: "a" },
+      { pertanyaan: "Landasan konstitusional bangsa Indonesia adalah...", a: "Pancasila", b: "UUD 1945", c: "Ketetapan MPR", d: "Peraturan Pemerintah", jawaban: "b" },
+      { pertanyaan: "DPR adalah lembaga yang memegang kekuasaan...", a: "Eksekutif", b: "Legislatif", c: "Yudikatif", d: "Konstitutif", jawaban: "b" },
+      { pertanyaan: "Presiden adalah pemegang kekuasaan...", a: "Eksekutif", b: "Legislatif", c: "Yudikatif", d: "Konstitutif", jawaban: "a" },
+      { pertanyaan: "MA adalah pemegang kekuasaan...", a: "Eksekutif", b: "Legislatif", c: "Yudikatif", d: "Konstitutif", jawaban: "c" },
+      { pertanyaan: "Bhinneka Tunggal Ika diambil dari kitab...", a: "Negarakertagama", b: "Sutasoma", c: "Arjuna Wiwaha", d: "Ramayana", jawaban: "b" }
+    ]
+  },
+  "pancasila": {
+    title: "Pendidikan Pancasila",
+    soal: [
+      { pertanyaan: "Sila ke-3 Pancasila adalah...", a: "Ketuhanan", b: "Kemanusiaan", c: "Persatuan Indonesia", d: "Kerakyatan", jawaban: "c" },
+      { pertanyaan: "Sila ke-5 Pancasila adalah...", a: "Ketuhanan", b: "Kemanusiaan", c: "Persatuan", d: "Keadilan Sosial", jawaban: "d" },
+      { pertanyaan: "Jumlah sila dalam Pancasila adalah...", a: "3", b: "4", c: "5", d: "6", jawaban: "c" },
+      { pertanyaan: "Sila ke-2 Pancasila berbunyi...", a: "Ketuhanan", b: "Kemanusiaan yang adil dan beradab", c: "Persatuan Indonesia", d: "Kerakyatan", jawaban: "b" },
+      { pertanyaan: "Sila ke-4 Pancasila berbunyi...", a: "Ketuhanan", b: "Kemanusiaan", c: "Persatuan", d: "Kerakyatan yang dipimpin oleh hikmat kebijaksanaan dalam permusyawaratan/perwakilan", jawaban: "d" },
+      { pertanyaan: "Tokoh penggali Pancasila adalah...", a: "Soekarno", b: "Hatta", c: "Soepomo", d: "Muhammad Yamin", jawaban: "a" },
+      { pertanyaan: "Nilai-nilai Pancasila bersifat...", a: "Universal", b: "Lokal", c: "Regional", d: "Nasional", jawaban: "a" },
+      { pertanyaan: "Pancasila sebagai ideologi negara bersifat...", a: "Tertutup", b: "Terbuka", c: "Kaku", d: "Luwes", jawaban: "b" },
+      { pertanyaan: "Sila ke-1 Pancasila dilambangkan dengan...", a: "Bintang", b: "Rantai", c: "Pohon Beringin", d: "Kepala Banteng", jawaban: "a" },
+      { pertanyaan: "Pancasila ditetapkan sebagai dasar negara pada tanggal...", a: "1 Juni 1945", b: "17 Agustus 1945", c: "18 Agustus 1945", d: "22 Juni 1945", jawaban: "c" },
+      { pertanyaan: "Piagam Jakarta dirumuskan pada tanggal...", a: "1 Juni 1945", b: "17 Agustus 1945", c: "18 Agustus 1945", d: "22 Juni 1945", jawaban: "d" },
+      { pertanyaan: "Nilai yang terkandung dalam sila ke-1 adalah...", a: "Religius", b: "Kemanusiaan", c: "Persatuan", d: "Kerakyatan", jawaban: "a" },
+      { pertanyaan: "Nilai yang terkandung dalam sila ke-2 adalah...", a: "Religius", b: "Kemanusiaan", c: "Persatuan", d: "Kerakyatan", jawaban: "b" },
+      { pertanyaan: "Nilai yang terkandung dalam sila ke-3 adalah...", a: "Religius", b: "Kemanusiaan", c: "Persatuan", d: "Kerakyatan", jawaban: "c" },
+      { pertanyaan: "Nilai yang terkandung dalam sila ke-4 adalah...", a: "Religius", b: "Kemanusiaan", c: "Persatuan", d: "Kerakyatan", jawaban: "d" },
+      { pertanyaan: "Nilai yang terkandung dalam sila ke-5 adalah...", a: "Religius", b: "Kemanusiaan", c: "Persatuan", d: "Keadilan", jawaban: "d" },
+      { pertanyaan: "BPUPKI didirikan pada tanggal...", a: "1 Maret 1945", b: "29 April 1945", c: "1 Juni 1945", d: "17 Agustus 1945", jawaban: "a" },
+      { pertanyaan: "PPKI didirikan pada tanggal...", a: "1 Maret 1945", b: "7 Agustus 1945", c: "17 Agustus 1945", d: "18 Agustus 1945", jawaban: "b" },
+      { pertanyaan: "Panitia Sembilan diketuai oleh...", a: "Soekarno", b: "Moh Hatta", c: "Soepomo", d: "Muhammad Yamin", jawaban: "a" },
+      { pertanyaan: "Pancasila sebagai sistem etika berarti...", a: "Nilai moral", b: "Aturan hukum", c: "Sanksi pidana", d: "Prosedur politik", jawaban: "a" },
+      { pertanyaan: "Butir-butir Pancasila sekarang disebut...", a: "Nilai Pancasila", b: "Butir Pancasila", c: "Realisasi Pancasila", d: "Pengamalan Pancasila", jawaban: "d" },
+      { pertanyaan: "Gotong royong adalah pengamalan sila ke...", a: "2", b: "3", c: "4", d: "5", jawaban: "b" },
+      { pertanyaan: "Toleransi beragama adalah pengamalan sila ke...", a: "1", b: "2", c: "3", d: "4", jawaban: "a" },
+      { pertanyaan: "Musyawarah mufakat adalah pengamalan sila ke...", a: "2", b: "3", c: "4", d: "5", jawaban: "c" },
+      { pertanyaan: "Keadilan sosial adalah pengamalan sila ke...", a: "2", b: "3", c: "4", d: "5", jawaban: "d" }
+    ]
+  },
+  "konservasi": {
+    title: "Pendidikan Konservasi",
+    soal: [
+      { pertanyaan: "Apa kepanjangan 3R?", a: "Reduce, Reuse, Recycle", b: "Read, Write, Repeat", c: "Reduce, Return, Reset", d: "Reuse, Renew, Rebuild", jawaban: "a" },
+      { pertanyaan: "Langkah pertama dalam 3R adalah...", a: "Recycle", b: "Reuse", c: "Reduce", d: "Repair", jawaban: "c" },
+      { pertanyaan: "Contoh kegiatan reuse adalah...", a: "Membuang sampah", b: "Menggunakan botol bekas", c: "Membakar sampah", d: "Mengubur sampah", jawaban: "b" },
+      { pertanyaan: "Konservasi sumber daya alam bertujuan untuk...", a: "Melestarikan", b: "Mengeksploitasi", c: "Merusak", d: "Menguras", jawaban: "a" },
+      { pertanyaan: "Contoh energi terbarukan adalah...", a: "Matahari", b: "Batu bara", c: "Minyak bumi", d: "Gas alam", jawaban: "a" },
+      { pertanyaan: "Dampak pemanasan global adalah...", a: "Mencairnya es kutub", b: "Hujan deras", c: "Angin topan", d: "Gempa bumi", jawaban: "a" },
+      { pertanyaan: "Gas rumah kaca yang paling dominan adalah...", a: "CO2", b: "CH4", c: "N2O", d: "CFC", jawaban: "a" },
+      { pertanyaan: "Kegiatan yang ramah lingkungan disebut...", a: "Eco-friendly", b: "Green house", c: "Global warming", d: "Ozone layer", jawaban: "a" },
+      { pertanyaan: "Sampah organik dapat diolah menjadi...", a: "Kompos", b: "Plastik", c: "Logam", d: "Kaca", jawaban: "a" },
+      { pertanyaan: "Hutan yang dilestarikan disebut...", a: "Hutan lindung", b: "Hutan produksi", c: "Hutan industri", d: "Hutan kota", jawaban: "a" },
+      { pertanyaan: "Contoh energi tak terbarukan adalah...", a: "Matahari", b: "Angin", c: "Air", d: "Batu bara", jawaban: "d" },
+      { pertanyaan: "Penyebab utama efek rumah kaca adalah...", a: "Gas CO2", b: "Oksigen", c: "Nitrogen", d: "Hidrogen", jawaban: "a" },
+      { pertanyaan: "Recycle berarti...", a: "Mengurangi", b: "Menggunakan kembali", c: "Mendaur ulang", d: "Memperbaiki", jawaban: "c" },
+      { pertanyaan: "Reduce berarti...", a: "Mengurangi", b: "Menggunakan kembali", c: "Mendaur ulang", d: "Memperbaiki", jawaban: "a" },
+      { pertanyaan: "Reuse berarti...", a: "Mengurangi", b: "Menggunakan kembali", c: "Mendaur ulang", d: "Memperbaiki", jawaban: "b" },
+      { pertanyaan: "Pembangkit listrik tenaga surya menghasilkan energi dari...", a: "Matahari", b: "Air", c: "Angin", d: "Panas bumi", jawaban: "a" },
+      { pertanyaan: "Pembangkit listrik tenaga angin disebut...", a: "PLTS", b: "PLTA", c: "PLTB", d: "PLTP", jawaban: "c" },
+      { pertanyaan: "Pembangkit listrik tenaga air disebut...", a: "PLTS", b: "PLTA", c: "PLTB", d: "PLTP", jawaban: "b" },
+      { pertanyaan: "Pembangkit listrik tenaga panas bumi disebut...", a: "PLTS", b: "PLTA", c: "PLTB", d: "PLTP", jawaban: "d" },
+      { pertanyaan: "Deforestasi adalah...", a: "Penanaman pohon", b: "Penggundulan hutan", c: "Perlindungan hutan", d: "Penebangan liar", jawaban: "b" },
+      { pertanyaan: "Rehabilitasi adalah...", a: "Penebangan hutan", b: "Penanaman kembali hutan", c: "Pembakaran hutan", d: "Penggundulan hutan", jawaban: "b" },
+      { pertanyaan: "Konservasi ex situ adalah konservasi yang dilakukan...", a: "Di habitat asli", b: "Di luar habitat asli", c: "Di hutan lindung", d: "Di taman nasional", jawaban: "b" },
+      { pertanyaan: "Konservasi in situ adalah konservasi yang dilakukan...", a: "Di habitat asli", b: "Di luar habitat asli", c: "Di kebun binatang", d: "Di laboratorium", jawaban: "a" },
+      { pertanyaan: "Sampah anorganik contohnya...", a: "Daun", b: "Sisa makanan", c: "Plastik", d: "Kayu", jawaban: "c" },
+      { pertanyaan: "PLTN kepanjangan dari...", a: "Pembangkit Listrik Tenaga Nuklir", b: "Pembangkit Listrik Tenaga Alam", c: "Pembangkit Listrik Tenaga Angin", d: "Pembangkit Listrik Tenaga Air", jawaban: "a" }
+    ]
+  }
+};
 
   let currentUser = null;
   let sessionCheckInterval = null;
@@ -7913,8 +9312,146 @@ const databasePTN = [
 
   // ========== LATIHAN SOAL ==========
   function loadLatihanMkGrid() { const grid = document.getElementById('latihanMkGrid'); if (!grid) return; grid.innerHTML = Object.keys(soalPerMk).map(mkId => `<div class="mk-card" data-latihan="${mkId}"><div class="mk-icon">📝</div><div class="mk-card-name">${soalPerMk[mkId].title}</div><button class="btn-masuk-mk">MULAI</button></div>`).join(''); document.querySelectorAll('[data-latihan]').forEach(card => { card.addEventListener('click', () => showLatihanSoal(card.getAttribute('data-latihan'))); }); }
-  function showLatihanSoal(mkId) { const data = soalPerMk[mkId]; if (!data) return; document.getElementById('latihanMkTitle').textContent = `📝 Latihan: ${data.title}`; const soalHtml = data.soal.map((s, idx) => `<div class="soal-item"><p><strong>Soal ${idx+1}:</strong> ${s.pertanyaan}</p><div class="input-group"><input type="text" id="jawaban${idx}" placeholder="Jawaban Anda..."></div><button class="btn-cek-jawaban" data-soal="${idx}" data-jawaban="${s.jawaban.toLowerCase()}">Cek Jawaban</button><div id="feedback${idx}"></div></div>`).join(''); document.getElementById('latihanSoalContent').innerHTML = soalHtml; document.querySelector('#latihanSoalPage .pilih-mk-section').style.display = 'none'; document.getElementById('latihanSoalContainer').style.display = 'block'; addRecord('Latihan Soal', `Membuka ${data.title}`); document.querySelectorAll('.btn-cek-jawaban').forEach(btn => { btn.addEventListener('click', () => { const soalIdx = btn.getAttribute('data-soal'); const jawabanBenar = btn.getAttribute('data-jawaban'); const userJawaban = document.getElementById(`jawaban${soalIdx}`).value.trim().toLowerCase(); const feedback = document.getElementById(`feedback${soalIdx}`); if (userJawaban === jawabanBenar) { feedback.innerHTML = '<span style="color:#2a9d8f;">✅ Benar!</span>'; addRecord('Latihan Soal', `${data.title} - Soal ${parseInt(soalIdx)+1} ✅`); } else { feedback.innerHTML = `<span style="color:#d9534f;">❌ Salah. Jawaban: ${jawabanBenar}</span>`; addRecord('Latihan Soal', `${data.title} - Soal ${parseInt(soalIdx)+1} ❌`); } }); }); }
-  function backToLatihanList() { document.getElementById('latihanSoalContainer').style.display = 'none'; document.querySelector('#latihanSoalPage .pilih-mk-section').style.display = 'block'; }
+// ========== FUNGSI LATIHAN SOAL DENGAN MODAL POPUP ==========
+// ========== FUNGSI LATIHAN SOAL DENGAN MODAL POPUP ==========
+function showLatihanSoal(mkId) {
+  const data = soalPerMk[mkId];
+  if (!data) return;
+  
+  document.getElementById('latihanMkTitle').innerHTML = `📝 Latihan: ${data.title} (${data.soal.length} Soal Pilihan Ganda)`;
+  
+  let currentUserData = currentUser;
+  if (!currentUserData) {
+    const saved = localStorage.getItem('currentUserData');
+    if (saved) currentUserData = JSON.parse(saved);
+  }
+  const userNama = currentUserData?.nama || 'Mahasiswa';
+  const userNim = currentUserData?.nim || '';
+  
+  let soalHtml = `<div class="soal-container" data-mk="${mkId}" data-total="${data.soal.length}">`;
+  soalHtml += `<p style="margin-bottom: 1rem; color: #2a9d8f;">📌 Klik pada pilihan jawaban A, B, C, atau D!</p>`;
+  
+  data.soal.forEach((s, idx) => {
+    soalHtml += `
+      <div class="soal-item" style="margin-bottom: 1.5rem; padding: 1rem; background: #f9fbfe; border-radius: 1rem; border-left: 4px solid #2a9d8f;">
+        <p><strong>Soal ${idx+1}:</strong> ${s.pertanyaan}</p>
+        <div style="margin-top: 0.5rem;">
+          <label style="display: block; margin: 0.5rem 0; cursor: pointer;">
+            <input type="radio" name="soal_${mkId}_${idx}" value="a" style="margin-right: 10px;"> 
+            <strong>A.</strong> ${s.a}
+          </label>
+          <label style="display: block; margin: 0.5rem 0; cursor: pointer;">
+            <input type="radio" name="soal_${mkId}_${idx}" value="b" style="margin-right: 10px;"> 
+            <strong>B.</strong> ${s.b}
+          </label>
+          <label style="display: block; margin: 0.5rem 0; cursor: pointer;">
+            <input type="radio" name="soal_${mkId}_${idx}" value="c" style="margin-right: 10px;"> 
+            <strong>C.</strong> ${s.c}
+          </label>
+          <label style="display: block; margin: 0.5rem 0; cursor: pointer;">
+            <input type="radio" name="soal_${mkId}_${idx}" value="d" style="margin-right: 10px;"> 
+            <strong>D.</strong> ${s.d}
+          </label>
+        </div>
+        <div id="feedback_${mkId}_${idx}" style="font-size: 0.8rem; margin-top: 0.5rem;"></div>
+      </div>
+    `;
+  });
+  
+  soalHtml += `
+    <div style="margin-top: 1.5rem; text-align: center;">
+      <button id="submitAllJawaban" class="btn-login-modern" style="background: #2a9d8f; width: auto; padding: 0.7rem 2rem; border-radius: 2rem; font-size: 1rem;">📊 KUMPULKAN JAWABAN</button>
+    </div>
+  </div>`;
+  
+  document.getElementById('latihanSoalContent').innerHTML = soalHtml;
+  document.querySelector('#latihanSoalPage .pilih-mk-section').style.display = 'none';
+  document.getElementById('latihanSoalContainer').style.display = 'block';
+  addRecord('Latihan Soal', `Membuka ${data.title}`);
+  
+  const submitBtn = document.getElementById('submitAllJawaban');
+  if (submitBtn) {
+    const newSubmitBtn = submitBtn.cloneNode(true);
+    submitBtn.parentNode.replaceChild(newSubmitBtn, submitBtn);
+    
+    newSubmitBtn.addEventListener('click', () => {
+      let benar = 0;
+      const total = data.soal.length;
+      
+      for (let i = 0; i < total; i++) {
+        const selectedRadio = document.querySelector(`input[name="soal_${mkId}_${i}"]:checked`);
+        const feedbackDiv = document.getElementById(`feedback_${mkId}_${i}`);
+        
+        if (selectedRadio) {
+          const userJawaban = selectedRadio.value;
+          const jawabanBenar = data.soal[i].jawaban;
+          
+          if (userJawaban === jawabanBenar) {
+            benar++;
+            if (feedbackDiv) feedbackDiv.innerHTML = '<span style="color:#2a9d8f;">✅ Benar!</span>';
+          } else {
+            const jawabanText = data.soal[i][jawabanBenar];
+            if (feedbackDiv) feedbackDiv.innerHTML = `<span style="color:#d9534f;">❌ Salah. Jawaban benar: ${jawabanBenar.toUpperCase()}. ${jawabanText}</span>`;
+          }
+        } else {
+          if (feedbackDiv) feedbackDiv.innerHTML = '<span style="color:#f4a261;">⚠️ Belum dijawab</span>';
+        }
+      }
+      
+      const nilai = Math.round((benar / total) * 100);
+      
+      // ========== MODAL POPUP DI TENGAH ==========
+      let bgColor = '#e8f5e9';
+      let emoji = '🎉';
+      let statusText = 'Selamat! Anda lulus!';
+      let statusColor = '#2a9d8f';
+      
+      if (nilai < 50) { 
+        bgColor = '#fee2e2'; 
+        emoji = '💪'; 
+        statusText = 'Jangan menyerah, coba lagi!';
+        statusColor = '#d9534f';
+      } else if (nilai < 70) { 
+        bgColor = '#fff7e5'; 
+        emoji = '📚'; 
+        statusText = 'Perlu belajar lagi!';
+        statusColor = '#f4a261';
+      }
+      
+      // Hapus modal lama jika ada
+      const oldModal = document.getElementById('hasilLatihanModal');
+      if (oldModal) oldModal.remove();
+      
+      const modalHtml = `
+        <div id="hasilLatihanModal" style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); z-index:10000; display:flex; justify-content:center; align-items:center;">
+          <div style="background:white; border-radius:1.5rem; padding:2rem; text-align:center; max-width:400px; width:90%; box-shadow: 0 20px 35px -10px rgba(0,0,0,0.3);">
+            <div style="font-size:4rem;">${emoji}</div>
+            <h2 style="color:${statusColor}; margin:0.5rem 0;">HASIL LATIHAN</h2>
+            <div style="margin:1rem 0; padding:1rem; background:${bgColor}; border-radius:1rem;">
+              <p><strong>✅ Benar:</strong> ${benar} / ${total} soal</p>
+              <p style="font-size:1.5rem;"><strong>📈 Nilai:</strong> <span style="color:${statusColor};">${nilai}</span></p>
+              <p>${statusText}</p>
+            </div>
+            <button id="tutupModalLatihan" style="background:${statusColor}; color:white; border:none; padding:0.7rem 2rem; border-radius:2rem; cursor:pointer;">Tutup</button>
+          </div>
+        </div>
+      `;
+      
+      document.body.insertAdjacentHTML('beforeend', modalHtml);
+      
+      document.getElementById('tutupModalLatihan').addEventListener('click', () => {
+        const modal = document.getElementById('hasilLatihanModal');
+        if (modal) modal.remove();
+      });
+      
+      if (userNim) {
+        simpanNilai(userNim, userNama, nilai, total, benar, mkId);
+        addRecord('Latihan Soal', `${data.title} - Selesai: ${benar}/${total} (${nilai})`);
+      }
+    });
+  }
+}
+function backToLatihanList() { document.getElementById('latihanSoalContainer').style.display = 'none'; document.querySelector('#latihanSoalPage .pilih-mk-section').style.display = 'block'; }
 
   // ========== RASIONALISASI PTN ==========
 // Fungsi untuk mendapatkan singkatan universitas
@@ -8513,13 +10050,12 @@ function initNilaiDatabase() {
   }
 }
 
-// Simpan nilai mahasiswa
-function simpanNilai(nim, nama, nilaiBaru, totalSoal, benar) {
+function simpanNilai(nim, nama, nilaiBaru, totalSoal, benar, mkId) {
   initNilaiDatabase();
   let dataNilai = JSON.parse(localStorage.getItem('nilaiMahasiswa'));
   
-  // Cari data mahasiswa berdasarkan NIM
-  const existingIndex = dataNilai.findIndex(m => m.nim === nim);
+  // Cari data mahasiswa berdasarkan NIM dan MK
+  const existingIndex = dataNilai.findIndex(m => m.nim === nim && m.mkId === mkId);
   
   if (existingIndex !== -1) {
     // Update nilai jika nilai baru lebih besar
@@ -8528,21 +10064,20 @@ function simpanNilai(nim, nama, nilaiBaru, totalSoal, benar) {
       dataNilai[existingIndex].benar = benar;
       dataNilai[existingIndex].totalSoal = totalSoal;
       dataNilai[existingIndex].terakhirDiupdate = new Date().toISOString();
-      addRecord('Nilai', `Nilai ${nama} diperbarui menjadi ${nilaiBaru}`);
-    } else {
-      addRecord('Nilai', `Nilai ${nama} tetap ${dataNilai[existingIndex].nilai} (tidak melebihi nilai sebelumnya)`);
+      addRecord('Nilai', `Nilai ${nama} (${mkId}) diperbarui menjadi ${nilaiBaru}`);
     }
   } else {
     // Tambah data baru
     dataNilai.push({ 
       nim, 
       nama, 
+      mkId,
       nilai: nilaiBaru, 
       totalSoal, 
       benar,
       pertamaKali: new Date().toISOString()
     });
-    addRecord('Nilai', `✨ Nilai pertama ${nama}: ${nilaiBaru}`);
+    addRecord('Nilai', `✨ Nilai pertama ${nama} (${mkId}): ${nilaiBaru}`);
   }
   
   localStorage.setItem('nilaiMahasiswa', JSON.stringify(dataNilai));
@@ -8560,134 +10095,115 @@ function getRankingData() {
 
 // Tampilkan halaman Hasil Nilai dengan ranking
 function renderHasilNilaiPage() {
-  const rankingData = getRankingData();
+  initNilaiDatabase();
+  let dataNilai = JSON.parse(localStorage.getItem('nilaiMahasiswa'));
+  
+  // Kelompokkan per mata kuliah
+  const mkList = ['aljabar-vektor', 'algoritma', 'kalkulus', 'program-linear', 'teori-bilangan', 'pkn', 'pancasila', 'konservasi'];
+  const mkNames = {
+    'aljabar-vektor': 'Aljabar Vektor',
+    'algoritma': 'Algoritma Pemrograman',
+    'kalkulus': 'Kalkulus Integral',
+    'program-linear': 'Program Linear',
+    'teori-bilangan': 'Teori Bilangan',
+    'pkn': 'Pendidikan Kewarganegaraan',
+    'pancasila': 'Pendidikan Pancasila',
+    'konservasi': 'Pendidikan Konservasi'
+  };
+  
   const container = document.getElementById('hasilNilaiContainer');
   if (!container) return;
   
-  if (rankingData.length === 0) {
-    container.innerHTML = `
-      <div style="text-align: center; padding: 3rem;">
-        <div style="font-size: 4rem; margin-bottom: 1rem;">📭</div>
-        <h3 style="color: #1a4d5f;">Belum Ada Data Nilai</h3>
-        <p style="color: #6c7e91;">Silakan kerjakan latihan soal terlebih dahulu!</p>
-        <p style="color: #8ba0b0; margin-top: 1rem;">💡 Klik "Mata Kuliah" → Pilih mata kuliah → Masuk → Kerjakan latihan soal</p>
-      </div>
-    `;
+  if (dataNilai.length === 0) {
+    container.innerHTML = `<div class="empty-record" style="padding:3rem; text-align:center;">📭 Belum ada data nilai. Kerjakan latihan soal terlebih dahulu!</div>`;
     return;
   }
   
-  let html = `
-    <style>
-      .ranking-table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-top: 1rem;
-      }
-      .ranking-table th, .ranking-table td {
-        padding: 12px 10px;
-        text-align: left;
-        border-bottom: 1px solid #e2edf2;
-      }
-      .ranking-table th {
-        background: #1a4d5f;
-        color: white;
-        font-weight: 600;
-        position: sticky;
-        top: 0;
-      }
-      .ranking-table tr:hover {
-        background: #f0f4fa;
-      }
-      .rank-1 { background: linear-gradient(90deg, #fff9e6, #fff); border-left: 4px solid #ffd700; }
-      .rank-2 { background: linear-gradient(90deg, #f5f5f5, #fff); border-left: 4px solid #c0c0c0; }
-      .rank-3 { background: linear-gradient(90deg, #fdf5e6, #fff); border-left: 4px solid #cd7f32; }
-      .rank-medal {
-        font-size: 1.3rem;
-        display: inline-block;
-        width: 30px;
-      }
-      .nilai-badge {
-        background: #1a4d5f;
-        color: white;
-        padding: 4px 12px;
-        border-radius: 20px;
-        font-weight: 700;
-        display: inline-block;
-      }
-      .nilai-sempurna { background: #2a9d8f; }
-      .nilai-bagus { background: #f4a261; }
-      .nilai-cukup { background: #e9c46a; color: #333; }
-      .ranking-container {
-        max-height: 500px;
-        overflow-y: auto;
-        border-radius: 1rem;
-        border: 1px solid #e2edf2;
-      }
-      .stat-summary {
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 1rem;
-        padding: 1rem;
-        background: #f0f4fa;
-        border-radius: 1rem;
-      }
-    </style>
-    <div class="stat-summary">
-      <div>📊 Total Peserta: <strong>${rankingData.length}</strong> orang</div>
-      <div>🏆 Nilai Tertinggi: <strong>${rankingData[0].nilai}</strong></div>
-      <div>📈 Rata-rata: <strong>${Math.round(rankingData.reduce((a,b) => a + b.nilai, 0) / rankingData.length)}</strong></div>
-    </div>
-    <div class="ranking-container">
-      <table class="ranking-table">
-        <thead>
-          <tr><th>🏆 Rank</th><th>👤 Nama</th><th>🆔 NIM</th><th>📊 Nilai</th><th>✅ Benar/Total</th><th>📅 Waktu</th></tr>
-        </thead>
-        <tbody>
-  `;
+  let html = `<div style="display: flex; gap: 1rem; margin-bottom: 1rem; flex-wrap: wrap;">`;
+  html += `<button id="showAllRanking" class="btn-back-mk" style="background:#1a4d5f; color:white;">🏆 Semua MK</button>`;
   
-  rankingData.forEach((m, idx) => {
-    let rankClass = '';
-    let medal = '';
-    if (idx === 0) { rankClass = 'rank-1'; medal = '🥇'; }
-    else if (idx === 1) { rankClass = 'rank-2'; medal = '🥈'; }
-    else if (idx === 2) { rankClass = 'rank-3'; medal = '🥉'; }
-    else { medal = `${idx + 1}.`; }
-    
-    let nilaiClass = 'nilai-badge';
-    if (m.nilai >= 90) nilaiClass += ' nilai-sempurna';
-    else if (m.nilai >= 70) nilaiClass += ' nilai-bagus';
-    else if (m.nilai >= 50) nilaiClass += ' nilai-cukup';
-    
-    const waktu = m.terakhirDiupdate ? new Date(m.terakhirDiupdate).toLocaleDateString('id-ID') : (m.pertamaKali ? new Date(m.pertamaKali).toLocaleDateString('id-ID') : '-');
-    
-    html += `
-      <tr class="${rankClass}">
-        <td><span class="rank-medal">${medal}</span></td>
-        <td><strong>${m.nama}</strong></td>
-        <td>${m.nim}</td>
-        <td><span class="${nilaiClass}">${m.nilai}</span></td>
-        <td>${m.benar}/${m.totalSoal}</td>
-        <td>${waktu}</td>
-      </tr>
-    `;
+  mkList.forEach(mk => {
+    html += `<button id="showRanking_${mk}" class="btn-back-mk" data-mk="${mk}">📚 ${mkNames[mk]}</button>`;
   });
   
-  html += `</tbody></table></div>`;
-  html += `<div class="info-syarat" style="margin-top:1rem; text-align:center;">
-    <i class="fas fa-chart-line"></i> Ranking berdasarkan nilai tertinggi. Nilai disimpan secara permanen!<br>
-    <small>✨ Nilai hanya akan muncul setelah Anda mengerjakan latihan soal</small>
-  </div>`;
-  
+  html += `</div><div id="rankingDisplay"></div>`;
   container.innerHTML = html;
+  
+  // Fungsi render ranking
+  function renderRanking(mkFilter = null) {
+    let filteredData = [...dataNilai];
+    if (mkFilter) {
+      filteredData = filteredData.filter(m => m.mkId === mkFilter);
+    }
+    
+    filteredData.sort((a, b) => b.nilai - a.nilai);
+    
+    if (filteredData.length === 0) {
+      document.getElementById('rankingDisplay').innerHTML = `<div class="empty-record">Belum ada nilai untuk MK ini</div>`;
+      return;
+    }
+    
+    let rankingHtml = `
+      <div class="ranking-container" style="max-height: 500px; overflow-y: auto; border: 1px solid #e2edf2; border-radius: 1rem;">
+        <table class="ranking-table" style="width: 100%; border-collapse: collapse;">
+          <thead>
+            <tr style="background: #1a4d5f; color: white; position: sticky; top: 0;">
+              <th style="padding: 12px;">🏆 Rank</th>
+              <th style="padding: 12px;">👤 Nama</th>
+              <th style="padding: 12px;">🆔 NIM</th>
+              <th style="padding: 12px;">📊 Nilai</th>
+              <th style="padding: 12px;">✅ Benar/Total</th>
+              <th style="padding: 12px;">📅 Waktu</th>
+            </tr>
+          </thead>
+          <tbody>
+    `;
+    
+    filteredData.forEach((m, idx) => {
+      let medal = '';
+      if (idx === 0) medal = '🥇';
+      else if (idx === 1) medal = '🥈';
+      else if (idx === 2) medal = '🥉';
+      else medal = `${idx + 1}.`;
+      
+      let nilaiClass = 'nilai-badge';
+      if (m.nilai >= 90) nilaiClass += ' nilai-sempurna';
+      else if (m.nilai >= 70) nilaiClass += ' nilai-bagus';
+      else if (m.nilai >= 50) nilaiClass += ' nilai-cukup';
+      
+      rankingHtml += `
+        <tr style="border-bottom: 1px solid #e2edf2;">
+          <td style="padding: 10px;">${medal}</td>
+          <td style="padding: 10px;"><strong>${m.nama}</strong></td>
+          <td style="padding: 10px;">${m.nim}</td>
+          <td style="padding: 10px;"><span class="${nilaiClass}">${m.nilai}</span></td>
+          <td style="padding: 10px;">${m.benar}/${m.totalSoal}</td>
+          <td style="padding: 10px; font-size: 0.7rem;">${new Date(m.terakhirDiupdate || m.pertamaKali).toLocaleDateString('id-ID')}</td>
+        </tr>
+      `;
+    });
+    
+    rankingHtml += `</tbody></table></div>`;
+    document.getElementById('rankingDisplay').innerHTML = rankingHtml;
+  }
+  
+  // Event listeners
+  document.getElementById('showAllRanking')?.addEventListener('click', () => renderRanking(null));
+  mkList.forEach(mk => {
+    document.getElementById(`showRanking_${mk}`)?.addEventListener('click', () => renderRanking(mk));
+  });
+  
+  // Tampilkan semua ranking default
+  renderRanking(null);
 }
 
-// Update fungsi showLatihanSoal untuk menyimpan nilai
+// Update fungsi showLatihanSoal untuk menyimpan nilai (PILIHAN GANDA)
 const originalShowLatihanSoal = showLatihanSoal;
 showLatihanSoal = function(mkId) {
   const data = soalPerMk[mkId];
   if (!data) return;
   
-  document.getElementById('latihanMkTitle').textContent = `📝 Latihan: ${data.title}`;
+  document.getElementById('latihanMkTitle').innerHTML = `📝 Latihan: ${data.title} (${data.soal.length} Soal Pilihan Ganda)`;
   
   // Ambil data user dengan aman
   let currentUserData = currentUser;
@@ -8699,21 +10215,39 @@ showLatihanSoal = function(mkId) {
   const userNim = currentUserData?.nim || '';
   
   let soalHtml = `<div class="soal-container" data-mk="${mkId}" data-total="${data.soal.length}">`;
-  soalHtml += data.soal.map((s, idx) => `
-    <div class="soal-item" data-soal-index="${idx}">
-      <p><strong>Soal ${idx+1}:</strong> ${s.pertanyaan}</p>
-      <div class="input-group">
-        <input type="text" id="jawaban${mkId}_${idx}" placeholder="Jawaban Anda..." class="jawaban-input" data-mk="${mkId}" data-idx="${idx}" data-jawaban="${s.jawaban.toLowerCase()}">
+  soalHtml += `<p style="margin-bottom: 1rem; color: #2a9d8f;">📌 Klik pada pilihan jawaban A, B, C, atau D!</p>`;
+  
+  data.soal.forEach((s, idx) => {
+    soalHtml += `
+      <div class="soal-item" style="margin-bottom: 1.5rem; padding: 1rem; background: #f9fbfe; border-radius: 1rem; border-left: 4px solid #2a9d8f;">
+        <p><strong>Soal ${idx+1}:</strong> ${s.pertanyaan}</p>
+        <div style="margin-top: 0.5rem;">
+          <label style="display: block; margin: 0.5rem 0; cursor: pointer; padding: 5px; border-radius: 8px;">
+            <input type="radio" name="soal_${mkId}_${idx}" value="a" style="margin-right: 10px;" data-mk="${mkId}" data-idx="${idx}"> 
+            <strong>A.</strong> ${s.a}
+          </label>
+          <label style="display: block; margin: 0.5rem 0; cursor: pointer; padding: 5px; border-radius: 8px;">
+            <input type="radio" name="soal_${mkId}_${idx}" value="b" style="margin-right: 10px;" data-mk="${mkId}" data-idx="${idx}"> 
+            <strong>B.</strong> ${s.b}
+          </label>
+          <label style="display: block; margin: 0.5rem 0; cursor: pointer; padding: 5px; border-radius: 8px;">
+            <input type="radio" name="soal_${mkId}_${idx}" value="c" style="margin-right: 10px;" data-mk="${mkId}" data-idx="${idx}"> 
+            <strong>C.</strong> ${s.c}
+          </label>
+          <label style="display: block; margin: 0.5rem 0; cursor: pointer; padding: 5px; border-radius: 8px;">
+            <input type="radio" name="soal_${mkId}_${idx}" value="d" style="margin-right: 10px;" data-mk="${mkId}" data-idx="${idx}"> 
+            <strong>D.</strong> ${s.d}
+          </label>
+        </div>
+        <div id="feedback_${mkId}_${idx}" style="font-size: 0.8rem; margin-top: 0.5rem; color: #666;"></div>
       </div>
-      <div id="feedback${mkId}_${idx}" class="feedback"></div>
-    </div>
-  `).join('');
+    `;
+  });
   
   soalHtml += `
     <div style="margin-top: 1.5rem; text-align: center;">
-      <button id="submitAllJawaban" class="btn-login-modern" style="background: #2a9d8f; width: auto; padding: 0.7rem 2rem;">📤 Kumpulkan Semua Jawaban</button>
+      <button id="submitAllJawaban" class="btn-login-modern" style="background: #2a9d8f; width: auto; padding: 0.7rem 2rem; border-radius: 2rem; font-size: 1rem;">📊 KUMPULKAN SEMUA JAWABAN</button>
     </div>
-    <div id="submitMessage" style="margin-top: 1rem; text-align: center;"></div>
   </div>`;
   
   document.getElementById('latihanSoalContent').innerHTML = soalHtml;
@@ -8732,44 +10266,60 @@ showLatihanSoal = function(mkId) {
       let benar = 0;
       const total = data.soal.length;
       
+      // Loop setiap soal
       for (let i = 0; i < total; i++) {
-        const jawabanInput = document.getElementById(`jawaban${mkId}_${i}`);
-        const feedbackDiv = document.getElementById(`feedback${mkId}_${i}`);
-        if (!jawabanInput) continue;
+        // Ambil radio yang dipilih
+        const selectedRadio = document.querySelector(`input[name="soal_${mkId}_${i}"]:checked`);
+        const feedbackDiv = document.getElementById(`feedback_${mkId}_${i}`);
         
-        const jawabanBenar = data.soal[i].jawaban.toLowerCase();
-        const userJawaban = jawabanInput.value.trim().toLowerCase();
-        
-        if (userJawaban === jawabanBenar) {
-          benar++;
-          if (feedbackDiv) feedbackDiv.innerHTML = '<span style="color:#2a9d8f;">✅ Benar!</span>';
+        if (selectedRadio) {
+          const userJawaban = selectedRadio.value;
+          const jawabanBenar = data.soal[i].jawaban;
+          
+          if (userJawaban === jawabanBenar) {
+            benar++;
+            if (feedbackDiv) feedbackDiv.innerHTML = '<span style="color:#2a9d8f;">✅ Benar!</span>';
+          } else {
+            const jawabanText = data.soal[i][jawabanBenar];
+            if (feedbackDiv) feedbackDiv.innerHTML = `<span style="color:#d9534f;">❌ Salah. Jawaban benar: ${jawabanBenar.toUpperCase()}. ${jawabanText}</span>`;
+          }
         } else {
-          if (feedbackDiv) feedbackDiv.innerHTML = `<span style="color:#d9534f;">❌ Salah. Jawaban: ${data.soal[i].jawaban}</span>`;
+          if (feedbackDiv) feedbackDiv.innerHTML = '<span style="color:#f4a261;">⚠️ Belum dijawab</span>';
         }
       }
       
       const nilai = Math.round((benar / total) * 100);
-      const messageDiv = document.getElementById('submitMessage');
+
+      let bgColor = '#e8f5e9';
+      let emoji = '🎉';
+      if (nilai < 50) { bgColor = '#fee2e2'; emoji = '💪'; }
+      else if (nilai < 70) { bgColor = '#fff7e5'; emoji = '📚'; }
+      
       if (messageDiv) {
-        messageDiv.innerHTML = `<div style="background: #e8f5e9; padding: 1rem; border-radius: 1rem;">
-          <strong>📊 Hasil: ${benar}/${total} (${nilai})</strong><br>
-          ✨ Nilai akan disimpan secara permanen!
-        </div>`;
+        messageDiv.innerHTML = `
+          <div style="background: ${bgColor}; padding: 1rem; border-radius: 1rem; animation: fadeIn 0.5s ease;">
+            <div style="font-size: 1.1rem; margin-bottom: 0.5rem;">📊 <strong>HASIL LATIHAN</strong> ${emoji}</div>
+            <div>✅ <strong>Benar:</strong> ${benar} / ${total} soal</div>
+            <div>📈 <strong>Nilai:</strong> <span style="font-size: 1.3rem; font-weight: bold; color: ${nilai >= 70 ? '#2a9d8f' : (nilai >= 50 ? '#f4a261' : '#d9534f')};">${nilai}</span></div>
+            <div style="margin-top: 0.5rem;">${nilai >= 70 ? '🎉 Selamat! Anda lulus!' : (nilai >= 50 ? '📚 Perlu belajar lagi!' : '💪 Jangan menyerah, coba lagi!')}</div>
+          </div>
+        `;
       }
       
-      // Simpan ke database permanen
+      // Simpan ke database permanen (per MK)
       if (userNim) {
-        simpanNilai(userNim, userNama, nilai, total, benar);
+        simpanNilai(userNim, userNama, nilai, total, benar, mkId);
+        addRecord('Latihan Soal', `${data.title} - Selesai: ${benar}/${total} (${nilai})`);
       } else {
         console.warn('User NIM tidak ditemukan, nilai tidak tersimpan');
         addRecord('Latihan Soal', `Gagal simpan nilai - user tidak teridentifikasi`);
       }
       
-      addRecord('Latihan Soal', `${data.title} - Selesai: ${benar}/${total} (${nilai})`);
+      // Scroll ke hasil
+      messageDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
     });
   }
 };
-
 // Update HTML untuk halaman Hasil Nilai
 const hasilNilaiDiv = document.getElementById('hasilNilaiPage');
 if (hasilNilaiDiv) {
