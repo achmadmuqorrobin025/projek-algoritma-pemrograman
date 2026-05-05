@@ -1566,13 +1566,52 @@ if (!CanvasRenderingContext2D.prototype.roundRect) {
     return this;
   };
 }
-  // ========== DATABASE MAHASISWA ==========
-  const DATA_MAHASISWA = {
-    "2504030043": { nama: "NABILA 'AINA SYARIFA", nim: "2504030043" },
-    "2504030062": { nama: "MUHAMAD ELIAN NABIL", nim: "2504030062" },
-    "2504030064": { nama: "ACHMAD MUQORROBIN", nim: "2504030064" },
-    "2604": { nama: "Amidi, S.Si., M.Pd.", nim: "2604" },
-  };
+  // Database Mahasiswa (Update)
+const DATA_MAHASISWA = {
+  // Kelompok 10 (tetap dipertahankan)
+  "2504030043": { nama: "NABILA 'AINA SYARIFA", nim: "2504030043" },
+  "2504030062": { nama: "MUHAMAD ELIAN NABIL", nim: "2504030062" },
+  "2504030064": { nama: "ACHMAD MUQORROBIN", nim: "2504030064" },
+  "2604": { nama: "Amidi, S.Si., M.Pd.", nim: "2604" },
+  
+  // Data Mahasiswa Baru (dari file image.png)
+  "2304030065": { nama: "MUHAMMAD RAFLI PRATAMA", nim: "2304030065" },
+  "2504030039": { nama: "MUHAMMAD IRSYADUL WAVI", nim: "2504030039" },
+  "2504030040": { nama: "DEMAS ALAN WIBOWO", nim: "2504030040" },
+  "2504030041": { nama: "SALSABILA AZZAHRA NUR RILA", nim: "2504030041" },
+  "2504030042": { nama: "NOOR AYYANAHAA AZZA", nim: "2504030042" },
+  "2504030044": { nama: "MARENO DWI FAISHAL AL FATTAH", nim: "2504030044" },
+  "2504030045": { nama: "HAICHAL WAIZ AL QODRI", nim: "2504030045" },
+  "2504030046": { nama: "CHAFFYYA SOFA", nim: "2504030046" },
+  "2504030047": { nama: "AZ ZAHRA NADIA HAUNA", nim: "2504030047" },
+  "2504030048": { nama: "AZKA QAANI' MUHANA", nim: "2504030048" },
+  "2504030049": { nama: "WULAN HARI CAHYANI", nim: "2504030049" },
+  "2504030050": { nama: "KLARA FARADINA WAHDA", nim: "2504030050" },
+  "2504030051": { nama: "NAYLA SYIFA KHILYATUL AULIA", nim: "2504030051" },
+  "2504030052": { nama: "NAILA DISTI AMANDA MEILANY", nim: "2504030052" },
+  "2504030053": { nama: "CINTA NA'ILAH FAJRINA", nim: "2504030053" },
+  "2504030054": { nama: "ANANDA MUHAMMAD FIKRA ADITAMA", nim: "2504030054" },
+  "2504030055": { nama: "ELVIS SALMA", nim: "2504030055" },
+  "2504030056": { nama: "NAUFAL SAPUTRA", nim: "2504030056" },
+  "2504030057": { nama: "TAUFIQURRAHMAN", nim: "2504030057" },
+  "2504030058": { nama: "ADHISTY DWI PURWANTI", nim: "2504030058" },
+  "2504030059": { nama: "MUHAMMAD FAIRUZ ZAKI", nim: "2504030059" },
+  "2504030060": { nama: "AUZORA INTAN AULIA", nim: "2504030060" },
+  "2504030061": { nama: "SUKMA RUCITASARI", nim: "2504030061" },
+  "2504030063": { nama: "ISMAIL HASAN", nim: "2504030063" },
+  "2504030065": { nama: "FARELLA GITA PUTRI RAMADANI", nim: "2504030065" },
+  "2504030066": { nama: "YUNIANA AFNI", nim: "2504030066" },
+  "2504030067": { nama: "BELDA ARDELLA RAMADHANI", nim: "2504030067" },
+  "2504030068": { nama: "EGA PATRIYA", nim: "2504030068" },
+  "2504030069": { nama: "HASIFA SULISTIA RAMADHANI", nim: "2504030069" },
+  "2504030070": { nama: "GADING ADI RAGA", nim: "2504030070" },
+  "2504030071": { nama: "FARIS MUHAMAD INDI LUTHFI", nim: "2504030071" },
+  "2504030072": { nama: "IMANUEL HUTAPEA", nim: "2504030072" },
+  "2504030073": { nama: "DANIEL IGNASIUS IWAN LUTAN", nim: "2504030073" },
+  "2504030074": { nama: "NINDA RISMAWATI VIRGINIA", nim: "2504030074" },
+  "2504030075": { nama: "AGIL ALIY ASHGHAR", nim: "2504030075" },
+  "2504030076": { nama: "ZAHWA CINTA NABILA", nim: "2504030076" }
+};
   // DATABASE PTN AKADEMIK LENGKAP SELURUH INDONESIA
 const databasePTN = [
   // ========== ACEH ==========
@@ -11252,8 +11291,8 @@ if (!document.getElementById('rekomendasiPage')) {
       <div id="uploadSection" style="display:block;">
         <div style="background:#f8fafd; border-radius:1rem; padding:1.5rem; text-align:center;">
           <div style="font-size:3rem; margin-bottom:0.5rem;"></div>
-          <p>Upload file nilai (format: .txt, .csv, .xlsx)</p>
-          <input type="file" id="fileNilai" accept=".txt,.csv,.json" style="margin:1rem 0;">
+          <p>Upload file nilai (format: .xlsx)</p>
+          <input type="file" id="fileNilai" accept=".xlsx,.xls" style="margin:1rem 0;">
           <button id="prosesFileBtn" class="btn-login-modern" style="background:#2a9d8f; width:auto; padding:0.7rem 1.5rem;">Proses File</button>
           <div id="filePreview" style="margin-top:1rem; font-size:0.8rem; color:#6c7e91;"></div>
         </div>
@@ -11488,38 +11527,63 @@ function loadLastPage() {
 }
 
 // Proses upload file
+// Proses upload file (support .txt, .csv, .json, .xlsx, .xls)
 function prosesUploadFile(file) {
   const reader = new FileReader();
   const preview = document.getElementById('filePreview');
+  const extension = file.name.split('.').pop().toLowerCase();
   
   reader.onload = function(e) {
-    const content = e.target.result;
     let nilaiMap = {};
     let total = 0;
     let count = 0;
     
     try {
-      // Coba parse JSON
-      if (file.name.endsWith('.json')) {
-        const data = JSON.parse(content);
+      // ========== UNTUK FILE EXCEL (.xlsx, .xls) ==========
+      if (extension === 'xlsx' || extension === 'xls') {
+        const data = new Uint8Array(e.target.result);
+        const workbook = XLSX.read(data, { type: 'array' });
+        const firstSheet = workbook.Sheets[workbook.SheetNames[0]];
+        const jsonData = XLSX.utils.sheet_to_json(firstSheet);
+        
+        // Format yang diharapkan: kolom 'mapel'/'mata_pelajaran' dan 'nilai'
+        for (const row of jsonData) {
+          let mapel = row['mapel'] || row['mata_pelajaran'] || row['Mapel'] || row['Mata Pelajaran'] || Object.keys(row)[0];
+          let nilai = row['nilai'] || row['Nilai'] || Object.values(row)[1];
+          
+          if (mapel && nilai) {
+            const nilaiNum = parseInt(nilai);
+            if (!isNaN(nilaiNum) && nilaiNum >= 0 && nilaiNum <= 100) {
+              nilaiMap[mapel.toString().trim()] = nilaiNum;
+              total += nilaiNum;
+              count++;
+            }
+          }
+        }
+      }
+      // ========== UNTUK FILE JSON ==========
+      else if (extension === 'json') {
+        const data = JSON.parse(e.target.result);
         for (const [key, value] of Object.entries(data)) {
           const nilaiNum = parseInt(value);
-          if (!isNaN(nilaiNum)) {
+          if (!isNaN(nilaiNum) && nilaiNum >= 0 && nilaiNum <= 100) {
             nilaiMap[key] = nilaiNum;
             total += nilaiNum;
             count++;
           }
         }
       } 
-      // Parse CSV/TXT (format: mapel=nilai)
+      // ========== UNTUK FILE TXT / CSV ==========
       else {
-        const lines = content.split(/\r?\n/);
+        const lines = e.target.result.split(/\r?\n/);
         for (const line of lines) {
-          const [mapel, nilai] = line.split(/[=,]/);
-          if (mapel && nilai) {
-            const nilaiNum = parseInt(nilai.trim());
-            if (!isNaN(nilaiNum)) {
-              nilaiMap[mapel.trim()] = nilaiNum;
+          // Support format: "mapel=nilai" atau "mapel,nilai" atau "mapel,nilai"
+          let parts = line.split(/[=,;]/);
+          if (parts.length >= 2) {
+            const mapel = parts[0].trim();
+            const nilaiNum = parseInt(parts[1].trim());
+            if (mapel && !isNaN(nilaiNum) && nilaiNum >= 0 && nilaiNum <= 100) {
+              nilaiMap[mapel] = nilaiNum;
               total += nilaiNum;
               count++;
             }
@@ -11528,20 +11592,26 @@ function prosesUploadFile(file) {
       }
       
       if (count === 0) {
-        preview.innerHTML = '<span style="color:#d9534f;">❌ Tidak ada data nilai yang valid dalam file!</span>';
+        preview.innerHTML = '<span style="color:#d9534f;">❌ Tidak ada data nilai yang valid dalam file!<br><small>Format Excel: kolom "mapel" dan "nilai"</small></span>';
         return;
       }
       
       const rataRata = total / count;
-      preview.innerHTML = `<span style="color:#2a9d8f;">✅ Berhasil memproses ${count} mata pelajaran!</span>`;
+      preview.innerHTML = `<span style="color:#2a9d8f;">✅ Berhasil memproses ${count} mata pelajaran! Rata-rata: ${rataRata.toFixed(1)}</span>`;
       tampilkanRekomendasi(nilaiMap, rataRata);
       
     } catch (err) {
+      console.error(err);
       preview.innerHTML = '<span style="color:#d9534f;">❌ Gagal membaca file! Pastikan formatnya benar.</span>';
     }
   };
   
-  reader.readAsText(file);
+  // Baca file sesuai tipe
+  if (extension === 'xlsx' || extension === 'xls') {
+    reader.readAsArrayBuffer(file);
+  } else {
+    reader.readAsText(file);
+  }
 }
 
 // ========== EVENT LISTENER UNTUK SCAN NILAI ==========
